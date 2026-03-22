@@ -1,0 +1,4 @@
+total_in=509
+total_out=29
+dropped_no_text=480
+dropped_by_source={"huggingface": 480}
