@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.venv/
+
+# Data folders (çok önemli)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Model / index çıktıları
+models/
+*.faiss
+*.npy
+*.pkl
+
+# OS junk
+.DS_Store
+Thumbs.db
