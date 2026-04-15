@@ -1,56 +1,57 @@
 import json
 from pathlib import Path
-
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
 
-ROOT = Path(r"C:\Users\user\Desktop\Tez")
+ROOT = Path(__file__).resolve().parent
 
+# Yolları search.py ile uyumlu hale getirdik
 IN_PATH = ROOT / "data" / "processed" / "descriptions_clean.jsonl"
-EMB_DIR = ROOT / "data" / "embeddings"
 IDX_DIR = ROOT / "data" / "index"
 
-EMB_DIR.mkdir(parents=True, exist_ok=True)
+# Klasörü oluştur
 IDX_DIR.mkdir(parents=True, exist_ok=True)
 
-OUT_EMB = EMB_DIR / "descriptions.npy"
-OUT_META = EMB_DIR / "meta.jsonl"
+# search.py'nin beklediği dosya isimleri
 OUT_INDEX = IDX_DIR / "faiss.index"
+OUT_MAPPING = IDX_DIR / "mappings.json"
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 BATCH_SIZE = 32
 
-
 def iter_jsonl(path: Path):
+    if not path.exists():
+        raise FileNotFoundError(f"{path} bulunamadı! Önce normalize_merge.py çalıştır.")
     with path.open("r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if line:
                 yield json.loads(line)
 
-
 def main():
     rows = list(iter_jsonl(IN_PATH))
-
     texts = []
-    meta = []
+    # search.py 'mappings.json' içinde bir sözlük (dict) bekliyor
+    mapping_dict = {}
 
-    for r in rows:
+    for i, r in enumerate(rows):
         t = r.get("text")
         if isinstance(t, str) and t.strip():
             texts.append(t.strip())
-            meta.append({
+            # search.py'nin beklediği formatta veri saklıyoruz
+            mapping_dict[i] = {
                 "source": r.get("source"),
                 "ref": r.get("ref"),
                 "title": r.get("title"),
                 "url": r.get("url"),
-            })
+                "text": t.strip() # Özet gösterimi için gerekli
+            }
 
     if not texts:
-        raise RuntimeError("No valid 'text' found in descriptions_clean.jsonl")
+        raise RuntimeError("İşlenecek metin bulunamadı!")
 
-    print(f"[LOAD] {len(texts)} texts ready for embedding")
+    print(f"[LOAD] {len(texts)} metin vektöre çevriliyor...")
 
     model = SentenceTransformer(MODEL_NAME)
     emb = model.encode(
@@ -60,22 +61,20 @@ def main():
         normalize_embeddings=True,
     ).astype("float32")
 
-    np.save(OUT_EMB, emb)
-
-    with OUT_META.open("w", encoding="utf-8", newline="\n") as out:
-        for m in meta:
-            out.write(json.dumps(m, ensure_ascii=False) + "\n")
-
+    # 1. FAISS İndeksini oluştur ve kaydet
     d = emb.shape[1]
-    index = faiss.IndexFlatIP(d)
+    index = faiss.IndexFlatIP(d) # İç çarpım (Cosine similarity benzeri)
     index.add(emb)
-
     faiss.write_index(index, str(OUT_INDEX))
 
-    print(f"[SAVE] embeddings: {OUT_EMB} shape={emb.shape}")
-    print(f"[SAVE] meta: {OUT_META} lines={len(meta)}")
-    print(f"[SAVE] index: {OUT_INDEX} ntotal={index.ntotal}")
+    # 2. Mappings dosyasını search.py'nin istediği isimle ve formatta kaydet
+    with OUT_MAPPING.open("w", encoding="utf-8") as f:
+        json.dump(mapping_dict, f, ensure_ascii=False)
 
+    print(f"\n[BAŞARILI]")
+    print(f"-> İndeks: {OUT_INDEX}")
+    print(f"-> Rehber: {OUT_MAPPING}")
+    print(f"Toplam {index.ntotal} veri indekslendi.")
 
 if __name__ == "__main__":
     main()

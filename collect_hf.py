@@ -2,6 +2,8 @@ import time
 import json
 import uuid
 import requests
+
+
 from datetime import datetime, timezone
 
 def utc_now():
@@ -33,7 +35,12 @@ def clean_readme(text):
     return short.strip()
 
 def main():
+
+    from pathlib import Path
     output_path = "data/raw/huggingface/raw_hf.jsonl"
+
+    Path("data/raw/huggingface").mkdir(parents=True, exist_ok=True)
+
     datasets = list_datasets(limit=1500)
 
     with open(output_path, "w", encoding="utf-8") as f:

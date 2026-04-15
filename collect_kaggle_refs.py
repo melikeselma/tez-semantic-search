@@ -6,7 +6,7 @@ from pathlib import Path
 import requests
 from kaggle.api.kaggle_api_extended import KaggleApi
 
-ROOT = Path(r"C:\Users\user\Desktop\Tez")
+ROOT = Path(__file__).resolve().parent
 OUT_PATH = ROOT / "data" / "raw" / "kaggle" / "kaggle_refs.jsonl"
 
 TARGET_REFS = 2000

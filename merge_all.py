@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-ROOT = Path(r"C:\Users\user\Desktop\Tez")
+ROOT = Path(__file__).resolve().parent
 
 HF_PATH = ROOT / "data" / "processed" / "hf_clean.jsonl"
 KAGGLE_PATH = ROOT / "data" / "processed" / "kaggle_clean.jsonl"

@@ -3,7 +3,7 @@ import re
 import html
 from pathlib import Path
 
-ROOT = Path(r"C:\Users\user\Desktop\Tez")
+ROOT = Path(__file__).resolve().parent
 
 IN_PATH = ROOT / "data" / "raw" / "kaggle" / "raw_kaggle.jsonl"
 OUT_PATH = ROOT / "data" / "processed" / "kaggle_clean.jsonl"
