@@ -1,0 +1,160 @@
+[
+  {
+    "id": "q001",
+    "query": "earthquake data",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Earthquake catalogs and seismic event datasets are considered relevant."
+  },
+  {
+    "id": "q002",
+    "query": "audio deepfake detection",
+    "category": "audio_security",
+    "source_filter": "all",
+    "relevant_refs": [
+      "abdallamohamed312/in-the-wild-audio-deepfake",
+      "nallaguntlavamshi/phonemedf",
+      "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure"
+    ],
+    "notes": "Audio or media deepfake detection datasets are considered relevant."
+  },
+  {
+    "id": "q003",
+    "query": "stock price history",
+    "category": "finance",
+    "source_filter": "all",
+    "relevant_refs": [
+      "rodas86/stock-prices-without-splits",
+      "benjaminpo/sp500-spx-components-stock-price",
+      "code1110/yfinance-stock-price-data-for-numerai-signals",
+      "durgeshrathod777/nse-titan-stock-data-from2023-23march2024",
+      "pholenk/eod-data-indonesia-stock-exchange",
+      "brtnsmth/intraday-market-data"
+    ],
+    "notes": "Historical stock, market, and end-of-day price datasets are considered relevant."
+  },
+  {
+    "id": "q004",
+    "query": "movie review sentiment",
+    "category": "nlp_sentiment",
+    "source_filter": "all",
+    "relevant_refs": [
+      "stanfordnlp/imdb",
+      "cornell-movie-review-data/rotten_tomatoes",
+      "ashishkumarak/netflix-reviews-playstore-daily-updated"
+    ],
+    "notes": "Movie, IMDb, Rotten Tomatoes, Netflix review, or sentiment classification datasets are considered relevant."
+  },
+  {
+    "id": "q005",
+    "query": "weather climate data",
+    "category": "weather_climate",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noaa/noaa-severe-weather-data-inventory",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+      "jerismeteo/open-meteo-data-kebumen",
+      "leopiney/worldclim-version-2-temperature-10m",
+      "eeemonts/weatherclimate-data-covid19",
+      "oinuma/japan-meteorological-agency-forecast"
+    ],
+    "notes": "Weather, meteorology, temperature, climate, and severe weather datasets are considered relevant."
+  },
+  {
+    "id": "q006",
+    "query": "public opinion on climate change",
+    "category": "climate_opinion",
+    "source_filter": "all",
+    "relevant_refs": [
+      "asaniczka/public-opinion-on-climate-change-updated-daily",
+      "tdiggelm/climate_fever"
+    ],
+    "notes": "Climate change public opinion and climate claim datasets are considered relevant."
+  },
+  {
+    "id": "q007",
+    "query": "yolo object detection dataset",
+    "category": "computer_vision",
+    "source_filter": "all",
+    "relevant_refs": [
+      "devharis/plantvillage-yolo-modified",
+      "miaikoo/invasive-plant-species-object-detection-yolo",
+      "a2015003713/yolov7-military-plane",
+      "hpgiakhang1405/pcb-defect-coco",
+      "qasimrajput/pakistan-garbage-detection-dataset",
+      "ashfakyeafi/taco-trash-dataset",
+      "manoj223/ppe-kit-dataset"
+    ],
+    "notes": "YOLO, COCO, image object detection, and detection benchmark datasets are considered relevant."
+  },
+  {
+    "id": "q008",
+    "query": "arabic speech recognition audio",
+    "category": "speech_audio",
+    "source_filter": "all",
+    "relevant_refs": [
+      "MohamedRashad/arabic-english-code-switching",
+      "linagora/linto-dataset-audio-ar-tn"
+    ],
+    "notes": "Arabic ASR, Arabic speech, and audio transcript datasets are considered relevant."
+  },
+  {
+    "id": "q009",
+    "query": "sales customer purchase behavior",
+    "category": "business",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noeyislearning/sales-simulation",
+      "paramvir705/supermarket-sales",
+      "amunsentom/supermarket-superstore-dataset-bundle",
+      "rebrowser/seatgeek-dataset"
+    ],
+    "notes": "Sales, supermarket, ticket sales, and customer purchase behavior datasets are considered relevant."
+  },
+  {
+    "id": "q010",
+    "query": "medical question answering",
+    "category": "medical_nlp",
+    "source_filter": "all",
+    "relevant_refs": [
+      "OpenMed/Medical-Reasoning-SFT-Mega",
+      "blinoff/medical_qa_ru_data",
+      "seongsubae/KorMedMCQA-V",
+      "epfl-llm/guidelines"
+    ],
+    "notes": "Medical QA, clinical reasoning, and healthcare text datasets are considered relevant."
+  },
+  {
+    "id": "q011",
+    "query": "quran audio recitation",
+    "category": "speech_audio",
+    "source_filter": "all",
+    "relevant_refs": [
+      "Buraaq/quran-audio-text-dataset",
+      "MohamedRashad/Quran-Recitations",
+      "nazimali/quran",
+      "Buraaq/quran-md-ayahs"
+    ],
+    "notes": "Quran text, Quran recitation, and Quran audio datasets are considered relevant."
+  },
+  {
+    "id": "q012",
+    "query": "covid cases daily updates",
+    "category": "health_time_series",
+    "source_filter": "all",
+    "relevant_refs": [
+      "dekhpakistan/pakistan-covid19-dataset",
+      "evgeniako/covid19-in-belgium",
+      "joebeachcapital/coronavirus-covid-19-cases-daily-updates",
+      "mpeteuil/nytimes-covid-19-data",
+      "alfredodimaria/covid19-data-by-agid",
+      "fireballbyedimyrnmom/us-counties-covid-19-dataset"
+    ],
+    "notes": "COVID-19 case count, country-level, and daily update datasets are considered relevant."
+  }
+]

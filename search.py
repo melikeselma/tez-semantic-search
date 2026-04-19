@@ -1,79 +1,100 @@
 import json
-import faiss
-import numpy as np
-from sentence_transformers import SentenceTransformer
+import sys
 from pathlib import Path
-import os
 
-# --- YOLLARI GARANTİYE ALALIM ---
+import faiss
+from sentence_transformers import SentenceTransformer
+
 BASE_DIR = Path(__file__).resolve().parent
 INDEX_PATH = BASE_DIR / "data" / "index" / "faiss.index"
 MAPPING_PATH = BASE_DIR / "data" / "index" / "mappings.json"
+MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+TOP_K = 5
+
+
+def configure_output():
+    # Prevent Windows console encoding errors when dataset text contains emoji.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
+
+
+def load_mappings():
+    if not MAPPING_PATH.exists():
+        raise FileNotFoundError(
+            f"Mapping file not found: {MAPPING_PATH}\n"
+            "Run build_faiss_index.py first."
+        )
+    with MAPPING_PATH.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_search_engine():
+    if not INDEX_PATH.exists():
+        raise FileNotFoundError(
+            f"Index file not found: {INDEX_PATH}\n"
+            "Run normalize_merge.py and build_faiss_index.py first."
+        )
+
+    print("[LOG] Yapay zeka modeli (MiniLM) yükleniyor...")
+    model = SentenceTransformer(MODEL_NAME)
+
+    print("[LOG] Vektör veritabanı yükleniyor...")
+    index = faiss.read_index(str(INDEX_PATH))
+
+    mappings = load_mappings()
+
+    if index.ntotal != len(mappings):
+        print(
+            "[UYARI] Index ve mapping kayıt sayısı farklı: "
+            f"index={index.ntotal}, mappings={len(mappings)}"
+        )
+
+    return model, index, mappings
+
+
+def search(query: str, model, index, mappings, top_k: int = TOP_K):
+    query_vector = model.encode([query], normalize_embeddings=True).astype("float32")
+    scores, indices = index.search(query_vector, min(top_k, index.ntotal))
+
+    results = []
+    for score, idx in zip(scores[0], indices[0]):
+        if idx == -1:
+            continue
+        item = mappings.get(str(idx))
+        if not item:
+            continue
+        results.append((float(score), item))
+    return results
+
 
 def main():
-    # 1. DOSYA KONTROLÜ (Nereye bakıyoruz?)
-    if not INDEX_PATH.exists():
-        # Eğer yukarıdaki bulamazsa alternatif bir yol daha dene (Monster kullanıcısı için özel)
-        INDEX_PATH_ALT = Path(r"C:\Users\MONSTER\Desktop\tez-semantic-search\data\index\faiss.index")
-        MAPPING_PATH_ALT = Path(r"C:\Users\MONSTER\Desktop\tez-semantic-search\data\index\mappings.json")
-        
-        if INDEX_PATH_ALT.exists():
-            print(f"[LOG] Dosyalar alternatif yolda bulundu.")
-            current_index_path = INDEX_PATH_ALT
-            current_mapping_path = MAPPING_PATH_ALT
-        else:
-            print(f"\n[HATA] İndeks dosyası bulunamadı!")
-            print(f"Baktığım yer 1: {INDEX_PATH.absolute()}")
-            print(f"Baktığım yer 2: {INDEX_PATH_ALT}")
-            print("\nLütfen 'data/index' klasöründe 'faiss.index' olduğundan emin ol.")
-            return
-    else:
-        current_index_path = INDEX_PATH
-        current_mapping_path = MAPPING_PATH
+    configure_output()
+    model, index, mappings = load_search_engine()
 
-    # 2. YÜKLEME AŞAMASI
-    print("[LOG] Yapay zeka modeli (MiniLM) yükleniyor...")
-    model = SentenceTransformer('all-MiniLM-L6-v2')
-    
-    print("[LOG] Vektör veritabanı yükleniyor...")
-    index = faiss.read_index(str(current_index_path))
-    
-    with open(current_mapping_path, "r", encoding="utf-8") as f:
-        mappings = json.load(f)
-
-    # 3. KULLANICI ARAYÜZÜ
-    print("\n" + "="*50)
+    print("\n" + "=" * 50)
     print("   SEMANTİK VERİ SETİ ARAMA MOTORUNA HOŞ GELDİNİZ")
-    print("="*50)
+    print("=" * 50)
 
     while True:
         query = input("\nNe tür bir veri seti arıyorsunuz? (Çıkış için 'q'): ").strip()
-        if query.lower() == 'q': break
-        if not query: continue
-
-        # Sorguyu vektöre çevir
-        query_vec = model.encode([query]).astype("float32")
-        
-        # En yakın 5 sonucu getir
-        distances, indices = index.search(query_vec, k=5)
+        if query.lower() == "q":
+            break
+        if not query:
+            continue
 
         print(f"\n'{query}' için en alakalı sonuçlar:")
         print("-" * 50)
 
-        for i, idx in enumerate(indices[0]):
-            if idx == -1: continue
-            
-            res = mappings.get(str(idx))
-            if not res: continue
-
-            print(f"{i+1}. BAŞLIK: {res.get('title', 'İsimsiz')}")
-            print(f"   KAYNAK: {res.get('source', 'Kaggle/HF').upper()}")
-            print(f"   URL: {res.get('url', 'N/A')}")
-            
-            # Metnin ilk kısmını temizce göster
-            desc = res.get('text', '').replace('\n', ' ')
-            print(f"   ÖZET: {desc[:150]}...")
+        for rank, (score, result) in enumerate(search(query, model, index, mappings), start=1):
+            desc = (result.get("text") or "").replace("\n", " ")
+            print(f"{rank}. BAŞLIK: {result.get('title', 'İsimsiz')}")
+            print(f"   KAYNAK: {(result.get('source') or 'unknown').upper()}")
+            print(f"   SKOR: {score:.4f}")
+            print(f"   URL: {result.get('url') or 'N/A'}")
+            print(f"   ÖZET: {desc[:180]}...")
             print("-" * 50)
+
 
 if __name__ == "__main__":
     main()

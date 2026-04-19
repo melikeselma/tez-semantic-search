@@ -1,99 +1,139 @@
 import json
-import os
-import time
 from pathlib import Path
-from kaggle.api.kaggle_api_extended import KaggleApi
+from typing import Dict, Iterable, Optional
 
 ROOT = Path(__file__).resolve().parent
-REFS_PATH = ROOT / "data" / "raw" / "kaggle" / "kaggle_refs.jsonl"
 OUT_PATH = ROOT / "data" / "raw" / "kaggle" / "raw_kaggle.jsonl"
-TMP_META = ROOT / "temp_kg" 
 
-def deep_find_description(obj):
-    """JSON içinde nerede açıklama varsa bulur."""
-    # 1. Klasik anahtarlar
-    for key in ["description", "subtitle", "summary", "text"]:
-        if obj.get(key) and isinstance(obj[key], str) and len(obj[key]) > 10:
-            return obj[key]
-    
-    # 2. userMetadata altındaki yerler
-    user_meta = obj.get("userMetadata", {})
-    if isinstance(user_meta, dict):
-        for key in ["description", "text"]:
-            if user_meta.get(key) and len(str(user_meta[key])) > 10:
-                return user_meta[key]
-                
-    # 3. Son çare: JSON içindeki en uzun metin bloğunu bul (Genelde açıklamadır)
-    best_text = ""
-    def search_dict(d):
-        nonlocal best_text
-        if isinstance(d, dict):
-            for v in d.values(): search_dict(v)
-        elif isinstance(d, list):
-            for v in d: search_dict(v)
-        elif isinstance(d, str):
-            if len(d) > len(best_text):
-                best_text = d
-    
-    search_dict(obj)
-    return best_text if len(best_text) > 20 else None
+# Metadata downloaded by previous Kaggle API runs. We rebuild raw_kaggle.jsonl
+# from these local files so the pipeline is reproducible without new API calls.
+METADATA_DIRS = (
+    ROOT / "data" / "raw" / "kaggle" / "_tmp_meta",
+    ROOT / "temp_kg",
+)
+
+
+def load_metadata(path: Path) -> Optional[Dict]:
+    try:
+        with path.open("r", encoding="utf-8") as f:
+            obj = json.load(f)
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"[WARN] Skipping unreadable metadata {path}: {exc}")
+        return None
+
+    # Some Kaggle API versions write a JSON string inside the JSON file.
+    if isinstance(obj, str):
+        try:
+            obj = json.loads(obj)
+        except json.JSONDecodeError:
+            return None
+
+    # Some cached files wrap the actual metadata under "info".
+    if isinstance(obj, dict) and isinstance(obj.get("info"), dict):
+        obj = obj["info"]
+
+    return obj if isinstance(obj, dict) else None
+
+
+def iter_metadata_files() -> Iterable[Path]:
+    for directory in METADATA_DIRS:
+        if not directory.exists():
+            print(f"[WARN] Missing metadata directory: {directory}")
+            continue
+        yield from directory.glob("*/dataset-metadata.json")
+
+
+def as_text(value) -> str:
+    return value.strip() if isinstance(value, str) and value.strip() else ""
+
+
+def extract_ref(meta: Dict, fallback_dir_name: str) -> Optional[str]:
+    owner = as_text(meta.get("ownerUser"))
+    slug = as_text(meta.get("datasetSlug"))
+    if owner and slug:
+        return f"{owner}/{slug}"
+
+    fallback = fallback_dir_name.replace("__", "/").strip("/")
+    return fallback or None
+
+
+def extract_license(meta: Dict) -> str:
+    licenses = meta.get("licenses")
+    if isinstance(licenses, list) and licenses:
+        first = licenses[0]
+        if isinstance(first, dict):
+            return as_text(first.get("name"))
+        return as_text(first)
+    return ""
+
+
+def normalize_keywords(value) -> list:
+    if not isinstance(value, list):
+        return []
+    keywords = []
+    for item in value:
+        if isinstance(item, str) and item.strip():
+            keywords.append(item.strip())
+    return keywords
+
+
+def build_record(meta: Dict, metadata_path: Path) -> Optional[Dict]:
+    ref = extract_ref(meta, metadata_path.parent.name)
+    title = as_text(meta.get("title"))
+    if not ref or not title:
+        return None
+
+    subtitle = as_text(meta.get("subtitle"))
+    description = as_text(meta.get("description"))
+    keywords = normalize_keywords(meta.get("keywords"))
+
+    return {
+        "source": "kaggle",
+        "ref": ref,
+        "title": title,
+        "subtitle": subtitle,
+        "description": description,
+        "keywords": keywords,
+        "license": extract_license(meta),
+        "url": f"https://www.kaggle.com/datasets/{ref}",
+        "metadata_path": str(metadata_path.relative_to(ROOT)),
+    }
+
 
 def main():
-    TMP_META.mkdir(parents=True, exist_ok=True)
-    api = KaggleApi()
-    api.authenticate()
+    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-    with open(REFS_PATH, "r", encoding="utf-8") as f:
-        refs = [json.loads(line) for line in f]
+    seen_refs = set()
+    total_files = written = skipped = duplicates = 0
 
-    count = 0
-    target = 100 
+    with OUT_PATH.open("w", encoding="utf-8", newline="\n") as out:
+        for metadata_path in iter_metadata_files():
+            total_files += 1
+            meta = load_metadata(metadata_path)
+            if not meta:
+                skipped += 1
+                continue
 
-    with open(OUT_PATH, "a", encoding="utf-8") as out_f:
-        for rec in refs:
-            if count >= target: break
-            ref = rec["ref"]
-            print(f"[DENENİYOR] {ref}", end=" ")
-            
-            try:
-                safe_name = ref.replace("/", "__")
-                ds_dir = TMP_META / safe_name
-                ds_dir.mkdir(parents=True, exist_ok=True)
-                
-                # API çağrısı
-                api.dataset_metadata(ref, path=str(ds_dir))
-                
-                meta_file = ds_dir / "dataset-metadata.json"
-                if meta_file.exists():
-                    with open(meta_file, "r", encoding="utf-8") as m:
-                        meta_data = json.load(m)
-                        if isinstance(meta_data, str): meta_data = json.loads(meta_data)
-                    
-                    desc = deep_find_description(meta_data)
-                    
-                    if desc:
-                        # Gereksiz HTML'leri çok basitçe temizle
-                        desc_clean = desc.replace("<br>", "\n").replace("<b>", "").replace("</b>", "")
-                        
-                        out_f.write(json.dumps({
-                            "source": "kaggle",
-                            "ref": ref,
-                            "title": rec.get("title"),
-                            "description": desc_clean[:2000] # Çok uzunsa kes
-                        }, ensure_ascii=False) + "\n")
-                        out_f.flush()
-                        count += 1
-                        print(f"-> [TAMAM] {count}/{target}")
-                    else:
-                        print("-> [BOŞ]")
-                else:
-                    print("-> [DOSYA YOK]")
-                
-                time.sleep(6) # Kaggle ban koruması
+            rec = build_record(meta, metadata_path)
+            if not rec:
+                skipped += 1
+                continue
 
-            except Exception as e:
-                print(f"-> [HATA] {e}")
-                time.sleep(2)
+            if rec["ref"] in seen_refs:
+                duplicates += 1
+                continue
+
+            seen_refs.add(rec["ref"])
+            out.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            written += 1
+
+    print("[OK] Kaggle raw metadata rebuilt")
+    print(f"  metadata_files={total_files}")
+    print(f"  written={written}")
+    print(f"  duplicates={duplicates}")
+    print(f"  skipped={skipped}")
+    print(f"  output={OUT_PATH}")
+
 
 if __name__ == "__main__":
     main()

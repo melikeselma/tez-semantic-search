@@ -1,0 +1,17 @@
+{
+  "built_at_utc": "2026-04-16T22:25:28.969154+00:00",
+  "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+  "input_path": "C:\\Users\\user\\Desktop\\Tez\\data\\processed\\descriptions_clean.jsonl",
+  "input_rows": 1120,
+  "indexed_rows": 1120,
+  "embedding_dimension": 384,
+  "source_counts": {
+    "huggingface": 480,
+    "kaggle": 640
+  },
+  "outputs": {
+    "index": "C:\\Users\\user\\Desktop\\Tez\\data\\index\\faiss.index",
+    "mappings": "C:\\Users\\user\\Desktop\\Tez\\data\\index\\mappings.json",
+    "legacy_meta": "C:\\Users\\user\\Desktop\\Tez\\data\\embeddings\\meta.jsonl"
+  }
+}
