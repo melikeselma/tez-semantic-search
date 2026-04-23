@@ -1,0 +1,31 @@
+1.
+I’m looking for a dataset that includes historical earthquake records with magnitude, depth, and location information over time, preferably covering multiple countries.
+
+2.
+Is there any dataset that tracks seismic activity worldwide, including aftershocks and tectonic plate movements?
+
+3.
+I need a dataset containing earthquake events along with timestamps and geographic coordinates so I can analyze spatial patterns.
+
+4.
+Are there publicly available datasets that include both major and minor earthquake occurrences with detailed seismic measurements?
+
+5.
+I want to find a dataset that provides long-term seismic activity data to study trends and frequency of earthquakes in different regions.
+
+6.
+Do you know any dataset that combines earthquake data with environmental or geological features like fault lines or soil type?
+
+7.
+I’m searching for a dataset that contains real-time or near real-time earthquake monitoring data with updates.
+
+8.
+Is there a dataset that includes historical earthquake damage reports along with seismic event data?
+
+9.
+I need earthquake-related data that also includes tsunami events or other secondary natural disasters triggered by seismic activity.
+
+10.
+Can you suggest a dataset that includes earthquake intensity scales (like Richter or Moment Magnitude) and related metadata?
+
+

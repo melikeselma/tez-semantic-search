@@ -1,0 +1,537 @@
+[
+  {
+    "id": "q001",
+    "query": "earthquake data",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Earthquake catalogs and seismic event datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q002",
+    "query": "audio deepfake detection",
+    "category": "audio_security",
+    "source_filter": "all",
+    "relevant_refs": [
+      "abdallamohamed312/in-the-wild-audio-deepfake",
+      "nallaguntlavamshi/phonemedf",
+      "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure"
+    ],
+    "notes": "Audio or media deepfake detection datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q003",
+    "query": "stock price history",
+    "category": "finance",
+    "source_filter": "all",
+    "relevant_refs": [
+      "rodas86/stock-prices-without-splits",
+      "benjaminpo/sp500-spx-components-stock-price",
+      "code1110/yfinance-stock-price-data-for-numerai-signals",
+      "durgeshrathod777/nse-titan-stock-data-from2023-23march2024",
+      "pholenk/eod-data-indonesia-stock-exchange",
+      "brtnsmth/intraday-market-data"
+    ],
+    "notes": "Historical stock, market, and end-of-day price datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q004",
+    "query": "movie review sentiment",
+    "category": "nlp_sentiment",
+    "source_filter": "all",
+    "relevant_refs": [
+      "stanfordnlp/imdb",
+      "cornell-movie-review-data/rotten_tomatoes",
+      "ashishkumarak/netflix-reviews-playstore-daily-updated"
+    ],
+    "notes": "Movie, IMDb, Rotten Tomatoes, Netflix review, or sentiment classification datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q005",
+    "query": "weather climate data",
+    "category": "weather_climate",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noaa/noaa-severe-weather-data-inventory",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+      "jerismeteo/open-meteo-data-kebumen",
+      "leopiney/worldclim-version-2-temperature-10m",
+      "eeemonts/weatherclimate-data-covid19",
+      "oinuma/japan-meteorological-agency-forecast"
+    ],
+    "notes": "Weather, meteorology, temperature, climate, and severe weather datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q006",
+    "query": "public opinion on climate change",
+    "category": "climate_opinion",
+    "source_filter": "all",
+    "relevant_refs": [
+      "asaniczka/public-opinion-on-climate-change-updated-daily",
+      "tdiggelm/climate_fever"
+    ],
+    "notes": "Climate change public opinion and climate claim datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q007",
+    "query": "yolo object detection dataset",
+    "category": "computer_vision",
+    "source_filter": "all",
+    "relevant_refs": [
+      "devharis/plantvillage-yolo-modified",
+      "miaikoo/invasive-plant-species-object-detection-yolo",
+      "a2015003713/yolov7-military-plane",
+      "hpgiakhang1405/pcb-defect-coco",
+      "qasimrajput/pakistan-garbage-detection-dataset",
+      "ashfakyeafi/taco-trash-dataset",
+      "manoj223/ppe-kit-dataset"
+    ],
+    "notes": "YOLO, COCO, image object detection, and detection benchmark datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q008",
+    "query": "arabic speech recognition audio",
+    "category": "speech_audio",
+    "source_filter": "all",
+    "relevant_refs": [
+      "MohamedRashad/arabic-english-code-switching",
+      "linagora/linto-dataset-audio-ar-tn"
+    ],
+    "notes": "Arabic ASR, Arabic speech, and audio transcript datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q009",
+    "query": "sales customer purchase behavior",
+    "category": "business",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noeyislearning/sales-simulation",
+      "paramvir705/supermarket-sales",
+      "amunsentom/supermarket-superstore-dataset-bundle",
+      "rebrowser/seatgeek-dataset"
+    ],
+    "notes": "Sales, supermarket, ticket sales, and customer purchase behavior datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q010",
+    "query": "medical question answering",
+    "category": "medical_nlp",
+    "source_filter": "all",
+    "relevant_refs": [
+      "OpenMed/Medical-Reasoning-SFT-Mega",
+      "blinoff/medical_qa_ru_data",
+      "seongsubae/KorMedMCQA-V",
+      "epfl-llm/guidelines"
+    ],
+    "notes": "Medical QA, clinical reasoning, and healthcare text datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q011",
+    "query": "quran audio recitation",
+    "category": "speech_audio",
+    "source_filter": "all",
+    "relevant_refs": [
+      "Buraaq/quran-audio-text-dataset",
+      "MohamedRashad/Quran-Recitations",
+      "nazimali/quran",
+      "Buraaq/quran-md-ayahs"
+    ],
+    "notes": "Quran text, Quran recitation, and Quran audio datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "q012",
+    "query": "covid cases daily updates",
+    "category": "health_time_series",
+    "source_filter": "all",
+    "relevant_refs": [
+      "dekhpakistan/pakistan-covid19-dataset",
+      "evgeniako/covid19-in-belgium",
+      "joebeachcapital/coronavirus-covid-19-cases-daily-updates",
+      "mpeteuil/nytimes-covid-19-data",
+      "alfredodimaria/covid19-data-by-agid",
+      "fireballbyedimyrnmom/us-counties-covid-19-dataset"
+    ],
+    "notes": "COVID-19 case count, country-level, and daily update datasets are considered relevant.",
+    "benchmark": "general_keyword",
+    "query_style": "keyword",
+    "language": "en"
+  },
+  {
+    "id": "en001",
+    "query": "I am looking for a dataset that contains historical earthquake events and seismic activity records from around the world.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Long English sentence query for earthquake datasets.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en002",
+    "query": "I need a dataset for detecting audio deepfakes in speech recordings and related spoofed voice samples.",
+    "category": "audio_security",
+    "source_filter": "all",
+    "relevant_refs": [
+      "abdallamohamed312/in-the-wild-audio-deepfake",
+      "nallaguntlavamshi/phonemedf",
+      "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure"
+    ],
+    "notes": "Long English sentence query for audio deepfake detection.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en003",
+    "query": "I want a dataset with historical stock prices and daily market data for companies over time.",
+    "category": "finance",
+    "source_filter": "all",
+    "relevant_refs": [
+      "rodas86/stock-prices-without-splits",
+      "benjaminpo/sp500-spx-components-stock-price",
+      "code1110/yfinance-stock-price-data-for-numerai-signals",
+      "durgeshrathod777/nse-titan-stock-data-from2023-23march2024",
+      "pholenk/eod-data-indonesia-stock-exchange",
+      "brtnsmth/intraday-market-data"
+    ],
+    "notes": "Long English sentence query for stock price history.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en004",
+    "query": "I am searching for movie review datasets that can be used for sentiment analysis and opinion classification.",
+    "category": "nlp_sentiment",
+    "source_filter": "all",
+    "relevant_refs": [
+      "stanfordnlp/imdb",
+      "cornell-movie-review-data/rotten_tomatoes",
+      "ashishkumarak/netflix-reviews-playstore-daily-updated"
+    ],
+    "notes": "Long English sentence query for movie review sentiment.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en005",
+    "query": "I need weather and climate datasets with temperature and meteorological observations over time.",
+    "category": "weather_climate",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noaa/noaa-severe-weather-data-inventory",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+      "jerismeteo/open-meteo-data-kebumen",
+      "leopiney/worldclim-version-2-temperature-10m",
+      "eeemonts/weatherclimate-data-covid19",
+      "oinuma/japan-meteorological-agency-forecast"
+    ],
+    "notes": "Long English sentence query for weather and climate.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en006",
+    "query": "I am looking for datasets about public opinion and discussion related to climate change.",
+    "category": "climate_opinion",
+    "source_filter": "all",
+    "relevant_refs": [
+      "asaniczka/public-opinion-on-climate-change-updated-daily",
+      "tdiggelm/climate_fever"
+    ],
+    "notes": "Long English sentence query for climate opinion.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en007",
+    "query": "I need an object detection dataset prepared for YOLO style training with labeled images and bounding boxes.",
+    "category": "computer_vision",
+    "source_filter": "all",
+    "relevant_refs": [
+      "devharis/plantvillage-yolo-modified",
+      "miaikoo/invasive-plant-species-object-detection-yolo",
+      "a2015003713/yolov7-military-plane",
+      "hpgiakhang1405/pcb-defect-coco",
+      "qasimrajput/pakistan-garbage-detection-dataset",
+      "ashfakyeafi/taco-trash-dataset",
+      "manoj223/ppe-kit-dataset"
+    ],
+    "notes": "Long English sentence query for YOLO object detection datasets.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en008",
+    "query": "I am looking for Arabic speech recognition datasets that include audio recordings and transcripts.",
+    "category": "speech_audio",
+    "source_filter": "all",
+    "relevant_refs": [
+      "MohamedRashad/arabic-english-code-switching",
+      "linagora/linto-dataset-audio-ar-tn"
+    ],
+    "notes": "Long English sentence query for Arabic ASR.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en009",
+    "query": "I need datasets about sales, customer purchases, and buying behavior in retail or ticketing settings.",
+    "category": "business",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noeyislearning/sales-simulation",
+      "paramvir705/supermarket-sales",
+      "amunsentom/supermarket-superstore-dataset-bundle",
+      "rebrowser/seatgeek-dataset"
+    ],
+    "notes": "Long English sentence query for sales and customer behavior.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en010",
+    "query": "I am searching for medical question answering datasets and clinical reasoning resources.",
+    "category": "medical_nlp",
+    "source_filter": "all",
+    "relevant_refs": [
+      "OpenMed/Medical-Reasoning-SFT-Mega",
+      "blinoff/medical_qa_ru_data",
+      "seongsubae/KorMedMCQA-V",
+      "epfl-llm/guidelines"
+    ],
+    "notes": "Long English sentence query for medical QA.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en011",
+    "query": "I need Quran recitation datasets with audio recordings and related text or verse annotations.",
+    "category": "speech_audio",
+    "source_filter": "all",
+    "relevant_refs": [
+      "Buraaq/quran-audio-text-dataset",
+      "MohamedRashad/Quran-Recitations",
+      "nazimali/quran",
+      "Buraaq/quran-md-ayahs"
+    ],
+    "notes": "Long English sentence query for Quran recitation audio.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "en012",
+    "query": "I am looking for datasets that track daily COVID case counts and regular pandemic updates over time.",
+    "category": "health_time_series",
+    "source_filter": "all",
+    "relevant_refs": [
+      "dekhpakistan/pakistan-covid19-dataset",
+      "evgeniako/covid19-in-belgium",
+      "joebeachcapital/coronavirus-covid-19-cases-daily-updates",
+      "mpeteuil/nytimes-covid-19-data",
+      "alfredodimaria/covid19-data-by-agid",
+      "fireballbyedimyrnmom/us-counties-covid-19-dataset"
+    ],
+    "notes": "Long English sentence query for COVID time series.",
+    "benchmark": "general_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "eq001",
+    "query": "I'm looking for a dataset that includes historical earthquake records with magnitude, depth, and location information over time, preferably covering multiple countries.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Historical earthquake records with magnitude, depth, and location.",
+    "benchmark": "earthquake_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "eq002",
+    "query": "Is there any dataset that tracks seismic activity worldwide, including aftershocks and tectonic plate movements?",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025"
+    ],
+    "notes": "General global seismic activity query. The corpus does not contain a dedicated tectonic plate dataset.",
+    "benchmark": "earthquake_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "eq003",
+    "query": "I need a dataset containing earthquake events along with timestamps and geographic coordinates so I can analyze spatial patterns.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025"
+    ],
+    "notes": "Timestamp and coordinate-heavy earthquake query.",
+    "benchmark": "earthquake_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "eq004",
+    "query": "Are there publicly available datasets that include both major and minor earthquake occurrences with detailed seismic measurements?",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025"
+    ],
+    "notes": "Detailed measurement query.",
+    "benchmark": "earthquake_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "eq005",
+    "query": "I want to find a dataset that provides long-term seismic activity data to study trends and frequency of earthquakes in different regions.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Trend and frequency analysis across regions.",
+    "benchmark": "earthquake_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "eq006",
+    "query": "Do you know any dataset that combines earthquake data with environmental or geological features like fault lines or soil type?",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "darkmatternet/global-earthquake-history-1m-since-1900"
+    ],
+    "notes": "The corpus has only partial coverage for geological context; this query is intentionally harder.",
+    "benchmark": "earthquake_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "eq007",
+    "query": "I'm searching for a dataset that contains real-time or near real-time earthquake monitoring data with updates.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "thomasr25/global-events-quakeml-m3-last-5-years",
+      "darkmatternet/global-earthquake-history-1m-since-1900"
+    ],
+    "notes": "Near real-time monitoring query.",
+    "benchmark": "earthquake_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "eq008",
+    "query": "Is there a dataset that includes historical earthquake damage reports along with seismic event data?",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025"
+    ],
+    "notes": "Damage-report aspect is only partially covered in the current corpus.",
+    "benchmark": "earthquake_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "eq009",
+    "query": "I need earthquake-related data that also includes tsunami events or other secondary natural disasters triggered by seismic activity.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Tsunami and secondary hazard query.",
+    "benchmark": "earthquake_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  },
+  {
+    "id": "eq010",
+    "query": "Can you suggest a dataset that includes earthquake intensity scales (like Richter or Moment Magnitude) and related metadata?",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025"
+    ],
+    "notes": "Magnitude scale and metadata query.",
+    "benchmark": "earthquake_sentence",
+    "query_style": "sentence",
+    "language": "en"
+  }
+]

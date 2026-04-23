@@ -2,18 +2,23 @@ __pycache__/
 *.pyc
 *.log
 .venv/
+.cache/
 
-# Data folders (çok önemli)
+# Data folders
 data/raw/*
 data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
-# Model / index çıktıları
+# Model / index outputs
 models/
 *.faiss
 *.npy
 *.pkl
+data/index/english_e5/
+data/index/multilingual/
+data/embeddings/english_e5/
+data/embeddings/multilingual/
 
 # OS junk
 .DS_Store

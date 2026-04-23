@@ -1,0 +1,68 @@
+{
+  "thresholds": {
+    "length_word_thresholds": {
+      "short_max": 20,
+      "medium_max": 52
+    },
+    "term_thresholds": {
+      "sparse_max": 10,
+      "moderate_max": 28
+    }
+  },
+  "distribution": [
+    {
+      "feature": "length_bucket",
+      "bucket": "long",
+      "documents": 376,
+      "share": 0.3357142857142857
+    },
+    {
+      "feature": "length_bucket",
+      "bucket": "medium",
+      "documents": 349,
+      "share": 0.31160714285714286
+    },
+    {
+      "feature": "length_bucket",
+      "bucket": "short",
+      "documents": 395,
+      "share": 0.35267857142857145
+    },
+    {
+      "feature": "description_style",
+      "bucket": "metadata_heavy",
+      "documents": 206,
+      "share": 0.18392857142857144
+    },
+    {
+      "feature": "description_style",
+      "bucket": "mixed_structured",
+      "documents": 597,
+      "share": 0.5330357142857143
+    },
+    {
+      "feature": "description_style",
+      "bucket": "narrative",
+      "documents": 317,
+      "share": 0.2830357142857143
+    },
+    {
+      "feature": "term_bucket",
+      "bucket": "term_moderate",
+      "documents": 361,
+      "share": 0.3223214285714286
+    },
+    {
+      "feature": "term_bucket",
+      "bucket": "term_rich",
+      "documents": 372,
+      "share": 0.33214285714285713
+    },
+    {
+      "feature": "term_bucket",
+      "bucket": "term_sparse",
+      "documents": 387,
+      "share": 0.3455357142857143
+    }
+  ]
+}

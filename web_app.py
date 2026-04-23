@@ -8,13 +8,29 @@ from urllib.parse import urlparse
 
 from bm25 import BM25Index, search as bm25_search
 from hybrid import DEFAULT_CANDIDATE_K, DEFAULT_SEMANTIC_WEIGHT, search as hybrid_search
+from query_understanding import build_query_plan
 from search import load_mappings, load_search_engine, search as semantic_search
+from search_profiles import DEFAULT_PROFILE_KEY, get_profile, get_profile_paths, list_profiles
 
 BASE_DIR = Path(__file__).resolve().parent
-INDEX_METADATA_PATH = BASE_DIR / "data" / "index" / "index_metadata.json"
 HOST = "127.0.0.1"
 PORT = 8000
 MAX_BODY_BYTES = 16_384
+DEFAULT_WEB_PROFILE = DEFAULT_PROFILE_KEY
+RQ1_REPORT_DIR = BASE_DIR / "reports" / "evaluation" / "rq1_method_comparison"
+RQ1_SUMMARY_PATH = RQ1_REPORT_DIR / "evaluation_summary.json"
+RQ1_QUERY_STYLE_PATH = RQ1_REPORT_DIR / "evaluation_by_query_style.json"
+RQ1_BENCHMARK_PATH = RQ1_REPORT_DIR / "evaluation_by_benchmark.json"
+METHOD_LABELS = {
+    "semantic": "Semantic",
+    "bm25": "BM25",
+    "hybrid": "Hybrid",
+}
+METHOD_ROLES = {
+    "semantic": "Aciklama tabanli semantic retrieval",
+    "bm25": "Lexical baseline",
+    "hybrid": "En guclu pratik sistem",
+}
 
 
 HTML = """<!doctype html>
@@ -22,7 +38,7 @@ HTML = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Semantik Veri Seti Arama</title>
+  <title>Semantic Dataset Search</title>
   <style>
     :root {
       color-scheme: light;
@@ -47,7 +63,6 @@ HTML = """<!doctype html>
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--ink);
-      letter-spacing: 0;
     }
 
     main {
@@ -75,7 +90,7 @@ HTML = """<!doctype html>
       color: var(--muted);
       font-size: 15px;
       line-height: 1.45;
-      max-width: 680px;
+      max-width: 720px;
     }
 
     .stats {
@@ -91,7 +106,7 @@ HTML = """<!doctype html>
       border-radius: 8px;
       background: var(--panel);
       padding: 8px 10px;
-      min-width: 92px;
+      min-width: 104px;
     }
 
     .stat strong {
@@ -105,7 +120,7 @@ HTML = """<!doctype html>
       font-size: 12px;
     }
 
-    .search-panel {
+    .panel {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
@@ -113,9 +128,21 @@ HTML = """<!doctype html>
       margin-bottom: 18px;
     }
 
+    .panel h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .panel-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
     form {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 150px 150px 120px 132px;
+      grid-template-columns: minmax(0, 1.6fr) 170px 150px 150px 120px 120px;
       gap: 10px;
       align-items: stretch;
     }
@@ -134,7 +161,6 @@ HTML = """<!doctype html>
       min-height: 44px;
       border-radius: 8px;
       font: inherit;
-      letter-spacing: 0;
     }
 
     input,
@@ -200,23 +226,127 @@ HTML = """<!doctype html>
       background: var(--soft);
     }
 
-    .score-note {
+    .score-note,
+    .status {
       margin: 10px 0 0;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.45;
     }
 
     .status {
       min-height: 22px;
-      margin: 0 0 12px;
-      color: var(--muted);
-      font-size: 14px;
+      margin-bottom: 12px;
     }
 
     .status.error {
       color: var(--warn);
       font-weight: 700;
+    }
+
+    .research-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .research-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fbfcfb;
+    }
+
+    .research-item strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .research-item p {
+      margin: 0;
+      color: #2c332f;
+      line-height: 1.45;
+    }
+
+    .rq1-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .rq1-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfb;
+      padding: 12px;
+    }
+
+    .rq1-card h3,
+    .rq1-card h4 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .rq1-label {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--accent-strong);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .rq1-card p {
+      margin: 0 0 8px;
+      color: #2c332f;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .rq1-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .rq1-metric {
+      min-width: 86px;
+      padding: 7px 8px;
+      border-radius: 8px;
+      background: var(--soft);
+    }
+
+    .rq1-metric strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .rq1-metric span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .rq1-banner {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfb;
+      padding: 12px;
+    }
+
+    .rq1-banner strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .rq1-banner p {
+      margin: 0;
+      line-height: 1.5;
+      color: #2c332f;
     }
 
     .results {
@@ -264,11 +394,13 @@ HTML = """<!doctype html>
     }
 
     .chip {
+      display: inline-block;
       border-radius: 8px;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: 700;
       background: var(--tag);
       color: #4e3d10;
-      padding: 5px 8px;
-      font-size: 13px;
     }
 
     .summary {
@@ -305,7 +437,6 @@ HTML = """<!doctype html>
       display: none;
       align-items: stretch;
       justify-content: flex-end;
-      padding: 0;
       background: rgba(21, 26, 23, 0.48);
       z-index: 10;
     }
@@ -315,10 +446,9 @@ HTML = """<!doctype html>
     }
 
     .modal {
-      width: min(520px, 100%);
+      width: min(560px, 100%);
       height: 100vh;
       overflow: auto;
-      border-radius: 8px 0 0 8px;
       background: #fff;
       border-left: 1px solid var(--line);
       padding: 18px;
@@ -383,6 +513,16 @@ HTML = """<!doctype html>
       overflow-wrap: anywhere;
     }
 
+    @media (max-width: 920px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      .rq1-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 760px) {
       main {
         width: min(100% - 20px, 1120px);
@@ -396,10 +536,6 @@ HTML = """<!doctype html>
       .stats {
         justify-content: flex-start;
         margin-top: 14px;
-      }
-
-      form {
-        grid-template-columns: 1fr;
       }
 
       button {
@@ -425,7 +561,6 @@ HTML = """<!doctype html>
 
       .modal {
         width: 100%;
-        border-radius: 0;
       }
     }
   </style>
@@ -434,36 +569,42 @@ HTML = """<!doctype html>
   <main>
     <div class="topbar">
       <div>
-        <h1>Semantik Veri Seti Arama</h1>
-        <p class="subtitle">Aradığınız konuyu doğal dille yazın; sistem Kaggle ve Hugging Face açıklamaları içinde anlamca en yakın veri setlerini sıralar.</p>
+        <h1>Semantic Dataset Search</h1>
+        <p class="subtitle">Bu arayuz, tezdeki semantic data discovery problemini canli olarak test etmek icin kullanilir. Aramada model, method ve kaynak degistirilebilir.</p>
       </div>
       <div class="stats" id="stats"></div>
     </div>
 
-    <section class="search-panel" aria-label="Arama">
+    <section class="panel" aria-label="Search">
+      <h2>Live Search</h2>
+        <p class="panel-note">Ayni sorguda tezdeki ana Ingilizce profil ile EN+TR alt kume profilini karsilastirabilir, retrieval method degistirerek sistem davranisini gozlemleyin.</p>
       <form id="search-form">
         <div>
-          <label for="query">Sorgu</label>
-          <input id="query" name="query" autocomplete="off" placeholder="Örn. earthquake data, audio deepfake, movie reviews" required>
+          <label for="query">Query</label>
+          <input id="query" name="query" autocomplete="off" placeholder="Orn. I need a dataset with historical earthquake events and seismic activity records." required>
         </div>
         <div>
-          <label for="method">Yöntem</label>
+          <label for="profile">Profile</label>
+          <select id="profile" name="profile"></select>
+        </div>
+        <div>
+          <label for="method">Method</label>
           <select id="method" name="method">
             <option value="semantic">Semantic</option>
             <option value="bm25">BM25</option>
-            <option value="hybrid">Hybrid</option>
+            <option value="hybrid" selected>Hybrid</option>
           </select>
         </div>
         <div>
-          <label for="source">Kaynak</label>
+          <label for="source">Source</label>
           <select id="source" name="source">
-            <option value="all">Tümü</option>
+            <option value="all">All</option>
             <option value="kaggle">Kaggle</option>
             <option value="huggingface">Hugging Face</option>
           </select>
         </div>
         <div>
-          <label for="top-k">Sonuç</label>
+          <label for="top-k">Top K</label>
           <select id="top-k" name="top_k">
             <option value="5">Top 5</option>
             <option value="10">Top 10</option>
@@ -471,39 +612,52 @@ HTML = """<!doctype html>
           </select>
         </div>
         <div>
-          <button id="submit" type="submit">Ara</button>
+          <button id="submit" type="submit">Search</button>
         </div>
       </form>
-      <div class="examples" id="examples" aria-label="Örnek sorgular">
-        <button class="example-btn" type="button" data-query="earthquake data">earthquake data</button>
-        <button class="example-btn" type="button" data-query="audio deepfake">audio deepfake</button>
-        <button class="example-btn" type="button" data-query="stock price history">stock price history</button>
-        <button class="example-btn" type="button" data-query="movie reviews">movie reviews</button>
-        <button class="example-btn" type="button" data-query="medical image classification">medical image classification</button>
-        <button class="example-btn" type="button" data-query="weather dataset">weather dataset</button>
+      <div class="examples" id="examples" aria-label="Sample queries">
+        <button class="example-btn" type="button" data-query="I am looking for a dataset that contains historical earthquake events and seismic activity records from around the world.">earthquake</button>
+        <button class="example-btn" type="button" data-query="I need a dataset for detecting audio deepfakes in speech recordings and spoofed voice samples.">audio deepfake</button>
+        <button class="example-btn" type="button" data-query="I want a dataset with historical stock prices and daily market data for companies over time.">stock market</button>
+        <button class="example-btn" type="button" data-query="I am searching for movie review datasets for sentiment analysis and opinion classification.">movie review</button>
       </div>
-      <p class="score-note">Semantic skoru embedding benzerliğidir; BM25 skoru kelime eşleşmesi ağırlığıdır. Hybrid, iki skoru normalize edip birleştirir. Skorlar farklı yöntemler arasında doğrudan karşılaştırılmaz.</p>
+      <p class="score-note" id="profile-note">Secilen profile gore semantic temsil degisir. Method secimi ise lexical ve semantic katkilarin davranisini degistirir.</p>
     </section>
 
-    <p id="status" class="status">Hazır.</p>
+    <section class="panel" aria-label="RQ1 Focus">
+      <h2>RQ1 Focus</h2>
+      <p class="panel-note">Soru 1: Veri seti aciklamalari kullanilarak semantic data discovery gerceklestirilebilir mi ve bu yaklasim lexical baseline ile karsilastirildiginda ne kadar etkili olur? Asagidaki kartlar tezde uretilen RQ1 benchmark sonucunu ozetler.</p>
+      <div class="rq1-grid" id="rq1-overview"></div>
+      <div class="rq1-grid" id="rq1-style-grid"></div>
+      <div class="rq1-banner" id="rq1-banner"></div>
+    </section>
+
+    <section class="panel" id="rq1-live-panel" aria-label="RQ1 Live Comparison" hidden>
+      <h2>RQ1 Live Comparison</h2>
+      <p class="panel-note" id="rq1-live-note">Ayni sorgunun uc retrieval method ile nasil davrandigi burada gorunur.</p>
+      <div class="rq1-banner" id="rq1-guidance"></div>
+      <div class="rq1-grid" id="rq1-live-grid"></div>
+    </section>
+
+    <p id="status" class="status">Ready.</p>
     <section id="results" class="results" aria-live="polite">
-      <div class="empty">Bir sorgu girildiğinde sonuçlar burada listelenir.</div>
+      <div class="empty">Bir sorgu girildiginde sonuclar burada listelenir.</div>
     </section>
   </main>
 
   <div class="modal-backdrop" id="detail-modal" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-head">
-        <h2 id="modal-title">Detay</h2>
-        <button class="close-btn" id="modal-close" type="button">Kapat</button>
+        <h2 id="modal-title">Detail</h2>
+        <button class="close-btn" id="modal-close" type="button">Close</button>
       </div>
       <dl id="modal-meta"></dl>
-      <section class="modal-section" aria-label="Neden gösterildi">
-        <h3>Neden bu dataset gösterildi?</h3>
+      <section class="modal-section">
+        <h3>Why this dataset?</h3>
         <div class="why-box" id="modal-why"></div>
       </section>
-      <section class="modal-section" aria-label="Tam açıklama">
-        <h3>Tam açıklama</h3>
+      <section class="modal-section">
+        <h3>Full description</h3>
         <div class="modal-text" id="modal-text"></div>
       </section>
     </div>
@@ -512,6 +666,7 @@ HTML = """<!doctype html>
   <script>
     const form = document.querySelector("#search-form");
     const queryInput = document.querySelector("#query");
+    const profileInput = document.querySelector("#profile");
     const methodInput = document.querySelector("#method");
     const sourceInput = document.querySelector("#source");
     const topKInput = document.querySelector("#top-k");
@@ -520,14 +675,36 @@ HTML = """<!doctype html>
     const resultsEl = document.querySelector("#results");
     const statsEl = document.querySelector("#stats");
     const examplesEl = document.querySelector("#examples");
+    const profileNoteEl = document.querySelector("#profile-note");
+    const rq1OverviewEl = document.querySelector("#rq1-overview");
+    const rq1StyleEl = document.querySelector("#rq1-style-grid");
+    const rq1BannerEl = document.querySelector("#rq1-banner");
+    const rq1LivePanelEl = document.querySelector("#rq1-live-panel");
+    const rq1GuidanceEl = document.querySelector("#rq1-guidance");
+    const rq1LiveGridEl = document.querySelector("#rq1-live-grid");
+    const rq1LiveNoteEl = document.querySelector("#rq1-live-note");
     const detailModal = document.querySelector("#detail-modal");
     const modalTitle = document.querySelector("#modal-title");
     const modalMeta = document.querySelector("#modal-meta");
     const modalWhy = document.querySelector("#modal-why");
     const modalText = document.querySelector("#modal-text");
     const modalClose = document.querySelector("#modal-close");
+
+    const methodLabels = {
+      semantic: "Semantic",
+      bm25: "BM25",
+      hybrid: "Hybrid"
+    };
+
+    const sourceLabels = {
+      all: "All sources",
+      kaggle: "Kaggle",
+      huggingface: "Hugging Face"
+    };
+
     let currentResults = [];
-    let currentMethod = "semantic";
+    let currentMethod = "hybrid";
+    let metadataPayload = null;
 
     const escapeHtml = (value) => String(value ?? "")
       .replaceAll("&", "&amp;")
@@ -535,18 +712,6 @@ HTML = """<!doctype html>
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
-
-    const sourceLabels = {
-      all: "Tüm kaynaklar",
-      kaggle: "Kaggle",
-      huggingface: "Hugging Face"
-    };
-
-    function scoreLabel(method) {
-      if (method === "bm25") return "BM25";
-      if (method === "hybrid") return "HYB";
-      return "SEM";
-    }
 
     function formatScore(score) {
       const numeric = Number(score);
@@ -560,37 +725,138 @@ HTML = """<!doctype html>
       return value || emptyLabel;
     }
 
-    function similarityExplanation(method, score) {
-      const formattedScore = formatScore(score);
-      if (method === "hybrid") {
-        return `Bu sonuç, Semantic ve BM25 sonuçları birlikte değerlendirildiği için listelendi. Hybrid skor ${formattedScore}; sistem anlam benzerliği skorunu ve kelime eşleşmesi skorunu normalize edip ağırlıklı olarak birleştirir.`;
-      }
-      if (method === "bm25") {
-        return `Bu sonuç, sorgudaki kelimeler dataset başlığı ve açıklamasında güçlü biçimde geçtiği için listelendi. BM25 skoru ${formattedScore}; bu skor kelime eşleşme sıklığına, kelimenin ayırt ediciliğine ve açıklama uzunluğuna göre hesaplanır.`;
-      }
-      return `Bu sonuç, sorgunun embedding vektörü ile dataset açıklamasının embedding vektörü birbirine yakın olduğu için listelendi. Benzerlik skoru ${formattedScore}; 1'e yaklaştıkça anlamsal yakınlık artar.`;
+    function scoreLabel(method) {
+      if (method === "bm25") return "BM25";
+      if (method === "hybrid") return "HYB";
+      return "SEM";
     }
 
-    function renderStats(metadata) {
-      const sources = metadata.source_counts || {};
+    function methodRole(method) {
+      const roles = {
+        semantic: "Aciklama tabanli semantic retrieval",
+        bm25: "Lexical baseline",
+        hybrid: "Semantic + lexical birlikte"
+      };
+      return roles[method] || "";
+    }
+
+    function methodBadge(method) {
+      return method === "hybrid" ? "En guclu pratik sistem" : method === "semantic" ? "Semantic signal" : "Lexical signal";
+    }
+
+    function getProfileMeta(profileKey) {
+      return metadataPayload?.profiles?.find((profile) => profile.key === profileKey) || null;
+    }
+
+    function renderStats(profileKey) {
+      if (!metadataPayload) return;
+      const stats = metadataPayload.profile_stats?.[profileKey] || metadataPayload.profile_stats?.[metadataPayload.default_profile] || {};
+      const sources = stats.source_counts || {};
       const items = [
-        ["Toplam", metadata.indexed_rows ?? "-"],
+        ["Indexed", stats.indexed_rows ?? "-"],
         ["Kaggle", sources.kaggle ?? "-"],
         ["Hugging Face", sources.huggingface ?? "-"]
       ];
       statsEl.innerHTML = items.map(([label, value]) => `
         <div class="stat"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></div>
       `).join("");
+
+      const profile = getProfileMeta(profileKey);
+      if (profile) {
+        profileNoteEl.textContent = `${profile.label}: ${profile.description}`;
+      }
     }
 
-    async function loadMetadata() {
-      try {
-        const response = await fetch("/api/metadata");
-        if (!response.ok) return;
-        renderStats(await response.json());
-      } catch {
-        statsEl.innerHTML = "";
+    function findRQ1Row(rows, method) {
+      return (rows || []).find((row) => row.method === method) || null;
+    }
+
+    function rq1MetricCard(label, value) {
+      return `
+        <div class="rq1-metric">
+          <strong>${escapeHtml(value)}</strong>
+          <span>${escapeHtml(label)}</span>
+        </div>
+      `;
+    }
+
+    function renderRQ1Overview() {
+      const rq1 = metadataPayload?.rq1;
+      if (!rq1) return;
+
+      const methods = ["bm25", "semantic", "hybrid"];
+      const overallCards = methods.map((method) => {
+        const row = findRQ1Row(rq1.overall, method);
+        if (!row) return "";
+        return `
+          <article class="rq1-card">
+            <span class="rq1-label">${escapeHtml(methodBadge(method))}</span>
+            <h3>${escapeHtml(methodLabels[method])}</h3>
+            <p>${escapeHtml(methodRole(method))}</p>
+            <div class="rq1-metrics">
+              ${rq1MetricCard("nDCG@5", Number(row.mean_ndcg_at_k).toFixed(3))}
+              ${rq1MetricCard("MRR", Number(row.mean_mrr).toFixed(3))}
+              ${rq1MetricCard("P@1", Number(row.mean_precision_at_1).toFixed(3))}
+            </div>
+          </article>
+        `;
+      }).join("");
+      rq1OverviewEl.innerHTML = overallCards;
+
+      const keywordRows = rq1.by_query_style?.keyword || [];
+      const sentenceRows = rq1.by_query_style?.sentence || [];
+      const keywordHybrid = findRQ1Row(keywordRows, "hybrid");
+      const keywordBm25 = findRQ1Row(keywordRows, "bm25");
+      const sentenceHybrid = findRQ1Row(sentenceRows, "hybrid");
+      const sentenceSemantic = findRQ1Row(sentenceRows, "semantic");
+      const sentenceBm25 = findRQ1Row(sentenceRows, "bm25");
+
+      rq1StyleEl.innerHTML = `
+        <article class="rq1-card">
+          <span class="rq1-label">Keyword Queries</span>
+          <h4>Kisa ve anahtar kelime odakli aramalar</h4>
+          <p>BM25 burada hala anlamli bir baseline. Ama genel ranking kalitesinde hybrid one geciyor.</p>
+          <div class="rq1-metrics">
+            ${keywordBm25 ? rq1MetricCard("BM25 MRR", Number(keywordBm25.mean_mrr).toFixed(3)) : ""}
+            ${keywordHybrid ? rq1MetricCard("Hybrid nDCG@5", Number(keywordHybrid.mean_ndcg_at_k).toFixed(3)) : ""}
+          </div>
+        </article>
+        <article class="rq1-card">
+          <span class="rq1-label">Sentence Queries</span>
+          <h4>Dogal dil ve ihtiyac anlatan cümleler</h4>
+          <p>RQ1'in asil kazanci burada. Semantic ve ozellikle hybrid, BM25'ten daha guclu davraniyor.</p>
+          <div class="rq1-metrics">
+            ${sentenceSemantic ? rq1MetricCard("Semantic nDCG@5", Number(sentenceSemantic.mean_ndcg_at_k).toFixed(3)) : ""}
+            ${sentenceBm25 ? rq1MetricCard("BM25 nDCG@5", Number(sentenceBm25.mean_ndcg_at_k).toFixed(3)) : ""}
+            ${sentenceHybrid ? rq1MetricCard("Hybrid nDCG@5", Number(sentenceHybrid.mean_ndcg_at_k).toFixed(3)) : ""}
+          </div>
+        </article>
+      `;
+
+      rq1BannerEl.innerHTML = `
+        <strong>RQ1 ozet sonucu</strong>
+        <p>Tezdeki ana Ingilizce benchmarkta <b>hybrid</b> en guclu sistem oldu. Ancak sentence-style sorgularda salt <b>semantic retrieval</b> bile BM25'i geciyor. Bu da veri seti aciklamalariyla semantic discovery yapilabildigini gosteriyor.</p>
+      `;
+    }
+
+    function populateProfileOptions() {
+      const profiles = metadataPayload?.profiles || [];
+      profileInput.innerHTML = profiles.map((profile) => `
+        <option value="${escapeHtml(profile.key)}" ${profile.key === metadataPayload.default_profile ? "selected" : ""}>
+          ${escapeHtml(profile.label)}
+        </option>
+      `).join("");
+    }
+
+    function similarityExplanation(method, score) {
+      const formattedScore = formatScore(score);
+      if (method === "hybrid") {
+        return `Bu sonuc semantic ve BM25 skorlarinin normalize edilip birlestirilmesiyle geldi. Hybrid skor ${formattedScore}.`;
       }
+      if (method === "bm25") {
+        return `Bu sonuc baslik, aciklama ve anahtar kelime eslesmeleri guclu oldugu icin listelendi. BM25 skoru ${formattedScore}.`;
+      }
+      return `Bu sonuc sorgu ile dataset aciklamasi anlamsal olarak yakin oldugu icin listelendi. Semantic skor ${formattedScore}.`;
     }
 
     function renderResults(results, method) {
@@ -598,27 +864,28 @@ HTML = """<!doctype html>
       currentMethod = method;
 
       if (!results.length) {
-        resultsEl.innerHTML = '<div class="empty">Bu sorgu için sonuç bulunamadı.</div>';
+        resultsEl.innerHTML = '<div class="empty">Bu sorgu icin sonuc bulunamadi.</div>';
         return;
       }
 
       resultsEl.innerHTML = results.map((result, index) => {
         const text = String(result.text || "");
         const summary = text.length > 360 ? `${text.slice(0, 360)}...` : text;
-        const url = result.url ? `<a href="${escapeHtml(result.url)}" target="_blank" rel="noreferrer">Kaynağa git</a>` : "URL yok";
+        const url = result.url ? `<a href="${escapeHtml(result.url)}" target="_blank" rel="noreferrer">Open source page</a>` : "URL yok";
         return `
           <article class="result">
             <div class="result-head">
-              <h2>${index + 1}. ${escapeHtml(result.title || "İsimsiz veri seti")}</h2>
+              <h2>${index + 1}. ${escapeHtml(result.title || "Isimsiz veri seti")}</h2>
               <span class="score">${scoreLabel(method)} ${formatScore(result.score)}</span>
             </div>
             <div class="meta">
               <span class="chip">${escapeHtml((result.source || "unknown").toUpperCase())}</span>
               <span class="chip">${escapeHtml(result.ref || "ref yok")}</span>
+              <span class="chip">${escapeHtml(result.profile_label || "")}</span>
             </div>
             <p class="summary">${escapeHtml(summary)}</p>
             <div class="actions">
-              <button class="detail-btn" type="button" data-result-index="${index}">Detay</button>
+              <button class="detail-btn" type="button" data-result-index="${index}">Detail</button>
               ${url}
             </div>
           </article>
@@ -626,30 +893,66 @@ HTML = """<!doctype html>
       }).join("");
     }
 
+    function renderRQ1Live(payload) {
+      const rq1 = payload.rq1;
+      if (!rq1) {
+        rq1LivePanelEl.hidden = true;
+        return;
+      }
+
+      rq1LivePanelEl.hidden = false;
+      rq1LiveNoteEl.textContent = `Bu panel, ayni sorgunun BM25, Semantic ve Hybrid ile nasil davrandigini canli olarak gosterir. Algilanan sorgu tipi: ${rq1.query_style_label}.`;
+      rq1GuidanceEl.innerHTML = `
+        <strong>Yontem onerisi</strong>
+        <p>${escapeHtml(rq1.guidance_text || "")}</p>
+      `;
+
+      const cards = (rq1.snapshots || []).map((snapshot) => {
+        const top = snapshot.top_result;
+        const benchmark = snapshot.benchmark_metrics;
+        return `
+          <article class="rq1-card">
+            <span class="rq1-label">${escapeHtml(methodBadge(snapshot.method))}</span>
+            <h3>${escapeHtml(methodLabels[snapshot.method] || snapshot.method)}</h3>
+            <p>${escapeHtml(methodRole(snapshot.method))}</p>
+            <div class="rq1-metrics">
+              ${benchmark ? rq1MetricCard("Benchmark nDCG@5", Number(benchmark.mean_ndcg_at_k).toFixed(3)) : ""}
+              ${benchmark ? rq1MetricCard("Benchmark P@1", Number(benchmark.mean_precision_at_1).toFixed(3)) : ""}
+              ${top ? rq1MetricCard("Live top score", formatScore(top.score)) : ""}
+            </div>
+            <p><strong>Top-1:</strong> ${escapeHtml(top?.title || "Sonuc yok")}</p>
+            <p>${escapeHtml(top?.source ? top.source.toUpperCase() : "")}${top?.ref ? ` / ${top.ref}` : ""}</p>
+          </article>
+        `;
+      }).join("");
+      rq1LiveGridEl.innerHTML = cards;
+    }
+
     function openDetail(index) {
       const result = currentResults[index];
       if (!result) return;
 
-      modalTitle.textContent = result.title || "İsimsiz veri seti";
+      modalTitle.textContent = result.title || "Isimsiz veri seti";
       const urlValue = result.url
         ? `<a href="${escapeHtml(result.url)}" target="_blank" rel="noreferrer">${escapeHtml(result.url)}</a>`
         : "URL yok";
       const metaItems = [
-        ["Başlık", result.title || "İsimsiz veri seti"],
-        ["Yöntem", scoreLabel(currentMethod)],
+        ["Baslik", result.title || "Isimsiz veri seti"],
+        ["Profile", result.profile_label || "-"],
+        ["Method", methodLabels[currentMethod] || currentMethod],
         ["Skor", formatScore(result.score)],
         ["Kaynak", (result.source || "unknown").toUpperCase()],
         ["Referans", result.ref || "ref yok"],
         ["URL", urlValue],
         ["Keywords", formatList(result.keywords)],
-        ["Licence", result.license || "-"],
-        ["Description length", `${result.description_len_chars ?? "-"} karakter / ${result.description_len_words ?? "-"} kelime`],
+        ["License", result.license || "-"],
+        ["Description length", `${result.description_len_chars ?? "-"} chars / ${result.description_len_words ?? "-"} words`],
         ["Quality flag", formatList(result.quality_flags, "flag yok")]
       ];
       if (currentMethod === "hybrid") {
-        metaItems.push(["Semantic bileşen", formatScore(result.semantic_score)]);
-        metaItems.push(["BM25 bileşen", formatScore(result.bm25_score)]);
-        metaItems.push(["Ağırlıklar", `Semantic ${formatScore(result.semantic_weight)} / BM25 ${formatScore(result.bm25_weight)}`]);
+        metaItems.push(["Semantic component", formatScore(result.semantic_score)]);
+        metaItems.push(["BM25 component", formatScore(result.bm25_score)]);
+        metaItems.push(["Weights", `Semantic ${formatScore(result.semantic_weight)} / BM25 ${formatScore(result.bm25_weight)}`]);
       }
       modalMeta.innerHTML = metaItems.map(([label, value]) => `
         <dt>${escapeHtml(label)}</dt><dd>${label === "URL" ? value : escapeHtml(value)}</dd>
@@ -666,6 +969,15 @@ HTML = """<!doctype html>
       detailModal.setAttribute("aria-hidden", "true");
     }
 
+    async function loadMetadata() {
+      const response = await fetch("/api/metadata");
+      if (!response.ok) throw new Error("Metadata yuklenemedi.");
+      metadataPayload = await response.json();
+      populateProfileOptions();
+      renderStats(metadataPayload.default_profile);
+      renderRQ1Overview();
+    }
+
     resultsEl.addEventListener("click", (event) => {
       const button = event.target.closest(".detail-btn");
       if (!button) return;
@@ -676,6 +988,7 @@ HTML = """<!doctype html>
     detailModal.addEventListener("click", (event) => {
       if (event.target === detailModal) closeDetail();
     });
+
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeDetail();
     });
@@ -687,9 +1000,14 @@ HTML = """<!doctype html>
       form.requestSubmit();
     });
 
+    profileInput.addEventListener("change", () => {
+      renderStats(profileInput.value);
+    });
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const query = queryInput.value.trim();
+      const profile = profileInput.value;
       const method = methodInput.value;
       const source = sourceInput.value;
       const topK = Number(topKInput.value);
@@ -697,20 +1015,24 @@ HTML = """<!doctype html>
 
       submitButton.disabled = true;
       statusEl.className = "status";
-      statusEl.textContent = "Aranıyor...";
+      statusEl.textContent = "Searching...";
 
       try {
         const response = await fetch("/api/search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query, method, source, top_k: topK })
+          body: JSON.stringify({ query, profile, method, source, top_k: topK })
         });
         const payload = await response.json();
-        if (!response.ok) throw new Error(payload.error || "Arama tamamlanamadı.");
+        if (!response.ok) throw new Error(payload.error || "Arama tamamlanamadi.");
 
         renderResults(payload.results || [], payload.method);
-        const sourceLabel = sourceLabels[payload.source] || "Tüm kaynaklar";
-        statusEl.textContent = `${payload.method.toUpperCase()} / ${sourceLabel} ile "${payload.query}" için ${payload.results.length} sonuç listelendi.`;
+        renderRQ1Live(payload);
+        renderStats(payload.profile.key);
+        const sourceLabel = sourceLabels[payload.source] || "All sources";
+        const conciseIntent = payload.query_plan?.concise_intent;
+        const intentNote = conciseIntent ? ` Intent: ${conciseIntent}.` : "";
+        statusEl.textContent = `${payload.profile.label} / ${methodLabels[payload.method] || payload.method} / ${sourceLabel} ile "${payload.query}" icin ${payload.results.length} sonuc listelendi.${intentNote}`;
       } catch (error) {
         statusEl.className = "status error";
         statusEl.textContent = error.message;
@@ -719,8 +1041,14 @@ HTML = """<!doctype html>
       }
     });
 
-    loadMetadata();
-    queryInput.focus();
+    loadMetadata()
+      .then(() => {
+        queryInput.focus();
+      })
+      .catch((error) => {
+        statusEl.className = "status error";
+        statusEl.textContent = error.message;
+      });
   </script>
 </body>
 </html>
@@ -733,44 +1061,100 @@ def configure_output():
             stream.reconfigure(encoding="utf-8", errors="replace")
 
 
-def load_index_metadata():
-    if not INDEX_METADATA_PATH.exists():
-        return {}
-    with INDEX_METADATA_PATH.open("r", encoding="utf-8") as f:
-        return json.load(f)
+def load_json_file(path: Path, default):
+    if not path.exists():
+        return default
+    with path.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def load_app_metadata():
+    profile_entries = []
+    profile_stats = {}
+
+    for profile in list_profiles():
+        metadata = load_json_file(get_profile_paths(profile.key)["index_metadata"], {})
+        profile_stats[profile.key] = metadata
+        profile_entries.append(
+            {
+                "key": profile.key,
+                "label": profile.label,
+                "model_name": profile.model_name,
+                "description": profile.description,
+                "indexed_rows": metadata.get("indexed_rows"),
+                "source_counts": metadata.get("source_counts") or {},
+            }
+        )
+
+    default_stats = profile_stats.get(DEFAULT_WEB_PROFILE, {})
+    return {
+        "default_profile": DEFAULT_WEB_PROFILE,
+        "profiles": profile_entries,
+        "profile_stats": profile_stats,
+        "indexed_rows": default_stats.get("indexed_rows"),
+        "source_counts": default_stats.get("source_counts") or {},
+        "rq1": load_rq1_metadata(),
+    }
+
+
+def load_rq1_metadata():
+    overall = load_json_file(RQ1_SUMMARY_PATH, [])
+    by_query_style_rows = load_json_file(RQ1_QUERY_STYLE_PATH, [])
+    by_benchmark_rows = load_json_file(RQ1_BENCHMARK_PATH, [])
+    by_query_style = {}
+    for row in by_query_style_rows:
+        key = row.get("query_style")
+        if not key:
+            continue
+        by_query_style.setdefault(key, []).append(row)
+    return {
+        "overall": overall,
+        "by_query_style": by_query_style,
+        "by_benchmark": by_benchmark_rows,
+    }
 
 
 class AppState:
-    model = None
-    index = None
-    mappings = None
-    bm25_index = None
-    metadata = None
+    search_engines = {}
+    bm25_indices = {}
+    metadata = {}
     lock = threading.Lock()
 
 
-def ensure_search_engine():
-    if AppState.model is not None:
-        return
+def ensure_search_engine(profile_key):
+    profile = get_profile(profile_key)
+    cached = AppState.search_engines.get(profile.key)
+    if cached is not None:
+        return cached
 
     with AppState.lock:
-        if AppState.model is not None:
-            return
-        print("[WEB] Arama motoru yükleniyor...")
-        AppState.model, AppState.index, AppState.mappings = load_search_engine()
+        cached = AppState.search_engines.get(profile.key)
+        if cached is not None:
+            return cached
+        print(f"[WEB] Search engine yukleniyor: {profile.key}")
+        AppState.search_engines[profile.key] = load_search_engine(profile.key)
+        return AppState.search_engines[profile.key]
 
 
-def ensure_bm25_engine():
-    if AppState.bm25_index is not None:
-        return
+def ensure_bm25_engine(profile_key):
+    profile = get_profile(profile_key)
+    cached = AppState.bm25_indices.get(profile.key)
+    if cached is not None:
+        return cached
 
     with AppState.lock:
-        if AppState.bm25_index is not None:
-            return
-        if AppState.mappings is None:
-            AppState.mappings = load_mappings()
-        print("[WEB] BM25 index oluşturuluyor...")
-        AppState.bm25_index = BM25Index(AppState.mappings)
+        cached = AppState.bm25_indices.get(profile.key)
+        if cached is not None:
+            return cached
+
+        engine = AppState.search_engines.get(profile.key)
+        if engine is not None:
+            _, _, mappings = engine
+        else:
+            mappings = load_mappings(profile.key)
+        print(f"[WEB] BM25 index hazirlaniyor: {profile.key}")
+        AppState.bm25_indices[profile.key] = BM25Index(mappings)
+        return AppState.bm25_indices[profile.key]
 
 
 def filter_results_by_source(raw_results, source_filter, top_k):
@@ -784,11 +1168,128 @@ def filter_results_by_source(raw_results, source_filter, top_k):
     return results
 
 
-class RequestHandler(BaseHTTPRequestHandler):
-    server_version = "SemanticDatasetSearch/1.0"
+def execute_search_method(method, query, profile_key, source_filter, top_k, query_plan):
+    if method == "bm25":
+        bm25_index = ensure_bm25_engine(profile_key)
+        candidate_k = len(bm25_index.doc_ids) if source_filter != "all" else top_k
+        raw_results = bm25_search(
+            query,
+            bm25_index,
+            top_k=candidate_k,
+            query_plan=query_plan,
+        )
+    elif method == "hybrid":
+        model, index, mappings = ensure_search_engine(profile_key)
+        bm25_index = ensure_bm25_engine(profile_key)
+        candidate_k = (
+            len(mappings)
+            if source_filter != "all"
+            else max(top_k, min(DEFAULT_CANDIDATE_K, len(mappings)))
+        )
+        raw_results = hybrid_search(
+            query,
+            model,
+            index,
+            mappings,
+            bm25_index,
+            top_k=candidate_k if source_filter != "all" else top_k,
+            semantic_weight=DEFAULT_SEMANTIC_WEIGHT,
+            candidate_k=candidate_k,
+            profile_key=profile_key,
+            query_plan=query_plan,
+        )
+    else:
+        model, index, mappings = ensure_search_engine(profile_key)
+        candidate_k = index.ntotal if source_filter != "all" else top_k
+        raw_results = semantic_search(
+            query,
+            model,
+            index,
+            mappings,
+            top_k=candidate_k,
+            profile_key=profile_key,
+            query_plan=query_plan,
+        )
+    return filter_results_by_source(raw_results, source_filter, top_k)
 
-    def log_message(self, format, *args):
-        print(f"[WEB] {self.address_string()} - {format % args}")
+
+def find_method_row(rows, method):
+    for row in rows:
+        if row.get("method") == method:
+            return row
+    return None
+
+
+def build_rq1_payload(query_plan, profile_key, source_filter, top_k, method_results):
+    rq1_data = (AppState.metadata or {}).get("rq1") or {}
+    query_style = "sentence" if query_plan.get("is_sentence_query") else "keyword"
+    style_rows = (rq1_data.get("by_query_style") or {}).get(query_style, [])
+    recommended = max(
+        style_rows,
+        key=lambda row: row.get("mean_ndcg_at_k", 0.0),
+        default=None,
+    )
+    guidance = []
+    if recommended:
+        guidance.append(
+            f"Bu sorgu `{query_style}` tipinde gorunuyor. RQ1 benchmarkinda bu tipte en guclu method `{METHOD_LABELS.get(recommended['method'], recommended['method'])}` "
+            f"(nDCG@5={recommended['mean_ndcg_at_k']:.3f})."
+        )
+
+    semantic_row = find_method_row(style_rows, "semantic")
+    bm25_row = find_method_row(style_rows, "bm25")
+    if semantic_row and bm25_row and query_style == "sentence":
+        guidance.append(
+            f"Sentence query'lerde semantic retrieval, BM25'i geciyor "
+            f"(semantic nDCG@5={semantic_row['mean_ndcg_at_k']:.3f}, BM25={bm25_row['mean_ndcg_at_k']:.3f})."
+        )
+    elif semantic_row and bm25_row:
+        guidance.append(
+            f"Keyword query'lerde BM25 hala anlamli bir baseline; ama genel ranking kalitesinde hybrid onde kalir."
+        )
+
+    if profile_key != DEFAULT_WEB_PROFILE:
+        guidance.append(
+            "Not: RQ1 benchmark metrikleri tezin ana Ingilizce MiniLM profiline aittir."
+        )
+
+    snapshots = []
+    for method in ("bm25", "semantic", "hybrid"):
+        rows = method_results.get(method) or []
+        top = rows[0] if rows else None
+        top_result = None
+        if top is not None:
+            score, item = top
+            top_result = {
+                "score": score,
+                "title": item.get("title"),
+                "source": item.get("source"),
+                "ref": item.get("ref"),
+            }
+        snapshots.append(
+            {
+                "method": method,
+                "top_result": top_result,
+                "benchmark_metrics": find_method_row(style_rows, method),
+            }
+        )
+
+    return {
+        "query_style": query_style,
+        "query_style_label": "sentence query" if query_style == "sentence" else "keyword query",
+        "recommended_method": recommended.get("method") if recommended else None,
+        "guidance_text": " ".join(guidance),
+        "source_filter": source_filter,
+        "top_k": top_k,
+        "snapshots": snapshots,
+    }
+
+
+class RequestHandler(BaseHTTPRequestHandler):
+    server_version = "SemanticDatasetSearch/3.0"
+
+    def log_message(self, fmt, *args):
+        print(f"[WEB] {self.address_string()} - {fmt % args}")
 
     def send_json(self, payload, status=HTTPStatus.OK):
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
@@ -812,7 +1313,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_html()
             return
         if path == "/api/metadata":
-            self.send_json(AppState.metadata or {})
+            self.send_json(AppState.metadata)
             return
         self.send_json({"error": "Not found"}, HTTPStatus.NOT_FOUND)
 
@@ -841,7 +1342,13 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         query = str(payload.get("query", "")).strip()
         if not query:
-            self.send_json({"error": "Sorgu boş olamaz."}, HTTPStatus.BAD_REQUEST)
+            self.send_json({"error": "Sorgu bos olamaz."}, HTTPStatus.BAD_REQUEST)
+            return
+
+        try:
+            profile = get_profile(payload.get("profile", DEFAULT_WEB_PROFILE))
+        except ValueError as exc:
+            self.send_json({"error": str(exc)}, HTTPStatus.BAD_REQUEST)
             return
 
         method = str(payload.get("method", "semantic")).strip().lower()
@@ -861,47 +1368,23 @@ class RequestHandler(BaseHTTPRequestHandler):
         top_k = max(1, min(top_k, 20))
 
         try:
-            if method == "bm25":
-                ensure_bm25_engine()
-                candidate_k = (
-                    len(AppState.bm25_index.doc_ids)
-                    if source_filter != "all"
-                    else top_k
-                )
-                raw_results = bm25_search(query, AppState.bm25_index, top_k=candidate_k)
-            elif method == "hybrid":
-                ensure_search_engine()
-                ensure_bm25_engine()
-                candidate_k = (
-                    len(AppState.mappings)
-                    if source_filter != "all"
-                    else max(top_k, min(DEFAULT_CANDIDATE_K, len(AppState.mappings)))
-                )
-                raw_results = hybrid_search(
+            query_plan = build_query_plan(query)
+            method_results = {
+                candidate_method: execute_search_method(
+                    candidate_method,
                     query,
-                    AppState.model,
-                    AppState.index,
-                    AppState.mappings,
-                    AppState.bm25_index,
-                    top_k=candidate_k if source_filter != "all" else top_k,
-                    semantic_weight=DEFAULT_SEMANTIC_WEIGHT,
-                    candidate_k=candidate_k,
+                    profile.key,
+                    source_filter,
+                    top_k,
+                    query_plan,
                 )
-            else:
-                ensure_search_engine()
-                candidate_k = AppState.index.ntotal if source_filter != "all" else top_k
-                raw_results = semantic_search(
-                    query,
-                    AppState.model,
-                    AppState.index,
-                    AppState.mappings,
-                    top_k=candidate_k,
-                )
+                for candidate_method in ("bm25", "semantic", "hybrid")
+            }
         except Exception as exc:
             self.send_json({"error": str(exc)}, HTTPStatus.INTERNAL_SERVER_ERROR)
             return
 
-        filtered_results = filter_results_by_source(raw_results, source_filter, top_k)
+        filtered_results = method_results[method]
         results = []
         for score, item in filtered_results:
             results.append(
@@ -922,15 +1405,21 @@ class RequestHandler(BaseHTTPRequestHandler):
                     "bm25_score": item.get("bm25_score"),
                     "semantic_weight": item.get("semantic_weight"),
                     "bm25_weight": item.get("bm25_weight"),
+                    "semantic_variant_hits": item.get("semantic_variant_hits"),
+                    "profile_key": profile.key,
+                    "profile_label": profile.label,
                 }
             )
 
         self.send_json(
             {
                 "query": query,
+                "query_plan": query_plan,
                 "method": method,
+                "profile": {"key": profile.key, "label": profile.label},
                 "source": source_filter,
                 "top_k": top_k,
+                "rq1": build_rq1_payload(query_plan, profile.key, source_filter, top_k, method_results),
                 "results": results,
             }
         )
@@ -938,14 +1427,14 @@ class RequestHandler(BaseHTTPRequestHandler):
 
 def main():
     configure_output()
-    AppState.metadata = load_index_metadata()
+    AppState.metadata = load_app_metadata()
 
     server = ThreadingHTTPServer((HOST, PORT), RequestHandler)
-    print(f"[WEB] UI hazır: http://{HOST}:{PORT}")
+    print(f"[WEB] UI hazir: http://{HOST}:{PORT}")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\n[WEB] Kapatılıyor...")
+        print("\\n[WEB] Kapatiliyor...")
     finally:
         server.server_close()
 

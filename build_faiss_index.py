@@ -1,4 +1,5 @@
 import json
+from argparse import ArgumentParser
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -6,18 +7,17 @@ from pathlib import Path
 import faiss
 from sentence_transformers import SentenceTransformer
 
+from runtime_env import ensure_model_cache_dirs
+from search_profiles import (
+    DEFAULT_PROFILE_KEY,
+    get_profile,
+    get_profile_paths,
+    prepare_document_text,
+)
+
 ROOT = Path(__file__).resolve().parent
 
 IN_PATH = ROOT / "data" / "processed" / "descriptions_clean.jsonl"
-IDX_DIR = ROOT / "data" / "index"
-EMB_DIR = ROOT / "data" / "embeddings"
-
-OUT_INDEX = IDX_DIR / "faiss.index"
-OUT_MAPPING = IDX_DIR / "mappings.json"
-OUT_INDEX_META = IDX_DIR / "index_metadata.json"
-OUT_LEGACY_META = EMB_DIR / "meta.jsonl"
-
-MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 BATCH_SIZE = 32
 
 
@@ -36,9 +36,27 @@ def iter_jsonl(path: Path):
                 raise ValueError(f"Invalid JSON in {path}:{line_no}: {exc}") from exc
 
 
+def parse_args():
+    parser = ArgumentParser(description="Build a FAISS index for a configured search profile.")
+    parser.add_argument("--profile", default=DEFAULT_PROFILE_KEY)
+    return parser.parse_args()
+
+
 def main():
-    IDX_DIR.mkdir(parents=True, exist_ok=True)
-    EMB_DIR.mkdir(parents=True, exist_ok=True)
+    args = parse_args()
+    profile = get_profile(args.profile)
+    paths = get_profile_paths(profile.key)
+    index_dir = paths["index_dir"]
+    embedding_dir = paths["embedding_dir"]
+    out_index = paths["index"]
+    out_mapping = paths["mappings"]
+    out_index_meta = paths["index_metadata"]
+    out_legacy_meta = paths["legacy_meta"]
+
+    ensure_model_cache_dirs()
+
+    index_dir.mkdir(parents=True, exist_ok=True)
+    embedding_dir.mkdir(parents=True, exist_ok=True)
 
     rows = list(iter_jsonl(IN_PATH))
     texts = []
@@ -73,15 +91,17 @@ def main():
         }
         mappings[str(index_id)] = item
         legacy_meta_rows.append({k: item.get(k) for k in ("source", "ref", "title", "url")})
-        texts.append(clean_text)
+        texts.append(prepare_document_text(profile.key, clean_text))
 
     if not texts:
         raise RuntimeError("No valid text found to index.")
 
+    print(f"[LOAD] profile={profile.key}")
     print(f"[LOAD] source_rows={len(rows)} valid_texts={len(texts)} skipped={skipped}")
     print(f"[LOAD] source_counts={dict(source_counts)}")
+    print(f"[MODEL] {profile.model_name}")
 
-    model = SentenceTransformer(MODEL_NAME)
+    model = SentenceTransformer(profile.model_name)
     embeddings = model.encode(
         texts,
         batch_size=BATCH_SIZE,
@@ -99,36 +119,41 @@ def main():
             f"mappings={len(mappings)}"
         )
 
-    faiss.write_index(index, str(OUT_INDEX))
+    faiss.write_index(index, str(out_index))
 
-    with OUT_MAPPING.open("w", encoding="utf-8") as f:
+    with out_mapping.open("w", encoding="utf-8") as f:
         json.dump(mappings, f, ensure_ascii=False, indent=2)
 
-    with OUT_LEGACY_META.open("w", encoding="utf-8", newline="\n") as f:
+    with out_legacy_meta.open("w", encoding="utf-8", newline="\n") as f:
         for row in legacy_meta_rows:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
     index_metadata = {
         "built_at_utc": datetime.now(timezone.utc).isoformat(),
-        "model_name": MODEL_NAME,
+        "profile": profile.key,
+        "profile_label": profile.label,
+        "model_name": profile.model_name,
         "input_path": str(IN_PATH),
         "input_rows": len(rows),
         "indexed_rows": index.ntotal,
         "embedding_dimension": dimension,
+        "query_prefix": profile.query_prefix,
+        "document_prefix": profile.document_prefix,
         "source_counts": dict(source_counts),
         "outputs": {
-            "index": str(OUT_INDEX),
-            "mappings": str(OUT_MAPPING),
-            "legacy_meta": str(OUT_LEGACY_META),
+            "index": str(out_index),
+            "mappings": str(out_mapping),
+            "legacy_meta": str(out_legacy_meta),
         },
     }
-    with OUT_INDEX_META.open("w", encoding="utf-8") as f:
+    with out_index_meta.open("w", encoding="utf-8") as f:
         json.dump(index_metadata, f, ensure_ascii=False, indent=2)
 
     print("[OK] FAISS index built")
-    print(f"  index={OUT_INDEX}")
-    print(f"  mappings={OUT_MAPPING}")
-    print(f"  legacy_meta={OUT_LEGACY_META}")
+    print(f"  profile={profile.key}")
+    print(f"  index={out_index}")
+    print(f"  mappings={out_mapping}")
+    print(f"  legacy_meta={out_legacy_meta}")
     print(f"  indexed_rows={index.ntotal}")
 
 

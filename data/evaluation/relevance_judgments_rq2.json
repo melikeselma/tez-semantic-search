@@ -1,0 +1,259 @@
+[
+  {
+    "id": "rq2_001",
+    "query": "stanfordnlp/imdb. --- - expert-generated - expert-generated - en - other - monolingual - 10K<n<100K - original - text-classification task_ids: - sentiment-classification",
+    "category": "movie_sentiment",
+    "topic": "movie_reviews",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "stanfordnlp/imdb",
+    "anchor_title": "stanfordnlp/imdb",
+    "anchor_source": "huggingface",
+    "target_source": "kaggle",
+    "direction": "huggingface_to_kaggle",
+    "source_filter": "kaggle",
+    "relevant_refs": [
+      "varun08/imdb-dataset",
+      "ashirwadsangwan/imdb-dataset",
+      "ahmedosamamath/imdb-dataset",
+      "justsahil/imdb-dataset-csv-updates-weekly"
+    ],
+    "notes": "HF movie review sentiment anchor should retrieve Kaggle IMDb-style movie review datasets."
+  },
+  {
+    "id": "rq2_002",
+    "query": "jhan21/amazon-beauty-reviews-dataset. # Dataset Card for \"Amazon Beauty Reviews\" ## Table of Contents - [Table of Contents](#table-of-contents) - [Dataset Description](#dataset-description)",
+    "category": "product_reviews",
+    "topic": "amazon_reviews",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "jhan21/amazon-beauty-reviews-dataset",
+    "anchor_title": "jhan21/amazon-beauty-reviews-dataset",
+    "anchor_source": "huggingface",
+    "target_source": "kaggle",
+    "direction": "huggingface_to_kaggle",
+    "source_filter": "kaggle",
+    "relevant_refs": [
+      "humagonen/amazon-reviews-csv",
+      "ashishkumarak/amazon-shopping-reviews-daily-updated"
+    ],
+    "notes": "HF Amazon reviews anchor should retrieve Kaggle Amazon review corpora."
+  },
+  {
+    "id": "rq2_003",
+    "query": "McAuley-Lab/Amazon-Reviews-2023. --- - en - recommendation - reviews - 10B<n<100B - config_name: raw_meta_All_Beauty features: - name: main_category dtype: string - name: title dtype: string - name: average_rating dtype: float64 - name: rating_number dtype: int64 - name: features",
+    "category": "product_reviews",
+    "topic": "amazon_reviews",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "McAuley-Lab/Amazon-Reviews-2023",
+    "anchor_title": "McAuley-Lab/Amazon-Reviews-2023",
+    "anchor_source": "huggingface",
+    "target_source": "kaggle",
+    "direction": "huggingface_to_kaggle",
+    "source_filter": "kaggle",
+    "relevant_refs": [
+      "humagonen/amazon-reviews-csv",
+      "ashishkumarak/amazon-shopping-reviews-daily-updated"
+    ],
+    "notes": "Large-scale HF Amazon review anchor should bridge to Kaggle Amazon review datasets."
+  },
+  {
+    "id": "rq2_004",
+    "query": "fthbrmnby/turkish_product_reviews. --- - found - found - tr - unknown - monolingual - 100K<n<1M - original - text-classification task_ids: - sentiment-classification",
+    "category": "turkish_sentiment",
+    "topic": "turkish_product_reviews",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "fthbrmnby/turkish_product_reviews",
+    "anchor_title": "fthbrmnby/turkish_product_reviews",
+    "anchor_source": "huggingface",
+    "target_source": "kaggle",
+    "direction": "huggingface_to_kaggle",
+    "source_filter": "kaggle",
+    "relevant_refs": [
+      "furkangozukara/turkish-product-reviews"
+    ],
+    "notes": "Turkish sentiment anchor should retrieve the Kaggle Turkish e-commerce review dataset."
+  },
+  {
+    "id": "rq2_005",
+    "query": "tdiggelm/climate_fever. --- - crowdsourced - expert-generated - found - en - unknown - monolingual - 1K<n<10K - extended|wikipedia - original - text-classification - text-retrieval",
+    "category": "climate_discourse",
+    "topic": "climate_change",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "tdiggelm/climate_fever",
+    "anchor_title": "tdiggelm/climate_fever",
+    "anchor_source": "huggingface",
+    "target_source": "kaggle",
+    "direction": "huggingface_to_kaggle",
+    "source_filter": "kaggle",
+    "relevant_refs": [
+      "asaniczka/public-opinion-on-climate-change-updated-daily"
+    ],
+    "notes": "Climate-related HF benchmark should retrieve Kaggle climate discussion data despite source differences."
+  },
+  {
+    "id": "rq2_006",
+    "query": "Buraaq/quran-audio-text-dataset. # Quran MD 🕌 ## Overview This collection provides comprehensive audio recordings of the complete Quran (Holy Book of Islam) with multiple recitations and granular annotations. The dataset is organized into **two separate, specialized datasets** optimized for different use cases. ### Related Dataset Links",
+    "category": "religious_text_audio",
+    "topic": "quran_text_audio",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "Buraaq/quran-audio-text-dataset",
+    "anchor_title": "Buraaq/quran-audio-text-dataset",
+    "anchor_source": "huggingface",
+    "target_source": "kaggle",
+    "direction": "huggingface_to_kaggle",
+    "source_filter": "kaggle",
+    "relevant_refs": [
+      "bentaylor/sacred-texts-for-visualisation"
+    ],
+    "notes": "Quran audio/text anchor tests whether cross-source retrieval can bridge to Kaggle religious text data."
+  },
+  {
+    "id": "rq2_007",
+    "query": "imdb Dataset. Keywords: movies and tv shows",
+    "category": "movie_sentiment",
+    "topic": "movie_reviews",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "varun08/imdb-dataset",
+    "anchor_title": "imdb Dataset",
+    "anchor_source": "kaggle",
+    "target_source": "huggingface",
+    "direction": "kaggle_to_huggingface",
+    "source_filter": "huggingface",
+    "relevant_refs": [
+      "stanfordnlp/imdb"
+    ],
+    "notes": "Kaggle IMDb anchor should retrieve the HF IMDb benchmark dataset."
+  },
+  {
+    "id": "rq2_008",
+    "query": "Amazon Reviews csv. converted train data from <URL> to csv This dataset consists of a few million Amazon customer reviews: 3.600.00 reviews in train Keywords: business",
+    "category": "product_reviews",
+    "topic": "amazon_reviews",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "humagonen/amazon-reviews-csv",
+    "anchor_title": "Amazon Reviews csv",
+    "anchor_source": "kaggle",
+    "target_source": "huggingface",
+    "direction": "kaggle_to_huggingface",
+    "source_filter": "huggingface",
+    "relevant_refs": [
+      "jhan21/amazon-beauty-reviews-dataset",
+      "McAuley-Lab/Amazon-Reviews-2023"
+    ],
+    "notes": "Kaggle Amazon reviews anchor should retrieve semantically matching HF review corpora."
+  },
+  {
+    "id": "rq2_009",
+    "query": "Amazon Shopping Reviews [Daily Updated]. Amazon Reviews from Google Play Store The reviews and ratings of Amazon Shopping App by users are primary component of this dataset. It is updated daily . It also includes information on the relevancy of reviews and the date of posting the review,etc. Keywords: nlp, text mining, ratings and reviews",
+    "category": "product_reviews",
+    "topic": "amazon_reviews",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "ashishkumarak/amazon-shopping-reviews-daily-updated",
+    "anchor_title": "Amazon Shopping Reviews [Daily Updated]",
+    "anchor_source": "kaggle",
+    "target_source": "huggingface",
+    "direction": "kaggle_to_huggingface",
+    "source_filter": "huggingface",
+    "relevant_refs": [
+      "jhan21/amazon-beauty-reviews-dataset",
+      "McAuley-Lab/Amazon-Reviews-2023"
+    ],
+    "notes": "Daily-updated Kaggle Amazon app-review anchor should still bridge to HF Amazon review datasets."
+  },
+  {
+    "id": "rq2_010",
+    "query": "E-Commerce Product Reviews - Dataset for ML. Turkish product reviews collected from Turkish E-commerce - Sentiment Analysis -> If you use Turkish_Product_Reviews_by_Gozukara_and_Ozel_2016 dataset please cite: <URL> @research article { cukurovaummfd310341, journal = {Çukurova Üniversitesi Mühendislik-Mimarlık Fakültesi Dergisi}, issn = {1019-1011}, eissn = {2564-7520}, address = {Çukurova Üniversitesi Mühendislik-Mimarlık Fakültesi Dergisi Yayın Kurulu Başkanlığı 01330 ADANA}, publisher = {Cukurova University}, year = {2016}, volume = {31}, pages = {464 - 482}, doi = {10.21605/cukurovaummfd.310341}, title = {Türkçe ve İngilizce Yorumların Duygu Analizinde Doküman Vektörü Hesaplama Yöntemleri için Bir Deneysel İnceleme}, key = {cite}, author = {Gözükara, Furkan and Özel, Selma Ayşe} } <URL> -> Turkish_Product_Reviews_by_Gozukara_and_Ozel_2016 dataset is composed as below: ->-> Top 50 E-commerce sites in Turkey are crawled and their comments are extracted. Then randomly 2000 comments selected and manually labelled by a field expert. ->-> After manual labeling the selected comments is done, 600 negative and 600 positive comments are left. ->-> This dataset contains these comments. -> English_Movie_Reviews_by_Pang_and_Lee_2004 ->-> Pang, B., Lee, L., 2004. A sentimental education: Sentiment analysis using subjectivity summarization based on minimum cuts, In Proceedings of the 42nd annual meeting on Association for Computational Linguistics (p. 271). ->-> Source: <URL> | polarity dataset v2.0 - review_polarity.tar.gz -> English_Movie_Reviews_Sentences_by_Pang_and_Lee_2005 ->-> Pang, B., Lee, L., 2005. Seeing stars: Exploiting class relationships for sentiment categorization with respect to rating scales, In Proceedings of the 43rd Annual Meeting on Association for Computational Linguistics (pp. 115-124), Association for Computational Linguistics ->-> Source: <URL> | sentence polarity dataset v1.0 - rt-polaritydata.tar.gz -> English_Product_Reviews_by_Blitzer_et_al_2007 ->-> Article of the dataset: Blitzer, J., Dredze, M., Pereira, F., 2007. Biographies, bollywood, boom-boxes and blenders: Domain adaptation for sentiment classification, In ACL (Vol. 7, pp. 440-447). ->-> Source: <URL> | [processed_acl.tar.gz] (19 M) -> Turkish_Movie_Reviews_by_Demirtas_and_Pechenizkiy_2013 ->-> Demirtas, E., Pechenizkiy, M., 2013. Cross-lingual polarity detection with machine translation, In Proceedings of the Second International Workshop on Issues of Sentiment Discovery and Opinion Mining (p. 9). ACM. ->-> <URL> Turkish_Movie_Sentiment.zip -> The dataset files are provided as used in the article. -> Weka files are generated with Raw Frequency of terms rather than used Weighting Schemes -> The folder Cross_Validation contains 10-fold cross-validation each fold files. -> Inside Cross_Validation folder, each turn of the cross-validation is named as test_X where X is the turn number -> Inside test_X folder * Test_Set_Negative_RAW: Contains raw negative class Test data of that cross-validation turn * Test_Set_Negative_Processed: Contains pre-processed negative class Test data of that cross-validation turn * Test_Set_Positive_RAW: Contains raw positive class Test data of that cross-validation turn * Test_Set_Positive_Processed: Contains pre-processed positive class Test data of that cross-validation turn * Train_Set_Negative_RAW: Contains raw negative class Train data of that cross-validation turn * Train_Set_Negative_Processed: Contains pre-processed negative class Train data of that cross-validation turn * Train_Set_Positive_RAW: Contains raw positive class Train data of that cross-validation turn * Train_Set_Positive_Processed: Contains pre-processed positive class Train data of that cross-validation turn * Train_Set_For_Weka: Contains processed Train set formatted for Weka * Test_Set_For_Weka: Contains processed Test set formatted for Weka -> The folder Entire_Dataset contains files for Entire Dataset * Negative_Processed: Contains all negative comments processed data * Positive_Processed: Contains all positive comments processed data * Negative_RAW: Contains all negative comments RAW data * Positive_RAW: Contains all positive comments RAW data * Entire_Dataset_WEKA: Contains all documents processed data in WEKA format Keywords: business, classification, svm, text, binary classification, ratings and reviews, e-commerce services",
+    "category": "turkish_sentiment",
+    "topic": "turkish_product_reviews",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "furkangozukara/turkish-product-reviews",
+    "anchor_title": "E-Commerce Product Reviews - Dataset for ML",
+    "anchor_source": "kaggle",
+    "target_source": "huggingface",
+    "direction": "kaggle_to_huggingface",
+    "source_filter": "huggingface",
+    "relevant_refs": [
+      "fthbrmnby/turkish_product_reviews"
+    ],
+    "notes": "Kaggle Turkish e-commerce reviews should retrieve the HF Turkish sentiment dataset."
+  },
+  {
+    "id": "rq2_011",
+    "query": "Public Opinion on Climate Change (Updated Daily). Reddit comments dataset related to climate change discussions. Updated Daily Climate change is a critical issue that affects the global community. This dataset provides valuable insights into public opinions and discussions surrounding climate change. It is specifically derived from Reddit, a popular online platform known for its diverse communities and extensive discussions. This dataset is **updated daily** to proivde the latest comments on the latest reddit posts > If you find this dataset valuable, don't forget to hit the upvote button! 😊💝 ## Interesting Task Ideas: 1. Analyze overall sentiment towards climate change topics on Reddit over time. 2. Identify the most active subreddits and users discussing climate change. 3. Investigate controversial climate change discussions and analyze the key arguments from different perspectives. 4. Examine the impact of various factors (e.g., post score, upvote ratio) on the engagement and visibility of climate change-related posts. 5. Explore the behavior and trends of Reddit users involved in these discussions, such as their account age, karma distribution, and activity levels. 6. Utilize natural language processing techniques to identify key topics and themes within climate change discussions. 7. Predict the popularity of climate change-related posts based on metadata features. --- Photo by Li-An Lim on Unsplash Keywords: atmospheric science, environment, weather and climate, energy, renewable energy, social issues and advocacy",
+    "category": "climate_discourse",
+    "topic": "climate_change",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "asaniczka/public-opinion-on-climate-change-updated-daily",
+    "anchor_title": "Public Opinion on Climate Change (Updated Daily)",
+    "anchor_source": "kaggle",
+    "target_source": "huggingface",
+    "direction": "kaggle_to_huggingface",
+    "source_filter": "huggingface",
+    "relevant_refs": [
+      "tdiggelm/climate_fever"
+    ],
+    "notes": "Kaggle climate discussion anchor should retrieve the HF climate-related benchmark."
+  },
+  {
+    "id": "rq2_012",
+    "query": "Sacred texts for visualisation. 4 sacred texts from Project Gutenberg for visualisation These are 4 texts taken from Project Gutenberg, uploaded to Kaggle (originally by Rob Harrand) to encourage things like text-mining and sentiment analysis. These are fun skills to develop and many existing datasets on Kaggle don't lend themselves to these sorts of analyses. The 4 books are, The King James Bible The Quran The Book Of Mormon The Gospel of Buddha Project Gutenberg is an online archive of books that are free to download and distribute. These files are taken without alteration (filenames or contents) from the Project Gutenberg website <URL> Keywords: philosophy, religion and belief systems",
+    "category": "religious_text_audio",
+    "topic": "quran_text_audio",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "bentaylor/sacred-texts-for-visualisation",
+    "anchor_title": "Sacred texts for visualisation",
+    "anchor_source": "kaggle",
+    "target_source": "huggingface",
+    "direction": "kaggle_to_huggingface",
+    "source_filter": "huggingface",
+    "relevant_refs": [
+      "Buraaq/quran-audio-text-dataset",
+      "nazimali/quran"
+    ],
+    "notes": "Kaggle religious text anchor should retrieve HF Quran datasets."
+  },
+  {
+    "id": "rq2_013",
+    "query": "CMU MOSI. Multimodal Corpus of Sentiment Intensity & Subjectivity Analysis in Videos MOSI: Multimodal Corpus of Sentiment Intensity and Subjectivity Analysis in Online Opinion Videos People are sharing their opinions, stories and reviews through online video sharing websites every day. Studying sentiment and subjectivity in these opinion videos is experiencing a growing attention from academia and industry. While sentiment analysis has been successful for text, it is an understudied research question for videos and multimedia content. The biggest setbacks for studies in this direction are lack of a proper dataset, methodology, baselines and statistical analysis of how information from different modality sources relate to each other. This paper introduces to the scientific community the first opinion-level annotated corpus of sentiment and subjectivity analysis in online videos called Multimodal Opinionlevel Sentiment Intensity dataset (MOSI). The dataset is rigorously annotated with labels for subjectivity, sentiment intensity, per-frame and per-opinion annotated visual features, and per-milliseconds annotated audio features. Furthermore, we present baselines for future studies in this direction as well as a new multimodal fusion approach that jointly models spoken words and visual gestures. Keywords: universities and colleges, social science",
+    "category": "multimodal_sentiment",
+    "topic": "sentiment_analysis",
+    "benchmark": "cross_source_similarity",
+    "query_style": "dataset_description_anchor",
+    "language": "en",
+    "anchor_ref": "mathurinache/cmu-mosi",
+    "anchor_title": "CMU MOSI",
+    "anchor_source": "kaggle",
+    "target_source": "huggingface",
+    "direction": "kaggle_to_huggingface",
+    "source_filter": "huggingface",
+    "relevant_refs": [
+      "stanfordnlp/imdb",
+      "cornell-movie-review-data/rotten_tomatoes",
+      "benjaminvdb/dbrd"
+    ],
+    "notes": "Kaggle multimodal sentiment anchor should retrieve HF sentiment datasets from the same semantic task family."
+  }
+]
