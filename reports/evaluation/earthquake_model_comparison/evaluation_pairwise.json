@@ -1,0 +1,857 @@
+[
+  {
+    "left_profile": "english_e5",
+    "left_method": "bm25",
+    "right_profile": "english_e5",
+    "right_method": "hybrid",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 1,
+        "right_wins": 2,
+        "ties": 7,
+        "mean_delta": -0.1
+      },
+      "precision_at_k": {
+        "left_wins": 1,
+        "right_wins": 4,
+        "ties": 5,
+        "mean_delta": -0.05999999999999999
+      },
+      "recall_at_k": {
+        "left_wins": 1,
+        "right_wins": 4,
+        "ties": 5,
+        "mean_delta": -0.1
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 1,
+        "right_wins": 3,
+        "ties": 6,
+        "mean_delta": -0.11333333333333334
+      },
+      "ap_at_k": {
+        "left_wins": 2,
+        "right_wins": 6,
+        "ties": 2,
+        "mean_delta": -0.1488888888888889
+      },
+      "r_precision": {
+        "left_wins": 0,
+        "right_wins": 5,
+        "ties": 5,
+        "mean_delta": -0.2
+      },
+      "ndcg_at_k": {
+        "left_wins": 2,
+        "right_wins": 6,
+        "ties": 2,
+        "mean_delta": -0.12624663218278884
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "bm25",
+    "right_profile": "english_e5",
+    "right_method": "semantic",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 4,
+        "right_wins": 1,
+        "ties": 5,
+        "mean_delta": 0.3
+      },
+      "precision_at_k": {
+        "left_wins": 5,
+        "right_wins": 2,
+        "ties": 3,
+        "mean_delta": 0.07999999999999999
+      },
+      "recall_at_k": {
+        "left_wins": 5,
+        "right_wins": 2,
+        "ties": 3,
+        "mean_delta": 0.16666666666666669
+      },
+      "hit_rate_at_k": {
+        "left_wins": 1,
+        "right_wins": 0,
+        "ties": 9,
+        "mean_delta": 0.1
+      },
+      "mrr": {
+        "left_wins": 6,
+        "right_wins": 1,
+        "ties": 3,
+        "mean_delta": 0.21166666666666667
+      },
+      "ap_at_k": {
+        "left_wins": 7,
+        "right_wins": 2,
+        "ties": 1,
+        "mean_delta": 0.21944444444444444
+      },
+      "r_precision": {
+        "left_wins": 5,
+        "right_wins": 1,
+        "ties": 4,
+        "mean_delta": 0.2
+      },
+      "ndcg_at_k": {
+        "left_wins": 7,
+        "right_wins": 3,
+        "ties": 0,
+        "mean_delta": 0.19022338823666265
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "bm25",
+    "right_profile": "minilm",
+    "right_method": "bm25",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "precision_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "recall_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "ap_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "r_precision": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "ndcg_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "bm25",
+    "right_profile": "minilm",
+    "right_method": "hybrid",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 0,
+        "right_wins": 3,
+        "ties": 7,
+        "mean_delta": -0.3
+      },
+      "precision_at_k": {
+        "left_wins": 0,
+        "right_wins": 5,
+        "ties": 5,
+        "mean_delta": -0.11999999999999998
+      },
+      "recall_at_k": {
+        "left_wins": 0,
+        "right_wins": 5,
+        "ties": 5,
+        "mean_delta": -0.21666666666666667
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 0,
+        "right_wins": 3,
+        "ties": 7,
+        "mean_delta": -0.21333333333333335
+      },
+      "ap_at_k": {
+        "left_wins": 1,
+        "right_wins": 7,
+        "ties": 2,
+        "mean_delta": -0.32555555555555554
+      },
+      "r_precision": {
+        "left_wins": 0,
+        "right_wins": 5,
+        "ties": 5,
+        "mean_delta": -0.3
+      },
+      "ndcg_at_k": {
+        "left_wins": 1,
+        "right_wins": 7,
+        "ties": 2,
+        "mean_delta": -0.26421827452241226
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "bm25",
+    "right_profile": "minilm",
+    "right_method": "semantic",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 0,
+        "right_wins": 2,
+        "ties": 8,
+        "mean_delta": -0.2
+      },
+      "precision_at_k": {
+        "left_wins": 2,
+        "right_wins": 4,
+        "ties": 4,
+        "mean_delta": -0.059999999999999984
+      },
+      "recall_at_k": {
+        "left_wins": 2,
+        "right_wins": 4,
+        "ties": 4,
+        "mean_delta": -0.08333333333333334
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 0,
+        "right_wins": 2,
+        "ties": 8,
+        "mean_delta": -0.14666666666666667
+      },
+      "ap_at_k": {
+        "left_wins": 4,
+        "right_wins": 6,
+        "ties": 0,
+        "mean_delta": -0.18666666666666668
+      },
+      "r_precision": {
+        "left_wins": 2,
+        "right_wins": 4,
+        "ties": 4,
+        "mean_delta": -0.13333333333333333
+      },
+      "ndcg_at_k": {
+        "left_wins": 4,
+        "right_wins": 6,
+        "ties": 0,
+        "mean_delta": -0.14789593874665385
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "hybrid",
+    "right_profile": "english_e5",
+    "right_method": "semantic",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 5,
+        "right_wins": 1,
+        "ties": 4,
+        "mean_delta": 0.4
+      },
+      "precision_at_k": {
+        "left_wins": 7,
+        "right_wins": 0,
+        "ties": 3,
+        "mean_delta": 0.13999999999999999
+      },
+      "recall_at_k": {
+        "left_wins": 7,
+        "right_wins": 0,
+        "ties": 3,
+        "mean_delta": 0.26666666666666666
+      },
+      "hit_rate_at_k": {
+        "left_wins": 1,
+        "right_wins": 0,
+        "ties": 9,
+        "mean_delta": 0.1
+      },
+      "mrr": {
+        "left_wins": 6,
+        "right_wins": 1,
+        "ties": 3,
+        "mean_delta": 0.325
+      },
+      "ap_at_k": {
+        "left_wins": 9,
+        "right_wins": 1,
+        "ties": 0,
+        "mean_delta": 0.36833333333333335
+      },
+      "r_precision": {
+        "left_wins": 9,
+        "right_wins": 0,
+        "ties": 1,
+        "mean_delta": 0.4
+      },
+      "ndcg_at_k": {
+        "left_wins": 9,
+        "right_wins": 1,
+        "ties": 0,
+        "mean_delta": 0.3164700204194515
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "hybrid",
+    "right_profile": "minilm",
+    "right_method": "bm25",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 2,
+        "right_wins": 1,
+        "ties": 7,
+        "mean_delta": 0.1
+      },
+      "precision_at_k": {
+        "left_wins": 4,
+        "right_wins": 1,
+        "ties": 5,
+        "mean_delta": 0.05999999999999999
+      },
+      "recall_at_k": {
+        "left_wins": 4,
+        "right_wins": 1,
+        "ties": 5,
+        "mean_delta": 0.1
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 3,
+        "right_wins": 1,
+        "ties": 6,
+        "mean_delta": 0.11333333333333334
+      },
+      "ap_at_k": {
+        "left_wins": 6,
+        "right_wins": 2,
+        "ties": 2,
+        "mean_delta": 0.1488888888888889
+      },
+      "r_precision": {
+        "left_wins": 5,
+        "right_wins": 0,
+        "ties": 5,
+        "mean_delta": 0.2
+      },
+      "ndcg_at_k": {
+        "left_wins": 6,
+        "right_wins": 2,
+        "ties": 2,
+        "mean_delta": 0.12624663218278884
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "hybrid",
+    "right_profile": "minilm",
+    "right_method": "hybrid",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 0,
+        "right_wins": 2,
+        "ties": 8,
+        "mean_delta": -0.2
+      },
+      "precision_at_k": {
+        "left_wins": 0,
+        "right_wins": 3,
+        "ties": 7,
+        "mean_delta": -0.05999999999999999
+      },
+      "recall_at_k": {
+        "left_wins": 0,
+        "right_wins": 3,
+        "ties": 7,
+        "mean_delta": -0.11666666666666667
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 0,
+        "right_wins": 2,
+        "ties": 8,
+        "mean_delta": -0.1
+      },
+      "ap_at_k": {
+        "left_wins": 1,
+        "right_wins": 6,
+        "ties": 3,
+        "mean_delta": -0.17666666666666667
+      },
+      "r_precision": {
+        "left_wins": 1,
+        "right_wins": 3,
+        "ties": 6,
+        "mean_delta": -0.09999999999999999
+      },
+      "ndcg_at_k": {
+        "left_wins": 1,
+        "right_wins": 6,
+        "ties": 3,
+        "mean_delta": -0.1379716423396234
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "hybrid",
+    "right_profile": "minilm",
+    "right_method": "semantic",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 1,
+        "right_wins": 2,
+        "ties": 7,
+        "mean_delta": -0.1
+      },
+      "precision_at_k": {
+        "left_wins": 2,
+        "right_wins": 2,
+        "ties": 6,
+        "mean_delta": 5.551115123125783e-18
+      },
+      "recall_at_k": {
+        "left_wins": 2,
+        "right_wins": 2,
+        "ties": 6,
+        "mean_delta": 0.016666666666666663
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 1,
+        "right_wins": 2,
+        "ties": 7,
+        "mean_delta": -0.033333333333333326
+      },
+      "ap_at_k": {
+        "left_wins": 6,
+        "right_wins": 3,
+        "ties": 1,
+        "mean_delta": -0.037777777777777764
+      },
+      "r_precision": {
+        "left_wins": 4,
+        "right_wins": 2,
+        "ties": 4,
+        "mean_delta": 0.06666666666666668
+      },
+      "ndcg_at_k": {
+        "left_wins": 6,
+        "right_wins": 3,
+        "ties": 1,
+        "mean_delta": -0.02164930656386501
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "semantic",
+    "right_profile": "minilm",
+    "right_method": "bm25",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 1,
+        "right_wins": 4,
+        "ties": 5,
+        "mean_delta": -0.3
+      },
+      "precision_at_k": {
+        "left_wins": 2,
+        "right_wins": 5,
+        "ties": 3,
+        "mean_delta": -0.07999999999999999
+      },
+      "recall_at_k": {
+        "left_wins": 2,
+        "right_wins": 5,
+        "ties": 3,
+        "mean_delta": -0.16666666666666669
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 1,
+        "ties": 9,
+        "mean_delta": -0.1
+      },
+      "mrr": {
+        "left_wins": 1,
+        "right_wins": 6,
+        "ties": 3,
+        "mean_delta": -0.21166666666666667
+      },
+      "ap_at_k": {
+        "left_wins": 2,
+        "right_wins": 7,
+        "ties": 1,
+        "mean_delta": -0.21944444444444444
+      },
+      "r_precision": {
+        "left_wins": 1,
+        "right_wins": 5,
+        "ties": 4,
+        "mean_delta": -0.2
+      },
+      "ndcg_at_k": {
+        "left_wins": 3,
+        "right_wins": 7,
+        "ties": 0,
+        "mean_delta": -0.19022338823666265
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "semantic",
+    "right_profile": "minilm",
+    "right_method": "hybrid",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 0,
+        "right_wins": 6,
+        "ties": 4,
+        "mean_delta": -0.6
+      },
+      "precision_at_k": {
+        "left_wins": 0,
+        "right_wins": 9,
+        "ties": 1,
+        "mean_delta": -0.19999999999999998
+      },
+      "recall_at_k": {
+        "left_wins": 0,
+        "right_wins": 9,
+        "ties": 1,
+        "mean_delta": -0.38333333333333336
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 1,
+        "ties": 9,
+        "mean_delta": -0.1
+      },
+      "mrr": {
+        "left_wins": 0,
+        "right_wins": 6,
+        "ties": 4,
+        "mean_delta": -0.42500000000000004
+      },
+      "ap_at_k": {
+        "left_wins": 0,
+        "right_wins": 10,
+        "ties": 0,
+        "mean_delta": -0.545
+      },
+      "r_precision": {
+        "left_wins": 0,
+        "right_wins": 9,
+        "ties": 1,
+        "mean_delta": -0.5
+      },
+      "ndcg_at_k": {
+        "left_wins": 0,
+        "right_wins": 10,
+        "ties": 0,
+        "mean_delta": -0.4544416627590749
+      }
+    }
+  },
+  {
+    "left_profile": "english_e5",
+    "left_method": "semantic",
+    "right_profile": "minilm",
+    "right_method": "semantic",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 0,
+        "right_wins": 5,
+        "ties": 5,
+        "mean_delta": -0.5
+      },
+      "precision_at_k": {
+        "left_wins": 0,
+        "right_wins": 7,
+        "ties": 3,
+        "mean_delta": -0.13999999999999999
+      },
+      "recall_at_k": {
+        "left_wins": 0,
+        "right_wins": 7,
+        "ties": 3,
+        "mean_delta": -0.25
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 1,
+        "ties": 9,
+        "mean_delta": -0.1
+      },
+      "mrr": {
+        "left_wins": 0,
+        "right_wins": 6,
+        "ties": 4,
+        "mean_delta": -0.35833333333333334
+      },
+      "ap_at_k": {
+        "left_wins": 0,
+        "right_wins": 10,
+        "ties": 0,
+        "mean_delta": -0.4061111111111111
+      },
+      "r_precision": {
+        "left_wins": 0,
+        "right_wins": 8,
+        "ties": 2,
+        "mean_delta": -0.3333333333333333
+      },
+      "ndcg_at_k": {
+        "left_wins": 0,
+        "right_wins": 10,
+        "ties": 0,
+        "mean_delta": -0.33811932698331654
+      }
+    }
+  },
+  {
+    "left_profile": "minilm",
+    "left_method": "bm25",
+    "right_profile": "minilm",
+    "right_method": "hybrid",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 0,
+        "right_wins": 3,
+        "ties": 7,
+        "mean_delta": -0.3
+      },
+      "precision_at_k": {
+        "left_wins": 0,
+        "right_wins": 5,
+        "ties": 5,
+        "mean_delta": -0.11999999999999998
+      },
+      "recall_at_k": {
+        "left_wins": 0,
+        "right_wins": 5,
+        "ties": 5,
+        "mean_delta": -0.21666666666666667
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 0,
+        "right_wins": 3,
+        "ties": 7,
+        "mean_delta": -0.21333333333333335
+      },
+      "ap_at_k": {
+        "left_wins": 1,
+        "right_wins": 7,
+        "ties": 2,
+        "mean_delta": -0.32555555555555554
+      },
+      "r_precision": {
+        "left_wins": 0,
+        "right_wins": 5,
+        "ties": 5,
+        "mean_delta": -0.3
+      },
+      "ndcg_at_k": {
+        "left_wins": 1,
+        "right_wins": 7,
+        "ties": 2,
+        "mean_delta": -0.26421827452241226
+      }
+    }
+  },
+  {
+    "left_profile": "minilm",
+    "left_method": "bm25",
+    "right_profile": "minilm",
+    "right_method": "semantic",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 0,
+        "right_wins": 2,
+        "ties": 8,
+        "mean_delta": -0.2
+      },
+      "precision_at_k": {
+        "left_wins": 2,
+        "right_wins": 4,
+        "ties": 4,
+        "mean_delta": -0.059999999999999984
+      },
+      "recall_at_k": {
+        "left_wins": 2,
+        "right_wins": 4,
+        "ties": 4,
+        "mean_delta": -0.08333333333333334
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 0,
+        "right_wins": 2,
+        "ties": 8,
+        "mean_delta": -0.14666666666666667
+      },
+      "ap_at_k": {
+        "left_wins": 4,
+        "right_wins": 6,
+        "ties": 0,
+        "mean_delta": -0.18666666666666668
+      },
+      "r_precision": {
+        "left_wins": 2,
+        "right_wins": 4,
+        "ties": 4,
+        "mean_delta": -0.13333333333333333
+      },
+      "ndcg_at_k": {
+        "left_wins": 4,
+        "right_wins": 6,
+        "ties": 0,
+        "mean_delta": -0.14789593874665385
+      }
+    }
+  },
+  {
+    "left_profile": "minilm",
+    "left_method": "hybrid",
+    "right_profile": "minilm",
+    "right_method": "semantic",
+    "queries": 10,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 1,
+        "right_wins": 0,
+        "ties": 9,
+        "mean_delta": 0.1
+      },
+      "precision_at_k": {
+        "left_wins": 3,
+        "right_wins": 0,
+        "ties": 7,
+        "mean_delta": 0.06
+      },
+      "recall_at_k": {
+        "left_wins": 3,
+        "right_wins": 0,
+        "ties": 7,
+        "mean_delta": 0.13333333333333333
+      },
+      "hit_rate_at_k": {
+        "left_wins": 0,
+        "right_wins": 0,
+        "ties": 10,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 1,
+        "right_wins": 0,
+        "ties": 9,
+        "mean_delta": 0.06666666666666668
+      },
+      "ap_at_k": {
+        "left_wins": 5,
+        "right_wins": 1,
+        "ties": 4,
+        "mean_delta": 0.1388888888888889
+      },
+      "r_precision": {
+        "left_wins": 3,
+        "right_wins": 0,
+        "ties": 7,
+        "mean_delta": 0.16666666666666669
+      },
+      "ndcg_at_k": {
+        "left_wins": 5,
+        "right_wins": 1,
+        "ties": 4,
+        "mean_delta": 0.11632233577575837
+      }
+    }
+  }
+]

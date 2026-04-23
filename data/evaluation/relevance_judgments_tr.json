@@ -1,0 +1,160 @@
+[
+  {
+    "id": "tr001",
+    "query": "deprem verisi",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Turkce deprem sorgusu icin ilgili sismik veri setleri."
+  },
+  {
+    "id": "tr002",
+    "query": "ses deepfake tespiti",
+    "category": "audio_security",
+    "source_filter": "all",
+    "relevant_refs": [
+      "abdallamohamed312/in-the-wild-audio-deepfake",
+      "nallaguntlavamshi/phonemedf",
+      "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure"
+    ],
+    "notes": "Turkce audio deepfake detection sorgusu."
+  },
+  {
+    "id": "tr003",
+    "query": "hisse senedi fiyat gecmisi",
+    "category": "finance",
+    "source_filter": "all",
+    "relevant_refs": [
+      "rodas86/stock-prices-without-splits",
+      "benjaminpo/sp500-spx-components-stock-price",
+      "code1110/yfinance-stock-price-data-for-numerai-signals",
+      "durgeshrathod777/nse-titan-stock-data-from2023-23march2024",
+      "pholenk/eod-data-indonesia-stock-exchange",
+      "brtnsmth/intraday-market-data"
+    ],
+    "notes": "Turkce stock price history sorgusu."
+  },
+  {
+    "id": "tr004",
+    "query": "film yorum duygu analizi",
+    "category": "nlp_sentiment",
+    "source_filter": "all",
+    "relevant_refs": [
+      "stanfordnlp/imdb",
+      "cornell-movie-review-data/rotten_tomatoes",
+      "ashishkumarak/netflix-reviews-playstore-daily-updated"
+    ],
+    "notes": "Turkce movie review sentiment sorgusu."
+  },
+  {
+    "id": "tr005",
+    "query": "hava durumu iklim verisi",
+    "category": "weather_climate",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noaa/noaa-severe-weather-data-inventory",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+      "jerismeteo/open-meteo-data-kebumen",
+      "leopiney/worldclim-version-2-temperature-10m",
+      "eeemonts/weatherclimate-data-covid19",
+      "oinuma/japan-meteorological-agency-forecast"
+    ],
+    "notes": "Turkce weather and climate sorgusu."
+  },
+  {
+    "id": "tr006",
+    "query": "iklim degisikligi hakkinda kamuoyu",
+    "category": "climate_opinion",
+    "source_filter": "all",
+    "relevant_refs": [
+      "asaniczka/public-opinion-on-climate-change-updated-daily",
+      "tdiggelm/climate_fever"
+    ],
+    "notes": "Turkce climate opinion sorgusu."
+  },
+  {
+    "id": "tr007",
+    "query": "yolo nesne tespiti veri seti",
+    "category": "computer_vision",
+    "source_filter": "all",
+    "relevant_refs": [
+      "devharis/plantvillage-yolo-modified",
+      "miaikoo/invasive-plant-species-object-detection-yolo",
+      "a2015003713/yolov7-military-plane",
+      "hpgiakhang1405/pcb-defect-coco",
+      "qasimrajput/pakistan-garbage-detection-dataset",
+      "ashfakyeafi/taco-trash-dataset",
+      "manoj223/ppe-kit-dataset"
+    ],
+    "notes": "Turkce YOLO object detection sorgusu."
+  },
+  {
+    "id": "tr008",
+    "query": "arapca konusma tanima ses verisi",
+    "category": "speech_audio",
+    "source_filter": "all",
+    "relevant_refs": [
+      "MohamedRashad/arabic-english-code-switching",
+      "linagora/linto-dataset-audio-ar-tn"
+    ],
+    "notes": "Turkce Arabic speech recognition sorgusu."
+  },
+  {
+    "id": "tr009",
+    "query": "satis musteri satin alma davranisi",
+    "category": "business",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noeyislearning/sales-simulation",
+      "paramvir705/supermarket-sales",
+      "amunsentom/supermarket-superstore-dataset-bundle",
+      "rebrowser/seatgeek-dataset"
+    ],
+    "notes": "Turkce sales and purchase behavior sorgusu."
+  },
+  {
+    "id": "tr010",
+    "query": "tibbi soru cevap",
+    "category": "medical_nlp",
+    "source_filter": "all",
+    "relevant_refs": [
+      "OpenMed/Medical-Reasoning-SFT-Mega",
+      "blinoff/medical_qa_ru_data",
+      "seongsubae/KorMedMCQA-V",
+      "epfl-llm/guidelines"
+    ],
+    "notes": "Turkce medical QA sorgusu."
+  },
+  {
+    "id": "tr011",
+    "query": "kuran sesli tilavet",
+    "category": "speech_audio",
+    "source_filter": "all",
+    "relevant_refs": [
+      "Buraaq/quran-audio-text-dataset",
+      "MohamedRashad/Quran-Recitations",
+      "nazimali/quran",
+      "Buraaq/quran-md-ayahs"
+    ],
+    "notes": "Turkce Quran audio recitation sorgusu."
+  },
+  {
+    "id": "tr012",
+    "query": "gunluk covid vaka guncellemeleri",
+    "category": "health_time_series",
+    "source_filter": "all",
+    "relevant_refs": [
+      "dekhpakistan/pakistan-covid19-dataset",
+      "evgeniako/covid19-in-belgium",
+      "joebeachcapital/coronavirus-covid-19-cases-daily-updates",
+      "mpeteuil/nytimes-covid-19-data",
+      "alfredodimaria/covid19-data-by-agid",
+      "fireballbyedimyrnmom/us-counties-covid-19-dataset"
+    ],
+    "notes": "Turkce COVID time-series sorgusu."
+  }
+]

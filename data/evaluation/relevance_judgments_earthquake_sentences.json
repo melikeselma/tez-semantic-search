@@ -1,0 +1,119 @@
+[
+  {
+    "id": "eq001",
+    "query": "I'm looking for a dataset that includes historical earthquake records with magnitude, depth, and location information over time, preferably covering multiple countries.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Historical earthquake records with magnitude, depth, and location."
+  },
+  {
+    "id": "eq002",
+    "query": "Is there any dataset that tracks seismic activity worldwide, including aftershocks and tectonic plate movements?",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025"
+    ],
+    "notes": "General global seismic activity query. The corpus does not contain a dedicated tectonic plate dataset."
+  },
+  {
+    "id": "eq003",
+    "query": "I need a dataset containing earthquake events along with timestamps and geographic coordinates so I can analyze spatial patterns.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025"
+    ],
+    "notes": "Timestamp and coordinate-heavy earthquake query."
+  },
+  {
+    "id": "eq004",
+    "query": "Are there publicly available datasets that include both major and minor earthquake occurrences with detailed seismic measurements?",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025"
+    ],
+    "notes": "Detailed measurement query."
+  },
+  {
+    "id": "eq005",
+    "query": "I want to find a dataset that provides long-term seismic activity data to study trends and frequency of earthquakes in different regions.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Trend and frequency analysis across regions."
+  },
+  {
+    "id": "eq006",
+    "query": "Do you know any dataset that combines earthquake data with environmental or geological features like fault lines or soil type?",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "darkmatternet/global-earthquake-history-1m-since-1900"
+    ],
+    "notes": "The corpus has only partial coverage for geological context; this query is intentionally harder."
+  },
+  {
+    "id": "eq007",
+    "query": "I'm searching for a dataset that contains real-time or near real-time earthquake monitoring data with updates.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "thomasr25/global-events-quakeml-m3-last-5-years",
+      "darkmatternet/global-earthquake-history-1m-since-1900"
+    ],
+    "notes": "Near real-time monitoring query."
+  },
+  {
+    "id": "eq008",
+    "query": "Is there a dataset that includes historical earthquake damage reports along with seismic event data?",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025"
+    ],
+    "notes": "Damage-report aspect is only partially covered in the current corpus."
+  },
+  {
+    "id": "eq009",
+    "query": "I need earthquake-related data that also includes tsunami events or other secondary natural disasters triggered by seismic activity.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Tsunami and secondary hazard query."
+  },
+  {
+    "id": "eq010",
+    "query": "Can you suggest a dataset that includes earthquake intensity scales (like Richter or Moment Magnitude) and related metadata?",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years",
+      "bwandowando/earthquakes-around-the-world-from-1900-2025"
+    ],
+    "notes": "Magnitude scale and metadata query."
+  }
+]

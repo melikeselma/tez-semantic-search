@@ -1,0 +1,160 @@
+[
+  {
+    "id": "en001",
+    "query": "I am looking for a dataset that contains historical earthquake events and seismic activity records from around the world.",
+    "category": "earth_science",
+    "source_filter": "all",
+    "relevant_refs": [
+      "bwandowando/earthquakes-around-the-world-from-1900-2025",
+      "darkmatternet/global-earthquake-history-1m-since-1900",
+      "thomasr25/global-events-quakeml-m3-last-5-years"
+    ],
+    "notes": "Long English sentence query for earthquake datasets."
+  },
+  {
+    "id": "en002",
+    "query": "I need a dataset for detecting audio deepfakes in speech recordings and related spoofed voice samples.",
+    "category": "audio_security",
+    "source_filter": "all",
+    "relevant_refs": [
+      "abdallamohamed312/in-the-wild-audio-deepfake",
+      "nallaguntlavamshi/phonemedf",
+      "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure"
+    ],
+    "notes": "Long English sentence query for audio deepfake detection."
+  },
+  {
+    "id": "en003",
+    "query": "I want a dataset with historical stock prices and daily market data for companies over time.",
+    "category": "finance",
+    "source_filter": "all",
+    "relevant_refs": [
+      "rodas86/stock-prices-without-splits",
+      "benjaminpo/sp500-spx-components-stock-price",
+      "code1110/yfinance-stock-price-data-for-numerai-signals",
+      "durgeshrathod777/nse-titan-stock-data-from2023-23march2024",
+      "pholenk/eod-data-indonesia-stock-exchange",
+      "brtnsmth/intraday-market-data"
+    ],
+    "notes": "Long English sentence query for stock price history."
+  },
+  {
+    "id": "en004",
+    "query": "I am searching for movie review datasets that can be used for sentiment analysis and opinion classification.",
+    "category": "nlp_sentiment",
+    "source_filter": "all",
+    "relevant_refs": [
+      "stanfordnlp/imdb",
+      "cornell-movie-review-data/rotten_tomatoes",
+      "ashishkumarak/netflix-reviews-playstore-daily-updated"
+    ],
+    "notes": "Long English sentence query for movie review sentiment."
+  },
+  {
+    "id": "en005",
+    "query": "I need weather and climate datasets with temperature and meteorological observations over time.",
+    "category": "weather_climate",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noaa/noaa-severe-weather-data-inventory",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+      "jerismeteo/open-meteo-data-kebumen",
+      "leopiney/worldclim-version-2-temperature-10m",
+      "eeemonts/weatherclimate-data-covid19",
+      "oinuma/japan-meteorological-agency-forecast"
+    ],
+    "notes": "Long English sentence query for weather and climate."
+  },
+  {
+    "id": "en006",
+    "query": "I am looking for datasets about public opinion and discussion related to climate change.",
+    "category": "climate_opinion",
+    "source_filter": "all",
+    "relevant_refs": [
+      "asaniczka/public-opinion-on-climate-change-updated-daily",
+      "tdiggelm/climate_fever"
+    ],
+    "notes": "Long English sentence query for climate opinion."
+  },
+  {
+    "id": "en007",
+    "query": "I need an object detection dataset prepared for YOLO style training with labeled images and bounding boxes.",
+    "category": "computer_vision",
+    "source_filter": "all",
+    "relevant_refs": [
+      "devharis/plantvillage-yolo-modified",
+      "miaikoo/invasive-plant-species-object-detection-yolo",
+      "a2015003713/yolov7-military-plane",
+      "hpgiakhang1405/pcb-defect-coco",
+      "qasimrajput/pakistan-garbage-detection-dataset",
+      "ashfakyeafi/taco-trash-dataset",
+      "manoj223/ppe-kit-dataset"
+    ],
+    "notes": "Long English sentence query for YOLO object detection datasets."
+  },
+  {
+    "id": "en008",
+    "query": "I am looking for Arabic speech recognition datasets that include audio recordings and transcripts.",
+    "category": "speech_audio",
+    "source_filter": "all",
+    "relevant_refs": [
+      "MohamedRashad/arabic-english-code-switching",
+      "linagora/linto-dataset-audio-ar-tn"
+    ],
+    "notes": "Long English sentence query for Arabic ASR."
+  },
+  {
+    "id": "en009",
+    "query": "I need datasets about sales, customer purchases, and buying behavior in retail or ticketing settings.",
+    "category": "business",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noeyislearning/sales-simulation",
+      "paramvir705/supermarket-sales",
+      "amunsentom/supermarket-superstore-dataset-bundle",
+      "rebrowser/seatgeek-dataset"
+    ],
+    "notes": "Long English sentence query for sales and customer behavior."
+  },
+  {
+    "id": "en010",
+    "query": "I am searching for medical question answering datasets and clinical reasoning resources.",
+    "category": "medical_nlp",
+    "source_filter": "all",
+    "relevant_refs": [
+      "OpenMed/Medical-Reasoning-SFT-Mega",
+      "blinoff/medical_qa_ru_data",
+      "seongsubae/KorMedMCQA-V",
+      "epfl-llm/guidelines"
+    ],
+    "notes": "Long English sentence query for medical QA."
+  },
+  {
+    "id": "en011",
+    "query": "I need Quran recitation datasets with audio recordings and related text or verse annotations.",
+    "category": "speech_audio",
+    "source_filter": "all",
+    "relevant_refs": [
+      "Buraaq/quran-audio-text-dataset",
+      "MohamedRashad/Quran-Recitations",
+      "nazimali/quran",
+      "Buraaq/quran-md-ayahs"
+    ],
+    "notes": "Long English sentence query for Quran recitation audio."
+  },
+  {
+    "id": "en012",
+    "query": "I am looking for datasets that track daily COVID case counts and regular pandemic updates over time.",
+    "category": "health_time_series",
+    "source_filter": "all",
+    "relevant_refs": [
+      "dekhpakistan/pakistan-covid19-dataset",
+      "evgeniako/covid19-in-belgium",
+      "joebeachcapital/coronavirus-covid-19-cases-daily-updates",
+      "mpeteuil/nytimes-covid-19-data",
+      "alfredodimaria/covid19-data-by-agid",
+      "fireballbyedimyrnmom/us-counties-covid-19-dataset"
+    ],
+    "notes": "Long English sentence query for COVID time series."
+  }
+]

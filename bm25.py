@@ -1,12 +1,42 @@
 import math
-import re
 from collections import Counter, defaultdict
 
-TOKEN_RE = re.compile(r"[a-z0-9]+", re.IGNORECASE)
+from query_understanding import build_query_plan, tokenize
+
+TITLE_WEIGHT = 3
+KEYWORD_WEIGHT = 2
+SKIP_KEYWORD_PREFIXES = {
+    "format:",
+    "language:",
+    "library:",
+    "license:",
+    "modality:",
+    "region:",
+    "size_categories:",
+    "task_categories:",
+}
 
 
-def tokenize(text: str) -> list[str]:
-    return TOKEN_RE.findall((text or "").lower())
+def iter_keyword_texts(item: dict):
+    for keyword in item.get("keywords") or []:
+        raw = str(keyword or "").strip().lower()
+        if not raw:
+            continue
+        if any(raw.startswith(prefix) for prefix in SKIP_KEYWORD_PREFIXES):
+            continue
+        yield raw
+
+
+def build_document_tokens(item: dict) -> list[str]:
+    title_tokens = tokenize(item.get("title", ""))
+    description = item.get("description") or item.get("text", "")
+    description_tokens = tokenize(description)
+
+    keyword_tokens = []
+    for keyword in iter_keyword_texts(item):
+        keyword_tokens.extend(tokenize(keyword))
+
+    return title_tokens * TITLE_WEIGHT + keyword_tokens * KEYWORD_WEIGHT + description_tokens
 
 
 class BM25Index:
@@ -25,7 +55,7 @@ class BM25Index:
         doc_frequencies = Counter()
 
         for doc_id, item in self.mappings.items():
-            tokens = tokenize(item.get("text", ""))
+            tokens = build_document_tokens(item)
             if not tokens:
                 continue
 
@@ -48,13 +78,17 @@ class BM25Index:
             for token, df in doc_frequencies.items()
         }
 
-    def search(self, query: str, top_k: int = 5) -> list[tuple[float, dict]]:
-        query_tokens = tokenize(query)
+    def search(self, query: str, top_k: int = 5, query_plan: dict | None = None) -> list[tuple[float, dict]]:
+        plan = query_plan or build_query_plan(query)
+        query_tokens = tokenize(plan.get("original_query") or query)
+        focus_tokens = plan.get("focus_terms") or []
         if not query_tokens or not self.doc_ids:
             return []
 
         scores = defaultdict(float)
         query_counts = Counter(query_tokens)
+        for token in focus_tokens:
+            query_counts[token] += 1
 
         for token, query_frequency in query_counts.items():
             postings = self.inverted_index.get(token)
@@ -81,5 +115,5 @@ class BM25Index:
         return results
 
 
-def search(query: str, bm25_index: BM25Index, top_k: int = 5):
-    return bm25_index.search(query, top_k=top_k)
+def search(query: str, bm25_index: BM25Index, top_k: int = 5, query_plan: dict | None = None):
+    return bm25_index.search(query, top_k=top_k, query_plan=query_plan)

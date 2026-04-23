@@ -1,14 +1,13 @@
 import json
 import sys
-from pathlib import Path
 
 import faiss
 from sentence_transformers import SentenceTransformer
 
-BASE_DIR = Path(__file__).resolve().parent
-INDEX_PATH = BASE_DIR / "data" / "index" / "faiss.index"
-MAPPING_PATH = BASE_DIR / "data" / "index" / "mappings.json"
-MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+from query_understanding import build_query_plan
+from runtime_env import ensure_model_cache_dirs
+from search_profiles import DEFAULT_PROFILE_KEY, get_profile, get_profile_paths, prepare_query_text
+
 TOP_K = 5
 
 
@@ -19,53 +18,94 @@ def configure_output():
             stream.reconfigure(encoding="utf-8", errors="replace")
 
 
-def load_mappings():
-    if not MAPPING_PATH.exists():
+def load_mappings(profile_key: str = DEFAULT_PROFILE_KEY):
+    paths = get_profile_paths(profile_key)
+    mapping_path = paths["mappings"]
+    if not mapping_path.exists():
         raise FileNotFoundError(
-            f"Mapping file not found: {MAPPING_PATH}\n"
+            f"Mapping file not found: {mapping_path}\n"
             "Run build_faiss_index.py first."
         )
-    with MAPPING_PATH.open("r", encoding="utf-8") as f:
+    with mapping_path.open("r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def load_search_engine():
-    if not INDEX_PATH.exists():
+def load_search_engine(profile_key: str = DEFAULT_PROFILE_KEY):
+    profile = get_profile(profile_key)
+    paths = get_profile_paths(profile.key)
+    index_path = paths["index"]
+
+    if not index_path.exists():
         raise FileNotFoundError(
-            f"Index file not found: {INDEX_PATH}\n"
+            f"Index file not found: {index_path}\n"
             "Run normalize_merge.py and build_faiss_index.py first."
         )
 
-    print("[LOG] Yapay zeka modeli (MiniLM) yükleniyor...")
-    model = SentenceTransformer(MODEL_NAME)
+    ensure_model_cache_dirs()
 
-    print("[LOG] Vektör veritabanı yükleniyor...")
-    index = faiss.read_index(str(INDEX_PATH))
+    print(f"[LOG] Yapay zeka modeli yukleniyor: {profile.model_name}")
+    model = SentenceTransformer(profile.model_name)
 
-    mappings = load_mappings()
+    print(f"[LOG] Vektor veritabani yukleniyor: {index_path}")
+    index = faiss.read_index(str(index_path))
+
+    mappings = load_mappings(profile.key)
 
     if index.ntotal != len(mappings):
         print(
-            "[UYARI] Index ve mapping kayıt sayısı farklı: "
+            "[UYARI] Index ve mapping kayit sayisi farkli: "
             f"index={index.ntotal}, mappings={len(mappings)}"
         )
 
     return model, index, mappings
 
 
-def search(query: str, model, index, mappings, top_k: int = TOP_K):
-    query_vector = model.encode([query], normalize_embeddings=True).astype("float32")
-    scores, indices = index.search(query_vector, min(top_k, index.ntotal))
+def search(
+    query: str,
+    model,
+    index,
+    mappings,
+    top_k: int = TOP_K,
+    profile_key: str = DEFAULT_PROFILE_KEY,
+    query_plan: dict | None = None,
+):
+    plan = query_plan or build_query_plan(query)
+    prepared_queries = [
+        prepare_query_text(profile_key, text)
+        for text in plan.get("semantic_queries") or [query]
+        if text.strip()
+    ]
+    query_vectors = model.encode(prepared_queries, normalize_embeddings=True).astype("float32")
+    scores, indices = index.search(query_vectors, min(top_k, index.ntotal))
 
-    results = []
-    for score, idx in zip(scores[0], indices[0]):
-        if idx == -1:
-            continue
-        item = mappings.get(str(idx))
-        if not item:
-            continue
-        results.append((float(score), item))
-    return results
+    fused = {}
+    for variant_scores, variant_indices in zip(scores, indices):
+        for score, idx in zip(variant_scores, variant_indices):
+            if idx == -1:
+                continue
+            item = mappings.get(str(idx))
+            if not item:
+                continue
+            entry = fused.setdefault(
+                str(idx),
+                {
+                    "item": item,
+                    "max_score": float(score),
+                    "hits": 0,
+                },
+            )
+            entry["max_score"] = max(entry["max_score"], float(score))
+            entry["hits"] += 1
+
+    ranked = []
+    for entry in fused.values():
+        fused_score = entry["max_score"] + 0.02 * max(entry["hits"] - 1, 0)
+        item = dict(entry["item"])
+        item["semantic_variant_hits"] = entry["hits"]
+        ranked.append((float(fused_score), item))
+
+    ranked.sort(key=lambda row: row[0], reverse=True)
+    return ranked[:top_k]
 
 
 def main():
@@ -73,26 +113,26 @@ def main():
     model, index, mappings = load_search_engine()
 
     print("\n" + "=" * 50)
-    print("   SEMANTİK VERİ SETİ ARAMA MOTORUNA HOŞ GELDİNİZ")
+    print("   SEMANTIK VERI SETI ARAMA MOTORUNA HOS GELDINIZ")
     print("=" * 50)
 
     while True:
-        query = input("\nNe tür bir veri seti arıyorsunuz? (Çıkış için 'q'): ").strip()
+        query = input("\nNe tur bir veri seti ariyorsunuz? (Cikis icin 'q'): ").strip()
         if query.lower() == "q":
             break
         if not query:
             continue
 
-        print(f"\n'{query}' için en alakalı sonuçlar:")
+        print(f"\n'{query}' icin en alakali sonuclar:")
         print("-" * 50)
 
         for rank, (score, result) in enumerate(search(query, model, index, mappings), start=1):
             desc = (result.get("text") or "").replace("\n", " ")
-            print(f"{rank}. BAŞLIK: {result.get('title', 'İsimsiz')}")
+            print(f"{rank}. BASLIK: {result.get('title', 'Isimsiz')}")
             print(f"   KAYNAK: {(result.get('source') or 'unknown').upper()}")
             print(f"   SKOR: {score:.4f}")
             print(f"   URL: {result.get('url') or 'N/A'}")
-            print(f"   ÖZET: {desc[:180]}...")
+            print(f"   OZET: {desc[:180]}...")
             print("-" * 50)
 
 

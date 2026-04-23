@@ -1,0 +1,7 @@
+method,term_bucket,relevant_pairs,unique_docs,hit_rate_at_k,top1_rate,mean_rank_when_hit,median_rank_when_hit
+semantic,term_moderate,46,21,0.6086956521739131,0.21739130434782608,2.0357142857142856,2.0
+semantic,term_rich,88,32,0.6363636363636364,0.25,2.125,2.0
+semantic,term_sparse,16,9,0.5,0.25,2.5,2.0
+hybrid,term_moderate,46,21,0.6521739130434783,0.2608695652173913,2.2,2.0
+hybrid,term_rich,88,32,0.7159090909090909,0.26136363636363635,2.3174603174603177,2
+hybrid,term_sparse,16,9,0.5625,0.25,2,2

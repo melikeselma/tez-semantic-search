@@ -1,0 +1,29 @@
+[
+  {
+    "method": "bm25",
+    "profile": "english_e5",
+    "queries": 12,
+    "mean_precision_at_k": 0.3666666666666667,
+    "mean_recall_at_k": 0.48214285714285715,
+    "mean_mrr": 0.875,
+    "mean_ndcg_at_k": 0.5703915050934474
+  },
+  {
+    "method": "hybrid",
+    "profile": "english_e5",
+    "queries": 12,
+    "mean_precision_at_k": 0.43333333333333335,
+    "mean_recall_at_k": 0.5863095238095238,
+    "mean_mrr": 0.8402777777777778,
+    "mean_ndcg_at_k": 0.6292560418105884
+  },
+  {
+    "method": "semantic",
+    "profile": "english_e5",
+    "queries": 12,
+    "mean_precision_at_k": 0.43333333333333335,
+    "mean_recall_at_k": 0.5724206349206349,
+    "mean_mrr": 0.7777777777777778,
+    "mean_ndcg_at_k": 0.5950241287852526
+  }
+]

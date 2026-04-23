@@ -1,0 +1,344 @@
+[
+  {
+    "left_profile": "minilm",
+    "left_method": "hybrid",
+    "right_profile": "minilm",
+    "right_method": "semantic",
+    "queries": 59,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 4,
+        "right_wins": 0,
+        "ties": 55,
+        "mean_delta": 0.06779661016949153
+      },
+      "precision_at_k": {
+        "left_wins": 15,
+        "right_wins": 2,
+        "ties": 42,
+        "mean_delta": 0.04406779661016949
+      },
+      "recall_at_k": {
+        "left_wins": 15,
+        "right_wins": 2,
+        "ties": 42,
+        "mean_delta": 0.06698950766747377
+      },
+      "hit_rate_at_k": {
+        "left_wins": 2,
+        "right_wins": 0,
+        "ties": 57,
+        "mean_delta": 0.03389830508474576
+      },
+      "mrr": {
+        "left_wins": 5,
+        "right_wins": 2,
+        "ties": 52,
+        "mean_delta": 0.0480225988700565
+      },
+      "ap_at_k": {
+        "left_wins": 22,
+        "right_wins": 6,
+        "ties": 31,
+        "mean_delta": 0.05863465160075329
+      },
+      "r_precision": {
+        "left_wins": 15,
+        "right_wins": 3,
+        "ties": 41,
+        "mean_delta": 0.06941081517352704
+      },
+      "ndcg_at_k": {
+        "left_wins": 22,
+        "right_wins": 6,
+        "ties": 31,
+        "mean_delta": 0.05872163195528941
+      }
+    }
+  },
+  {
+    "left_profile": "minilm",
+    "left_method": "hybrid",
+    "right_profile": "multilingual",
+    "right_method": "hybrid",
+    "queries": 59,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 5,
+        "right_wins": 3,
+        "ties": 51,
+        "mean_delta": 0.03389830508474576
+      },
+      "precision_at_k": {
+        "left_wins": 14,
+        "right_wins": 9,
+        "ties": 36,
+        "mean_delta": 0.02372881355932203
+      },
+      "recall_at_k": {
+        "left_wins": 14,
+        "right_wins": 9,
+        "ties": 36,
+        "mean_delta": 0.06033091202582728
+      },
+      "hit_rate_at_k": {
+        "left_wins": 6,
+        "right_wins": 4,
+        "ties": 49,
+        "mean_delta": 0.03389830508474576
+      },
+      "mrr": {
+        "left_wins": 10,
+        "right_wins": 6,
+        "ties": 43,
+        "mean_delta": 0.02542372881355932
+      },
+      "ap_at_k": {
+        "left_wins": 18,
+        "right_wins": 13,
+        "ties": 28,
+        "mean_delta": 0.04903954802259887
+      },
+      "r_precision": {
+        "left_wins": 14,
+        "right_wins": 10,
+        "ties": 35,
+        "mean_delta": 0.041969330104923326
+      },
+      "ndcg_at_k": {
+        "left_wins": 18,
+        "right_wins": 13,
+        "ties": 28,
+        "mean_delta": 0.047600498439319884
+      }
+    }
+  },
+  {
+    "left_profile": "minilm",
+    "left_method": "hybrid",
+    "right_profile": "multilingual",
+    "right_method": "semantic",
+    "queries": 59,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 12,
+        "right_wins": 1,
+        "ties": 46,
+        "mean_delta": 0.1864406779661017
+      },
+      "precision_at_k": {
+        "left_wins": 25,
+        "right_wins": 4,
+        "ties": 30,
+        "mean_delta": 0.1152542372881356
+      },
+      "recall_at_k": {
+        "left_wins": 25,
+        "right_wins": 4,
+        "ties": 30,
+        "mean_delta": 0.19269572235673932
+      },
+      "hit_rate_at_k": {
+        "left_wins": 14,
+        "right_wins": 4,
+        "ties": 41,
+        "mean_delta": 0.1694915254237288
+      },
+      "mrr": {
+        "left_wins": 18,
+        "right_wins": 5,
+        "ties": 36,
+        "mean_delta": 0.1765536723163842
+      },
+      "ap_at_k": {
+        "left_wins": 30,
+        "right_wins": 8,
+        "ties": 21,
+        "mean_delta": 0.17945856873822974
+      },
+      "r_precision": {
+        "left_wins": 27,
+        "right_wins": 5,
+        "ties": 27,
+        "mean_delta": 0.1767554479418886
+      },
+      "ndcg_at_k": {
+        "left_wins": 30,
+        "right_wins": 8,
+        "ties": 21,
+        "mean_delta": 0.18999585050408702
+      }
+    }
+  },
+  {
+    "left_profile": "minilm",
+    "left_method": "semantic",
+    "right_profile": "multilingual",
+    "right_method": "hybrid",
+    "queries": 59,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 4,
+        "right_wins": 6,
+        "ties": 49,
+        "mean_delta": -0.03389830508474576
+      },
+      "precision_at_k": {
+        "left_wins": 12,
+        "right_wins": 17,
+        "ties": 30,
+        "mean_delta": -0.02033898305084746
+      },
+      "recall_at_k": {
+        "left_wins": 12,
+        "right_wins": 17,
+        "ties": 30,
+        "mean_delta": -0.006658595641646489
+      },
+      "hit_rate_at_k": {
+        "left_wins": 6,
+        "right_wins": 6,
+        "ties": 47,
+        "mean_delta": 0.0
+      },
+      "mrr": {
+        "left_wins": 9,
+        "right_wins": 9,
+        "ties": 41,
+        "mean_delta": -0.022598870056497175
+      },
+      "ap_at_k": {
+        "left_wins": 16,
+        "right_wins": 24,
+        "ties": 19,
+        "mean_delta": -0.009595103578154424
+      },
+      "r_precision": {
+        "left_wins": 14,
+        "right_wins": 19,
+        "ties": 26,
+        "mean_delta": -0.027441485068603718
+      },
+      "ndcg_at_k": {
+        "left_wins": 16,
+        "right_wins": 24,
+        "ties": 19,
+        "mean_delta": -0.01112113351596953
+      }
+    }
+  },
+  {
+    "left_profile": "minilm",
+    "left_method": "semantic",
+    "right_profile": "multilingual",
+    "right_method": "semantic",
+    "queries": 59,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 9,
+        "right_wins": 2,
+        "ties": 48,
+        "mean_delta": 0.11864406779661017
+      },
+      "precision_at_k": {
+        "left_wins": 22,
+        "right_wins": 9,
+        "ties": 28,
+        "mean_delta": 0.0711864406779661
+      },
+      "recall_at_k": {
+        "left_wins": 22,
+        "right_wins": 9,
+        "ties": 28,
+        "mean_delta": 0.12570621468926554
+      },
+      "hit_rate_at_k": {
+        "left_wins": 14,
+        "right_wins": 6,
+        "ties": 39,
+        "mean_delta": 0.13559322033898305
+      },
+      "mrr": {
+        "left_wins": 18,
+        "right_wins": 6,
+        "ties": 35,
+        "mean_delta": 0.1285310734463277
+      },
+      "ap_at_k": {
+        "left_wins": 27,
+        "right_wins": 13,
+        "ties": 19,
+        "mean_delta": 0.12082391713747646
+      },
+      "r_precision": {
+        "left_wins": 21,
+        "right_wins": 9,
+        "ties": 29,
+        "mean_delta": 0.10734463276836158
+      },
+      "ndcg_at_k": {
+        "left_wins": 27,
+        "right_wins": 13,
+        "ties": 19,
+        "mean_delta": 0.1312742185487976
+      }
+    }
+  },
+  {
+    "left_profile": "multilingual",
+    "left_method": "hybrid",
+    "right_profile": "multilingual",
+    "right_method": "semantic",
+    "queries": 59,
+    "metrics": {
+      "precision_at_1": {
+        "left_wins": 9,
+        "right_wins": 0,
+        "ties": 50,
+        "mean_delta": 0.15254237288135594
+      },
+      "precision_at_k": {
+        "left_wins": 19,
+        "right_wins": 0,
+        "ties": 40,
+        "mean_delta": 0.09152542372881356
+      },
+      "recall_at_k": {
+        "left_wins": 19,
+        "right_wins": 0,
+        "ties": 40,
+        "mean_delta": 0.13236481033091202
+      },
+      "hit_rate_at_k": {
+        "left_wins": 8,
+        "right_wins": 0,
+        "ties": 51,
+        "mean_delta": 0.13559322033898305
+      },
+      "mrr": {
+        "left_wins": 13,
+        "right_wins": 0,
+        "ties": 46,
+        "mean_delta": 0.15112994350282485
+      },
+      "ap_at_k": {
+        "left_wins": 28,
+        "right_wins": 4,
+        "ties": 27,
+        "mean_delta": 0.13041902071563088
+      },
+      "r_precision": {
+        "left_wins": 21,
+        "right_wins": 3,
+        "ties": 35,
+        "mean_delta": 0.13478611783696529
+      },
+      "ndcg_at_k": {
+        "left_wins": 28,
+        "right_wins": 4,
+        "ties": 27,
+        "mean_delta": 0.14239535206476714
+      }
+    }
+  }
+]

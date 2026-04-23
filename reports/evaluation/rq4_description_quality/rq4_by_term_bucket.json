@@ -1,0 +1,62 @@
+[
+  {
+    "method": "semantic",
+    "term_bucket": "term_moderate",
+    "relevant_pairs": 46,
+    "unique_docs": 21,
+    "hit_rate_at_k": 0.6086956521739131,
+    "top1_rate": 0.21739130434782608,
+    "mean_rank_when_hit": 2.0357142857142856,
+    "median_rank_when_hit": 2.0
+  },
+  {
+    "method": "semantic",
+    "term_bucket": "term_rich",
+    "relevant_pairs": 88,
+    "unique_docs": 32,
+    "hit_rate_at_k": 0.6363636363636364,
+    "top1_rate": 0.25,
+    "mean_rank_when_hit": 2.125,
+    "median_rank_when_hit": 2.0
+  },
+  {
+    "method": "semantic",
+    "term_bucket": "term_sparse",
+    "relevant_pairs": 16,
+    "unique_docs": 9,
+    "hit_rate_at_k": 0.5,
+    "top1_rate": 0.25,
+    "mean_rank_when_hit": 2.5,
+    "median_rank_when_hit": 2.0
+  },
+  {
+    "method": "hybrid",
+    "term_bucket": "term_moderate",
+    "relevant_pairs": 46,
+    "unique_docs": 21,
+    "hit_rate_at_k": 0.6521739130434783,
+    "top1_rate": 0.2608695652173913,
+    "mean_rank_when_hit": 2.2,
+    "median_rank_when_hit": 2.0
+  },
+  {
+    "method": "hybrid",
+    "term_bucket": "term_rich",
+    "relevant_pairs": 88,
+    "unique_docs": 32,
+    "hit_rate_at_k": 0.7159090909090909,
+    "top1_rate": 0.26136363636363635,
+    "mean_rank_when_hit": 2.3174603174603177,
+    "median_rank_when_hit": 2
+  },
+  {
+    "method": "hybrid",
+    "term_bucket": "term_sparse",
+    "relevant_pairs": 16,
+    "unique_docs": 9,
+    "hit_rate_at_k": 0.5625,
+    "top1_rate": 0.25,
+    "mean_rank_when_hit": 2,
+    "median_rank_when_hit": 2
+  }
+]

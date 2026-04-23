@@ -1,5 +1,7 @@
 from bm25 import search as bm25_search
+from query_understanding import build_query_plan
 from search import search as semantic_search
+from search_profiles import DEFAULT_PROFILE_KEY
 
 DEFAULT_SEMANTIC_WEIGHT = 0.6
 DEFAULT_CANDIDATE_K = 100
@@ -37,13 +39,24 @@ def search(
     top_k: int = 5,
     semantic_weight: float = DEFAULT_SEMANTIC_WEIGHT,
     candidate_k: int = DEFAULT_CANDIDATE_K,
+    profile_key: str = DEFAULT_PROFILE_KEY,
+    query_plan: dict | None = None,
 ):
     semantic_weight = max(0.0, min(1.0, semantic_weight))
     bm25_weight = 1.0 - semantic_weight
     candidate_k = max(top_k, min(candidate_k, len(mappings)))
+    plan = query_plan or build_query_plan(query)
 
-    semantic_results = semantic_search(query, model, index, mappings, top_k=candidate_k)
-    bm25_results = bm25_search(query, bm25_index, top_k=candidate_k)
+    semantic_results = semantic_search(
+        query,
+        model,
+        index,
+        mappings,
+        top_k=candidate_k,
+        profile_key=profile_key,
+        query_plan=plan,
+    )
+    bm25_results = bm25_search(query, bm25_index, top_k=candidate_k, query_plan=plan)
 
     items = {}
     semantic_scores = {}
