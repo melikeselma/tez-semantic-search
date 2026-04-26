@@ -1,0 +1,43 @@
+{
+  "profile": "minilm",
+  "judgment_sources": [
+    "C:\\Users\\user\\Desktop\\Tez\\data\\evaluation\\relevance_judgments_rq1.json",
+    "C:\\Users\\user\\Desktop\\Tez\\data\\evaluation\\relevance_judgments_rq2.json",
+    "C:\\Users\\user\\Desktop\\Tez\\data\\evaluation\\relevance_judgments_tr.json",
+    "C:\\Users\\user\\Desktop\\Tez\\data\\evaluation\\relevance_judgments_semantic_intent.json"
+  ],
+  "queries": 69,
+  "unique_query_texts": 69,
+  "pairs": 242,
+  "triplets": 726,
+  "unique_positive_refs": 67,
+  "unique_negative_refs": 120,
+  "benchmark_counts": {
+    "general_keyword": 12,
+    "general_sentence": 12,
+    "earthquake_sentence": 10,
+    "cross_source_similarity": 13,
+    "tr": 12,
+    "semantic_intent": 10
+  },
+  "language_counts": {
+    "en": 63,
+    "tr": 6
+  },
+  "pair_splits": {
+    "train": 207,
+    "dev": 35
+  },
+  "triplet_splits": {
+    "train": 621,
+    "dev": 105
+  },
+  "negative_strategies": {
+    "retrieval_confusion": 726
+  },
+  "method_usage": {
+    "hybrid": 712,
+    "semantic": 692,
+    "bm25": 528
+  }
+}

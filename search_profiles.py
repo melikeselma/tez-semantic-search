@@ -25,6 +25,12 @@ SEARCH_PROFILES = {
         description="Tezin ana Ingilizce semantic search profili.",
         legacy_layout=True,
     ),
+    "minilm_ft": SearchProfile(
+        key="minilm_ft",
+        label="MiniLM (domain fine-tuned)",
+        model_name=str(ROOT / "models" / "retriever" / "minilm-domain-ft" / "final"),
+        description="Hard-negative ve pair egitimi ile alan uyarlamali semantic profil.",
+    ),
     "multilingual": SearchProfile(
         key="multilingual",
         label="Multilingual (EN+TR alt kume)",
@@ -47,6 +53,9 @@ def get_profile(profile_key: str | None) -> SearchProfile:
         "e5_small_v2": "minilm",
         "mini": "minilm",
         "minilm_en": "minilm",
+        "minilm_domain_ft": "minilm_ft",
+        "finetuned": "minilm_ft",
+        "ft": "minilm_ft",
         "tr": "multilingual",
         "turkish": "multilingual",
         "multilingual_e5": "multilingual",
@@ -60,7 +69,7 @@ def get_profile(profile_key: str | None) -> SearchProfile:
 
 
 def list_profiles() -> list[SearchProfile]:
-    return [SEARCH_PROFILES[key] for key in ("minilm", "multilingual")]
+    return [SEARCH_PROFILES[key] for key in ("minilm", "minilm_ft", "multilingual")]
 
 
 def get_profile_paths(profile_key: str | None) -> dict[str, Path]:

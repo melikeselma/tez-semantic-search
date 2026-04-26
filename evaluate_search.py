@@ -9,6 +9,7 @@ from statistics import mean, median
 
 from bm25 import BM25Index, search as bm25_search
 from hybrid import DEFAULT_CANDIDATE_K, DEFAULT_SEMANTIC_WEIGHT, search as hybrid_search
+from reranker import DEFAULT_RERANK_DEPTH
 from search import load_mappings, load_search_engine, search as semantic_search
 from search_profiles import DEFAULT_PROFILE_KEY, get_profile
 
@@ -66,6 +67,10 @@ def parse_args():
     )
     parser.add_argument("--hybrid-alpha", type=float, default=DEFAULT_SEMANTIC_WEIGHT)
     parser.add_argument("--hybrid-candidates", type=int, default=DEFAULT_CANDIDATE_K)
+    parser.add_argument("--disable-rerank", action="store_true")
+    parser.add_argument("--disable-quality-penalty", action="store_true")
+    parser.add_argument("--disable-tr-fusion", action="store_true")
+    parser.add_argument("--rerank-depth", type=int, default=DEFAULT_RERANK_DEPTH)
     parser.add_argument("--profile", default=DEFAULT_PROFILE_KEY)
     return parser.parse_args()
 
@@ -134,6 +139,10 @@ def run_method(method, query, top_k, source_filter, context):
             mappings,
             top_k=candidate_k,
             profile_key=context["profile"],
+            enable_rerank=context.get("enable_rerank", True),
+            rerank_depth=context.get("rerank_depth", DEFAULT_RERANK_DEPTH),
+            enable_quality_penalty=context.get("enable_quality_penalty", True),
+            enable_tr_fusion=context.get("enable_tr_fusion", True),
         )
     elif method == "bm25":
         if context.get("bm25_index") is None:
@@ -160,6 +169,10 @@ def run_method(method, query, top_k, source_filter, context):
             semantic_weight=context["hybrid_alpha"],
             candidate_k=candidate_k,
             profile_key=context["profile"],
+            enable_rerank=context.get("enable_rerank", True),
+            rerank_depth=context.get("rerank_depth", DEFAULT_RERANK_DEPTH),
+            enable_quality_penalty=context.get("enable_quality_penalty", True),
+            enable_tr_fusion=context.get("enable_tr_fusion", True),
         )
     else:
         raise ValueError(f"Unknown method: {method}")
@@ -473,6 +486,10 @@ def main():
             "hybrid_alpha": args.hybrid_alpha,
             "hybrid_candidates": args.hybrid_candidates,
             "profile": profile.key,
+            "enable_rerank": not args.disable_rerank,
+            "enable_quality_penalty": not args.disable_quality_penalty,
+            "enable_tr_fusion": not args.disable_tr_fusion,
+            "rerank_depth": args.rerank_depth,
         }
         warm_context(methods, context)
         rows.extend(evaluate(judgments, methods, top_k, context))

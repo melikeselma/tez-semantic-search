@@ -66,7 +66,7 @@ def main():
     skipped = 0
 
     for row in rows:
-        text = row.get("text")
+        text = row.get("semantic_text") or row.get("text")
         if not isinstance(text, str) or not text.strip():
             skipped += 1
             continue
@@ -82,8 +82,15 @@ def main():
             "title": row.get("title") or "Untitled Dataset",
             "url": row.get("url"),
             "description": row.get("description"),
-            "text": clean_text,
+            "text": row.get("text"),
+            "semantic_text": clean_text,
+            "semantic_summary": row.get("semantic_summary") or "",
             "keywords": row.get("keywords") or [],
+            "language_hint": row.get("language_hint") or "",
+            "metadata_terms": row.get("metadata_terms") or [],
+            "inferred_domains": row.get("inferred_domains") or [],
+            "inferred_use_cases": row.get("inferred_use_cases") or [],
+            "inferred_modalities": row.get("inferred_modalities") or [],
             "license": row.get("license") or "",
             "quality_flags": row.get("quality_flags") or [],
             "description_len_chars": row.get("description_len_chars"),
