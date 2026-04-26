@@ -1,0 +1,184 @@
+[
+  {
+    "id": "si001",
+    "query": "rainy weather data",
+    "category": "weather_climate",
+    "topic": "weather_conditions",
+    "benchmark": "semantic_intent",
+    "query_style": "latent_intent",
+    "language": "en",
+    "study_slice": "english_latent_intent",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noaa/noaa-severe-weather-data-inventory",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+      "jerismeteo/open-meteo-data-kebumen",
+      "leopiney/worldclim-version-2-temperature-10m",
+      "wafaaelhusseini/capital-weather-data-1995-2024",
+      "wafaaelhusseini/major-cities-weather-data",
+      "oinuma/japan-meteorological-agency-forecast"
+    ],
+    "notes": "The wording is user-centric rather than technical. Relevant datasets may mention weather, precipitation, meteorology, or climate instead of the exact phrase rainy weather."
+  },
+  {
+    "id": "si002",
+    "query": "storm records and forecasts",
+    "category": "weather_climate",
+    "topic": "storm_forecast_history",
+    "benchmark": "semantic_intent",
+    "query_style": "latent_intent",
+    "language": "en",
+    "study_slice": "english_latent_intent",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noaa/noaa-severe-weather-data-inventory",
+      "oinuma/japan-meteorological-agency-forecast",
+      "wafaaelhusseini/capital-weather-data-1995-2024",
+      "wafaaelhusseini/major-cities-weather-data",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot"
+    ],
+    "notes": "This tests whether the retriever bridges storm and forecast intent to dataset descriptions centered on severe weather archives and meteorological forecasts."
+  },
+  {
+    "id": "si003",
+    "query": "flood runoff monitoring",
+    "category": "hydrology",
+    "topic": "flood_hydrology",
+    "benchmark": "semantic_intent",
+    "query_style": "latent_intent",
+    "language": "en",
+    "study_slice": "english_latent_intent",
+    "source_filter": "all",
+    "relevant_refs": [
+      "mahmoudelshabrawy/runoff-dataset",
+      "suthcong/water-levels-of-rivers-in-vietnam",
+      "noaa/noaa-severe-weather-data-inventory"
+    ],
+    "notes": "The query expresses a flood-analysis use case. Relevant datasets may talk about runoff, discharge, river water levels, or severe weather events."
+  },
+  {
+    "id": "si004",
+    "query": "drought and climate history",
+    "category": "climate_variability",
+    "topic": "drought_climate_history",
+    "benchmark": "semantic_intent",
+    "query_style": "latent_intent",
+    "language": "en",
+    "study_slice": "english_latent_intent",
+    "source_filter": "all",
+    "relevant_refs": [
+      "leopiney/worldclim-version-2-temperature-10m",
+      "samoilovmikhail/ocean-buoys-data-1980-2025",
+      "wafaaelhusseini/capital-weather-data-1995-2024",
+      "wafaaelhusseini/major-cities-weather-data",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot"
+    ],
+    "notes": "The intended match is historical climate context related to drought patterns, even when the dataset description foregrounds climate, ocean variability, or long-term weather measurements."
+  },
+  {
+    "id": "si005",
+    "query": "sea and ocean conditions data",
+    "category": "ocean_climate",
+    "topic": "marine_proxy",
+    "benchmark": "semantic_intent",
+    "query_style": "latent_intent",
+    "language": "en",
+    "study_slice": "english_latent_intent",
+    "source_filter": "all",
+    "relevant_refs": [
+      "samoilovmikhail/ocean-buoys-data-1980-2025"
+    ],
+    "notes": "This is a deliberately narrow coverage slice. The current corpus has limited marine datasets, so the benchmark checks whether the retriever can at least find the existing ocean-observation dataset."
+  },
+  {
+    "id": "si006",
+    "query": "yağmurlu hava verisi",
+    "category": "weather_climate",
+    "topic": "weather_conditions",
+    "benchmark": "semantic_intent",
+    "query_style": "latent_intent",
+    "language": "tr",
+    "study_slice": "turkish_latent_intent",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noaa/noaa-severe-weather-data-inventory",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+      "jerismeteo/open-meteo-data-kebumen",
+      "leopiney/worldclim-version-2-temperature-10m",
+      "wafaaelhusseini/capital-weather-data-1995-2024",
+      "wafaaelhusseini/major-cities-weather-data",
+      "oinuma/japan-meteorological-agency-forecast"
+    ],
+    "notes": "Turkish user wording should still retrieve weather, precipitation, and climate datasets even though nearly all descriptions are non-Turkish."
+  },
+  {
+    "id": "si007",
+    "query": "fırtına ve hava tahmin geçmişi",
+    "category": "weather_climate",
+    "topic": "storm_forecast_history",
+    "benchmark": "semantic_intent",
+    "query_style": "latent_intent",
+    "language": "tr",
+    "study_slice": "turkish_latent_intent",
+    "source_filter": "all",
+    "relevant_refs": [
+      "noaa/noaa-severe-weather-data-inventory",
+      "oinuma/japan-meteorological-agency-forecast",
+      "wafaaelhusseini/capital-weather-data-1995-2024",
+      "wafaaelhusseini/major-cities-weather-data",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot"
+    ],
+    "notes": "This query tests cross-lingual intent matching from Turkish to meteorological archive and forecast datasets."
+  },
+  {
+    "id": "si008",
+    "query": "sel ve akış takibi verisi",
+    "category": "hydrology",
+    "topic": "flood_hydrology",
+    "benchmark": "semantic_intent",
+    "query_style": "latent_intent",
+    "language": "tr",
+    "study_slice": "turkish_latent_intent",
+    "source_filter": "all",
+    "relevant_refs": [
+      "mahmoudelshabrawy/runoff-dataset",
+      "suthcong/water-levels-of-rivers-in-vietnam",
+      "noaa/noaa-severe-weather-data-inventory"
+    ],
+    "notes": "The user expresses a flood-monitoring intent in Turkish. Relevant datasets may describe runoff, discharge, river levels, or severe weather instead of the word sel."
+  },
+  {
+    "id": "si009",
+    "query": "kuraklık ve iklim geçmişi",
+    "category": "climate_variability",
+    "topic": "drought_climate_history",
+    "benchmark": "semantic_intent",
+    "query_style": "latent_intent",
+    "language": "tr",
+    "study_slice": "turkish_latent_intent",
+    "source_filter": "all",
+    "relevant_refs": [
+      "leopiney/worldclim-version-2-temperature-10m",
+      "samoilovmikhail/ocean-buoys-data-1980-2025",
+      "wafaaelhusseini/capital-weather-data-1995-2024",
+      "wafaaelhusseini/major-cities-weather-data",
+      "nelgiriyewithana/indian-weather-repository-daily-snapshot"
+    ],
+    "notes": "This slice targets Turkish latent intent for drought-related climate history, where the corpus mainly exposes English climate terminology."
+  },
+  {
+    "id": "si010",
+    "query": "deniz ve okyanus koşulları verisi",
+    "category": "ocean_climate",
+    "topic": "marine_proxy",
+    "benchmark": "semantic_intent",
+    "query_style": "latent_intent",
+    "language": "tr",
+    "study_slice": "turkish_latent_intent",
+    "source_filter": "all",
+    "relevant_refs": [
+      "samoilovmikhail/ocean-buoys-data-1980-2025"
+    ],
+    "notes": "This is the Turkish counterpart of the narrow marine coverage slice. It is intentionally difficult because the corpus has limited ocean-related coverage."
+  }
+]

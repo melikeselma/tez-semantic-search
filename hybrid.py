@@ -1,10 +1,13 @@
 from bm25 import search as bm25_search
 from query_understanding import build_query_plan
+from quality_scoring import compute_quality_adjustment
+from reranker import DEFAULT_RERANK_DEPTH, rerank_candidates
 from search import search as semantic_search
 from search_profiles import DEFAULT_PROFILE_KEY
 
 DEFAULT_SEMANTIC_WEIGHT = 0.6
 DEFAULT_CANDIDATE_K = 100
+DEFAULT_QUALITY_WEIGHT = 0.08
 
 
 def result_key(item: dict) -> str:
@@ -41,6 +44,11 @@ def search(
     candidate_k: int = DEFAULT_CANDIDATE_K,
     profile_key: str = DEFAULT_PROFILE_KEY,
     query_plan: dict | None = None,
+    enable_rerank: bool = True,
+    rerank_depth: int = DEFAULT_RERANK_DEPTH,
+    enable_quality_penalty: bool = True,
+    quality_weight: float = DEFAULT_QUALITY_WEIGHT,
+    enable_tr_fusion: bool = True,
 ):
     semantic_weight = max(0.0, min(1.0, semantic_weight))
     bm25_weight = 1.0 - semantic_weight
@@ -55,6 +63,9 @@ def search(
         top_k=candidate_k,
         profile_key=profile_key,
         query_plan=plan,
+        enable_rerank=False,
+        enable_quality_penalty=enable_quality_penalty,
+        enable_tr_fusion=enable_tr_fusion,
     )
     bm25_results = bm25_search(query, bm25_index, top_k=candidate_k, query_plan=plan)
 
@@ -86,7 +97,40 @@ def search(
         enriched["bm25_score"] = bm25_scores.get(key)
         enriched["semantic_weight"] = semantic_weight
         enriched["bm25_weight"] = bm25_weight
-        ranked.append((float(hybrid_score), enriched))
+        quality_signal = compute_quality_adjustment(enriched) if enable_quality_penalty else None
+        adjusted_score = float(hybrid_score)
+        if quality_signal is not None:
+            adjusted_score = (
+                adjusted_score
+                - quality_weight * float(quality_signal.get("score_penalty") or 0.0)
+                + quality_weight * float(quality_signal.get("score_bonus") or 0.0)
+            )
+            enriched["quality_signal"] = quality_signal
+        ranked.append((adjusted_score, enriched))
 
     ranked.sort(key=lambda row: row[0], reverse=True)
-    return ranked[:top_k]
+    if not enable_rerank:
+        return ranked[:top_k]
+
+    rerank_limit = max(top_k, min(rerank_depth, len(ranked)))
+    candidates = []
+    for rank, (score, item) in enumerate(ranked[:rerank_limit], start=1):
+        item_with_stage = dict(item)
+        item_with_stage["stage1_hybrid_score"] = float(score)
+        item_with_stage["stage1_hybrid_rank"] = rank
+        candidates.append(
+            {
+                "key": result_key(item),
+                "item": item_with_stage,
+                "stage1_score": float(score),
+            }
+        )
+
+    return rerank_candidates(
+        plan,
+        candidates,
+        top_k=top_k,
+        base_weight=0.68,
+        enable_quality_penalty=enable_quality_penalty,
+        quality_weight=0.12,
+    )

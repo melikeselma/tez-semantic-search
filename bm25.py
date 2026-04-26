@@ -80,15 +80,11 @@ class BM25Index:
 
     def search(self, query: str, top_k: int = 5, query_plan: dict | None = None) -> list[tuple[float, dict]]:
         plan = query_plan or build_query_plan(query)
-        query_tokens = tokenize(plan.get("original_query") or query)
-        focus_tokens = plan.get("focus_terms") or []
-        if not query_tokens or not self.doc_ids:
+        query_counts = build_weighted_query_counts(query, plan)
+        if not query_counts or not self.doc_ids:
             return []
 
         scores = defaultdict(float)
-        query_counts = Counter(query_tokens)
-        for token in focus_tokens:
-            query_counts[token] += 1
 
         for token, query_frequency in query_counts.items():
             postings = self.inverted_index.get(token)
@@ -117,3 +113,19 @@ class BM25Index:
 
 def search(query: str, bm25_index: BM25Index, top_k: int = 5, query_plan: dict | None = None):
     return bm25_index.search(query, top_k=top_k, query_plan=query_plan)
+
+
+def build_weighted_query_counts(query: str, plan: dict) -> Counter:
+    query_counts = Counter(tokenize(plan.get("original_query") or query))
+
+    for token in plan.get("raw_focus_terms") or []:
+        query_counts[token] += 2
+
+    concept_boost = 3 if plan.get("detected_language") == "tr" else 2
+    for token in plan.get("concept_terms") or []:
+        query_counts[token] += concept_boost
+
+    for token in plan.get("domain_terms") or []:
+        query_counts[token] += 1
+
+    return query_counts

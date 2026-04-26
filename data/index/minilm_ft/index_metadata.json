@@ -1,0 +1,21 @@
+{
+  "built_at_utc": "2026-04-26T13:54:49.901066+00:00",
+  "profile": "minilm_ft",
+  "profile_label": "MiniLM (domain fine-tuned)",
+  "model_name": "C:\\Users\\user\\Desktop\\Tez\\models\\retriever\\minilm-domain-ft\\final",
+  "input_path": "C:\\Users\\user\\Desktop\\Tez\\data\\processed\\descriptions_clean.jsonl",
+  "input_rows": 1120,
+  "indexed_rows": 1120,
+  "embedding_dimension": 384,
+  "query_prefix": "",
+  "document_prefix": "",
+  "source_counts": {
+    "huggingface": 480,
+    "kaggle": 640
+  },
+  "outputs": {
+    "index": "C:\\Users\\user\\Desktop\\Tez\\data\\index\\minilm_ft\\faiss.index",
+    "mappings": "C:\\Users\\user\\Desktop\\Tez\\data\\index\\minilm_ft\\mappings.json",
+    "legacy_meta": "C:\\Users\\user\\Desktop\\Tez\\data\\embeddings\\minilm_ft\\meta.jsonl"
+  }
+}
