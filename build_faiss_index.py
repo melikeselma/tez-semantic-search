@@ -85,6 +85,7 @@ def main():
             "text": row.get("text"),
             "semantic_text": clean_text,
             "semantic_summary": row.get("semantic_summary") or "",
+            "semantic_quality_note": row.get("semantic_quality_note") or "",
             "keywords": row.get("keywords") or [],
             "language_hint": row.get("language_hint") or "",
             "metadata_terms": row.get("metadata_terms") or [],

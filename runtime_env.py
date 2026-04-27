@@ -9,6 +9,8 @@ CACHE_ROOT = ROOT / ".cache" / "huggingface"
 def ensure_model_cache_dirs():
     cache_dirs = {
         "HF_HOME": CACHE_ROOT,
+        "HF_HUB_CACHE": CACHE_ROOT / "hub",
+        "HUGGINGFACE_HUB_CACHE": CACHE_ROOT / "hub",
         "TRANSFORMERS_CACHE": CACHE_ROOT / "transformers",
         "SENTENCE_TRANSFORMERS_HOME": CACHE_ROOT / "sentence_transformers",
     }

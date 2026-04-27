@@ -1,12 +1,25 @@
 import json
+import math
 import sys
+from collections import Counter
 
 import faiss
 from sentence_transformers import SentenceTransformer
 
-from query_understanding import build_query_plan
+from query_understanding import build_query_plan, tokenize
 from quality_scoring import compute_quality_adjustment
-from reranker import DEFAULT_RERANK_DEPTH, rerank_candidates
+from reranker import (
+    DEFAULT_CROSS_ENCODER_BATCH_SIZE,
+    DEFAULT_CROSS_ENCODER_MODEL_NAME,
+    DEFAULT_CROSS_ENCODER_WEIGHT,
+    DEFAULT_RERANK_DEPTH,
+    STAGE1_STRONG_SCORE,
+    STAGE1_WEAK_SCORE,
+    confidence_label,
+    is_query_out_of_distribution,
+    is_query_too_generic,
+    rerank_candidates,
+)
 from runtime_env import ensure_model_cache_dirs
 from search_profiles import DEFAULT_PROFILE_KEY, get_profile, get_profile_paths, prepare_query_text
 
@@ -16,7 +29,56 @@ TR_FUSION_PROFILE = "multilingual"
 TR_FUSION_PRIMARY_WEIGHT = 0.72
 TR_FUSION_AUX_WEIGHT = 0.58
 TR_FUSION_AUX_ONLY_SCALE = 0.62
+ASPECT_AVG_WEIGHT = 0.20
+ASPECT_MIN_WEIGHT = 0.08
+ASPECT_HIT_BONUS = 0.035
+ASPECT_MATCH_THRESHOLD = 0.18
+ASPECT_MISS_PENALTY = 0.03
 _ENGINE_CACHE = {}
+# Cache of (token -> document frequency) per profile so we can compute IDF
+# of query tokens cheaply at search time. Built lazily from the same mapping
+# used by FAISS, so it stays in sync with the indexed corpus.
+_CORPUS_DF_CACHE: dict[str, tuple[dict, int]] = {}
+
+
+def _candidate_text_tokens(item: dict) -> set[str]:
+    parts = [
+        item.get("title") or "",
+        item.get("semantic_summary") or "",
+        item.get("semantic_text") or "",
+        item.get("description") or item.get("text") or "",
+        " ".join(item.get("keywords") or []),
+        " ".join(item.get("metadata_terms") or []),
+    ]
+    tokens: set[str] = set()
+    for part in parts:
+        if part:
+            tokens.update(tokenize(part))
+    return tokens
+
+
+def get_corpus_doc_freq(profile_key: str, mappings: dict) -> tuple[dict, int]:
+    cached = _CORPUS_DF_CACHE.get(profile_key)
+    if cached is not None and cached[1] == len(mappings):
+        return cached
+    df: Counter[str] = Counter()
+    total_docs = 0
+    for item in mappings.values():
+        total_docs += 1
+        for token in _candidate_text_tokens(item):
+            df[token] += 1
+    _CORPUS_DF_CACHE[profile_key] = (dict(df), total_docs)
+    return _CORPUS_DF_CACHE[profile_key]
+
+
+def compute_token_idf(token: str, doc_freq: dict, total_docs: int) -> float:
+    df = int(doc_freq.get(token) or 0)
+    if df <= 0:
+        # Unseen tokens are maximally informative (the query is asking about
+        # something the corpus has never described). Cap so we don't divide by
+        # zero in downstream weighting.
+        return math.log(1 + total_docs)
+    return math.log(1 + (total_docs - df + 0.5) / (df + 0.5))
 
 
 def configure_output():
@@ -92,6 +154,57 @@ def candidate_key(item: dict) -> str:
     return str(item.get("ref") or f"{item.get('source') or 'unknown'}:{item.get('title') or ''}")
 
 
+def compute_variant_fusion_score(entry: dict) -> float:
+    return (
+        float(entry.get("max_score") or 0.0)
+        + 0.015 * float(entry.get("weight_hits") or 0.0)
+        + 0.01 * max(int(entry.get("hits") or 0) - 1, 0)
+    )
+
+
+def compute_aspect_metrics(entry: dict, aspect_keys: list[str]) -> dict:
+    if not aspect_keys:
+        return {
+            "scores": {},
+            "avg_score": 0.0,
+            "min_score": 0.0,
+            "coverage": 0.0,
+            "hits": 0,
+        }
+
+    scores = {
+        key: float((entry.get("aspect_scores") or {}).get(key, 0.0))
+        for key in aspect_keys
+    }
+    score_values = list(scores.values())
+    hits = sum(1 for value in score_values if value >= ASPECT_MATCH_THRESHOLD)
+    return {
+        "scores": scores,
+        "avg_score": sum(score_values) / len(score_values),
+        "min_score": min(score_values),
+        "coverage": hits / len(score_values),
+        "hits": hits,
+    }
+
+
+def compute_stage1_fused_score(entry: dict, aspect_keys: list[str]) -> tuple[float, dict]:
+    base_score = compute_variant_fusion_score(entry)
+    metrics = compute_aspect_metrics(entry, aspect_keys)
+    if len(aspect_keys) < 2:
+        return base_score, metrics
+
+    # Reward candidates that match multiple semantic aspects of the same
+    # dataset-discovery intent instead of over-rewarding a single strong term.
+    fused_score = (
+        base_score
+        + ASPECT_AVG_WEIGHT * metrics["avg_score"]
+        + ASPECT_MIN_WEIGHT * metrics["min_score"]
+        + ASPECT_HIT_BONUS * max(metrics["hits"] - 1, 0)
+        - ASPECT_MISS_PENALTY * max(len(aspect_keys) - metrics["hits"], 0)
+    )
+    return fused_score, metrics
+
+
 def collect_stage1_candidates(
     query: str,
     model,
@@ -102,6 +215,13 @@ def collect_stage1_candidates(
     query_plan: dict,
 ):
     plan = query_plan or build_query_plan(query)
+    active_aspects = [
+        aspect
+        for aspect in (plan.get("semantic_aspects") or [])
+        if str(aspect.get("text") or "").strip()
+    ]
+    use_multi_aspect = len(active_aspects) >= 2
+    aspect_keys = [str(aspect.get("key") or f"aspect_{idx}") for idx, aspect in enumerate(active_aspects)]
     variants = plan.get("semantic_variants") or [
         {"text": text, "weight": 1.0}
         for text in (plan.get("semantic_queries") or [query])
@@ -120,6 +240,19 @@ def collect_stage1_candidates(
     query_vectors = model.encode(prepared_queries, normalize_embeddings=True).astype("float32")
     scores, indices = index.search(query_vectors, min(top_k, index.ntotal))
 
+    aspect_queries = []
+    if use_multi_aspect:
+        aspect_queries = [
+            prepare_query_text(profile_key, aspect["text"])
+            for aspect in active_aspects
+            if str(aspect.get("text") or "").strip()
+        ]
+    aspect_scores = []
+    aspect_indices = []
+    if aspect_queries:
+        aspect_vectors = model.encode(aspect_queries, normalize_embeddings=True).astype("float32")
+        aspect_scores, aspect_indices = index.search(aspect_vectors, min(top_k, index.ntotal))
+
     fused = {}
     for variant_weight, variant_scores, variant_indices in zip(variant_weights, scores, indices):
         for score, idx in zip(variant_scores, variant_indices):
@@ -136,30 +269,57 @@ def collect_stage1_candidates(
                     "max_score": weighted_score,
                     "hits": 0,
                     "weight_hits": 0.0,
+                    "aspect_scores": {},
                 },
             )
             entry["max_score"] = max(entry["max_score"], weighted_score)
             entry["hits"] += 1
             entry["weight_hits"] += variant_weight
 
+    for aspect_key, aspect_score_row, aspect_index_row in zip(aspect_keys, aspect_scores, aspect_indices):
+        for score, idx in zip(aspect_score_row, aspect_index_row):
+            if idx == -1:
+                continue
+            item = mappings.get(str(idx))
+            if not item:
+                continue
+            entry = fused.setdefault(
+                str(idx),
+                {
+                    "item": item,
+                    "max_score": 0.0,
+                    "hits": 0,
+                    "weight_hits": 0.0,
+                    "aspect_scores": {},
+                },
+            )
+            entry["aspect_scores"][aspect_key] = max(
+                float(score),
+                float((entry.get("aspect_scores") or {}).get(aspect_key, 0.0)),
+            )
+
     ranked = []
     for idx, entry in enumerate(
         sorted(
             fused.values(),
-            key=lambda candidate: (
-                candidate["max_score"] + 0.015 * candidate["weight_hits"] + 0.01 * max(candidate["hits"] - 1, 0)
-            ),
+            key=lambda candidate: compute_stage1_fused_score(candidate, aspect_keys)[0],
             reverse=True,
         ),
         start=1,
     ):
-        fused_score = (
-            entry["max_score"]
-            + 0.015 * entry["weight_hits"]
-            + 0.01 * max(entry["hits"] - 1, 0)
-        )
+        fused_score, aspect_metrics = compute_stage1_fused_score(entry, aspect_keys)
         item = dict(entry["item"])
         item["semantic_variant_hits"] = entry["hits"]
+        item["semantic_aspect_count"] = len(aspect_keys)
+        item["semantic_aspect_hits"] = aspect_metrics["hits"]
+        item["semantic_aspect_labels"] = [aspect.get("label") or aspect.get("key") for aspect in active_aspects]
+        item["semantic_aspect_scores"] = {
+            aspect.get("label") or aspect.get("key"): round(float(aspect_metrics["scores"].get(aspect_key, 0.0)), 4)
+            for aspect, aspect_key in zip(active_aspects, aspect_keys)
+        }
+        item["aspect_coverage"] = float(aspect_metrics["coverage"])
+        item["aspect_min_score"] = float(aspect_metrics["min_score"])
+        item["aspect_avg_score"] = float(aspect_metrics["avg_score"])
         item["stage1_semantic_rank"] = idx
         item["stage1_profile"] = profile_key
         ranked.append((float(fused_score), item))
@@ -179,6 +339,10 @@ def search(
     enable_quality_penalty: bool = True,
     quality_weight: float = DEFAULT_QUALITY_WEIGHT,
     enable_tr_fusion: bool = True,
+    enable_cross_encoder: bool = False,
+    cross_encoder_model_name: str = DEFAULT_CROSS_ENCODER_MODEL_NAME,
+    cross_encoder_weight: float = DEFAULT_CROSS_ENCODER_WEIGHT,
+    cross_encoder_batch_size: int = DEFAULT_CROSS_ENCODER_BATCH_SIZE,
 ):
     plan = query_plan or build_query_plan(query)
     search_depth = top_k
@@ -255,7 +419,19 @@ def search(
     ranked = sorted(reranked_stage1, key=lambda row: row[0], reverse=True)
 
     if not enable_rerank:
-        return ranked[:top_k]
+        # Annotate confidence even when the user disables rerank so the UI
+        # can still surface a "weak match" warning on the raw FAISS top-K.
+        is_ood = is_query_out_of_distribution(plan)
+        stage1_max = max((float(score) for score, _ in ranked), default=0.0)
+        confidence = confidence_label(stage1_max, None)
+        annotated = []
+        for score, item in ranked[:top_k]:
+            enriched = dict(item)
+            enriched["query_confidence"] = confidence
+            enriched["query_is_ood"] = bool(is_ood)
+            enriched["weak_match"] = bool(float(score) < STAGE1_WEAK_SCORE and confidence != "strong")
+            annotated.append((float(score), enriched))
+        return annotated
 
     candidates = []
     for rank, (score, item) in enumerate(ranked[:search_depth], start=1):
@@ -271,6 +447,7 @@ def search(
             }
         )
 
+    corpus_doc_freq, corpus_total_docs = get_corpus_doc_freq(profile_key, mappings)
     return rerank_candidates(
         plan,
         candidates,
@@ -278,6 +455,12 @@ def search(
         base_weight=0.52,
         enable_quality_penalty=enable_quality_penalty,
         quality_weight=0.18,
+        enable_cross_encoder=enable_cross_encoder,
+        cross_encoder_model_name=cross_encoder_model_name,
+        cross_encoder_weight=cross_encoder_weight,
+        cross_encoder_batch_size=cross_encoder_batch_size,
+        corpus_doc_freq=corpus_doc_freq,
+        corpus_total_docs=corpus_total_docs,
     )
 
 

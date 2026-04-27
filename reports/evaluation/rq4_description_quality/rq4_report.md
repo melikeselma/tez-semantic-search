@@ -27,51 +27,51 @@ Methods: `semantic, hybrid`
 | length_bucket | medium | 349 | 0.312 |
 | length_bucket | short | 395 | 0.353 |
 | description_style | metadata_heavy | 206 | 0.184 |
-| description_style | mixed_structured | 597 | 0.533 |
-| description_style | narrative | 317 | 0.283 |
-| term_bucket | term_moderate | 361 | 0.322 |
-| term_bucket | term_rich | 372 | 0.332 |
+| description_style | mixed_structured | 593 | 0.529 |
+| description_style | narrative | 321 | 0.287 |
+| term_bucket | term_moderate | 362 | 0.323 |
+| term_bucket | term_rich | 371 | 0.331 |
 | term_bucket | term_sparse | 387 | 0.346 |
 
 ## Retrieval by Description Length
 
 | Method | Bucket | Relevant Pairs | Unique Docs | Hit@5 | Top1 | Mean Rank When Hit |
 |---|---|---:|---:|---:|---:|---:|
-| semantic | long | 90 | 33 | 0.644 | 0.244 | 2.12 |
-| semantic | medium | 38 | 18 | 0.579 | 0.237 | 2.09 |
-| semantic | short | 22 | 11 | 0.545 | 0.227 | 2.25 |
-| hybrid | long | 90 | 33 | 0.722 | 0.256 | 2.31 |
-| hybrid | medium | 38 | 18 | 0.658 | 0.289 | 2.12 |
-| hybrid | short | 22 | 11 | 0.545 | 0.227 | 2.25 |
+| semantic | long | 90 | 33 | 0.767 | 0.289 | 2.09 |
+| semantic | medium | 38 | 18 | 0.289 | 0.079 | 2.55 |
+| semantic | short | 22 | 11 | 0.000 | 0.000 | - |
+| hybrid | long | 90 | 33 | 0.778 | 0.267 | 2.16 |
+| hybrid | medium | 38 | 18 | 0.368 | 0.158 | 2.36 |
+| hybrid | short | 22 | 11 | 0.000 | 0.000 | - |
 
 ## Retrieval by Description Style
 
 | Method | Bucket | Relevant Pairs | Unique Docs | Hit@5 | Top1 | Mean Rank When Hit |
 |---|---|---:|---:|---:|---:|---:|
-| semantic | metadata_heavy | 30 | 13 | 0.533 | 0.200 | 2.25 |
-| semantic | mixed_structured | 54 | 23 | 0.611 | 0.278 | 1.94 |
-| semantic | narrative | 66 | 26 | 0.652 | 0.227 | 2.23 |
-| hybrid | metadata_heavy | 30 | 13 | 0.700 | 0.233 | 2.62 |
-| hybrid | mixed_structured | 54 | 23 | 0.667 | 0.333 | 2.00 |
-| hybrid | narrative | 66 | 26 | 0.682 | 0.212 | 2.29 |
+| semantic | metadata_heavy | 30 | 13 | 0.200 | 0.100 | 2.33 |
+| semantic | mixed_structured | 54 | 23 | 0.481 | 0.148 | 2.12 |
+| semantic | narrative | 66 | 26 | 0.727 | 0.273 | 2.15 |
+| hybrid | metadata_heavy | 30 | 13 | 0.233 | 0.100 | 2.29 |
+| hybrid | mixed_structured | 54 | 23 | 0.537 | 0.278 | 1.90 |
+| hybrid | narrative | 66 | 26 | 0.727 | 0.182 | 2.35 |
 
 ## Retrieval by Term Richness
 
 | Method | Bucket | Relevant Pairs | Unique Docs | Hit@5 | Top1 | Mean Rank When Hit |
 |---|---|---:|---:|---:|---:|---:|
-| semantic | term_moderate | 46 | 21 | 0.609 | 0.217 | 2.04 |
-| semantic | term_rich | 88 | 32 | 0.636 | 0.250 | 2.12 |
-| semantic | term_sparse | 16 | 9 | 0.500 | 0.250 | 2.50 |
-| hybrid | term_moderate | 46 | 21 | 0.652 | 0.261 | 2.20 |
-| hybrid | term_rich | 88 | 32 | 0.716 | 0.261 | 2.32 |
-| hybrid | term_sparse | 16 | 9 | 0.562 | 0.250 | 2.00 |
+| semantic | term_moderate | 46 | 21 | 0.326 | 0.065 | 2.73 |
+| semantic | term_rich | 88 | 32 | 0.739 | 0.295 | 2.02 |
+| semantic | term_sparse | 16 | 9 | 0.000 | 0.000 | - |
+| hybrid | term_moderate | 46 | 21 | 0.370 | 0.130 | 2.47 |
+| hybrid | term_rich | 88 | 32 | 0.761 | 0.273 | 2.12 |
+| hybrid | term_sparse | 16 | 9 | 0.000 | 0.000 | - |
 
 ## Interim Findings
 
-- Longer descriptions are easier to recover semantically. Semantic Hit@5 rises from 0.545 on short descriptions to 0.644 on long descriptions.
-- Description structure matters. Narrative descriptions produce better semantic retrieval than metadata-heavy ones: Hit@5=0.652 vs 0.533.
-- Term-rich descriptions carry stronger semantic signals. Semantic Hit@5 goes from 0.500 on term-sparse documents to 0.636 on term-rich documents.
-- On weak descriptions, hybrid remains a useful fallback. For term-sparse documents, hybrid Hit@5=0.562 while pure semantic stays at 0.500.
+- Longer descriptions are easier to recover semantically. Semantic Hit@5 rises from 0.000 on short descriptions to 0.767 on long descriptions.
+- Description structure matters. Narrative descriptions produce better semantic retrieval than metadata-heavy ones: Hit@5=0.727 vs 0.200.
+- Term-rich descriptions carry stronger semantic signals. Semantic Hit@5 goes from 0.000 on term-sparse documents to 0.739 on term-rich documents.
+- On weak descriptions, hybrid remains a useful fallback. For term-sparse documents, hybrid Hit@5=0.000 while pure semantic stays at 0.000.
 
 ## Interpretation
 

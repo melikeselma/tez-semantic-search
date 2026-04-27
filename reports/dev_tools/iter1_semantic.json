@@ -1,0 +1,166 @@
+{
+  "spider_ood": {
+    "query": "i want to research on spiders",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "spiders",
+      "focus_terms": [
+        "spiders",
+        "spider"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.52252,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.42631045345574725,
+          "ref": "manoj223/ppe-kit-dataset",
+          "title": "PPE kit Dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4031579424797789,
+          "ref": "nvidia/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim",
+          "title": "nvidia/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.40176102524622714,
+          "ref": "bwandowando/reddit-raustralia-subreddit-dataset-2026",
+          "title": "🇦🇺 Reddit r/Australia Subreddit Dataset 2026",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4011632757255964,
+          "ref": "iluvchicken/cheetah-jaguar-and-tiger",
+          "title": "Cheetah, Hyena, Jaguar and Tiger",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ]
+    }
+  },
+  "spider_species_ood": {
+    "query": "i want to research on spider species",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "spider species",
+      "focus_terms": [
+        "spider",
+        "species"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.58492,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4374417338900257,
+          "ref": "trungdttik55/pokemon-images",
+          "title": "pokemon-images",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.38805297986984366,
+          "ref": "iluvchicken/cheetah-jaguar-and-tiger",
+          "title": "Cheetah, Hyena, Jaguar and Tiger",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.3852234885927023,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.2856996341865415,
+          "ref": "miaikoo/invasive-plant-species-object-detection-yolo",
+          "title": "Invasive Plant Species Object Detection (YOLO)",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ]
+    }
+  },
+  "spider_tr": {
+    "query": "Örümcek türleri hakkında veri seti",
+    "expected": "weak",
+    "language": "tr",
+    "plan": {
+      "intent_body": "orumcek turleri hakkinda",
+      "focus_terms": [
+        "orumcek",
+        "turleri",
+        "tur",
+        "hakk"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.52252,
+          "ref": "organizasyoncadiri/2023-rental-by-organizasyon-malzemeleri-kiralama",
+          "title": "2023 Rental by Organizasyon Malzemeleri Kiralama",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5132052275748707,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.49784106013450874,
+          "ref": "organizasyoncadiri/2023-rental-lake-sandalye-kiralama",
+          "title": "2023 Rental Lake Sandalye Kiralama",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.49533938284956947,
+          "ref": "furkangozukara/ecommerce-products-dataset-for-record-linkage",
+          "title": "E-Commerce Products Dataset For Record Linkage",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4850845383595155,
+          "ref": "organizasyoncadiri/2023-rental-by-armut-koltuk-kiralama",
+          "title": "2023 Rental by armut koltuk Kiralama",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ]
+    }
+  }
+}

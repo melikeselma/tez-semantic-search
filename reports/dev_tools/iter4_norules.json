@@ -1,0 +1,5671 @@
+{
+  "spider_ood": {
+    "query": "i want to research on spiders",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "spiders",
+      "focus_terms": [
+        "spiders",
+        "spider"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.07252,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.009851420857812073,
+          "ref": "ericdepotter/synthetic-gloomhaven-monsters",
+          "title": "Synthetic Gloomhaven Monsters",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.06033024229834368,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.23168000000000002,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.13196362501013192,
+          "ref": "ericdepotter/synthetic-gloomhaven-monsters",
+          "title": "Synthetic Gloomhaven Monsters",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.01963302582465208,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.07252,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.014541577631958402,
+          "ref": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "title": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.04140262243862205,
+          "ref": "bwandowando/reddit-raustralia-subreddit-dataset-2026",
+          "title": "🇦🇺 Reddit r/Australia Subreddit Dataset 2026",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.23168000000000002,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.11639038688553399,
+          "ref": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "title": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.0805084725350469,
+          "ref": "manoj223/ppe-kit-dataset",
+          "title": "PPE kit Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.07252,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.005617760140191633,
+          "ref": "ericdepotter/synthetic-gloomhaven-monsters",
+          "title": "Synthetic Gloomhaven Monsters",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.020658205154809116,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.23168000000000002,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.10972294412690009,
+          "ref": "ericdepotter/synthetic-gloomhaven-monsters",
+          "title": "Synthetic Gloomhaven Monsters",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.0859870662207876,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "spider_species_ood": {
+    "query": "i want to research on spider species",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "spider species",
+      "focus_terms": [
+        "spider",
+        "species"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.4849200000000001,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.23486075929080893,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.17495651530534248,
+          "ref": "trungdttik55/pokemon-images",
+          "title": "pokemon-images",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.6232800000000001,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3879519102616229,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3560516869111837,
+          "ref": "trungdttik55/pokemon-images",
+          "title": "pokemon-images",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.4849200000000001,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3119316297007969,
+          "ref": "trungdttik55/pokemon-images",
+          "title": "pokemon-images",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.29255078467113904,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.6232800000000001,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.49007972906166536,
+          "ref": "miaikoo/invasive-plant-species-object-detection-yolo",
+          "title": "Invasive Plant Species Object Detection (YOLO)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4618858276836011,
+          "ref": "trungdttik55/pokemon-images",
+          "title": "pokemon-images",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.4849200000000001,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.25742951616962717,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.1580317961585108,
+          "ref": "iluvchicken/cheetah-jaguar-and-tiger",
+          "title": "Cheetah, Hyena, Jaguar and Tiger",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.6232800000000001,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.40765274213135805,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.22925083316630232,
+          "ref": "trungdttik55/pokemon-images",
+          "title": "pokemon-images",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "mushroom_in": {
+    "query": "mushroom dataset for classification",
+    "expected": "mushroom",
+    "language": "en",
+    "plan": {
+      "intent_body": "mushroom classification",
+      "focus_terms": [
+        "mushroom",
+        "classification"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "detection_classification"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.7454,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.37427417340784014,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3271276014366266,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2385678663910121,
+          "ref": "sakhawat18/asteroid-dataset",
+          "title": "Asteroid Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.23549935864371577,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.8986000000000001,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.24823474231936035,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.22062646228690277,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.1123100125975668,
+          "ref": "killa92/celeba-antispoof-classification-dataset",
+          "title": "CelebA AntiSpoof Classification Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.10824642941595393,
+          "ref": "sakhawat18/asteroid-dataset",
+          "title": "Asteroid Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.7454,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.42529425363338985,
+          "ref": "koushikkumardinda/multi-class-pneumonia-detection-dataset",
+          "title": "Multi-Class Pneumonia Detection Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.41630411184486366,
+          "ref": "olgabelitskaya/image-classification-for-biospecies",
+          "title": "Image Classification for Biospecies",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.38291322675263445,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3804398740125547,
+          "ref": "aadarshvelu/gym-equipements-classification",
+          "title": "Gym Equipment's Classification 💪",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.8986000000000001,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.21661682541024788,
+          "ref": "olgabelitskaya/image-classification-for-biospecies",
+          "title": "Image Classification for Biospecies",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.20605623750513075,
+          "ref": "aadarshvelu/gym-equipements-classification",
+          "title": "Gym Equipment's Classification 💪",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2059871678143694,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2029636524226,
+          "ref": "koushikkumardinda/multi-class-pneumonia-detection-dataset",
+          "title": "Multi-Class Pneumonia Detection Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.7454,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.12731416687596772,
+          "ref": "photon98/leash-bio-engineered-data-training",
+          "title": "Small Molecule-Protein Interaction Data",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.05772403483314743,
+          "ref": "sakhawat18/asteroid-dataset",
+          "title": "Asteroid Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.046880606861866125,
+          "ref": "derek-thomas/ScienceQA",
+          "title": "derek-thomas/ScienceQA",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.038772943805490526,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.8986000000000001,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.07026386228416977,
+          "ref": "aadarshvelu/gym-equipements-classification",
+          "title": "Gym Equipment's Classification 💪",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.03659460789328671,
+          "ref": "photon98/leash-bio-engineered-data-training",
+          "title": "Small Molecule-Protein Interaction Data",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.019274996085157592,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.009549757084119457,
+          "ref": "rafaelpbmota/sci01-traefik-semanal",
+          "title": "SCI01 - TRAEFIK - access.log - SEMANAL",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "mushroom_recipe_ood": {
+    "query": "vegetarian mushroom recipes",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "vegetarian mushroom recipes",
+      "focus_terms": [
+        "vegetarian",
+        "mushroom",
+        "recipes",
+        "recipe"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.39277516325501516,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.043004176935757726,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.02260000000000001,
+          "ref": "freeziey/mushrooms",
+          "title": "mushrooms",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.7160000000000001,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.02561044280849356,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.04942378328199762,
+          "ref": "freeziey/mushrooms",
+          "title": "mushrooms",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.43692767212134487,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.02260000000000001,
+          "ref": "freeziey/mushrooms",
+          "title": "mushrooms",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.1534348858697537,
+          "ref": "ericdepotter/synthetic-gloomhaven-monsters",
+          "title": "Synthetic Gloomhaven Monsters",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.7160000000000001,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.10258280712347304,
+          "ref": "freeziey/mushrooms",
+          "title": "mushrooms",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.30762171745429884,
+          "ref": "ericdepotter/synthetic-gloomhaven-monsters",
+          "title": "Synthetic Gloomhaven Monsters",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.4307338491742422,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.02260000000000001,
+          "ref": "freeziey/mushrooms",
+          "title": "mushrooms",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.172228193962979,
+          "ref": "abdulkayuem007/dataset",
+          "title": "fresh_fruits_vegetables_stale_fruits_veg_dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.7160000000000001,
+          "ref": "pencilkhiem/mushroom",
+          "title": "Mushroom",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.05492454519601844,
+          "ref": "freeziey/mushrooms",
+          "title": "mushrooms",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.23557462971193371,
+          "ref": "abdulkayuem007/dataset",
+          "title": "fresh_fruits_vegetables_stale_fruits_veg_dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "knitting_ood": {
+    "query": "knitting patterns and yarn projects",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "knitting patterns and yarn projects",
+      "focus_terms": [
+        "knitting",
+        "knitt",
+        "patterns",
+        "pattern",
+        "yarn",
+        "projects",
+        "project"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.27634476930447804,
+          "ref": "Real-TSF/TIME",
+          "title": "Real-TSF/TIME",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.16976112866130225,
+          "ref": "dudinhe/bike-dashboard",
+          "title": "Bike Dashboard",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.07,
+          "ref": "wuhecong/danbooru-sketch-pair-128x",
+          "title": "Danbooru Sketch Pair 128x",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.5326057142857143,
+          "ref": "Real-TSF/TIME",
+          "title": "Real-TSF/TIME",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.3110446562606042,
+          "ref": "dudinhe/bike-dashboard",
+          "title": "Bike Dashboard",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.19152099082714938,
+          "ref": "zed-industries/zeta",
+          "title": "zed-industries/zeta",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.40439428571428576,
+          "ref": "jbouv27/eeg",
+          "title": "EEG Analysis",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3357281671337352,
+          "ref": "dudinhe/bike-dashboard",
+          "title": "Bike Dashboard",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.24990250311222378,
+          "ref": "Real-TSF/TIME",
+          "title": "Real-TSF/TIME",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.5562628571428574,
+          "ref": "jbouv27/eeg",
+          "title": "EEG Analysis",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.49787849443706433,
+          "ref": "toshimelonhead/400000-kickstarter-projects",
+          "title": "400,000 Kickstarter Projects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3481951634499392,
+          "ref": "dudinhe/bike-dashboard",
+          "title": "Bike Dashboard",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.18979308414469878,
+          "ref": "dudinhe/bike-dashboard",
+          "title": "Bike Dashboard",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.04420000000000001,
+          "ref": "KRAFTON/ArtiBench",
+          "title": "KRAFTON/ArtiBench",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.019697415369749813,
+          "ref": "victorsullivan/blender-dataset",
+          "title": "Blender Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.3816906587168792,
+          "ref": "dudinhe/bike-dashboard",
+          "title": "Bike Dashboard",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.23877096532918854,
+          "ref": "Real-TSF/TIME",
+          "title": "Real-TSF/TIME",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.20780000000000004,
+          "ref": "KRAFTON/ArtiBench",
+          "title": "KRAFTON/ArtiBench",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "wine_ood": {
+    "query": "wine tasting notes and grape varietals",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "wine tasting notes and grape varietals",
+      "focus_terms": [
+        "wine",
+        "tasting",
+        "tast",
+        "notes",
+        "note",
+        "grape",
+        "varietals",
+        "varietal"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.38588000000000006,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.12505949104603353,
+          "ref": "jackvial/themaestrodatasetv2",
+          "title": "The Maestro Dataset v2",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.013737054959106543,
+          "ref": "maharshipandya/spotify-tracks-dataset",
+          "title": "maharshipandya/spotify-tracks-dataset",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.5439200000000002,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.22576092558158029,
+          "ref": "jackvial/themaestrodatasetv2",
+          "title": "The Maestro Dataset v2",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.048954946053142885,
+          "ref": "AGBonnet/augmented-clinical-notes",
+          "title": "AGBonnet/augmented-clinical-notes",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.38588000000000006,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3592225703459298,
+          "ref": "jackvial/themaestrodatasetv2",
+          "title": "The Maestro Dataset v2",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.059557491081796476,
+          "ref": "allenai/Dolci-Think-RL-7B",
+          "title": "allenai/Dolci-Think-RL-7B",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.5448000000000001,
+          "ref": "AGBonnet/augmented-clinical-notes",
+          "title": "AGBonnet/augmented-clinical-notes",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.4372893174187367,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3023831477609616,
+          "ref": "jackvial/themaestrodatasetv2",
+          "title": "The Maestro Dataset v2",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.23159921992287852,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.06813309233721188,
+          "ref": "ryanluong1/valorant-champion-tour-2021-2023-data",
+          "title": "Valorant Champion Tour 2021-2026 Data",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.02260000000000001,
+          "ref": "anushkabilandani/citrus-dataset-classification",
+          "title": "Citrus dataset classification",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.44613217860814375,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.19340000000000004,
+          "ref": "anushkabilandani/citrus-dataset-classification",
+          "title": "Citrus dataset classification",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.17579699512968877,
+          "ref": "AGBonnet/augmented-clinical-notes",
+          "title": "AGBonnet/augmented-clinical-notes",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "fraud_ood": {
+    "query": "credit card fraud detection dataset",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "credit card fraud detection",
+      "focus_terms": [
+        "credit",
+        "card",
+        "fraud",
+        "detection"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "finance_fraud",
+        "transaction_risk",
+        "detection_classification"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.4136053512446716,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.34150018262175214,
+          "ref": "oislen/randomtelecompayments",
+          "title": "Random Telecom Payments",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.22398461003170458,
+          "ref": "ellimaaac/pokemon-tcg-all-image-cards",
+          "title": "Pokemon TCG - All Image Cards",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.5561450147022788,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5481866666666668,
+          "ref": "ellimaaac/pokemon-tcg-all-image-cards",
+          "title": "Pokemon TCG - All Image Cards",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5162165724711766,
+          "ref": "oislen/randomtelecompayments",
+          "title": "Random Telecom Payments",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.4466529201589082,
+          "ref": "mryanm/luflow-network-intrusion-detection-data-set",
+          "title": "LUFlow Network Intrusion Detection Data Set",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4277466666666668,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3431398585875286,
+          "ref": "FutureMa/EvasionBench",
+          "title": "FutureMa/EvasionBench",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.6308533333333334,
+          "ref": "artem9k/ai-text-detection-pile",
+          "title": "artem9k/ai-text-detection-pile",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.35993567530441495,
+          "ref": "mryanm/luflow-network-intrusion-detection-data-set",
+          "title": "LUFlow Network Intrusion Detection Data Set",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.29592921643189485,
+          "ref": "faebs94/noboom-anomaly-detection-in-chemical-processes",
+          "title": "NoBOOM: Anomaly Detection in Chemical Processes",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.3767335805528104,
+          "ref": "oislen/randomtelecompayments",
+          "title": "Random Telecom Payments",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.32334814943020185,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.10906183721697353,
+          "ref": "FutureMa/EvasionBench",
+          "title": "FutureMa/EvasionBench",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.5491466666666668,
+          "ref": "oislen/randomtelecompayments",
+          "title": "Random Telecom Payments",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4013110321788444,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.37695665870654416,
+          "ref": "templates/dataset-card-example",
+          "title": "templates/dataset-card-example",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "crop_ood": {
+    "query": "I want to study how weather affects crop production",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "weather affects crop production",
+      "focus_terms": [
+        "weather",
+        "crop",
+        "production"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "weather_climate",
+        "agriculture_crop"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.5189806210429865,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.43105169786495895,
+          "ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "title": "Indian Weather Repository ( Daily Updating )",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.43,
+          "ref": "leopiney/worldclim-version-2-temperature-10m",
+          "title": "WorldClim Version 2 Temperature 10m",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3850516359712934,
+          "ref": "noaa/noaa-severe-weather-data-inventory",
+          "title": "NOAA Severe Weather Data Inventory",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.34874632861338706,
+          "ref": "eeemonts/weatherclimate-data-covid19",
+          "title": "Weather/climate data for JHU's COVID19 sites",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.6025866666666668,
+          "ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "title": "Indian Weather Repository ( Daily Updating )",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5716355795731999,
+          "ref": "leopiney/worldclim-version-2-temperature-10m",
+          "title": "WorldClim Version 2 Temperature 10m",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5430857350578567,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.504165832330759,
+          "ref": "noaa/noaa-severe-weather-data-inventory",
+          "title": "NOAA Severe Weather Data Inventory",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4722463922002756,
+          "ref": "orvile/weather-related-disease-prediction-dataset",
+          "title": "Weather-related Disease Prediction Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.4604770626851722,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.44188,
+          "ref": "paulogladson/inmat-por-cidades",
+          "title": "INMET Paraná",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.36355735040891424,
+          "ref": "jerismeteo/open-meteo-data-kebumen",
+          "title": "Open Meteo Data Kebumen",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.34221054314430416,
+          "ref": "Karavet/ILUR-news-text-classification-corpus",
+          "title": "Karavet/ILUR-news-text-classification-corpus",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.32869564036344345,
+          "ref": "anuragthantharate/5g-throughput-speedtest-mmwave-dataset",
+          "title": "5G Throughput / Speedtest mmWave Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.6910132512633692,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5812533333333334,
+          "ref": "paulogladson/inmat-por-cidades",
+          "title": "INMET Paraná",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5256423292309685,
+          "ref": "jerismeteo/open-meteo-data-kebumen",
+          "title": "Open Meteo Data Kebumen",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.440939315613435,
+          "ref": "pythonafroz/marginal-prices-of-electricity-and-weather-data",
+          "title": "Marginal prices of electricity and weather data",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.43984265726618926,
+          "ref": "oinuma/japan-meteorological-agency-forecast",
+          "title": "過去の天気予報アーカイブ(日本、気象庁)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.47388,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.43850552707437906,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4081339975515181,
+          "ref": "leopiney/worldclim-version-2-temperature-10m",
+          "title": "WorldClim Version 2 Temperature 10m",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.38066132230602684,
+          "ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "title": "Indian Weather Repository ( Daily Updating )",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3292023439842566,
+          "ref": "asaniczka/public-opinion-on-climate-change-updated-daily",
+          "title": "Public Opinion on Climate Change (Updated Daily)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.6025866666666668,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5518843996190133,
+          "ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "title": "Indian Weather Repository ( Daily Updating )",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5488598404262716,
+          "ref": "leopiney/worldclim-version-2-temperature-10m",
+          "title": "WorldClim Version 2 Temperature 10m",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4674659925895567,
+          "ref": "tombutton/uk-weather-by-month",
+          "title": "UK weather by month",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.46611802711879113,
+          "ref": "baxtiyorbotiraliyev/insects",
+          "title": "Insects",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "fingerprint_ood": {
+    "query": "a dataset of fingerprint images for biometric recognition",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "fingerprint images for biometric recognition",
+      "focus_terms": [
+        "fingerprint",
+        "images",
+        "image",
+        "biometric",
+        "recognition"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.25881434679758586,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2439106133221379,
+          "ref": "olgabelitskaya/image-classification-for-biospecies",
+          "title": "Image Classification for Biospecies",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.22359267655688356,
+          "ref": "ellimaaac/pokemon-tcg-all-image-cards",
+          "title": "Pokemon TCG - All Image Cards",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.6530400000000002,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5281031047481266,
+          "ref": "ellimaaac/pokemon-tcg-all-image-cards",
+          "title": "Pokemon TCG - All Image Cards",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4454128419972938,
+          "ref": "olgabelitskaya/image-classification-for-biospecies",
+          "title": "Image Classification for Biospecies",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.41394898589634516,
+          "ref": "ahmedyacinlacheheb/ocr-data-36gb",
+          "title": "Unified Scene Text Recognition Benchmark",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.37750025581589447,
+          "ref": "vafaeii/kth-action-recognition-dataset",
+          "title": "KTH Action Recognition Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.37608905064464393,
+          "ref": "olgabelitskaya/image-classification-for-biospecies",
+          "title": "Image Classification for Biospecies",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.65688,
+          "ref": "ahmedyacinlacheheb/ocr-data-36gb",
+          "title": "Unified Scene Text Recognition Benchmark",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5699294044178266,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4491199776993626,
+          "ref": "olgabelitskaya/image-classification-for-biospecies",
+          "title": "Image Classification for Biospecies",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.2774394902108039,
+          "ref": "olgabelitskaya/image-classification-for-biospecies",
+          "title": "Image Classification for Biospecies",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2017613393110975,
+          "ref": "lorddemon/face-emotion-balance-dataset-american-asian",
+          "title": "Face Emotion Balance Dataset (American + Chinese)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.12916081432590173,
+          "ref": "gigant/african_accented_french",
+          "title": "gigant/african_accented_french",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.6501600000000001,
+          "ref": "olgabelitskaya/image-classification-for-biospecies",
+          "title": "Image Classification for Biospecies",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.613065796529555,
+          "ref": "renanmav/overwatch-heroes-recognition",
+          "title": "Overwatch Heroes Recognition",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.6012922834871154,
+          "ref": "zuhairnashif/image-dataset",
+          "title": "Image Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "chess": {
+    "query": "i want to find a dataset about chess",
+    "expected": "chess",
+    "language": "en",
+    "plan": {
+      "intent_body": "chess",
+      "focus_terms": [
+        "chess"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.96188,
+          "ref": "salvadordali/racingkings",
+          "title": "Racing Kings (chess variant)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.9455449262625234,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8288367237978682,
+          "ref": "nilskavsek/lichess-chess-games-2013-3-million-games",
+          "title": "Lichess Chess Games 2013 (+3 million games)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.1328986956211364,
+          "ref": "mxxcap/05-tic-tac-toe-training-data",
+          "title": "05.Tic Tac Toe - Training Data - Sklearn RFC",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.1534468337079746,
+          "ref": "mataeoanderson/sc2-replay-data",
+          "title": "SC2_Replay_Data",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.9888,
+          "ref": "nilskavsek/lichess-chess-games-2013-3-million-games",
+          "title": "Lichess Chess Games 2013 (+3 million games)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7676418554718394,
+          "ref": "salvadordali/racingkings",
+          "title": "Racing Kings (chess variant)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7495636235838616,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.23004960228293653,
+          "ref": "mxxcap/05-tic-tac-toe-training-data",
+          "title": "05.Tic Tac Toe - Training Data - Sklearn RFC",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.24786058597315688,
+          "ref": "mataeoanderson/sc2-replay-data",
+          "title": "SC2_Replay_Data",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.96188,
+          "ref": "salvadordali/racingkings",
+          "title": "Racing Kings (chess variant)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.9345592377704467,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8121570468080522,
+          "ref": "nilskavsek/lichess-chess-games-2013-3-million-games",
+          "title": "Lichess Chess Games 2013 (+3 million games)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.12223038797169847,
+          "ref": "mxxcap/05-tic-tac-toe-training-data",
+          "title": "05.Tic Tac Toe - Training Data - Sklearn RFC",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.156711336060809,
+          "ref": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "title": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.9888,
+          "ref": "nilskavsek/lichess-chess-games-2013-3-million-games",
+          "title": "Lichess Chess Games 2013 (+3 million games)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.73090935961353,
+          "ref": "salvadordali/racingkings",
+          "title": "Racing Kings (chess variant)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6972181944749315,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.2960948387908072,
+          "ref": "mxxcap/05-tic-tac-toe-training-data",
+          "title": "05.Tic Tac Toe - Training Data - Sklearn RFC",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.304855870747193,
+          "ref": "tonyassi/celebrity-1000",
+          "title": "tonyassi/celebrity-1000",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.9436187731966368,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8732,
+          "ref": "nilskavsek/lichess-chess-games-2013-3-million-games",
+          "title": "Lichess Chess Games 2013 (+3 million games)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8534646402249896,
+          "ref": "salvadordali/racingkings",
+          "title": "Racing Kings (chess variant)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.2374204616330971,
+          "ref": "kkhubiev/quantitative-stock-market-dataset",
+          "title": "Quantitative Stock Market Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.24371305022936407,
+          "ref": "mxxcap/05-tic-tac-toe-training-data",
+          "title": "05.Tic Tac Toe - Training Data - Sklearn RFC",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.9888,
+          "ref": "nilskavsek/lichess-chess-games-2013-3-million-games",
+          "title": "Lichess Chess Games 2013 (+3 million games)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7323776835916959,
+          "ref": "brieucdandoy/chess-cheating-dataset",
+          "title": "Spotting Cheaters : Chess cheating dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6650033875153051,
+          "ref": "salvadordali/racingkings",
+          "title": "Racing Kings (chess variant)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.3137366051514076,
+          "ref": "kkhubiev/quantitative-stock-market-dataset",
+          "title": "Quantitative Stock Market Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.31814551705285726,
+          "ref": "mxxcap/05-tic-tac-toe-training-data",
+          "title": "05.Tic Tac Toe - Training Data - Sklearn RFC",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "house_price": {
+    "query": "I want to find data for predicting house prices",
+    "expected": "assessor",
+    "language": "en",
+    "plan": {
+      "intent_body": "predicting house prices",
+      "focus_terms": [
+        "predicting",
+        "predict",
+        "house",
+        "prices",
+        "price"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "residential_property",
+        "property_valuation"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.6199246477655119,
+          "ref": "sethdowden/portland-or-building-permit-data",
+          "title": "Portland Building Permit Data",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.3927066666666667,
+          "ref": "sethdowden/portland-maps-assessor-data",
+          "title": "Portland Assessor Data",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.25716634129202054,
+          "ref": "pythonafroz/electric-power-exchange-data",
+          "title": "Electric Power Exchange data",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.764439512723904,
+          "ref": "sethdowden/portland-or-building-permit-data",
+          "title": "Portland Building Permit Data",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5492328304728423,
+          "ref": "pythonafroz/marginal-prices-of-electricity-and-weather-data",
+          "title": "Marginal prices of electricity and weather data",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5440266666666667,
+          "ref": "sethdowden/portland-maps-assessor-data",
+          "title": "Portland Assessor Data",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.4119066666666667,
+          "ref": "code1110/yfinance-stock-price-data-for-numerai-signals",
+          "title": "YFinance Stock Price Data for Numerai Signals",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.39830633465279275,
+          "ref": "sethdowden/portland-or-building-permit-data",
+          "title": "Portland Building Permit Data",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.3821520921242579,
+          "ref": "sethdowden/portland-maps-assessor-data",
+          "title": "Portland Assessor Data",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.63748,
+          "ref": "vanrajdesai/house-and-prediction",
+          "title": "house and prediction",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5045858906718804,
+          "ref": "sethdowden/portland-or-building-permit-data",
+          "title": "Portland Building Permit Data",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.46451365849010773,
+          "ref": "pythonafroz/electric-power-exchange-data",
+          "title": "Electric Power Exchange data",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.49629092833550226,
+          "ref": "sethdowden/portland-or-building-permit-data",
+          "title": "Portland Building Permit Data",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.2868988036084595,
+          "ref": "vanrajdesai/house-and-prediction",
+          "title": "house and prediction",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.17144730800759914,
+          "ref": "sethdowden/portland-maps-assessor-data",
+          "title": "Portland Assessor Data",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.63748,
+          "ref": "vanrajdesai/house-and-prediction",
+          "title": "house and prediction",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5196018338002358,
+          "ref": "sethdowden/portland-or-building-permit-data",
+          "title": "Portland Building Permit Data",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.41227854028897926,
+          "ref": "manrajsinghgill/melbourne-house-modified-dataset",
+          "title": "Melbourne_House_Modified Dataset",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ]
+    }
+  },
+  "music": {
+    "query": "classical music recordings dataset",
+    "expected": "maestro",
+    "language": "en",
+    "plan": {
+      "intent_body": "classical music recordings",
+      "focus_terms": [
+        "classical",
+        "music",
+        "recordings",
+        "recording"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.8966533333333333,
+          "ref": "jackvial/themaestrodatasetv2",
+          "title": "The Maestro Dataset v2",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.3545344494999303,
+          "ref": "maharshipandya/spotify-tracks-dataset",
+          "title": "maharshipandya/spotify-tracks-dataset",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.2919089899203315,
+          "ref": "ronanpickell/2023-album-covers",
+          "title": "2023 Album Covers",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.23874692476107975,
+          "ref": "jorvan/text-audio-pairs-4-of-4",
+          "title": "Text-audio pairs (4 of 4)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.20760548179495197,
+          "ref": "AMSRNA/MusicSem",
+          "title": "AMSRNA/MusicSem",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 1.0222133333333332,
+          "ref": "jackvial/themaestrodatasetv2",
+          "title": "The Maestro Dataset v2",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.37695530910247455,
+          "ref": "maharshipandya/spotify-tracks-dataset",
+          "title": "maharshipandya/spotify-tracks-dataset",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.34286652752095187,
+          "ref": "ronanpickell/2023-album-covers",
+          "title": "2023 Album Covers",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.296717296364765,
+          "ref": "AMSRNA/MusicSem",
+          "title": "AMSRNA/MusicSem",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.26099493669397344,
+          "ref": "lupinlupito/music-album-cover-images-from-1900-2020",
+          "title": "music-album-cover-images-from-1900-2020",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.8966533333333333,
+          "ref": "jackvial/themaestrodatasetv2",
+          "title": "The Maestro Dataset v2",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.29068958272926343,
+          "ref": "maharshipandya/spotify-tracks-dataset",
+          "title": "maharshipandya/spotify-tracks-dataset",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.28078593711137856,
+          "ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "title": "In The Wild (audio Deepfake)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2556121730683552,
+          "ref": "sander-wood/irishman",
+          "title": "sander-wood/irishman",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.2356551626873809,
+          "ref": "lupinlupito/music-album-cover-images-from-1900-2020",
+          "title": "music-album-cover-images-from-1900-2020",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 1.0222133333333332,
+          "ref": "jackvial/themaestrodatasetv2",
+          "title": "The Maestro Dataset v2",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.3089550594774393,
+          "ref": "lupinlupito/music-album-cover-images-from-1900-2020",
+          "title": "music-album-cover-images-from-1900-2020",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.28617980349247907,
+          "ref": "maharshipandya/spotify-tracks-dataset",
+          "title": "maharshipandya/spotify-tracks-dataset",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.23853986916198067,
+          "ref": "ronanpickell/2023-album-covers",
+          "title": "2023 Album Covers",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2227505956616008,
+          "ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "title": "In The Wild (audio Deepfake)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.8966533333333333,
+          "ref": "jackvial/themaestrodatasetv2",
+          "title": "The Maestro Dataset v2",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.28974947532487316,
+          "ref": "lupinlupito/music-album-cover-images-from-1900-2020",
+          "title": "music-album-cover-images-from-1900-2020",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.28763824824687045,
+          "ref": "AMSRNA/MusicSem",
+          "title": "AMSRNA/MusicSem",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.26821200674120566,
+          "ref": "ronanpickell/2023-album-covers",
+          "title": "2023 Album Covers",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2656081760048203,
+          "ref": "tiagoadrianunes/last-fm-global-trends",
+          "title": "Last.fm Global Trends",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 1.0222133333333332,
+          "ref": "jackvial/themaestrodatasetv2",
+          "title": "The Maestro Dataset v2",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.38529399942643616,
+          "ref": "lupinlupito/music-album-cover-images-from-1900-2020",
+          "title": "music-album-cover-images-from-1900-2020",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3481348283494116,
+          "ref": "AMSRNA/MusicSem",
+          "title": "AMSRNA/MusicSem",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.3126433224856441,
+          "ref": "ronanpickell/2023-album-covers",
+          "title": "2023 Album Covers",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2936284194750916,
+          "ref": "ismailbenalla/jannat-fine-tune-dataset",
+          "title": "jannat-fine-tune-dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "diabetes": {
+    "query": "I want to research diabetes prediction using patient records",
+    "expected": "diabetes",
+    "language": "en",
+    "plan": {
+      "intent_body": "diabetes prediction using patient records",
+      "focus_terms": [
+        "diabetes",
+        "prediction",
+        "patient"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "health_diabetes",
+        "patient_records",
+        "predictive_modeling"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.878034976456636,
+          "ref": "orvile/weather-related-disease-prediction-dataset",
+          "title": "Weather-related Disease Prediction Dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.39414741270449394,
+          "ref": "3rdSon/clinical-trial-outcomes-predictions",
+          "title": "3rdSon/clinical-trial-outcomes-predictions",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.322517822493729,
+          "ref": "bhautikmangukiya12/hospital-inpatient-discharges-dataset",
+          "title": "Hospital Inpatient Discharges Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.30228693378553073,
+          "ref": "ksabishek/remote-patient-monitoring-india-dataset",
+          "title": "Remote Patient Monitoring - India Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.23955685783139263,
+          "ref": "joelhanson/coronavirus-covid19-data-in-the-united-states",
+          "title": "Coronavirus (Covid-19) Data of United States (USA)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 1.0852533333333334,
+          "ref": "orvile/weather-related-disease-prediction-dataset",
+          "title": "Weather-related Disease Prediction Dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4452650927516038,
+          "ref": "3rdSon/clinical-trial-outcomes-predictions",
+          "title": "3rdSon/clinical-trial-outcomes-predictions",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.34510870751689565,
+          "ref": "bhautikmangukiya12/hospital-inpatient-discharges-dataset",
+          "title": "Hospital Inpatient Discharges Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.32423948435031724,
+          "ref": "rbbarbosa/acs-risk-stratification",
+          "title": "ACS Risk Stratification",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.30837238296599856,
+          "ref": "ksabishek/remote-patient-monitoring-india-dataset",
+          "title": "Remote Patient Monitoring - India Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.9778800000000001,
+          "ref": "orvile/weather-related-disease-prediction-dataset",
+          "title": "Weather-related Disease Prediction Dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.417289318338416,
+          "ref": "3rdSon/clinical-trial-outcomes-predictions",
+          "title": "3rdSon/clinical-trial-outcomes-predictions",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.246989455785306,
+          "ref": "ksabishek/remote-patient-monitoring-india-dataset",
+          "title": "Remote Patient Monitoring - India Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.23990678251960557,
+          "ref": "bhautikmangukiya12/hospital-inpatient-discharges-dataset",
+          "title": "Hospital Inpatient Discharges Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2055580449732061,
+          "ref": "rbbarbosa/acs-risk-stratification",
+          "title": "ACS Risk Stratification",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 1.0852533333333334,
+          "ref": "orvile/weather-related-disease-prediction-dataset",
+          "title": "Weather-related Disease Prediction Dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.36394918588225617,
+          "ref": "3rdSon/clinical-trial-outcomes-predictions",
+          "title": "3rdSon/clinical-trial-outcomes-predictions",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.2399056152602091,
+          "ref": "bhautikmangukiya12/hospital-inpatient-discharges-dataset",
+          "title": "Hospital Inpatient Discharges Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2203528921511345,
+          "ref": "ksabishek/remote-patient-monitoring-india-dataset",
+          "title": "Remote Patient Monitoring - India Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.1615101532451441,
+          "ref": "rbbarbosa/acs-risk-stratification",
+          "title": "ACS Risk Stratification",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.8864466246276939,
+          "ref": "orvile/weather-related-disease-prediction-dataset",
+          "title": "Weather-related Disease Prediction Dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.43720000000000003,
+          "ref": "3rdSon/clinical-trial-outcomes-predictions",
+          "title": "3rdSon/clinical-trial-outcomes-predictions",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.337450822977422,
+          "ref": "ksabishek/remote-patient-monitoring-india-dataset",
+          "title": "Remote Patient Monitoring - India Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3239456771323661,
+          "ref": "rbbarbosa/acs-risk-stratification",
+          "title": "ACS Risk Stratification",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.26989413257838296,
+          "ref": "bhautikmangukiya12/hospital-inpatient-discharges-dataset",
+          "title": "Hospital Inpatient Discharges Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 1.0852533333333334,
+          "ref": "orvile/weather-related-disease-prediction-dataset",
+          "title": "Weather-related Disease Prediction Dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.38161239011653153,
+          "ref": "3rdSon/clinical-trial-outcomes-predictions",
+          "title": "3rdSon/clinical-trial-outcomes-predictions",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.3335211807266782,
+          "ref": "ksabishek/remote-patient-monitoring-india-dataset",
+          "title": "Remote Patient Monitoring - India Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3022536052767184,
+          "ref": "rbbarbosa/acs-risk-stratification",
+          "title": "ACS Risk Stratification",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2965692591776768,
+          "ref": "bhautikmangukiya12/hospital-inpatient-discharges-dataset",
+          "title": "Hospital Inpatient Discharges Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "urban_change": {
+    "query": "I want to study how cities change using images taken from above",
+    "expected": "satellite",
+    "language": "en",
+    "plan": {
+      "intent_body": "cities change using images taken from above",
+      "focus_terms": [
+        "cities",
+        "city",
+        "change",
+        "images",
+        "image"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "earth_imagery",
+        "urban_change"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.939,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7649973179549638,
+          "ref": "bwandowando/tomtom-traffic-data-55-countries-387-cities",
+          "title": "🚙 Tomtom Traffic data 60 Countries 500 Cities🌏",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5195923667291373,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.48899976909581305,
+          "ref": "polinastepanenko/nyudepthv2",
+          "title": "Nyudepthv2",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.34917271201706995,
+          "ref": "vafaeii/cdnet-2014-change-detection-benchmark-dataset",
+          "title": "CDnet 2014",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 1.0459999999999998,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.9734188090794617,
+          "ref": "bwandowando/tomtom-traffic-data-55-countries-387-cities",
+          "title": "🚙 Tomtom Traffic data 60 Countries 500 Cities🌏",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5714448374081673,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.43577619569511145,
+          "ref": "polinastepanenko/nyudepthv2",
+          "title": "Nyudepthv2",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3504071641699964,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.939,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7716958750133213,
+          "ref": "polinastepanenko/nyudepthv2",
+          "title": "Nyudepthv2",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4978216573244975,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.46416978373917833,
+          "ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "title": "Indian Weather Repository ( Daily Updating )",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.44986522601321965,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 1.0459999999999998,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6678254762813075,
+          "ref": "polinastepanenko/nyudepthv2",
+          "title": "Nyudepthv2",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5214687001713212,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4676250665239744,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.39179844587485513,
+          "ref": "bwandowando/tomtom-traffic-data-55-countries-387-cities",
+          "title": "🚙 Tomtom Traffic data 60 Countries 500 Cities🌏",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.90108,
+          "ref": "bwandowando/tomtom-traffic-data-55-countries-387-cities",
+          "title": "🚙 Tomtom Traffic data 60 Countries 500 Cities🌏",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8912637572647267,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.704752532503859,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6066143830649188,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.36150596718052946,
+          "ref": "vafaeii/cdnet-2014-change-detection-benchmark-dataset",
+          "title": "CDnet 2014",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 1.0355363015994359,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 1.02072,
+          "ref": "bwandowando/tomtom-traffic-data-55-countries-387-cities",
+          "title": "🚙 Tomtom Traffic data 60 Countries 500 Cities🌏",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.78453743151221,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.663230178312314,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4390069342492402,
+          "ref": "polinastepanenko/nyudepthv2",
+          "title": "Nyudepthv2",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "sentiment_tweets": {
+    "query": "i need a dataset for sentiment analysis on tweets",
+    "expected": "sentiment",
+    "language": "en",
+    "plan": {
+      "intent_body": "sentiment analysis on tweets",
+      "focus_terms": [
+        "sentiment",
+        "analysis",
+        "tweets",
+        "tweet"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "social_media_text",
+        "emotion_sentiment"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.5414361450002568,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.49932000000000004,
+          "ref": "mathurinache/cmu-mosi",
+          "title": "CMU MOSI",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3910203901751735,
+          "ref": "asaniczka/reddit-on-israel-palestine-daily-updated",
+          "title": "Daily Public Opinion on Israel-Palestine War",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3160929049469639,
+          "ref": "fthbrmnby/turkish_product_reviews",
+          "title": "fthbrmnby/turkish_product_reviews",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.29485962542716737,
+          "ref": "madlygfx/instrumetriq-crypto-sentiment-market-data",
+          "title": "Instrumetriq: Crypto Sentiment & Market Data",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.9032723086647276,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6328800000000001,
+          "ref": "mathurinache/cmu-mosi",
+          "title": "CMU MOSI",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5378475927079998,
+          "ref": "madlygfx/instrumetriq-crypto-sentiment-market-data",
+          "title": "Instrumetriq: Crypto Sentiment & Market Data",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.428052543706714,
+          "ref": "fthbrmnby/turkish_product_reviews",
+          "title": "fthbrmnby/turkish_product_reviews",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.40651772849115814,
+          "ref": "asaniczka/reddit-on-israel-palestine-daily-updated",
+          "title": "Daily Public Opinion on Israel-Palestine War",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.55068,
+          "ref": "madlygfx/instrumetriq-crypto-sentiment-market-data",
+          "title": "Instrumetriq: Crypto Sentiment & Market Data",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.474984670205489,
+          "ref": "mathurinache/cmu-mosi",
+          "title": "CMU MOSI",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.43791997961039325,
+          "ref": "asaniczka/reddit-on-israel-palestine-daily-updated",
+          "title": "Daily Public Opinion on Israel-Palestine War",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.43693741701031,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.40622043465837804,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.8827585638904442,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.66712,
+          "ref": "madlygfx/instrumetriq-crypto-sentiment-market-data",
+          "title": "Instrumetriq: Crypto Sentiment & Market Data",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5784718909824753,
+          "ref": "mathurinache/cmu-mosi",
+          "title": "CMU MOSI",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4670816613156401,
+          "ref": "iabufarha/ar_sarcasm",
+          "title": "iabufarha/ar_sarcasm",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.43313696726348805,
+          "ref": "cornell-movie-review-data/rotten_tomatoes",
+          "title": "cornell-movie-review-data/rotten_tomatoes",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.17236165534645628,
+          "ref": "sonaam1234/sentimentdata",
+          "title": "Sentiment Analysis Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.0797847385764085,
+          "ref": "fthbrmnby/turkish_product_reviews",
+          "title": "fthbrmnby/turkish_product_reviews",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.07240182232239599,
+          "ref": "madlygfx/instrumetriq-crypto-sentiment-market-data",
+          "title": "Instrumetriq: Crypto Sentiment & Market Data",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.7890914642896675,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3922837845408967,
+          "ref": "sonaam1234/sentimentdata",
+          "title": "Sentiment Analysis Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.34163616674892483,
+          "ref": "mathurinache/cmu-mosi",
+          "title": "CMU MOSI",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.27310200994808453,
+          "ref": "fthbrmnby/turkish_product_reviews",
+          "title": "fthbrmnby/turkish_product_reviews",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.2630816737665646,
+          "ref": "benjaminvdb/dbrd",
+          "title": "benjaminvdb/dbrd",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "hate_speech": {
+    "query": "harmful language and hate speech in social media",
+    "expected": "toxic",
+    "language": "en",
+    "plan": {
+      "intent_body": "harmful language and hate speech in social media",
+      "focus_terms": [
+        "harmful",
+        "language",
+        "hate",
+        "speech",
+        "social",
+        "media"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "toxic_language"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.7999224335203415,
+          "ref": "toxigen/toxigen-data",
+          "title": "toxigen/toxigen-data",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.4028,
+          "ref": "mlabonne/harmful_behaviors",
+          "title": "mlabonne/harmful_behaviors",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.30590220353211456,
+          "ref": "laion/Emolia",
+          "title": "laion/Emolia",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.21833072572261183,
+          "ref": "lmsys/toxic-chat",
+          "title": "lmsys/toxic-chat",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.18988256232753187,
+          "ref": "mathurinache/cmu-mosi",
+          "title": "CMU MOSI",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.9813333333333334,
+          "ref": "toxigen/toxigen-data",
+          "title": "toxigen/toxigen-data",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.3844044485844885,
+          "ref": "mlabonne/harmful_behaviors",
+          "title": "mlabonne/harmful_behaviors",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.15022961253810488,
+          "ref": "laion/Emolia",
+          "title": "laion/Emolia",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.09815779473746669,
+          "ref": "MLCommons/peoples_speech",
+          "title": "MLCommons/peoples_speech",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.07890369686270816,
+          "ref": "mathurinache/cmu-mosi",
+          "title": "CMU MOSI",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.7240081586396842,
+          "ref": "toxigen/toxigen-data",
+          "title": "toxigen/toxigen-data",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.4028,
+          "ref": "mlabonne/harmful_behaviors",
+          "title": "mlabonne/harmful_behaviors",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.30318315060010587,
+          "ref": "mathurinache/cmu-mosi",
+          "title": "CMU MOSI",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.24744722079174536,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.24613331697920424,
+          "ref": "lmsys/toxic-chat",
+          "title": "lmsys/toxic-chat",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.9813333333333334,
+          "ref": "toxigen/toxigen-data",
+          "title": "toxigen/toxigen-data",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.37151996032956625,
+          "ref": "mlabonne/harmful_behaviors",
+          "title": "mlabonne/harmful_behaviors",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.16306676899301614,
+          "ref": "google/WaxalNLP",
+          "title": "google/WaxalNLP",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.12907283147921067,
+          "ref": "shb777/gemini-flash-2.0-speech",
+          "title": "shb777/gemini-flash-2.0-speech",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.12492460084804932,
+          "ref": "mchirico/cheltenham-s-facebook-group",
+          "title": "Cheltenham's Facebook Groups",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.714375407977196,
+          "ref": "toxigen/toxigen-data",
+          "title": "toxigen/toxigen-data",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.4028,
+          "ref": "mlabonne/harmful_behaviors",
+          "title": "mlabonne/harmful_behaviors",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.23095575671535443,
+          "ref": "lmsys/toxic-chat",
+          "title": "lmsys/toxic-chat",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.2126999788019097,
+          "ref": "laion/Emolia",
+          "title": "laion/Emolia",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.1163990579635537,
+          "ref": "allenai/real-toxicity-prompts",
+          "title": "allenai/real-toxicity-prompts",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.9813333333333334,
+          "ref": "toxigen/toxigen-data",
+          "title": "toxigen/toxigen-data",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.4491993490478454,
+          "ref": "mlabonne/harmful_behaviors",
+          "title": "mlabonne/harmful_behaviors",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.11751968077295269,
+          "ref": "lmsys/toxic-chat",
+          "title": "lmsys/toxic-chat",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.10012505107627326,
+          "ref": "laion/Emolia",
+          "title": "laion/Emolia",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.002380265794216376,
+          "ref": "allenai/real-toxicity-prompts",
+          "title": "allenai/real-toxicity-prompts",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "earthquake": {
+    "query": "earthquake seismic activity historical events",
+    "expected": "earthquake",
+    "language": "en",
+    "plan": {
+      "intent_body": "earthquake seismic activity historical events",
+      "focus_terms": [
+        "earthquake",
+        "seismic",
+        "activity",
+        "historical",
+        "events",
+        "event"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.89468,
+          "ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "title": "Global Earthquake History: 1M+ Since 1900",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8665912017777506,
+          "ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "title": "Global events QuakeML M3+ last 5 years",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5264923228129081,
+          "ref": "bwandowando/earthquakes-around-the-world-from-1900-2025",
+          "title": "🌏 Earthquakes around the world from 1900-2026",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.1409497375041452,
+          "ref": "mh0386/seismic-detection-across-the-solar-system",
+          "title": "Seismic Detection across the Solar System",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.07573954952482335,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 1.0164533333333334,
+          "ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "title": "Global Earthquake History: 1M+ Since 1900",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.9161107104930558,
+          "ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "title": "Global events QuakeML M3+ last 5 years",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5260670194803432,
+          "ref": "bwandowando/earthquakes-around-the-world-from-1900-2025",
+          "title": "🌏 Earthquakes around the world from 1900-2026",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.19717390234000706,
+          "ref": "mh0386/seismic-detection-across-the-solar-system",
+          "title": "Seismic Detection across the Solar System",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.11341575064498814,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.89468,
+          "ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "title": "Global Earthquake History: 1M+ Since 1900",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8568147424268028,
+          "ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "title": "Global events QuakeML M3+ last 5 years",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6243829359049096,
+          "ref": "bwandowando/earthquakes-around-the-world-from-1900-2025",
+          "title": "🌏 Earthquakes around the world from 1900-2026",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.1811039024390182,
+          "ref": "mh0386/seismic-detection-across-the-solar-system",
+          "title": "Seismic Detection across the Solar System",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.1672843678418661,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 1.0164533333333334,
+          "ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "title": "Global Earthquake History: 1M+ Since 1900",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8956937284543302,
+          "ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "title": "Global events QuakeML M3+ last 5 years",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.578980561506191,
+          "ref": "bwandowando/earthquakes-around-the-world-from-1900-2025",
+          "title": "🌏 Earthquakes around the world from 1900-2026",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.17986641293520325,
+          "ref": "mh0386/seismic-detection-across-the-solar-system",
+          "title": "Seismic Detection across the Solar System",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.13312557114360218,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.89468,
+          "ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "title": "Global Earthquake History: 1M+ Since 1900",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8655700000647549,
+          "ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "title": "Global events QuakeML M3+ last 5 years",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6024262183594509,
+          "ref": "bwandowando/earthquakes-around-the-world-from-1900-2025",
+          "title": "🌏 Earthquakes around the world from 1900-2026",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.19986098662033375,
+          "ref": "mh0386/seismic-detection-across-the-solar-system",
+          "title": "Seismic Detection across the Solar System",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.03480496180843727,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 1.0164533333333334,
+          "ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "title": "Global Earthquake History: 1M+ Since 1900",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.9181811783887118,
+          "ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "title": "Global events QuakeML M3+ last 5 years",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5919757895114236,
+          "ref": "bwandowando/earthquakes-around-the-world-from-1900-2025",
+          "title": "🌏 Earthquakes around the world from 1900-2026",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.24459372751271533,
+          "ref": "mh0386/seismic-detection-across-the-solar-system",
+          "title": "Seismic Detection across the Solar System",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.07891876335495633,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "deepfake": {
+    "query": "deepfake detection audio samples",
+    "expected": "deepfake",
+    "language": "en",
+    "plan": {
+      "intent_body": "deepfake detection audio samples",
+      "focus_terms": [
+        "deepfake",
+        "detection",
+        "audio",
+        "samples",
+        "sample"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.9982000000000001,
+          "ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "title": "In The Wild (audio Deepfake)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7951452457169337,
+          "ref": "nallaguntlavamshi/phonemedf",
+          "title": "PhonemeDF",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.757217048209937,
+          "ref": "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure",
+          "title": "FF++ C23 (DeepfakeBench-ready)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6516670603711682,
+          "ref": "vdivyasharma/IndicSynth",
+          "title": "vdivyasharma/IndicSynth",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.2403566703672964,
+          "ref": "diarizers-community/voxconverse",
+          "title": "diarizers-community/voxconverse",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 1.0988,
+          "ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "title": "In The Wild (audio Deepfake)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8351424034123931,
+          "ref": "nallaguntlavamshi/phonemedf",
+          "title": "PhonemeDF",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8067187566559818,
+          "ref": "vdivyasharma/IndicSynth",
+          "title": "vdivyasharma/IndicSynth",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.7815492445959655,
+          "ref": "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure",
+          "title": "FF++ C23 (DeepfakeBench-ready)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.2280183362343881,
+          "ref": "diarizers-community/voxconverse",
+          "title": "diarizers-community/voxconverse",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.9982000000000001,
+          "ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "title": "In The Wild (audio Deepfake)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8697510089733007,
+          "ref": "nallaguntlavamshi/phonemedf",
+          "title": "PhonemeDF",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8506016675363803,
+          "ref": "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure",
+          "title": "FF++ C23 (DeepfakeBench-ready)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7271906190000526,
+          "ref": "vdivyasharma/IndicSynth",
+          "title": "vdivyasharma/IndicSynth",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.3894966325517879,
+          "ref": "unsys/ghc",
+          "title": "unsys/ghc",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 1.0988,
+          "ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "title": "In The Wild (audio Deepfake)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8587156814718155,
+          "ref": "nallaguntlavamshi/phonemedf",
+          "title": "PhonemeDF",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8305016052047943,
+          "ref": "vdivyasharma/IndicSynth",
+          "title": "vdivyasharma/IndicSynth",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.8300807781905692,
+          "ref": "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure",
+          "title": "FF++ C23 (DeepfakeBench-ready)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.24941520606449652,
+          "ref": "artem9k/ai-text-detection-pile",
+          "title": "artem9k/ai-text-detection-pile",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.9982000000000001,
+          "ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "title": "In The Wild (audio Deepfake)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7564945420798923,
+          "ref": "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure",
+          "title": "FF++ C23 (DeepfakeBench-ready)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6873732713854361,
+          "ref": "nallaguntlavamshi/phonemedf",
+          "title": "PhonemeDF",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4460305057296858,
+          "ref": "vdivyasharma/IndicSynth",
+          "title": "vdivyasharma/IndicSynth",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.14892438878834413,
+          "ref": "diarizers-community/voxconverse",
+          "title": "diarizers-community/voxconverse",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 1.0988,
+          "ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "title": "In The Wild (audio Deepfake)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7963888005951265,
+          "ref": "ahmedelbanby/faceforensicsplusplus-c23-deepfakebench-structure",
+          "title": "FF++ C23 (DeepfakeBench-ready)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.76272218128413,
+          "ref": "nallaguntlavamshi/phonemedf",
+          "title": "PhonemeDF",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6709196310432152,
+          "ref": "vdivyasharma/IndicSynth",
+          "title": "vdivyasharma/IndicSynth",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.17870411093661215,
+          "ref": "diarizers-community/voxconverse",
+          "title": "diarizers-community/voxconverse",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "movie_reviews": {
+    "query": "movie reviews with star ratings",
+    "expected": "review",
+    "language": "en",
+    "plan": {
+      "intent_body": "movie reviews with star ratings",
+      "focus_terms": [
+        "movie",
+        "reviews",
+        "review",
+        "star",
+        "ratings",
+        "rating"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "social_media_text"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.4530800000000001,
+          "ref": "oyounis/movie-lens-1m",
+          "title": "Movie lens 1m",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.42653425982762494,
+          "ref": "ashishkumarak/netflix-reviews-playstore-daily-updated",
+          "title": "Netflix Reviews [DAILY UPDATED]",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3360812973706749,
+          "ref": "azraimohamad/news-article-weekly-updated",
+          "title": "News Article (Weekly Updated)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.28118483305173747,
+          "ref": "asaniczka/tmdb-movies-dataset-2023-930k-movies",
+          "title": "Full TMDB Movies Dataset 2024 (1M Movies)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.26125411512915986,
+          "ref": "ashishkumarak/amazon-shopping-reviews-daily-updated",
+          "title": "Amazon Shopping Reviews [Daily Updated]",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.6028111356657959,
+          "ref": "ashishkumarak/netflix-reviews-playstore-daily-updated",
+          "title": "Netflix Reviews [DAILY UPDATED]",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5913866666666667,
+          "ref": "oyounis/movie-lens-1m",
+          "title": "Movie lens 1m",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4318522315297444,
+          "ref": "ashishkumarak/amazon-shopping-reviews-daily-updated",
+          "title": "Amazon Shopping Reviews [Daily Updated]",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.42457285763805575,
+          "ref": "ashishkumarak/snapchat-reviews-daily-updated",
+          "title": "Snapchat Reviews",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.38512561726790817,
+          "ref": "azraimohamad/news-article-weekly-updated",
+          "title": "News Article (Weekly Updated)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.48560000000000003,
+          "ref": "ashishkumarak/netflix-reviews-playstore-daily-updated",
+          "title": "Netflix Reviews [DAILY UPDATED]",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3856401381279874,
+          "ref": "oyounis/movie-lens-1m",
+          "title": "Movie lens 1m",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3285566324595295,
+          "ref": "ashishkumarak/amazon-shopping-reviews-daily-updated",
+          "title": "Amazon Shopping Reviews [Daily Updated]",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.6130666666666669,
+          "ref": "ashishkumarak/netflix-reviews-playstore-daily-updated",
+          "title": "Netflix Reviews [DAILY UPDATED]",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4784599590009338,
+          "ref": "oyounis/movie-lens-1m",
+          "title": "Movie lens 1m",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.4396127231240595,
+          "ref": "ashishkumarak/amazon-shopping-reviews-daily-updated",
+          "title": "Amazon Shopping Reviews [Daily Updated]",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3642123728586106,
+          "ref": "ashishkumarak/snapchat-reviews-daily-updated",
+          "title": "Snapchat Reviews",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.33426778290796033,
+          "ref": "azraimohamad/news-article-weekly-updated",
+          "title": "News Article (Weekly Updated)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.4530800000000001,
+          "ref": "oyounis/movie-lens-1m",
+          "title": "Movie lens 1m",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.32897421070041605,
+          "ref": "asaniczka/tmdb-movies-dataset-2023-930k-movies",
+          "title": "Full TMDB Movies Dataset 2024 (1M Movies)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3259622973602728,
+          "ref": "ashishkumarak/netflix-reviews-playstore-daily-updated",
+          "title": "Netflix Reviews [DAILY UPDATED]",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.321301532832487,
+          "ref": "azraimohamad/news-article-weekly-updated",
+          "title": "News Article (Weekly Updated)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.24155549192865108,
+          "ref": "cornell-movie-review-data/rotten_tomatoes",
+          "title": "cornell-movie-review-data/rotten_tomatoes",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.5913866666666667,
+          "ref": "oyounis/movie-lens-1m",
+          "title": "Movie lens 1m",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5135282406012674,
+          "ref": "ashishkumarak/netflix-reviews-playstore-daily-updated",
+          "title": "Netflix Reviews [DAILY UPDATED]",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.42184055930335757,
+          "ref": "asaniczka/tmdb-movies-dataset-2023-930k-movies",
+          "title": "Full TMDB Movies Dataset 2024 (1M Movies)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3852400237859026,
+          "ref": "azraimohamad/news-article-weekly-updated",
+          "title": "News Article (Weekly Updated)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.36042583037273895,
+          "ref": "ggtejas/tmdb-imdb-merged-movies-dataset",
+          "title": "TMDB + IMDB Merged Movies Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "satellite_landcover": {
+    "query": "satellite imagery land cover classification",
+    "expected": "satellite",
+    "language": "en",
+    "plan": {
+      "intent_body": "satellite imagery land cover classification",
+      "focus_terms": [
+        "satellite",
+        "imagery",
+        "land",
+        "cover",
+        "classification"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "earth_imagery",
+        "urban_change",
+        "detection_classification"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.7335066666666666,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6058665226949682,
+          "ref": "meiazero/castanhao-dataset",
+          "title": "castanhao-dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5658524361887642,
+          "ref": "karnikakapoor/satellite-orbital-catalog",
+          "title": "Satellite-Orbital-Catalog🛰️",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.8712266666666667,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.84740902562457,
+          "ref": "meiazero/castanhao-dataset",
+          "title": "castanhao-dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5855370608783141,
+          "ref": "karnikakapoor/satellite-orbital-catalog",
+          "title": "Satellite-Orbital-Catalog🛰️",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.5635661772263495,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.37394434634597984,
+          "ref": "meiazero/castanhao-dataset",
+          "title": "castanhao-dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.30031080474585303,
+          "ref": "karnikakapoor/satellite-orbital-catalog",
+          "title": "Satellite-Orbital-Catalog🛰️",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.8623466666666667,
+          "ref": "meiazero/castanhao-dataset",
+          "title": "castanhao-dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.689747913116486,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4224984746232993,
+          "ref": "luizgustavorcharamba/aff-gtsrb-and-proj-gtsrb",
+          "title": "Aff-GTSRB & Proj-GTSRB",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.5442330454550983,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.500528959009524,
+          "ref": "meiazero/castanhao-dataset",
+          "title": "castanhao-dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4903333041663803,
+          "ref": "karnikakapoor/satellite-orbital-catalog",
+          "title": "Satellite-Orbital-Catalog🛰️",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.8623466666666667,
+          "ref": "meiazero/castanhao-dataset",
+          "title": "castanhao-dataset",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7186921949264841,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6189287331856643,
+          "ref": "karnikakapoor/satellite-orbital-catalog",
+          "title": "Satellite-Orbital-Catalog🛰️",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ]
+    }
+  },
+  "very_short": {
+    "query": "tweets",
+    "expected": "tweet",
+    "language": "en",
+    "plan": {
+      "intent_body": "tweets",
+      "focus_terms": [
+        "tweets",
+        "tweet"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "social_media_text"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.91388,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.2515836066791112,
+          "ref": "bwandowando/reddit-rcasualuk-subreddit-dataset-2026",
+          "title": "🇬🇧 Reddit r/CasualUK Subreddit Dataset 2026",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.26271558491251973,
+          "ref": "navirac/twitter-sentimental",
+          "title": "twitter sentimental",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.28943950217918285,
+          "ref": "AIcell/moltbook-data",
+          "title": "AIcell/moltbook-data",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.2967936607029657,
+          "ref": "nbroad/hf-libraries",
+          "title": "hf-libraries",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 1.0159200000000002,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.32681467331084496,
+          "ref": "HuggingFaceTB/smollm-corpus",
+          "title": "HuggingFaceTB/smollm-corpus",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.33295150022621217,
+          "ref": "bwandowando/reddit-rcasualuk-subreddit-dataset-2026",
+          "title": "🇬🇧 Reddit r/CasualUK Subreddit Dataset 2026",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.3503950790744087,
+          "ref": "anqil/rh20t_rfm",
+          "title": "anqil/rh20t_rfm",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.35251324020346275,
+          "ref": "navirac/twitter-sentimental",
+          "title": "twitter sentimental",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.91388,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.07995495209436387,
+          "ref": "Zchu/REDSearcher_SFT_10K",
+          "title": "Zchu/REDSearcher_SFT_10K",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.1102647884901986,
+          "ref": "AbstractTTS/PODCAST",
+          "title": "AbstractTTS/PODCAST",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.11406419106641208,
+          "ref": "lm-provers/ProofBench",
+          "title": "lm-provers/ProofBench",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.12411689032290388,
+          "ref": "Karavet/ILUR-news-text-classification-corpus",
+          "title": "Karavet/ILUR-news-text-classification-corpus",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 1.0159200000000002,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.27718461548724294,
+          "ref": "Zchu/REDSearcher_SFT_10K",
+          "title": "Zchu/REDSearcher_SFT_10K",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.3061642925692489,
+          "ref": "AbstractTTS/PODCAST",
+          "title": "AbstractTTS/PODCAST",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.30979695684117936,
+          "ref": "lm-provers/ProofBench",
+          "title": "lm-provers/ProofBench",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.3192850437938483,
+          "ref": "Karavet/ILUR-news-text-classification-corpus",
+          "title": "Karavet/ILUR-news-text-classification-corpus",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.43870904727577925,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.02260000000000001,
+          "ref": "navirac/twitter-sentimental",
+          "title": "twitter sentimental",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.19858492330986952,
+          "ref": "nbroad/hf-libraries",
+          "title": "hf-libraries",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.25677839576935385,
+          "ref": "TeichAI/gpt-5-codex-1000x",
+          "title": "TeichAI/gpt-5-codex-1000x",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.26506821385005486,
+          "ref": "HuggingFaceTB/smollm-corpus",
+          "title": "HuggingFaceTB/smollm-corpus",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 1.0159200000000002,
+          "ref": "kinguistics/election-day-tweets",
+          "title": "Election Day Tweets",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.16504336024283164,
+          "ref": "navirac/twitter-sentimental",
+          "title": "twitter sentimental",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.14944348363135174,
+          "ref": "nbroad/hf-libraries",
+          "title": "hf-libraries",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.1963909144598513,
+          "ref": "controlnet999/wt-data-project",
+          "title": "WT Data Project",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.23005627386623662,
+          "ref": "TeichAI/gpt-5-codex-1000x",
+          "title": "TeichAI/gpt-5-codex-1000x",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "single_token_ood": {
+    "query": "spider",
+    "expected": "weak",
+    "language": "en",
+    "plan": {
+      "intent_body": "spider",
+      "focus_terms": [
+        "spider"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.07252,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.04277046189134456,
+          "ref": "ericdepotter/synthetic-gloomhaven-monsters",
+          "title": "Synthetic Gloomhaven Monsters",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.1209715640649991,
+          "ref": "evanwang98/fingerveinsyn-5m-part",
+          "title": "FingerVeinSyn-5M( Part II)",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.23168000000000002,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.10540619352440977,
+          "ref": "evanwang98/fingerveinsyn-5m-part",
+          "title": "FingerVeinSyn-5M( Part II)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.06352066937838541,
+          "ref": "ericdepotter/synthetic-gloomhaven-monsters",
+          "title": "Synthetic Gloomhaven Monsters",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.07,
+          "ref": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "title": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.06328454280530879,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.029769563787387564,
+          "ref": "microsoft/WebSTAR",
+          "title": "microsoft/WebSTAR",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.23000000000000004,
+          "ref": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "title": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.21797399676139487,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.10570932395718874,
+          "ref": "tonyassi/celebrity-1000",
+          "title": "tonyassi/celebrity-1000",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.07252,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.037343927866064636,
+          "ref": "ericdepotter/synthetic-gloomhaven-monsters",
+          "title": "Synthetic Gloomhaven Monsters",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.05660027960434213,
+          "ref": "lyomega/torch-geometric",
+          "title": "PyTorch Geometric External Library",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.23168000000000002,
+          "ref": "yoanndev90/inaturalist-insects",
+          "title": "iNaturalist - Insects",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.05672172094685968,
+          "ref": "ericdepotter/synthetic-gloomhaven-monsters",
+          "title": "Synthetic Gloomhaven Monsters",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.025863310162566475,
+          "ref": "lyomega/torch-geometric",
+          "title": "PyTorch Geometric External Library",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "question": {
+    "query": "what dataset can I use for fine-tuning a code LLM?",
+    "expected": "code",
+    "language": "en",
+    "plan": {
+      "intent_body": "what can i use for fine tuning a code llm",
+      "focus_terms": [
+        "what",
+        "fine",
+        "tuning",
+        "code",
+        "llm"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.73672,
+          "ref": "ajibawa-2023/PHP-Code-Large",
+          "title": "ajibawa-2023/PHP-Code-Large",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.7046169932443166,
+          "ref": "ajibawa-2023/Java-Code-Large",
+          "title": "ajibawa-2023/Java-Code-Large",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.6395849234990888,
+          "ref": "ajibawa-2023/JavaScript-Code-Large",
+          "title": "ajibawa-2023/JavaScript-Code-Large",
+          "source": "huggingface",
+          "weak_match": false
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.8694800000000001,
+          "ref": "ajibawa-2023/PHP-Code-Large",
+          "title": "ajibawa-2023/PHP-Code-Large",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.8253188346174969,
+          "ref": "ajibawa-2023/Java-Code-Large",
+          "title": "ajibawa-2023/Java-Code-Large",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.7866517461577166,
+          "ref": "sanathgoutham/whl-files-for-fine-tuning-and-llm-inference",
+          "title": "whl files for fine tuning and llm inference",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.70404,
+          "ref": "unsloth/jobs",
+          "title": "unsloth/jobs",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.661523801246188,
+          "ref": "Josephgflowers/Finance-Instruct-500k",
+          "title": "Josephgflowers/Finance-Instruct-500k",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.5810451367752274,
+          "ref": "ajibawa-2023/JavaScript-Code-Large",
+          "title": "ajibawa-2023/JavaScript-Code-Large",
+          "source": "huggingface",
+          "weak_match": false
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.8962197854669138,
+          "ref": "Josephgflowers/Finance-Instruct-500k",
+          "title": "Josephgflowers/Finance-Instruct-500k",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.8580933597203083,
+          "ref": "sanathgoutham/whl-files-for-fine-tuning-and-llm-inference",
+          "title": "whl files for fine tuning and llm inference",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.8393600000000001,
+          "ref": "unsloth/jobs",
+          "title": "unsloth/jobs",
+          "source": "huggingface",
+          "weak_match": false
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.73672,
+          "ref": "ajibawa-2023/PHP-Code-Large",
+          "title": "ajibawa-2023/PHP-Code-Large",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.7259804429456652,
+          "ref": "ajibawa-2023/Java-Code-Large",
+          "title": "ajibawa-2023/Java-Code-Large",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.6126621479007535,
+          "ref": "TeichAI/gpt-5.2-high-reasoning-250x",
+          "title": "TeichAI/gpt-5.2-high-reasoning-250x",
+          "source": "huggingface",
+          "weak_match": false
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.8656400000000001,
+          "ref": "sanathgoutham/whl-files-for-fine-tuning-and-llm-inference",
+          "title": "whl files for fine tuning and llm inference",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7936668707289594,
+          "ref": "ajibawa-2023/PHP-Code-Large",
+          "title": "ajibawa-2023/PHP-Code-Large",
+          "source": "huggingface",
+          "weak_match": false
+        },
+        {
+          "score": 0.782254767509229,
+          "ref": "ajibawa-2023/Java-Code-Large",
+          "title": "ajibawa-2023/Java-Code-Large",
+          "source": "huggingface",
+          "weak_match": false
+        }
+      ]
+    }
+  },
+  "multi_aspect": {
+    "query": "satellite images of urban areas with weather metadata",
+    "expected": "satellite",
+    "language": "en",
+    "plan": {
+      "intent_body": "satellite images of urban areas with weather metadata",
+      "focus_terms": [
+        "satellite",
+        "images",
+        "image",
+        "urban",
+        "areas",
+        "area",
+        "weather",
+        "metadata"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "weather_climate"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.783520987456844,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5551697481221737,
+          "ref": "bwandowando/tomtom-traffic-data-55-countries-387-cities",
+          "title": "🚙 Tomtom Traffic data 60 Countries 500 Cities🌏",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5016460119643842,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4712210691054554,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.43148000000000003,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.99768,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.605346716018391,
+          "ref": "bwandowando/tomtom-traffic-data-55-countries-387-cities",
+          "title": "🚙 Tomtom Traffic data 60 Countries 500 Cities🌏",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5600653227646731,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5183412870395783,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.4003093326518244,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.8322531287905565,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6411471691007914,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.588781343675497,
+          "ref": "karnikakapoor/satellite-orbital-catalog",
+          "title": "Satellite-Orbital-Catalog🛰️",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5748542009402793,
+          "ref": "mkaestingschaefer/seed4d",
+          "title": "SEED4D",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5665292026661786,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.99768,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5486611936997048,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5264618046711232,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.43068628402037734,
+          "ref": "mkaestingschaefer/seed4d",
+          "title": "SEED4D",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.3823819859013948,
+          "ref": "meiazero/castanhao-dataset",
+          "title": "castanhao-dataset",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.5777431857381352,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.5424468707948346,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.48347858369920654,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.43148000000000003,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.3896644112378015,
+          "ref": "bwandowando/tomtom-traffic-data-55-countries-387-cities",
+          "title": "🚙 Tomtom Traffic data 60 Countries 500 Cities🌏",
+          "source": "kaggle",
+          "weak_match": false
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.9186496362081377,
+          "ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "title": "SpaceNet 7 Change Detection Chips and Masks",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.7468304645434224,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.6141553000320368,
+          "ref": "joebeachcapital/the-economists-ukraine-war-fire-daily-update",
+          "title": "The Economist's Ukraine war-fire (daily update)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5743200000000002,
+          "ref": "wafaaelhusseini/major-cities-weather-data",
+          "title": "Major Cities Weather Data 1995-present",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.5428948374613953,
+          "ref": "bwandowando/tomtom-traffic-data-55-countries-387-cities",
+          "title": "🚙 Tomtom Traffic data 60 Countries 500 Cities🌏",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "fraud_tr": {
+    "query": "Finansal dolandırıcılık tespiti için veri seti arıyorum",
+    "expected": "fraud",
+    "language": "tr",
+    "plan": {
+      "intent_body": "finansal dolandiricilik tespiti icin ariyorum",
+      "focus_terms": [
+        "finansal",
+        "dolandiricilik",
+        "tespiti",
+        "tespit"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "finance_fraud"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.02800000000000001,
+          "ref": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "title": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.012275980964862735,
+          "ref": "teocalvo/teomewhy-loyalty-system",
+          "title": "TeoMeWhy Loyalty System",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.014742028233946628,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.19700000000000004,
+          "ref": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "title": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.17758963974912392,
+          "ref": "sudalairajkumar/defi-dataset-from-defillama",
+          "title": "DeFi Dataset from DefiLlama",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.10485265797832855,
+          "ref": "teocalvo/teomewhy-loyalty-system",
+          "title": "TeoMeWhy Loyalty System",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.02800000000000001,
+          "ref": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "title": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.009458630488689923,
+          "ref": "jasineri/stock-market-dataset",
+          "title": "Stock Market Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.007219370841808434,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.19700000000000004,
+          "ref": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "title": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.1562816587920703,
+          "ref": "degerhan/cc-yiedl-inference",
+          "title": "cc-yiedl-inference",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.11688272508519619,
+          "ref": "jasineri/stock-market-dataset",
+          "title": "Stock Market Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.02800000000000001,
+          "ref": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "title": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.052844985289494745,
+          "ref": "douglaskgaraujo/opportunity-insights-real-time-economic-tracker-us",
+          "title": "Opportunity Insights real time Economic Tracker US",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.06075668080153632,
+          "ref": "Josephgflowers/Finance-Instruct-500k",
+          "title": "Josephgflowers/Finance-Instruct-500k",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.19700000000000004,
+          "ref": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "title": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.09091482111941178,
+          "ref": "sudalairajkumar/defi-dataset-from-defillama",
+          "title": "DeFi Dataset from DefiLlama",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.017659676393951718,
+          "ref": "douglaskgaraujo/opportunity-insights-real-time-economic-tracker-us",
+          "title": "Opportunity Insights real time Economic Tracker US",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "weather_tr": {
+    "query": "Yağmurlu hava tahmini için veri seti",
+    "expected": "weather",
+    "language": "tr",
+    "plan": {
+      "intent_body": "yagmurlu hava tahmini icin",
+      "focus_terms": [
+        "yagmurlu",
+        "yagmurl",
+        "hava",
+        "tahmini",
+        "tahmin"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.07,
+          "ref": "zai-org/webglm-qa",
+          "title": "zai-org/webglm-qa",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.007185759130738015,
+          "ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "title": "Indian Weather Repository ( Daily Updating )",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.08759763590656136,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.22092056191238946,
+          "ref": "zai-org/webglm-qa",
+          "title": "zai-org/webglm-qa",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.22055737708297585,
+          "ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "title": "Indian Weather Repository ( Daily Updating )",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.21152982839497125,
+          "ref": "hoangquancs04222/fitness-deeplearning-data-v3-hoangquan",
+          "title": "Pose - Fitness-deeplearning-data-v3-HoangQuan",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.07108,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.01562617387057205,
+          "ref": "TeichAI/claude-haiku-4.5-high-reasoning-1700x",
+          "title": "TeichAI/claude-haiku-4.5-high-reasoning-1700x",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.0624216371672058,
+          "ref": "organizasyoncadiri/2023-rental-by-day-avize-samdan-kiralama",
+          "title": "2023 Rental by day Avize Şamdan Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.23072000000000004,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.17639526702744224,
+          "ref": "yahma/alpaca-cleaned",
+          "title": "yahma/alpaca-cleaned",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.16712619129417994,
+          "ref": "Karavet/ILUR-news-text-classification-corpus",
+          "title": "Karavet/ILUR-news-text-classification-corpus",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.07108,
+          "ref": "oinuma/japan-meteorological-agency-forecast",
+          "title": "過去の天気予報アーカイブ(日本、気象庁)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.04496125958382144,
+          "ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "title": "Capital Weather Data - 1995-2024",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.06223289573024238,
+          "ref": "zai-org/webglm-qa",
+          "title": "zai-org/webglm-qa",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.23072000000000004,
+          "ref": "oinuma/japan-meteorological-agency-forecast",
+          "title": "過去の天気予報アーカイブ(日本、気象庁)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.19696384249060106,
+          "ref": "yahma/alpaca-cleaned",
+          "title": "yahma/alpaca-cleaned",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.10739772874326196,
+          "ref": "eeemonts/weatherclimate-data-covid19",
+          "title": "Weather/climate data for JHU's COVID19 sites",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "earthquake_tr": {
+    "query": "Deprem sonrası yardım için veri",
+    "expected": "earthquake",
+    "language": "tr",
+    "plan": {
+      "intent_body": "deprem sonrasi yardim icin",
+      "focus_terms": [
+        "deprem",
+        "sonrasi",
+        "sonra",
+        "yardim"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.07108,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.017528236711600722,
+          "ref": "manoj223/ppe-kit-dataset",
+          "title": "PPE kit Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.1406001267761623,
+          "ref": "jingyaogong/minimind_dataset",
+          "title": "jingyaogong/minimind_dataset",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.23072000000000004,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.1613950425729154,
+          "ref": "triuquct/trash-image-real",
+          "title": "Trash Image Real",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.10983297173455864,
+          "ref": "manoj223/ppe-kit-dataset",
+          "title": "PPE kit Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.07108,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.01181507833334963,
+          "ref": "manoj223/ppe-kit-dataset",
+          "title": "PPE kit Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.23456383589158364,
+          "ref": "organizasyoncadiri/2022-rental-stand-cadiri-kiralama",
+          "title": "2022 Rental stand cadiri Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.23072000000000004,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.22717708317460517,
+          "ref": "paulogladson/inmat-por-cidades",
+          "title": "INMET Paraná",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.2131835193413859,
+          "ref": "manoj223/ppe-kit-dataset",
+          "title": "PPE kit Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.07108,
+          "ref": "manoj223/ppe-kit-dataset",
+          "title": "PPE kit Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.007151456149500049,
+          "ref": "yahma/alpaca-cleaned",
+          "title": "yahma/alpaca-cleaned",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.051565760103954944,
+          "ref": "naileafalcon/kanish-wheels-py312",
+          "title": "mamba_torch_causal_fulldev",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.23072000000000004,
+          "ref": "manoj223/ppe-kit-dataset",
+          "title": "PPE kit Dataset",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.11341479992768688,
+          "ref": "naileafalcon/kanish-wheels-py312",
+          "title": "mamba_torch_causal_fulldev",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.07364686734198156,
+          "ref": "yahma/alpaca-cleaned",
+          "title": "yahma/alpaca-cleaned",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "spider_tr": {
+    "query": "Örümcek türleri hakkında veri seti",
+    "expected": "weak",
+    "language": "tr",
+    "plan": {
+      "intent_body": "orumcek turleri hakkinda",
+      "focus_terms": [
+        "orumcek",
+        "turleri",
+        "tur",
+        "hakk"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": []
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.20707197127759472,
+          "ref": "organizasyoncadiri/2023-rental-by-pirinc-bariyer-kiralama-kiralama",
+          "title": "2023 Rental by pirinc bariyer kiralama Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.07252,
+          "ref": "organizasyoncadiri/2022-rental-stand-cadiri-kiralama",
+          "title": "2022 Rental stand cadiri Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.005223770855623394,
+          "ref": "rustensai/russian-handwriting-ocr",
+          "title": "rustensai/russian-handwriting-ocr",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.6015200000000002,
+          "ref": "organizasyoncadiri/2023-rental-by-pirinc-bariyer-kiralama-kiralama",
+          "title": "2023 Rental by pirinc bariyer kiralama Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.13435496053934484,
+          "ref": "mteb/sts22-crosslingual-sts",
+          "title": "mteb/sts22-crosslingual-sts",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.04869719323624412,
+          "ref": "organizasyoncadiri/2023-rental-by-armut-koltuk-kiralama",
+          "title": "2023 Rental by armut koltuk Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.3452830097231013,
+          "ref": "organizasyoncadiri/2023-rental-by-pirinc-bariyer-kiralama-kiralama",
+          "title": "2023 Rental by pirinc bariyer kiralama Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.25865421564234414,
+          "ref": "allenai/tulu-3-sft-mixture",
+          "title": "allenai/tulu-3-sft-mixture",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.07252,
+          "ref": "organizasyoncadiri/2023-rental-by-armut-koltuk-kiralama",
+          "title": "2023 Rental by armut koltuk Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.6015200000000002,
+          "ref": "organizasyoncadiri/2023-rental-by-pirinc-bariyer-kiralama-kiralama",
+          "title": "2023 Rental by pirinc bariyer kiralama Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.14940664927954148,
+          "ref": "allenai/tulu-3-sft-mixture",
+          "title": "allenai/tulu-3-sft-mixture",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.08471019671443733,
+          "ref": "mteb/sts22-crosslingual-sts",
+          "title": "mteb/sts22-crosslingual-sts",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.07252,
+          "ref": "teyler/epstein-files-20k",
+          "title": "teyler/epstein-files-20k",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.03859144294158104,
+          "ref": "anonymitynobody/omnirl-training-data-d-large",
+          "title": "OmniRL Training Data (D_large)",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.0020942086267170257,
+          "ref": "rustensai/russian-handwriting-ocr",
+          "title": "rustensai/russian-handwriting-ocr",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.27592141289052935,
+          "ref": "mteb/sts22-crosslingual-sts",
+          "title": "mteb/sts22-crosslingual-sts",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.24316850004186907,
+          "ref": "organizasyoncadiri/2023-rental-by-pirinc-bariyer-kiralama-kiralama",
+          "title": "2023 Rental by pirinc bariyer kiralama Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": 0.23072000000000004,
+          "ref": "svendaj/numerai-data-v5-1-faith",
+          "title": "numerai data v5.1 Faith",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ]
+    }
+  },
+  "duygu_tr": {
+    "query": "Kullanıcı yorumlarından duygu analizi yapmak istiyorum",
+    "expected": "sentiment",
+    "language": "tr",
+    "plan": {
+      "intent_body": "kullanici yorumlarindan duygu analizi yapmak istiyorum",
+      "focus_terms": [
+        "kullanici",
+        "kullanic",
+        "yorumlarindan",
+        "yorumlarin",
+        "duygu",
+        "duyg",
+        "analizi",
+        "analiz",
+        "yapmak",
+        "istiyorum"
+      ],
+      "concept_terms": [],
+      "domains": [],
+      "semantic_aspects": [
+        "emotion_sentiment"
+      ]
+    },
+    "runs": {
+      "minilm|semantic|ce=off": [
+        {
+          "score": 0.6504844444444444,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.27233249609799737,
+          "ref": "turkish-nlp-suite/BellaTurca",
+          "title": "turkish-nlp-suite/BellaTurca",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.029053613673041857,
+          "ref": "dewanakretarta/gojek-playstore-reviews",
+          "title": "Gojek Playstore Reviews",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm|hybrid|ce=off": [
+        {
+          "score": 0.5699599999999999,
+          "ref": "turkish-nlp-suite/BellaTurca",
+          "title": "turkish-nlp-suite/BellaTurca",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.5545139333795903,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.057387329969847925,
+          "ref": "dewanakretarta/gojek-playstore-reviews",
+          "title": "Gojek Playstore Reviews",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|semantic|ce=off": [
+        {
+          "score": 0.6504844444444444,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.32557865655849566,
+          "ref": "turkish-nlp-suite/BellaTurca",
+          "title": "turkish-nlp-suite/BellaTurca",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": -0.029792316164012202,
+          "ref": "furkangozukara/ecommerce-products-dataset-for-record-linkage",
+          "title": "E-Commerce Products Dataset For Record Linkage",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "e5_base|hybrid|ce=off": [
+        {
+          "score": 0.5699599999999999,
+          "ref": "turkish-nlp-suite/BellaTurca",
+          "title": "turkish-nlp-suite/BellaTurca",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.5322537053427436,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": -0.10624902056666331,
+          "ref": "organizasyoncadiri/2023-rental-by-armut-koltuk-kiralama",
+          "title": "2023 Rental by armut koltuk Kiralama",
+          "source": "kaggle",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|semantic|ce=off": [
+        {
+          "score": 0.41101814184643715,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": false
+        },
+        {
+          "score": 0.2056692537748206,
+          "ref": "turkish-nlp-suite/BellaTurca",
+          "title": "turkish-nlp-suite/BellaTurca",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.07,
+          "ref": "Buraaq/quran-md-ayahs",
+          "title": "Buraaq/quran-md-ayahs",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ],
+      "minilm_ft|hybrid|ce=off": [
+        {
+          "score": 0.5699599999999999,
+          "ref": "turkish-nlp-suite/BellaTurca",
+          "title": "turkish-nlp-suite/BellaTurca",
+          "source": "huggingface",
+          "weak_match": true
+        },
+        {
+          "score": 0.32600398362740063,
+          "ref": "furkangozukara/turkish-product-reviews",
+          "title": "E-Commerce Product Reviews - Dataset for ML",
+          "source": "kaggle",
+          "weak_match": true
+        },
+        {
+          "score": -0.009184893011644435,
+          "ref": "Buraaq/quran-md-ayahs",
+          "title": "Buraaq/quran-md-ayahs",
+          "source": "huggingface",
+          "weak_match": true
+        }
+      ]
+    }
+  }
+}

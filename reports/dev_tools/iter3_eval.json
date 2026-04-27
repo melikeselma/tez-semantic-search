@@ -1,0 +1,1968 @@
+{
+  "summary": {
+    "minilm|semantic|ce=off": {
+      "p_at_1": 0.474,
+      "p_at_3": 0.737,
+      "ood_correct": 1.0,
+      "weak_recall": 0.967,
+      "n_in_corpus": 19,
+      "n_ood": 10
+    },
+    "minilm|hybrid|ce=off": {
+      "p_at_1": 0.579,
+      "p_at_3": 0.684,
+      "ood_correct": 0.9,
+      "weak_recall": 0.967,
+      "n_in_corpus": 19,
+      "n_ood": 10
+    },
+    "e5_base|semantic|ce=off": {
+      "p_at_1": 0.474,
+      "p_at_3": 0.684,
+      "ood_correct": 0.9,
+      "weak_recall": 0.967,
+      "n_in_corpus": 19,
+      "n_ood": 10
+    },
+    "e5_base|hybrid|ce=off": {
+      "p_at_1": 0.526,
+      "p_at_3": 0.579,
+      "ood_correct": 0.9,
+      "weak_recall": 0.967,
+      "n_in_corpus": 19,
+      "n_ood": 10
+    },
+    "minilm_ft|semantic|ce=off": {
+      "p_at_1": 0.526,
+      "p_at_3": 0.684,
+      "ood_correct": 0.9,
+      "weak_recall": 0.933,
+      "n_in_corpus": 19,
+      "n_ood": 10
+    },
+    "minilm_ft|hybrid|ce=off": {
+      "p_at_1": 0.526,
+      "p_at_3": 0.684,
+      "ood_correct": 0.9,
+      "weak_recall": 0.967,
+      "n_in_corpus": 19,
+      "n_ood": 10
+    }
+  },
+  "per_probe": {
+    "spider_ood": {
+      "query": "i want to research on spiders",
+      "expected": "weak",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.07252
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.23168000000000002
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.07252
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.23168000000000002
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.07252
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.23168000000000002
+        }
+      }
+    },
+    "spider_species_ood": {
+      "query": "i want to research on spider species",
+      "expected": "weak",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.4849200000000001
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.6232800000000001
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.4849200000000001
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.6232800000000001
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.4849200000000001
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.6232800000000001
+        }
+      }
+    },
+    "mushroom_in": {
+      "query": "mushroom dataset for classification",
+      "expected": "mushroom",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.7454
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.8986000000000001
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.7454
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.8986000000000001
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.7454
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.8986000000000001
+        }
+      }
+    },
+    "mushroom_recipe_ood": {
+      "query": "vegetarian mushroom recipes",
+      "expected": "weak",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.39277516325501516
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 2,
+          "ood_correct": false,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.7160000000000001
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 2,
+          "ood_correct": false,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.43692767212134487
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 2,
+          "ood_correct": false,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.7160000000000001
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 2,
+          "ood_correct": false,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.4307338491742422
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 2,
+          "ood_correct": false,
+          "first_ref": "pencilkhiem/mushroom",
+          "first_title": "Mushroom",
+          "first_score": 0.7160000000000001
+        }
+      }
+    },
+    "knitting_ood": {
+      "query": "knitting patterns and yarn projects",
+      "expected": "weak",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "Real-TSF/TIME",
+          "first_title": "Real-TSF/TIME",
+          "first_score": 0.27634476930447804
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "Real-TSF/TIME",
+          "first_title": "Real-TSF/TIME",
+          "first_score": 0.5326057142857143
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "jbouv27/eeg",
+          "first_title": "EEG Analysis",
+          "first_score": 0.40439428571428576
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "jbouv27/eeg",
+          "first_title": "EEG Analysis",
+          "first_score": 0.5562628571428574
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "dudinhe/bike-dashboard",
+          "first_title": "Bike Dashboard",
+          "first_score": 0.18979308414469878
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "dudinhe/bike-dashboard",
+          "first_title": "Bike Dashboard",
+          "first_score": 0.3816906587168792
+        }
+      }
+    },
+    "wine_ood": {
+      "query": "wine tasting notes and grape varietals",
+      "expected": "weak",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "zuhairnashif/image-dataset",
+          "first_title": "Image Dataset",
+          "first_score": 0.38588000000000006
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "zuhairnashif/image-dataset",
+          "first_title": "Image Dataset",
+          "first_score": 0.5439200000000002
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "zuhairnashif/image-dataset",
+          "first_title": "Image Dataset",
+          "first_score": 0.38588000000000006
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "AGBonnet/augmented-clinical-notes",
+          "first_title": "AGBonnet/augmented-clinical-notes",
+          "first_score": 0.5448000000000001
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "zuhairnashif/image-dataset",
+          "first_title": "Image Dataset",
+          "first_score": 0.23159921992287852
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "zuhairnashif/image-dataset",
+          "first_title": "Image Dataset",
+          "first_score": 0.44613217860814375
+        }
+      }
+    },
+    "fraud_ood": {
+      "query": "credit card fraud detection dataset",
+      "expected": "weak",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "edgarco11/campaign-affiliate-data",
+          "first_title": "Campaign Affiliate Data",
+          "first_score": 0.45119052919081915
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "oislen/randomtelecompayments",
+          "first_title": "Random Telecom Payments",
+          "first_score": 0.5521180952380952
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "Josephgflowers/Finance-Instruct-500k",
+          "first_title": "Josephgflowers/Finance-Instruct-500k",
+          "first_score": 0.48689992461222953
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "artem9k/ai-text-detection-pile",
+          "first_title": "artem9k/ai-text-detection-pile",
+          "first_score": 0.5664723809523811
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "edgarco11/campaign-affiliate-data",
+          "first_title": "Campaign Affiliate Data",
+          "first_score": 0.41935175768204214
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "playgent-hf/investment-banking",
+          "first_title": "playgent-hf/investment-banking",
+          "first_score": 0.6300952380952382
+        }
+      }
+    },
+    "crop_ood": {
+      "query": "I want to study how weather affects crop production",
+      "expected": "weak",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 2,
+          "ood_correct": true,
+          "first_ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "first_title": "Capital Weather Data - 1995-2024",
+          "first_score": 0.4588334562935143
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "first_title": "Indian Weather Repository ( Daily Updating )",
+          "first_score": 0.7171200000000002
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "paulogladson/inmat-por-cidades",
+          "first_title": "INMET Paraná",
+          "first_score": 0.5498799999999999
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "paulogladson/inmat-por-cidades",
+          "first_title": "INMET Paraná",
+          "first_score": 0.6465866666666669
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 2,
+          "ood_correct": true,
+          "first_ref": "wafaaelhusseini/capital-weather-data-1995-2024",
+          "first_title": "Capital Weather Data - 1995-2024",
+          "first_score": 0.5271901734516959
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "wafaaelhusseini/major-cities-weather-data",
+          "first_title": "Major Cities Weather Data 1995-present",
+          "first_score": 0.6736533333333334
+        }
+      }
+    },
+    "fingerprint_ood": {
+      "query": "a dataset of fingerprint images for biometric recognition",
+      "expected": "weak",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "zuhairnashif/image-dataset",
+          "first_title": "Image Dataset",
+          "first_score": 0.25881434679758586
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "zuhairnashif/image-dataset",
+          "first_title": "Image Dataset",
+          "first_score": 0.6530400000000002
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "ahmedyacinlacheheb/ocr-data-36gb",
+          "first_title": "Unified Scene Text Recognition Benchmark",
+          "first_score": 0.41394898589634516
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "ahmedyacinlacheheb/ocr-data-36gb",
+          "first_title": "Unified Scene Text Recognition Benchmark",
+          "first_score": 0.65688
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "olgabelitskaya/image-classification-for-biospecies",
+          "first_title": "Image Classification for Biospecies",
+          "first_score": 0.2774394902108039
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "olgabelitskaya/image-classification-for-biospecies",
+          "first_title": "Image Classification for Biospecies",
+          "first_score": 0.6501600000000001
+        }
+      }
+    },
+    "chess": {
+      "query": "i want to find a dataset about chess",
+      "expected": "chess",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "salvadordali/racingkings",
+          "first_title": "Racing Kings (chess variant)",
+          "first_score": 0.96188
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "nilskavsek/lichess-chess-games-2013-3-million-games",
+          "first_title": "Lichess Chess Games 2013 (+3 million games)",
+          "first_score": 0.9888
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "salvadordali/racingkings",
+          "first_title": "Racing Kings (chess variant)",
+          "first_score": 0.96188
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "nilskavsek/lichess-chess-games-2013-3-million-games",
+          "first_title": "Lichess Chess Games 2013 (+3 million games)",
+          "first_score": 0.9888
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "brieucdandoy/chess-cheating-dataset",
+          "first_title": "Spotting Cheaters : Chess cheating dataset",
+          "first_score": 0.9436187731966368
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "nilskavsek/lichess-chess-games-2013-3-million-games",
+          "first_title": "Lichess Chess Games 2013 (+3 million games)",
+          "first_score": 0.9888
+        }
+      }
+    },
+    "house_price": {
+      "query": "I want to find data for predicting house prices",
+      "expected": "assessor",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "sethdowden/portland-maps-assessor-data",
+          "first_title": "Portland Assessor Data",
+          "first_score": 0.7649657142857142
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "sethdowden/portland-maps-assessor-data",
+          "first_title": "Portland Assessor Data",
+          "first_score": 0.8914057142857144
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 1,
+          "ood_correct": null,
+          "first_ref": "sethdowden/portland-maps-assessor-data",
+          "first_title": "Portland Assessor Data",
+          "first_score": 0.46652514269202755
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "sethdowden/portland-maps-assessor-data",
+          "first_title": "Portland Assessor Data",
+          "first_score": 0.6998779426727266
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "sethdowden/portland-maps-assessor-data",
+          "first_title": "Portland Assessor Data",
+          "first_score": 0.6408889422713611
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "sethdowden/portland-maps-assessor-data",
+          "first_title": "Portland Assessor Data",
+          "first_score": 0.8914057142857144
+        }
+      }
+    },
+    "music": {
+      "query": "classical music recordings dataset",
+      "expected": "maestro",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "jackvial/themaestrodatasetv2",
+          "first_title": "The Maestro Dataset v2",
+          "first_score": 0.8966533333333333
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "jackvial/themaestrodatasetv2",
+          "first_title": "The Maestro Dataset v2",
+          "first_score": 1.0222133333333332
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "jackvial/themaestrodatasetv2",
+          "first_title": "The Maestro Dataset v2",
+          "first_score": 0.8966533333333333
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "jackvial/themaestrodatasetv2",
+          "first_title": "The Maestro Dataset v2",
+          "first_score": 1.0222133333333332
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "jackvial/themaestrodatasetv2",
+          "first_title": "The Maestro Dataset v2",
+          "first_score": 0.8966533333333333
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "jackvial/themaestrodatasetv2",
+          "first_title": "The Maestro Dataset v2",
+          "first_score": 1.0222133333333332
+        }
+      }
+    },
+    "diabetes": {
+      "query": "I want to research diabetes prediction using patient records",
+      "expected": "diabetes",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "orvile/weather-related-disease-prediction-dataset",
+          "first_title": "Weather-related Disease Prediction Dataset",
+          "first_score": 0.6744985286535345
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "orvile/weather-related-disease-prediction-dataset",
+          "first_title": "Weather-related Disease Prediction Dataset",
+          "first_score": 0.9608850793650794
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "orvile/weather-related-disease-prediction-dataset",
+          "first_title": "Weather-related Disease Prediction Dataset",
+          "first_score": 0.7267728420322208
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "orvile/weather-related-disease-prediction-dataset",
+          "first_title": "Weather-related Disease Prediction Dataset",
+          "first_score": 0.9608850793650794
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "orvile/weather-related-disease-prediction-dataset",
+          "first_title": "Weather-related Disease Prediction Dataset",
+          "first_score": 0.5720064327555103
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "orvile/weather-related-disease-prediction-dataset",
+          "first_title": "Weather-related Disease Prediction Dataset",
+          "first_score": 0.9608850793650794
+        }
+      }
+    },
+    "urban_change": {
+      "query": "I want to study how cities change using images taken from above",
+      "expected": "satellite",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.5891844856405034
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.7081714285714286
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.632257142857143
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.7081714285714286
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.6159402897123406
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.7081714285714286
+        }
+      }
+    },
+    "sentiment_tweets": {
+      "query": "i need a dataset for sentiment analysis on tweets",
+      "expected": "sentiment",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 5,
+          "top1": false,
+          "top3": false,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "kinguistics/election-day-tweets",
+          "first_title": "Election Day Tweets",
+          "first_score": 0.6466079358786526
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": false,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "kinguistics/election-day-tweets",
+          "first_title": "Election Day Tweets",
+          "first_score": 0.9098840161215705
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "madlygfx/instrumetriq-crypto-sentiment-market-data",
+          "first_title": "Instrumetriq: Crypto Sentiment & Market Data",
+          "first_score": 0.5470100699300698
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": false,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "kinguistics/election-day-tweets",
+          "first_title": "Election Day Tweets",
+          "first_score": 0.7842286780774399
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "navirac/twitter-sentimental",
+          "first_title": "twitter sentimental",
+          "first_score": 0.33303636363636363
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": false,
+          "top3": false,
+          "weak_count": 5,
+          "ood_correct": null,
+          "first_ref": "kinguistics/election-day-tweets",
+          "first_title": "Election Day Tweets",
+          "first_score": 0.5926996901731665
+        }
+      }
+    },
+    "hate_speech": {
+      "query": "harmful language and hate speech in social media",
+      "expected": "toxic",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "toxigen/toxigen-data",
+          "first_title": "toxigen/toxigen-data",
+          "first_score": 0.5886865470095864
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "toxigen/toxigen-data",
+          "first_title": "toxigen/toxigen-data",
+          "first_score": 0.8776363636363637
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "toxigen/toxigen-data",
+          "first_title": "toxigen/toxigen-data",
+          "first_score": 0.5706781445615173
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "toxigen/toxigen-data",
+          "first_title": "toxigen/toxigen-data",
+          "first_score": 0.8776363636363637
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "toxigen/toxigen-data",
+          "first_title": "toxigen/toxigen-data",
+          "first_score": 0.5492420299948471
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "toxigen/toxigen-data",
+          "first_title": "toxigen/toxigen-data",
+          "first_score": 0.8776363636363637
+        }
+      }
+    },
+    "earthquake": {
+      "query": "earthquake seismic activity historical events",
+      "expected": "earthquake",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 5,
+          "top1": false,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "first_title": "Global events QuakeML M3+ last 5 years",
+          "first_score": 0.9874998143008733
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 1,
+          "ood_correct": null,
+          "first_ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "first_title": "Global Earthquake History: 1M+ Since 1900",
+          "first_score": 1.0617200000000002
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 5,
+          "top1": false,
+          "top3": true,
+          "weak_count": 1,
+          "ood_correct": null,
+          "first_ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "first_title": "Global events QuakeML M3+ last 5 years",
+          "first_score": 1.0075321836187805
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 1,
+          "ood_correct": null,
+          "first_ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "first_title": "Global Earthquake History: 1M+ Since 1900",
+          "first_score": 1.0617200000000002
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 5,
+          "top1": false,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "first_title": "Global events QuakeML M3+ last 5 years",
+          "first_score": 1.0060828707169713
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 1,
+          "ood_correct": null,
+          "first_ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "first_title": "Global Earthquake History: 1M+ Since 1900",
+          "first_score": 1.0617200000000002
+        }
+      }
+    },
+    "deepfake": {
+      "query": "deepfake detection audio samples",
+      "expected": "deepfake",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "first_title": "In The Wild (audio Deepfake)",
+          "first_score": 0.8681104761904762
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "first_title": "In The Wild (audio Deepfake)",
+          "first_score": 0.9570736507936508
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "first_title": "In The Wild (audio Deepfake)",
+          "first_score": 0.8681104761904762
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "first_title": "In The Wild (audio Deepfake)",
+          "first_score": 0.9570736507936508
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "first_title": "In The Wild (audio Deepfake)",
+          "first_score": 0.8681104761904762
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "abdallamohamed312/in-the-wild-audio-deepfake",
+          "first_title": "In The Wild (audio Deepfake)",
+          "first_score": 0.9570736507936508
+        }
+      }
+    },
+    "movie_reviews": {
+      "query": "movie reviews with star ratings",
+      "expected": "review",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "ashishkumarak/netflix-reviews-playstore-daily-updated",
+          "first_title": "Netflix Reviews [DAILY UPDATED]",
+          "first_score": 0.4774857142857143
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "ashishkumarak/netflix-reviews-playstore-daily-updated",
+          "first_title": "Netflix Reviews [DAILY UPDATED]",
+          "first_score": 0.6030857142857142
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "furkangozukara/turkish-product-reviews",
+          "first_title": "E-Commerce Product Reviews - Dataset for ML",
+          "first_score": 0.545243306053925
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "ashishkumarak/amazon-shopping-reviews-daily-updated",
+          "first_title": "Amazon Shopping Reviews [Daily Updated]",
+          "first_score": 0.6030857142857142
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "ashishkumarak/play-store-reviews-facebook",
+          "first_title": "Facebook Reviews [DAILY UPDATE]",
+          "first_score": 0.46605714285714284
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "ashishkumarak/netflix-reviews-playstore-daily-updated",
+          "first_title": "Netflix Reviews [DAILY UPDATED]",
+          "first_score": 0.6030857142857142
+        }
+      }
+    },
+    "satellite_landcover": {
+      "query": "satellite imagery land cover classification",
+      "expected": "satellite",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.546221354817403
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.7001737373737374
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.6224828282828282
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.7001737373737374
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.5493275602943609
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.7001737373737374
+        }
+      }
+    },
+    "very_short": {
+      "query": "tweets",
+      "expected": "tweet",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "kinguistics/election-day-tweets",
+          "first_title": "Election Day Tweets",
+          "first_score": 0.9446050199071881
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "kinguistics/election-day-tweets",
+          "first_title": "Election Day Tweets",
+          "first_score": 1.0780152380952381
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "kinguistics/election-day-tweets",
+          "first_title": "Election Day Tweets",
+          "first_score": 0.6159022243904493
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 4,
+          "ood_correct": null,
+          "first_ref": "kinguistics/election-day-tweets",
+          "first_title": "Election Day Tweets",
+          "first_score": 1.0780152380952381
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "navirac/twitter-sentimental",
+          "first_title": "twitter sentimental",
+          "first_score": 0.3420393764374213
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 5,
+          "top1": true,
+          "top3": true,
+          "weak_count": 5,
+          "ood_correct": null,
+          "first_ref": "kinguistics/election-day-tweets",
+          "first_title": "Election Day Tweets",
+          "first_score": 0.8910216229893552
+        }
+      }
+    },
+    "single_token_ood": {
+      "query": "spider",
+      "expected": "weak",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.07252
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.23168000000000002
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "first_title": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "first_score": 0.07
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "first_title": "nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1",
+          "first_score": 0.23000000000000004
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.07252
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "yoanndev90/inaturalist-insects",
+          "first_title": "iNaturalist - Insects",
+          "first_score": 0.23168000000000002
+        }
+      }
+    },
+    "question": {
+      "query": "what dataset can I use for fine-tuning a code LLM?",
+      "expected": "code",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "ajibawa-2023/PHP-Code-Large",
+          "first_title": "ajibawa-2023/PHP-Code-Large",
+          "first_score": 0.73672
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "ajibawa-2023/PHP-Code-Large",
+          "first_title": "ajibawa-2023/PHP-Code-Large",
+          "first_score": 0.8694800000000001
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "unsloth/jobs",
+          "first_title": "unsloth/jobs",
+          "first_score": 0.70404
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "Josephgflowers/Finance-Instruct-500k",
+          "first_title": "Josephgflowers/Finance-Instruct-500k",
+          "first_score": 0.8962197854669138
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "ajibawa-2023/PHP-Code-Large",
+          "first_title": "ajibawa-2023/PHP-Code-Large",
+          "first_score": 0.73672
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 0,
+          "ood_correct": null,
+          "first_ref": "sanathgoutham/whl-files-for-fine-tuning-and-llm-inference",
+          "first_title": "whl files for fine tuning and llm inference",
+          "first_score": 0.8656400000000001
+        }
+      }
+    },
+    "multi_aspect": {
+      "query": "satellite images of urban areas with weather metadata",
+      "expected": "satellite",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "first_title": "Indian Weather Repository ( Daily Updating )",
+          "first_score": 0.49244965942610347
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.6167608302808303
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "first_title": "Indian Weather Repository ( Daily Updating )",
+          "first_score": 0.5922858608058608
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "jerismeteo/open-meteo-data-kebumen",
+          "first_title": "Open Meteo Data Kebumen",
+          "first_score": 0.5814505494505494
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "wafaaelhusseini/major-cities-weather-data",
+          "first_title": "Major Cities Weather Data 1995-present",
+          "first_score": 0.4684177289377289
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "amerii/spacenet-7-change-detection-chips-and-masks",
+          "first_title": "SpaceNet 7 Change Detection Chips and Masks",
+          "first_score": 0.6167608302808303
+        }
+      }
+    },
+    "fraud_tr": {
+      "query": "Finansal dolandırıcılık tespiti için veri seti arıyorum",
+      "expected": "fraud",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "edgarco11/campaign-affiliate-data",
+          "first_title": "Campaign Affiliate Data",
+          "first_score": 0.527137142857143
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "playgent-hf/investment-banking",
+          "first_title": "playgent-hf/investment-banking",
+          "first_score": 0.634992207792208
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "Josephgflowers/Finance-Instruct-500k",
+          "first_title": "Josephgflowers/Finance-Instruct-500k",
+          "first_score": 0.5189085714285715
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "playgent-hf/investment-banking",
+          "first_title": "playgent-hf/investment-banking",
+          "first_score": 0.634992207792208
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "Josephgflowers/Finance-Instruct-500k",
+          "first_title": "Josephgflowers/Finance-Instruct-500k",
+          "first_score": 0.4500169508890357
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "playgent-hf/investment-banking",
+          "first_title": "playgent-hf/investment-banking",
+          "first_score": 0.634992207792208
+        }
+      }
+    },
+    "weather_tr": {
+      "query": "Yağmurlu hava tahmini için veri seti",
+      "expected": "weather",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "first_title": "Indian Weather Repository ( Daily Updating )",
+          "first_score": 0.6880514285714288
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "first_title": "Indian Weather Repository ( Daily Updating )",
+          "first_score": 0.7533676190476193
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "first_title": "Indian Weather Repository ( Daily Updating )",
+          "first_score": 0.6844364468865878
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "first_title": "Indian Weather Repository ( Daily Updating )",
+          "first_score": 0.7533676190476193
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "first_title": "Indian Weather Repository ( Daily Updating )",
+          "first_score": 0.6572399714199078
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "nelgiriyewithana/indian-weather-repository-daily-snapshot",
+          "first_title": "Indian Weather Repository ( Daily Updating )",
+          "first_score": 0.7533676190476193
+        }
+      }
+    },
+    "earthquake_tr": {
+      "query": "Deprem sonrası yardım için veri",
+      "expected": "earthquake",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "first_title": "Global events QuakeML M3+ last 5 years",
+          "first_score": 0.5337657142857142
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "first_title": "Global Earthquake History: 1M+ Since 1900",
+          "first_score": 0.6379898412698415
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "thomasr25/global-events-quakeml-m3-last-5-years",
+          "first_title": "Global events QuakeML M3+ last 5 years",
+          "first_score": 0.5337657142857142
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "first_title": "Global Earthquake History: 1M+ Since 1900",
+          "first_score": 0.6379898412698415
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "first_title": "Global Earthquake History: 1M+ Since 1900",
+          "first_score": 0.5349847619047619
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": true,
+          "top3": true,
+          "weak_count": 3,
+          "ood_correct": null,
+          "first_ref": "darkmatternet/global-earthquake-history-1m-since-1900",
+          "first_title": "Global Earthquake History: 1M+ Since 1900",
+          "first_score": 0.6379898412698415
+        }
+      }
+    },
+    "spider_tr": {
+      "query": "Örümcek türleri hakkında veri seti",
+      "expected": "weak",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "organizasyoncadiri/2023-rental-by-pirinc-bariyer-kiralama-kiralama",
+          "first_title": "2023 Rental by pirinc bariyer kiralama Kiralama",
+          "first_score": 0.20707197127759472
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "organizasyoncadiri/2023-rental-by-pirinc-bariyer-kiralama-kiralama",
+          "first_title": "2023 Rental by pirinc bariyer kiralama Kiralama",
+          "first_score": 0.6015200000000002
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "organizasyoncadiri/2023-rental-by-pirinc-bariyer-kiralama-kiralama",
+          "first_title": "2023 Rental by pirinc bariyer kiralama Kiralama",
+          "first_score": 0.3452830097231013
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "organizasyoncadiri/2023-rental-by-pirinc-bariyer-kiralama-kiralama",
+          "first_title": "2023 Rental by pirinc bariyer kiralama Kiralama",
+          "first_score": 0.6015200000000002
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "teyler/epstein-files-20k",
+          "first_title": "teyler/epstein-files-20k",
+          "first_score": 0.07252
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": null,
+          "top3": null,
+          "weak_count": 3,
+          "ood_correct": true,
+          "first_ref": "mteb/sts22-crosslingual-sts",
+          "first_title": "mteb/sts22-crosslingual-sts",
+          "first_score": 0.27592141289052935
+        }
+      }
+    },
+    "duygu_tr": {
+      "query": "Kullanıcı yorumlarından duygu analizi yapmak istiyorum",
+      "expected": "sentiment",
+      "rows": {
+        "minilm|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "furkangozukara/turkish-product-reviews",
+          "first_title": "E-Commerce Product Reviews - Dataset for ML",
+          "first_score": 0.6096792649818855
+        },
+        "minilm|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "furkangozukara/turkish-product-reviews",
+          "first_title": "E-Commerce Product Reviews - Dataset for ML",
+          "first_score": 0.7316000481052503
+        },
+        "e5_base|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": true,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "furkangozukara/turkish-product-reviews",
+          "first_title": "E-Commerce Product Reviews - Dataset for ML",
+          "first_score": 0.6773022759850563
+        },
+        "e5_base|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "furkangozukara/turkish-product-reviews",
+          "first_title": "E-Commerce Product Reviews - Dataset for ML",
+          "first_score": 0.8557862931839403
+        },
+        "minilm_ft|semantic|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "furkangozukara/turkish-product-reviews",
+          "first_title": "E-Commerce Product Reviews - Dataset for ML",
+          "first_score": 0.601983504235663
+        },
+        "minilm_ft|hybrid|ce=off": {
+          "top_count": 3,
+          "top1": false,
+          "top3": false,
+          "weak_count": 2,
+          "ood_correct": null,
+          "first_ref": "furkangozukara/turkish-product-reviews",
+          "first_title": "E-Commerce Product Reviews - Dataset for ML",
+          "first_score": 0.8557862931839403
+        }
+      }
+    }
+  }
+}

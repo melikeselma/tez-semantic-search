@@ -11,15 +11,25 @@ DEFAULT_TERM_THRESHOLDS = {
 }
 
 FLAG_PENALTIES = {
-    "empty": 0.12,
+    "empty": 0.16,
     "no_long_description": 0.0,
-    "keyword_only": 0.04,
-    "short_description": 0.01,
-    "too_short": 0.01,
-    "short_context": 0.0,
-    "metadata_heavy": 0.01,
-    "term_sparse": 0.005,
-    "low_information": 0.04,
+    "keyword_only": 0.07,
+    "short_description": 0.025,
+    "too_short": 0.02,
+    "short_context": 0.01,
+    "metadata_heavy": 0.03,
+    "term_sparse": 0.02,
+    "low_information": 0.08,
+}
+
+RISKY_SEMANTIC_FLAGS = {
+    "empty",
+    "keyword_only",
+    "short_description",
+    "too_short",
+    "metadata_heavy",
+    "term_sparse",
+    "low_information",
 }
 
 
@@ -127,6 +137,58 @@ def infer_quality_flags(item: dict) -> dict:
     }
 
 
+def semantic_risk_flags(signal: dict | None) -> list[str]:
+    if not signal:
+        return []
+    return [
+        flag
+        for flag in dedupe_preserve_order(signal.get("all_flags") or [])
+        if flag in RISKY_SEMANTIC_FLAGS
+    ]
+
+
+def should_deemphasize_title(item: dict, signal: dict | None = None) -> bool:
+    quality_signal = signal or infer_quality_flags(item)
+    risk_flags = semantic_risk_flags(quality_signal)
+    if risk_flags:
+        return True
+
+    word_count = int(quality_signal.get("word_count") or 0)
+    if word_count and word_count <= 12:
+        return True
+    if (
+        word_count and word_count <= 24
+        and quality_signal.get("description_style") == "mixed_structured"
+        and quality_signal.get("term_bucket") == "term_sparse"
+    ):
+        return True
+    return False
+
+
+def build_semantic_quality_note(item: dict, signal: dict | None = None) -> str:
+    quality_signal = signal or infer_quality_flags(item)
+    if not should_deemphasize_title(item, quality_signal):
+        return ""
+
+    flags = set(semantic_risk_flags(quality_signal))
+    if "empty" in flags:
+        reason = "description is empty"
+    elif "keyword_only" in flags or "metadata_heavy" in flags:
+        reason = "description is mostly keywords or metadata"
+    elif "low_information" in flags or "term_sparse" in flags:
+        reason = "description has limited semantic detail"
+    elif (
+        "too_short" in flags
+        or "short_description" in flags
+        or "short_context" in flags
+        or int(quality_signal.get("word_count") or 0) <= 24
+    ):
+        reason = "description is very short"
+    else:
+        reason = "description provides weak semantic evidence"
+    return f"Limited semantic evidence: {reason}; title terms are de-emphasized."
+
+
 def compute_quality_adjustment(item: dict) -> dict:
     signal = infer_quality_flags(item)
     penalty = 0.0
@@ -139,8 +201,10 @@ def compute_quality_adjustment(item: dict) -> dict:
             bonus += 0.008
         if signal["term_bucket"] == "term_rich":
             bonus += 0.006
+    if should_deemphasize_title(item, signal):
+        penalty += 0.03
 
-    penalty = min(penalty, 0.12)
+    penalty = min(penalty, 0.18)
     confidence = max(0.0, min(1.0, 1.0 - penalty + bonus))
 
     signal["score_penalty"] = round(penalty, 4)

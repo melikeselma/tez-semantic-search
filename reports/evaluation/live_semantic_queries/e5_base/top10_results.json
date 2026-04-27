@@ -1,0 +1,4398 @@
+{
+  "profile": "e5_base",
+  "profile_label": "E5 Base (EN retrieval)",
+  "model_name": "intfloat/e5-base-v2",
+  "top_k": 10,
+  "query_count": 9,
+  "enable_rerank": true,
+  "enable_quality_penalty": true,
+  "enable_tr_fusion": true,
+  "queries_path": "C:\\Users\\user\\Desktop\\Tez\\data\\evaluation\\live_semantic_queries.json",
+  "results": [
+    {
+      "query_id": "lsq001",
+      "query_text": "I want to analyze social media sentiment about political events.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 1,
+      "score": 0.6218666666666667,
+      "title": "ChatGPT reviews [DAILY UPDATED]",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/ashishkumarak/chatgpt-reviews-daily-updated",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 8,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "sentiment_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "social media posts",
+        "tweets",
+        "comments",
+        "political events",
+        "sentiment"
+      ],
+      "known_failure_patterns": [
+        "generic sentiment datasets with no social media signal",
+        "politics datasets without text sentiment labels",
+        "review-only datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq001",
+      "query_text": "I want to analyze social media sentiment about political events.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 2,
+      "score": 0.5916038319465001,
+      "title": "Facebook Reviews [DAILY UPDATE]",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/ashishkumarak/play-store-reviews-facebook",
+      "quality_flags": [],
+      "inferred_domains": [],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 8,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "sentiment_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "social media posts",
+        "tweets",
+        "comments",
+        "political events",
+        "sentiment"
+      ],
+      "known_failure_patterns": [
+        "generic sentiment datasets with no social media signal",
+        "politics datasets without text sentiment labels",
+        "review-only datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq001",
+      "query_text": "I want to analyze social media sentiment about political events.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 3,
+      "score": 0.5860656881038323,
+      "title": "Snapchat Reviews",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/ashishkumarak/snapchat-reviews-daily-updated",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 8,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "sentiment_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "social media posts",
+        "tweets",
+        "comments",
+        "political events",
+        "sentiment"
+      ],
+      "known_failure_patterns": [
+        "generic sentiment datasets with no social media signal",
+        "politics datasets without text sentiment labels",
+        "review-only datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq001",
+      "query_text": "I want to analyze social media sentiment about political events.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 4,
+      "score": 0.582533281777,
+      "title": "Instrumetriq: Crypto Sentiment & Market Data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/madlygfx/instrumetriq-crypto-sentiment-market-data",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets",
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "monitoring_analysis",
+        "classification",
+        "detection"
+      ],
+      "inferred_modalities": [
+        "text",
+        "tabular",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 8,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "sentiment_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "social media posts",
+        "tweets",
+        "comments",
+        "political events",
+        "sentiment"
+      ],
+      "known_failure_patterns": [
+        "generic sentiment datasets with no social media signal",
+        "politics datasets without text sentiment labels",
+        "review-only datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq001",
+      "query_text": "I want to analyze social media sentiment about political events.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 5,
+      "score": 0.51623069792869,
+      "title": "CMU MOSI",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/mathurinache/cmu-mosi",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "computer_vision",
+        "audio_speech"
+      ],
+      "inferred_use_cases": [
+        "qa_generation",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "text",
+        "video",
+        "audio"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 8,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "sentiment_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "social media posts",
+        "tweets",
+        "comments",
+        "political events",
+        "sentiment"
+      ],
+      "known_failure_patterns": [
+        "generic sentiment datasets with no social media signal",
+        "politics datasets without text sentiment labels",
+        "review-only datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq001",
+      "query_text": "I want to analyze social media sentiment about political events.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 6,
+      "score": 0.5039506356158866,
+      "title": "iabufarha/ar_sarcasm",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/iabufarha/ar_sarcasm",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 8,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "sentiment_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "social media posts",
+        "tweets",
+        "comments",
+        "political events",
+        "sentiment"
+      ],
+      "known_failure_patterns": [
+        "generic sentiment datasets with no social media signal",
+        "politics datasets without text sentiment labels",
+        "review-only datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq001",
+      "query_text": "I want to analyze social media sentiment about political events.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 7,
+      "score": 0.45442632489232,
+      "title": "Amazon Shopping Reviews [Daily Updated]",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/ashishkumarak/amazon-shopping-reviews-daily-updated",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 6,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "sentiment_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "social media posts",
+        "tweets",
+        "comments",
+        "political events",
+        "sentiment"
+      ],
+      "known_failure_patterns": [
+        "generic sentiment datasets with no social media signal",
+        "politics datasets without text sentiment labels",
+        "review-only datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq001",
+      "query_text": "I want to analyze social media sentiment about political events.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 8,
+      "score": 0.4413935918251645,
+      "title": "Daily Public Opinion on Israel-Palestine War",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/asaniczka/reddit-on-israel-palestine-daily-updated",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "time_series",
+        "text",
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 7,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "sentiment_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "social media posts",
+        "tweets",
+        "comments",
+        "political events",
+        "sentiment"
+      ],
+      "known_failure_patterns": [
+        "generic sentiment datasets with no social media signal",
+        "politics datasets without text sentiment labels",
+        "review-only datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq001",
+      "query_text": "I want to analyze social media sentiment about political events.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 9,
+      "score": 0.40430724595823886,
+      "title": "Public Opinion on Republicans (Daily Updated)",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/asaniczka/public-opinion-on-republicans-daily-updated",
+      "quality_flags": [],
+      "inferred_domains": [],
+      "inferred_use_cases": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "image",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 7,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "sentiment_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "social media posts",
+        "tweets",
+        "comments",
+        "political events",
+        "sentiment"
+      ],
+      "known_failure_patterns": [
+        "generic sentiment datasets with no social media signal",
+        "politics datasets without text sentiment labels",
+        "review-only datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq001",
+      "query_text": "I want to analyze social media sentiment about political events.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 10,
+      "score": 0.38349858448385227,
+      "title": "E-Commerce Product Reviews - Dataset for ML",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/furkangozukara/turkish-product-reviews",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "detection",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 4,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "sentiment_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "social media posts",
+        "tweets",
+        "comments",
+        "political events",
+        "sentiment"
+      ],
+      "known_failure_patterns": [
+        "generic sentiment datasets with no social media signal",
+        "politics datasets without text sentiment labels",
+        "review-only datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq002",
+      "query_text": "I want to find data for predicting house prices.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 1,
+      "score": 0.5606512566750456,
+      "title": "lme aluminum forecasting dataset - explainability",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/tanulkumarsrivastava/lme-aluminum-forecasting-dataset-explainability",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets",
+        "weather_climate",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "detection",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "time_series",
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "forecasting",
+        "regression"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "house price",
+        "housing price",
+        "real estate",
+        "property valuation",
+        "sale price"
+      ],
+      "known_failure_patterns": [
+        "generic finance price datasets",
+        "stock or crypto price datasets",
+        "housing datasets without price targets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq002",
+      "query_text": "I want to find data for predicting house prices.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 2,
+      "score": 0.5299200692243222,
+      "title": "israeli-supermarkets-data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/erlichsefi/israeli-supermarkets-2024",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "finance_markets"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "text",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "forecasting",
+        "regression"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "house price",
+        "housing price",
+        "real estate",
+        "property valuation",
+        "sale price"
+      ],
+      "known_failure_patterns": [
+        "generic finance price datasets",
+        "stock or crypto price datasets",
+        "housing datasets without price targets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq002",
+      "query_text": "I want to find data for predicting house prices.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 3,
+      "score": 0.5051223100724579,
+      "title": "linxy/CryptoCoin",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/linxy/CryptoCoin",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "time_series"
+      ],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "forecasting",
+        "regression"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "house price",
+        "housing price",
+        "real estate",
+        "property valuation",
+        "sale price"
+      ],
+      "known_failure_patterns": [
+        "generic finance price datasets",
+        "stock or crypto price datasets",
+        "housing datasets without price targets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq002",
+      "query_text": "I want to find data for predicting house prices.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 4,
+      "score": 0.48962379997792127,
+      "title": "300+ Cryptocurrencies Historical Price Dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/benjaminpo/crypto-historical-price",
+      "quality_flags": [
+        "no_long_description"
+      ],
+      "inferred_domains": [
+        "finance_markets"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "forecasting",
+        "regression"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "house price",
+        "housing price",
+        "real estate",
+        "property valuation",
+        "sale price"
+      ],
+      "known_failure_patterns": [
+        "generic finance price datasets",
+        "stock or crypto price datasets",
+        "housing datasets without price targets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq002",
+      "query_text": "I want to find data for predicting house prices.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 5,
+      "score": 0.4512472727272727,
+      "title": "Marginal prices of electricity and weather data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/pythonafroz/marginal-prices-of-electricity-and-weather-data",
+      "quality_flags": [],
+      "inferred_domains": [
+        "weather_climate",
+        "finance_markets"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "forecasting",
+        "regression"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "house price",
+        "housing price",
+        "real estate",
+        "property valuation",
+        "sale price"
+      ],
+      "known_failure_patterns": [
+        "generic finance price datasets",
+        "stock or crypto price datasets",
+        "housing datasets without price targets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq002",
+      "query_text": "I want to find data for predicting house prices.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 6,
+      "score": 0.42170019623886545,
+      "title": "Multi-site Production-Distribution Prediction",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/kammounmohamedali/multi-site-production-distribution-prediction",
+      "quality_flags": [],
+      "inferred_domains": [],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 11,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "forecasting",
+        "regression"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "house price",
+        "housing price",
+        "real estate",
+        "property valuation",
+        "sale price"
+      ],
+      "known_failure_patterns": [
+        "generic finance price datasets",
+        "stock or crypto price datasets",
+        "housing datasets without price targets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq002",
+      "query_text": "I want to find data for predicting house prices.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 7,
+      "score": 0.3659308589939994,
+      "title": "Electric Power Exchange data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/pythonafroz/electric-power-exchange-data",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets",
+        "weather_climate"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "qa_generation"
+      ],
+      "inferred_modalities": [
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "forecasting",
+        "regression"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "house price",
+        "housing price",
+        "real estate",
+        "property valuation",
+        "sale price"
+      ],
+      "known_failure_patterns": [
+        "generic finance price datasets",
+        "stock or crypto price datasets",
+        "housing datasets without price targets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq002",
+      "query_text": "I want to find data for predicting house prices.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 8,
+      "score": 0.3482373876591308,
+      "title": "Multi-site Maintenance Prediction",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/kammounmohamedali/multi-site-maintenance-prediction",
+      "quality_flags": [],
+      "inferred_domains": [],
+      "inferred_use_cases": [
+        "forecasting",
+        "segmentation"
+      ],
+      "inferred_modalities": [
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 10,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "forecasting",
+        "regression"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "house price",
+        "housing price",
+        "real estate",
+        "property valuation",
+        "sale price"
+      ],
+      "known_failure_patterns": [
+        "generic finance price datasets",
+        "stock or crypto price datasets",
+        "housing datasets without price targets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq002",
+      "query_text": "I want to find data for predicting house prices.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 9,
+      "score": 0.3456580223404756,
+      "title": "Intraday market data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/brtnsmth/intraday-market-data",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 10,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "forecasting",
+        "regression"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "house price",
+        "housing price",
+        "real estate",
+        "property valuation",
+        "sale price"
+      ],
+      "known_failure_patterns": [
+        "generic finance price datasets",
+        "stock or crypto price datasets",
+        "housing datasets without price targets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq002",
+      "query_text": "I want to find data for predicting house prices.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 10,
+      "score": 0.3271797964082404,
+      "title": "Josephgflowers/Finance-Instruct-500k",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/Josephgflowers/Finance-Instruct-500k",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "finance_markets",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "qa_generation",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 10,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "forecasting",
+        "regression"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "house price",
+        "housing price",
+        "real estate",
+        "property valuation",
+        "sale price"
+      ],
+      "known_failure_patterns": [
+        "generic finance price datasets",
+        "stock or crypto price datasets",
+        "housing datasets without price targets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq003",
+      "query_text": "I want to study how weather affects crop production.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 1,
+      "score": 0.77068,
+      "title": "Indian Weather Repository ( Daily Updating )",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/nelgiriyewithana/indian-weather-repository-daily-snapshot",
+      "quality_flags": [],
+      "inferred_domains": [
+        "weather_climate",
+        "earth_observation",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "classification",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "time_series",
+        "text",
+        "geospatial"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "weather_climate"
+      ],
+      "expected_task": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "tabular",
+        "time_series"
+      ],
+      "positive_clues": [
+        "crop production",
+        "crop yield",
+        "agriculture",
+        "farming",
+        "rainfall",
+        "temperature",
+        "climate impact"
+      ],
+      "known_failure_patterns": [
+        "weather-only datasets with no agriculture signal",
+        "agriculture datasets without weather variables",
+        "generic climate archives"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq003",
+      "query_text": "I want to study how weather affects crop production.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 2,
+      "score": 0.7284985884270719,
+      "title": "過去の天気予報アーカイブ(日本、気象庁)",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/oinuma/japan-meteorological-agency-forecast",
+      "quality_flags": [],
+      "inferred_domains": [
+        "weather_climate",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "text",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "weather_climate"
+      ],
+      "expected_task": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "tabular",
+        "time_series"
+      ],
+      "positive_clues": [
+        "crop production",
+        "crop yield",
+        "agriculture",
+        "farming",
+        "rainfall",
+        "temperature",
+        "climate impact"
+      ],
+      "known_failure_patterns": [
+        "weather-only datasets with no agriculture signal",
+        "agriculture datasets without weather variables",
+        "generic climate archives"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq003",
+      "query_text": "I want to study how weather affects crop production.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 3,
+      "score": 0.7267428663135523,
+      "title": "Weather-related Disease Prediction Dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/orvile/weather-related-disease-prediction-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "health_medical",
+        "weather_climate"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "weather_climate"
+      ],
+      "expected_task": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "tabular",
+        "time_series"
+      ],
+      "positive_clues": [
+        "crop production",
+        "crop yield",
+        "agriculture",
+        "farming",
+        "rainfall",
+        "temperature",
+        "climate impact"
+      ],
+      "known_failure_patterns": [
+        "weather-only datasets with no agriculture signal",
+        "agriculture datasets without weather variables",
+        "generic climate archives"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq003",
+      "query_text": "I want to study how weather affects crop production.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 4,
+      "score": 0.7063197912783731,
+      "title": "INMET Paraná",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/paulogladson/inmat-por-cidades",
+      "quality_flags": [],
+      "inferred_domains": [
+        "weather_climate"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "weather_climate"
+      ],
+      "expected_task": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "tabular",
+        "time_series"
+      ],
+      "positive_clues": [
+        "crop production",
+        "crop yield",
+        "agriculture",
+        "farming",
+        "rainfall",
+        "temperature",
+        "climate impact"
+      ],
+      "known_failure_patterns": [
+        "weather-only datasets with no agriculture signal",
+        "agriculture datasets without weather variables",
+        "generic climate archives"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq003",
+      "query_text": "I want to study how weather affects crop production.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 5,
+      "score": 0.6855657961679563,
+      "title": "Weather/climate data for JHU's COVID19 sites",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/eeemonts/weatherclimate-data-covid19",
+      "quality_flags": [],
+      "inferred_domains": [
+        "weather_climate",
+        "ocean_marine"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "weather_climate"
+      ],
+      "expected_task": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "tabular",
+        "time_series"
+      ],
+      "positive_clues": [
+        "crop production",
+        "crop yield",
+        "agriculture",
+        "farming",
+        "rainfall",
+        "temperature",
+        "climate impact"
+      ],
+      "known_failure_patterns": [
+        "weather-only datasets with no agriculture signal",
+        "agriculture datasets without weather variables",
+        "generic climate archives"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq003",
+      "query_text": "I want to study how weather affects crop production.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 6,
+      "score": 0.675744075665148,
+      "title": "Public Opinion on Climate Change (Updated Daily)",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/asaniczka/public-opinion-on-climate-change-updated-daily",
+      "quality_flags": [],
+      "inferred_domains": [
+        "weather_climate",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "image",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "weather_climate"
+      ],
+      "expected_task": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "tabular",
+        "time_series"
+      ],
+      "positive_clues": [
+        "crop production",
+        "crop yield",
+        "agriculture",
+        "farming",
+        "rainfall",
+        "temperature",
+        "climate impact"
+      ],
+      "known_failure_patterns": [
+        "weather-only datasets with no agriculture signal",
+        "agriculture datasets without weather variables",
+        "generic climate archives"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq003",
+      "query_text": "I want to study how weather affects crop production.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 7,
+      "score": 0.6640724761483844,
+      "title": "NOAA Severe Weather Data Inventory",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/noaa/noaa-severe-weather-data-inventory",
+      "quality_flags": [],
+      "inferred_domains": [
+        "weather_climate",
+        "earth_observation",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "detection",
+        "forecasting",
+        "retrieval_search"
+      ],
+      "inferred_modalities": [
+        "image",
+        "tabular",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "weather_climate"
+      ],
+      "expected_task": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "tabular",
+        "time_series"
+      ],
+      "positive_clues": [
+        "crop production",
+        "crop yield",
+        "agriculture",
+        "farming",
+        "rainfall",
+        "temperature",
+        "climate impact"
+      ],
+      "known_failure_patterns": [
+        "weather-only datasets with no agriculture signal",
+        "agriculture datasets without weather variables",
+        "generic climate archives"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq003",
+      "query_text": "I want to study how weather affects crop production.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 8,
+      "score": 0.6308936095421249,
+      "title": "lme aluminum forecasting dataset - explainability",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/tanulkumarsrivastava/lme-aluminum-forecasting-dataset-explainability",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets",
+        "weather_climate",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "detection",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "time_series",
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 11,
+      "expected_domain": [
+        "weather_climate"
+      ],
+      "expected_task": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "tabular",
+        "time_series"
+      ],
+      "positive_clues": [
+        "crop production",
+        "crop yield",
+        "agriculture",
+        "farming",
+        "rainfall",
+        "temperature",
+        "climate impact"
+      ],
+      "known_failure_patterns": [
+        "weather-only datasets with no agriculture signal",
+        "agriculture datasets without weather variables",
+        "generic climate archives"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq003",
+      "query_text": "I want to study how weather affects crop production.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 9,
+      "score": 0.5565628830194607,
+      "title": "Marginal prices of electricity and weather data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/pythonafroz/marginal-prices-of-electricity-and-weather-data",
+      "quality_flags": [],
+      "inferred_domains": [
+        "weather_climate",
+        "finance_markets"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "weather_climate"
+      ],
+      "expected_task": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "tabular",
+        "time_series"
+      ],
+      "positive_clues": [
+        "crop production",
+        "crop yield",
+        "agriculture",
+        "farming",
+        "rainfall",
+        "temperature",
+        "climate impact"
+      ],
+      "known_failure_patterns": [
+        "weather-only datasets with no agriculture signal",
+        "agriculture datasets without weather variables",
+        "generic climate archives"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq003",
+      "query_text": "I want to study how weather affects crop production.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 10,
+      "score": 0.5534042222885935,
+      "title": "Open Meteo Data Kebumen",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/jerismeteo/open-meteo-data-kebumen",
+      "quality_flags": [
+        "no_long_description",
+        "keyword_only"
+      ],
+      "inferred_domains": [
+        "weather_climate"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "weather_climate"
+      ],
+      "expected_task": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "tabular",
+        "time_series"
+      ],
+      "positive_clues": [
+        "crop production",
+        "crop yield",
+        "agriculture",
+        "farming",
+        "rainfall",
+        "temperature",
+        "climate impact"
+      ],
+      "known_failure_patterns": [
+        "weather-only datasets with no agriculture signal",
+        "agriculture datasets without weather variables",
+        "generic climate archives"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq004",
+      "query_text": "I want to research diabetes prediction using patient records.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 1,
+      "score": 0.7016228343562554,
+      "title": "Hospital Inpatient Discharges Dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/bhautikmangukiya12/hospital-inpatient-discharges-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "health_medical",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "classification"
+      ],
+      "inferred_modalities": [
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "health_medical"
+      ],
+      "expected_task": [
+        "classification",
+        "forecasting"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "diabetes",
+        "glucose",
+        "blood sugar",
+        "patient records",
+        "medical records",
+        "clinical indicators"
+      ],
+      "known_failure_patterns": [
+        "generic health prediction datasets",
+        "medical imaging datasets without tabular patient records",
+        "non-diabetes clinical tasks"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq004",
+      "query_text": "I want to research diabetes prediction using patient records.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 2,
+      "score": 0.6970666666666667,
+      "title": "ACS Risk Stratification",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/rbbarbosa/acs-risk-stratification",
+      "quality_flags": [],
+      "inferred_domains": [
+        "health_medical"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "health_medical"
+      ],
+      "expected_task": [
+        "classification",
+        "forecasting"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "diabetes",
+        "glucose",
+        "blood sugar",
+        "patient records",
+        "medical records",
+        "clinical indicators"
+      ],
+      "known_failure_patterns": [
+        "generic health prediction datasets",
+        "medical imaging datasets without tabular patient records",
+        "non-diabetes clinical tasks"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq004",
+      "query_text": "I want to research diabetes prediction using patient records.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 3,
+      "score": 0.6931127509346027,
+      "title": "Weather-related Disease Prediction Dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/orvile/weather-related-disease-prediction-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "health_medical",
+        "weather_climate"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "health_medical"
+      ],
+      "expected_task": [
+        "classification",
+        "forecasting"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "diabetes",
+        "glucose",
+        "blood sugar",
+        "patient records",
+        "medical records",
+        "clinical indicators"
+      ],
+      "known_failure_patterns": [
+        "generic health prediction datasets",
+        "medical imaging datasets without tabular patient records",
+        "non-diabetes clinical tasks"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq004",
+      "query_text": "I want to research diabetes prediction using patient records.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 4,
+      "score": 0.6653030725454229,
+      "title": "Bhavin-1998/Strategic_Preparation_in_Athletics",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/Bhavin-1998/Strategic_Preparation_in_Athletics",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "health_medical"
+      ],
+      "inferred_use_cases": [
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "health_medical"
+      ],
+      "expected_task": [
+        "classification",
+        "forecasting"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "diabetes",
+        "glucose",
+        "blood sugar",
+        "patient records",
+        "medical records",
+        "clinical indicators"
+      ],
+      "known_failure_patterns": [
+        "generic health prediction datasets",
+        "medical imaging datasets without tabular patient records",
+        "non-diabetes clinical tasks"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq004",
+      "query_text": "I want to research diabetes prediction using patient records.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 5,
+      "score": 0.6477897027996401,
+      "title": "Laryngeal Voice Disorder Classification",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/daniilkrasnoproshin/healthy-vs-laryngeal-disorder-classification",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "audio_speech",
+        "health_medical"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "detection",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "audio"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "health_medical"
+      ],
+      "expected_task": [
+        "classification",
+        "forecasting"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "diabetes",
+        "glucose",
+        "blood sugar",
+        "patient records",
+        "medical records",
+        "clinical indicators"
+      ],
+      "known_failure_patterns": [
+        "generic health prediction datasets",
+        "medical imaging datasets without tabular patient records",
+        "non-diabetes clinical tasks"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq004",
+      "query_text": "I want to research diabetes prediction using patient records.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 6,
+      "score": 0.49497438427982926,
+      "title": "Remote Patient Monitoring - India Dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/ksabishek/remote-patient-monitoring-india-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "health_medical",
+        "earth_observation"
+      ],
+      "inferred_use_cases": [
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "geospatial"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "health_medical"
+      ],
+      "expected_task": [
+        "classification",
+        "forecasting"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "diabetes",
+        "glucose",
+        "blood sugar",
+        "patient records",
+        "medical records",
+        "clinical indicators"
+      ],
+      "known_failure_patterns": [
+        "generic health prediction datasets",
+        "medical imaging datasets without tabular patient records",
+        "non-diabetes clinical tasks"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq004",
+      "query_text": "I want to research diabetes prediction using patient records.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 7,
+      "score": 0.492328009991494,
+      "title": "Pose - Fitness-deeplearning-data-v3-HoangQuan",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/hoangquancs04222/fitness-deeplearning-data-v3-hoangquan",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "health_medical"
+      ],
+      "inferred_use_cases": [
+        "qa_generation",
+        "retrieval_search"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "health_medical"
+      ],
+      "expected_task": [
+        "classification",
+        "forecasting"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "diabetes",
+        "glucose",
+        "blood sugar",
+        "patient records",
+        "medical records",
+        "clinical indicators"
+      ],
+      "known_failure_patterns": [
+        "generic health prediction datasets",
+        "medical imaging datasets without tabular patient records",
+        "non-diabetes clinical tasks"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq004",
+      "query_text": "I want to research diabetes prediction using patient records.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 8,
+      "score": 0.4681801656892025,
+      "title": "Small Molecule-Protein Interaction Data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/photon98/leash-bio-engineered-data-training",
+      "quality_flags": [],
+      "inferred_domains": [
+        "hydrology_water",
+        "earth_observation",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "health_medical"
+      ],
+      "expected_task": [
+        "classification",
+        "forecasting"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "diabetes",
+        "glucose",
+        "blood sugar",
+        "patient records",
+        "medical records",
+        "clinical indicators"
+      ],
+      "known_failure_patterns": [
+        "generic health prediction datasets",
+        "medical imaging datasets without tabular patient records",
+        "non-diabetes clinical tasks"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq004",
+      "query_text": "I want to research diabetes prediction using patient records.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 9,
+      "score": 0.46802995889536575,
+      "title": "SleepState-Preprocessed Data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/ravi20076/sleepstatepreprocesseddata",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "health_medical"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "image",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 10,
+      "expected_domain": [
+        "health_medical"
+      ],
+      "expected_task": [
+        "classification",
+        "forecasting"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "diabetes",
+        "glucose",
+        "blood sugar",
+        "patient records",
+        "medical records",
+        "clinical indicators"
+      ],
+      "known_failure_patterns": [
+        "generic health prediction datasets",
+        "medical imaging datasets without tabular patient records",
+        "non-diabetes clinical tasks"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq004",
+      "query_text": "I want to research diabetes prediction using patient records.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 10,
+      "score": 0.4542224578303666,
+      "title": "Engineered Features for HMS 2024",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/jacobsharples/engineered-features-for-hms-2024",
+      "quality_flags": [],
+      "inferred_domains": [
+        "health_medical"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 11,
+      "expected_domain": [
+        "health_medical"
+      ],
+      "expected_task": [
+        "classification",
+        "forecasting"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "diabetes",
+        "glucose",
+        "blood sugar",
+        "patient records",
+        "medical records",
+        "clinical indicators"
+      ],
+      "known_failure_patterns": [
+        "generic health prediction datasets",
+        "medical imaging datasets without tabular patient records",
+        "non-diabetes clinical tasks"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq005",
+      "query_text": "I want to find data about people's emotions from short online messages.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 1,
+      "score": 0.7495226277837822,
+      "title": "Daily Public Opinion on Israel-Palestine War",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/asaniczka/reddit-on-israel-palestine-daily-updated",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "time_series",
+        "text",
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "emotion",
+        "sentiment",
+        "short online messages",
+        "tweets",
+        "social media posts"
+      ],
+      "known_failure_patterns": [
+        "review datasets instead of short messages",
+        "generic text classification corpora",
+        "low-information social media datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq005",
+      "query_text": "I want to find data about people's emotions from short online messages.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 2,
+      "score": 0.7289199999999999,
+      "title": "CMU MOSI",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/mathurinache/cmu-mosi",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "computer_vision",
+        "audio_speech"
+      ],
+      "inferred_use_cases": [
+        "qa_generation",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "text",
+        "video",
+        "audio"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "emotion",
+        "sentiment",
+        "short online messages",
+        "tweets",
+        "social media posts"
+      ],
+      "known_failure_patterns": [
+        "review datasets instead of short messages",
+        "generic text classification corpora",
+        "low-information social media datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq005",
+      "query_text": "I want to find data about people's emotions from short online messages.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 3,
+      "score": 0.7109959761909873,
+      "title": "Instrumetriq: Crypto Sentiment & Market Data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/madlygfx/instrumetriq-crypto-sentiment-market-data",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets",
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "monitoring_analysis",
+        "classification",
+        "detection"
+      ],
+      "inferred_modalities": [
+        "text",
+        "tabular",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "emotion",
+        "sentiment",
+        "short online messages",
+        "tweets",
+        "social media posts"
+      ],
+      "known_failure_patterns": [
+        "review datasets instead of short messages",
+        "generic text classification corpora",
+        "low-information social media datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq005",
+      "query_text": "I want to find data about people's emotions from short online messages.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 4,
+      "score": 0.6187862613069411,
+      "title": "yelp_dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/sahilnbajaj/yelp-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "earth_observation",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 11,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "emotion",
+        "sentiment",
+        "short online messages",
+        "tweets",
+        "social media posts"
+      ],
+      "known_failure_patterns": [
+        "review datasets instead of short messages",
+        "generic text classification corpora",
+        "low-information social media datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq005",
+      "query_text": "I want to find data about people's emotions from short online messages.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 5,
+      "score": 0.5305337754554261,
+      "title": "iabufarha/ar_sarcasm",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/iabufarha/ar_sarcasm",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "emotion",
+        "sentiment",
+        "short online messages",
+        "tweets",
+        "social media posts"
+      ],
+      "known_failure_patterns": [
+        "review datasets instead of short messages",
+        "generic text classification corpora",
+        "low-information social media datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq005",
+      "query_text": "I want to find data about people's emotions from short online messages.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 6,
+      "score": 0.4399352175631804,
+      "title": "roneneldan/TinyStories",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/roneneldan/TinyStories",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "qa_generation"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 11,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "emotion",
+        "sentiment",
+        "short online messages",
+        "tweets",
+        "social media posts"
+      ],
+      "known_failure_patterns": [
+        "review datasets instead of short messages",
+        "generic text classification corpora",
+        "low-information social media datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq005",
+      "query_text": "I want to find data about people's emotions from short online messages.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 7,
+      "score": 0.41514640201452074,
+      "title": "Snapchat Reviews",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/ashishkumarak/snapchat-reviews-daily-updated",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 8,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "emotion",
+        "sentiment",
+        "short online messages",
+        "tweets",
+        "social media posts"
+      ],
+      "known_failure_patterns": [
+        "review datasets instead of short messages",
+        "generic text classification corpora",
+        "low-information social media datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq005",
+      "query_text": "I want to find data about people's emotions from short online messages.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 8,
+      "score": 0.40661639765084634,
+      "title": "E-Commerce Product Reviews - Dataset for ML",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/furkangozukara/turkish-product-reviews",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "detection",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 7,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "emotion",
+        "sentiment",
+        "short online messages",
+        "tweets",
+        "social media posts"
+      ],
+      "known_failure_patterns": [
+        "review datasets instead of short messages",
+        "generic text classification corpora",
+        "low-information social media datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq005",
+      "query_text": "I want to find data about people's emotions from short online messages.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 9,
+      "score": 0.3971059516581285,
+      "title": "ChatGPT reviews [DAILY UPDATED]",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/ashishkumarak/chatgpt-reviews-daily-updated",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 7,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "emotion",
+        "sentiment",
+        "short online messages",
+        "tweets",
+        "social media posts"
+      ],
+      "known_failure_patterns": [
+        "review datasets instead of short messages",
+        "generic text classification corpora",
+        "low-information social media datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq005",
+      "query_text": "I want to find data about people's emotions from short online messages.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 10,
+      "score": 0.38901430567022716,
+      "title": "artem9k/ai-text-detection-pile",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/artem9k/ai-text-detection-pile",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "detection"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 10,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "emotion",
+        "sentiment",
+        "short online messages",
+        "tweets",
+        "social media posts"
+      ],
+      "known_failure_patterns": [
+        "review datasets instead of short messages",
+        "generic text classification corpora",
+        "low-information social media datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq006",
+      "query_text": "I want to detect harmful language in user comments.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 1,
+      "score": 0.7168,
+      "title": "toxigen/toxigen-data",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/toxigen/toxigen-data",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "harmful language",
+        "hate speech",
+        "toxic comments",
+        "abusive language",
+        "offensive language",
+        "user comments"
+      ],
+      "known_failure_patterns": [
+        "general sentiment datasets",
+        "comment datasets without toxicity labels",
+        "topic moderation without harmful language annotations"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq006",
+      "query_text": "I want to detect harmful language in user comments.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 2,
+      "score": 0.6604596107435904,
+      "title": "jackhhao/jailbreak-classification",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/jackhhao/jailbreak-classification",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 13,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "harmful language",
+        "hate speech",
+        "toxic comments",
+        "abusive language",
+        "offensive language",
+        "user comments"
+      ],
+      "known_failure_patterns": [
+        "general sentiment datasets",
+        "comment datasets without toxicity labels",
+        "topic moderation without harmful language annotations"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq006",
+      "query_text": "I want to detect harmful language in user comments.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 3,
+      "score": 0.5912217631715098,
+      "title": "iabufarha/ar_sarcasm",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/iabufarha/ar_sarcasm",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "harmful language",
+        "hate speech",
+        "toxic comments",
+        "abusive language",
+        "offensive language",
+        "user comments"
+      ],
+      "known_failure_patterns": [
+        "general sentiment datasets",
+        "comment datasets without toxicity labels",
+        "topic moderation without harmful language annotations"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq006",
+      "query_text": "I want to detect harmful language in user comments.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 4,
+      "score": 0.5677984081818679,
+      "title": "ArtificialAnalysis/Earnings22-Cleaned-AA",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/Earnings22-Cleaned-AA",
+      "quality_flags": [],
+      "inferred_domains": [
+        "audio_speech",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "audio"
+      ],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "harmful language",
+        "hate speech",
+        "toxic comments",
+        "abusive language",
+        "offensive language",
+        "user comments"
+      ],
+      "known_failure_patterns": [
+        "general sentiment datasets",
+        "comment datasets without toxicity labels",
+        "topic moderation without harmful language annotations"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq006",
+      "query_text": "I want to detect harmful language in user comments.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 5,
+      "score": 0.5042274311755549,
+      "title": "PKU-Alignment/PKU-SafeRLHF",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/PKU-Alignment/PKU-SafeRLHF",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 11,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "harmful language",
+        "hate speech",
+        "toxic comments",
+        "abusive language",
+        "offensive language",
+        "user comments"
+      ],
+      "known_failure_patterns": [
+        "general sentiment datasets",
+        "comment datasets without toxicity labels",
+        "topic moderation without harmful language annotations"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq006",
+      "query_text": "I want to detect harmful language in user comments.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 6,
+      "score": 0.49626175178941717,
+      "title": "tals/vitaminc",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/tals/vitaminc",
+      "quality_flags": [
+        "too_short"
+      ],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 11,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "harmful language",
+        "hate speech",
+        "toxic comments",
+        "abusive language",
+        "offensive language",
+        "user comments"
+      ],
+      "known_failure_patterns": [
+        "general sentiment datasets",
+        "comment datasets without toxicity labels",
+        "topic moderation without harmful language annotations"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq006",
+      "query_text": "I want to detect harmful language in user comments.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 7,
+      "score": 0.46028923166164754,
+      "title": "Karavet/ILUR-news-text-classification-corpus",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/Karavet/ILUR-news-text-classification-corpus",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "weather_climate",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "classification"
+      ],
+      "inferred_modalities": [
+        "text",
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 9,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "harmful language",
+        "hate speech",
+        "toxic comments",
+        "abusive language",
+        "offensive language",
+        "user comments"
+      ],
+      "known_failure_patterns": [
+        "general sentiment datasets",
+        "comment datasets without toxicity labels",
+        "topic moderation without harmful language annotations"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq006",
+      "query_text": "I want to detect harmful language in user comments.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 8,
+      "score": 0.44970297658582553,
+      "title": "ucirvine/sms_spam",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/ucirvine/sms_spam",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 10,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "harmful language",
+        "hate speech",
+        "toxic comments",
+        "abusive language",
+        "offensive language",
+        "user comments"
+      ],
+      "known_failure_patterns": [
+        "general sentiment datasets",
+        "comment datasets without toxicity labels",
+        "topic moderation without harmful language annotations"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq006",
+      "query_text": "I want to detect harmful language in user comments.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 9,
+      "score": 0.4482187299493674,
+      "title": "FutureMa/EvasionBench",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/FutureMa/EvasionBench",
+      "quality_flags": [
+        "too_short"
+      ],
+      "inferred_domains": [
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 11,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "harmful language",
+        "hate speech",
+        "toxic comments",
+        "abusive language",
+        "offensive language",
+        "user comments"
+      ],
+      "known_failure_patterns": [
+        "general sentiment datasets",
+        "comment datasets without toxicity labels",
+        "topic moderation without harmful language annotations"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq006",
+      "query_text": "I want to detect harmful language in user comments.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 10,
+      "score": 0.3991072941331321,
+      "title": "fthbrmnby/turkish_product_reviews",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/fthbrmnby/turkish_product_reviews",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 10,
+      "expected_domain": [
+        "nlp_text"
+      ],
+      "expected_task": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "text"
+      ],
+      "positive_clues": [
+        "harmful language",
+        "hate speech",
+        "toxic comments",
+        "abusive language",
+        "offensive language",
+        "user comments"
+      ],
+      "known_failure_patterns": [
+        "general sentiment datasets",
+        "comment datasets without toxicity labels",
+        "topic moderation without harmful language annotations"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq007",
+      "query_text": "I want to study how cities change using images taken from above.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 1,
+      "score": 0.6831661408394375,
+      "title": "SpaceNet 7 Change Detection Chips and Masks",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/amerii/spacenet-7-change-detection-chips-and-masks",
+      "quality_flags": [],
+      "inferred_domains": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "image",
+        "geospatial"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "expected_task": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "image",
+        "geospatial"
+      ],
+      "positive_clues": [
+        "satellite imagery",
+        "aerial imagery",
+        "remote sensing",
+        "urban change",
+        "urban growth",
+        "land use",
+        "land cover"
+      ],
+      "known_failure_patterns": [
+        "generic city image datasets",
+        "weather imagery without urban change",
+        "remote sensing datasets unrelated to change over time"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq007",
+      "query_text": "I want to study how cities change using images taken from above.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 2,
+      "score": 0.56956,
+      "title": "CDnet 2014",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/vafaeii/cdnet-2014-change-detection-benchmark-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "weather_climate",
+        "hydrology_water"
+      ],
+      "inferred_use_cases": [
+        "segmentation",
+        "detection",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "image",
+        "video",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "expected_task": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "image",
+        "geospatial"
+      ],
+      "positive_clues": [
+        "satellite imagery",
+        "aerial imagery",
+        "remote sensing",
+        "urban change",
+        "urban growth",
+        "land use",
+        "land cover"
+      ],
+      "known_failure_patterns": [
+        "generic city image datasets",
+        "weather imagery without urban change",
+        "remote sensing datasets unrelated to change over time"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq007",
+      "query_text": "I want to study how cities change using images taken from above.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 3,
+      "score": 0.5027950936335647,
+      "title": "Gold-standard Lunar Sinuous Rilles Image Data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/dyutideeptabanerjee/lunar-ode-datasets-for-sinuous-rilles-detection",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "earth_observation"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "image"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "expected_task": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "image",
+        "geospatial"
+      ],
+      "positive_clues": [
+        "satellite imagery",
+        "aerial imagery",
+        "remote sensing",
+        "urban change",
+        "urban growth",
+        "land use",
+        "land cover"
+      ],
+      "known_failure_patterns": [
+        "generic city image datasets",
+        "weather imagery without urban change",
+        "remote sensing datasets unrelated to change over time"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq007",
+      "query_text": "I want to study how cities change using images taken from above.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 4,
+      "score": 0.47922902891157776,
+      "title": "Nyudepthv2",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/polinastepanenko/nyudepthv2",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "earth_observation"
+      ],
+      "inferred_use_cases": [
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "image",
+        "video"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "expected_task": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "image",
+        "geospatial"
+      ],
+      "positive_clues": [
+        "satellite imagery",
+        "aerial imagery",
+        "remote sensing",
+        "urban change",
+        "urban growth",
+        "land use",
+        "land cover"
+      ],
+      "known_failure_patterns": [
+        "generic city image datasets",
+        "weather imagery without urban change",
+        "remote sensing datasets unrelated to change over time"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq007",
+      "query_text": "I want to study how cities change using images taken from above.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 5,
+      "score": 0.4550590286513679,
+      "title": "Automated DeepStateMap Occupied Areas",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/zsoltlazar/automated-deepstatemap-occupied-areas",
+      "quality_flags": [],
+      "inferred_domains": [
+        "earth_observation",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "time_series",
+        "geospatial",
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 11,
+      "expected_domain": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "expected_task": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "image",
+        "geospatial"
+      ],
+      "positive_clues": [
+        "satellite imagery",
+        "aerial imagery",
+        "remote sensing",
+        "urban change",
+        "urban growth",
+        "land use",
+        "land cover"
+      ],
+      "known_failure_patterns": [
+        "generic city image datasets",
+        "weather imagery without urban change",
+        "remote sensing datasets unrelated to change over time"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq007",
+      "query_text": "I want to study how cities change using images taken from above.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 6,
+      "score": 0.4511767006790446,
+      "title": "TeoMeWhy Loyalty System",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/teocalvo/teomewhy-loyalty-system",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "expected_task": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "image",
+        "geospatial"
+      ],
+      "positive_clues": [
+        "satellite imagery",
+        "aerial imagery",
+        "remote sensing",
+        "urban change",
+        "urban growth",
+        "land use",
+        "land cover"
+      ],
+      "known_failure_patterns": [
+        "generic city image datasets",
+        "weather imagery without urban change",
+        "remote sensing datasets unrelated to change over time"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq007",
+      "query_text": "I want to study how cities change using images taken from above.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 7,
+      "score": 0.43048890339642554,
+      "title": "Low-Res Super Resolution Dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/tyrionlannisterlzy/super-resolution-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "earth_observation"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "image",
+        "video",
+        "geospatial"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "expected_task": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "image",
+        "geospatial"
+      ],
+      "positive_clues": [
+        "satellite imagery",
+        "aerial imagery",
+        "remote sensing",
+        "urban change",
+        "urban growth",
+        "land use",
+        "land cover"
+      ],
+      "known_failure_patterns": [
+        "generic city image datasets",
+        "weather imagery without urban change",
+        "remote sensing datasets unrelated to change over time"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq007",
+      "query_text": "I want to study how cities change using images taken from above.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 8,
+      "score": 0.430462501571469,
+      "title": "Pakistan Garbage Detection Dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/qasimrajput/pakistan-garbage-detection-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "detection"
+      ],
+      "inferred_modalities": [
+        "image",
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "expected_task": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "image",
+        "geospatial"
+      ],
+      "positive_clues": [
+        "satellite imagery",
+        "aerial imagery",
+        "remote sensing",
+        "urban change",
+        "urban growth",
+        "land use",
+        "land cover"
+      ],
+      "known_failure_patterns": [
+        "generic city image datasets",
+        "weather imagery without urban change",
+        "remote sensing datasets unrelated to change over time"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq007",
+      "query_text": "I want to study how cities change using images taken from above.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 9,
+      "score": 0.4299716348690804,
+      "title": "Semantic Segmentation - BEV",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/sakshaymahna/semantic-segmentation-bev",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "segmentation"
+      ],
+      "inferred_modalities": [
+        "image"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "expected_task": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "image",
+        "geospatial"
+      ],
+      "positive_clues": [
+        "satellite imagery",
+        "aerial imagery",
+        "remote sensing",
+        "urban change",
+        "urban growth",
+        "land use",
+        "land cover"
+      ],
+      "known_failure_patterns": [
+        "generic city image datasets",
+        "weather imagery without urban change",
+        "remote sensing datasets unrelated to change over time"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq007",
+      "query_text": "I want to study how cities change using images taken from above.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 10,
+      "score": 0.41306246103849054,
+      "title": "castanhao-dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/meiazero/castanhao-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "earth_observation"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "image"
+      ],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "earth_observation",
+        "computer_vision"
+      ],
+      "expected_task": [
+        "detection",
+        "segmentation",
+        "monitoring_analysis"
+      ],
+      "expected_modality": [
+        "image",
+        "geospatial"
+      ],
+      "positive_clues": [
+        "satellite imagery",
+        "aerial imagery",
+        "remote sensing",
+        "urban change",
+        "urban growth",
+        "land use",
+        "land cover"
+      ],
+      "known_failure_patterns": [
+        "generic city image datasets",
+        "weather imagery without urban change",
+        "remote sensing datasets unrelated to change over time"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq008",
+      "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+      "language": "tr",
+      "profile": "e5_base",
+      "rank": 1,
+      "score": 0.6225921069008569,
+      "title": "Josephgflowers/Finance-Instruct-500k",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/Josephgflowers/Finance-Instruct-500k",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "finance_markets",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "qa_generation",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "detection"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "financial fraud",
+        "transaction fraud",
+        "credit card fraud",
+        "suspicious transaction",
+        "banking fraud"
+      ],
+      "known_failure_patterns": [
+        "general finance datasets",
+        "forgery/authenticity datasets",
+        "anomaly datasets with no fraud context"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq008",
+      "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+      "language": "tr",
+      "profile": "e5_base",
+      "rank": 2,
+      "score": 0.5239180342137807,
+      "title": "Campaign Affiliate Data",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/edgarco11/campaign-affiliate-data",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "finance_markets"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "ocr_document_ai"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "detection"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "financial fraud",
+        "transaction fraud",
+        "credit card fraud",
+        "suspicious transaction",
+        "banking fraud"
+      ],
+      "known_failure_patterns": [
+        "general finance datasets",
+        "forgery/authenticity datasets",
+        "anomaly datasets with no fraud context"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq008",
+      "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+      "language": "tr",
+      "profile": "e5_base",
+      "rank": 3,
+      "score": 0.47800000000000004,
+      "title": "AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/AlicanKiraz0/Turkish-Finance-SFT-Dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "qa_generation"
+      ],
+      "inferred_modalities": [],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 14,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "detection"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "financial fraud",
+        "transaction fraud",
+        "credit card fraud",
+        "suspicious transaction",
+        "banking fraud"
+      ],
+      "known_failure_patterns": [
+        "general finance datasets",
+        "forgery/authenticity datasets",
+        "anomaly datasets with no fraud context"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq008",
+      "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+      "language": "tr",
+      "profile": "e5_base",
+      "rank": 4,
+      "score": 0.46995654857825614,
+      "title": "Financial Statement Data Sets",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/vadimvanak/company-facts-2",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets"
+      ],
+      "inferred_use_cases": [
+        "detection",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 8,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "detection"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "financial fraud",
+        "transaction fraud",
+        "credit card fraud",
+        "suspicious transaction",
+        "banking fraud"
+      ],
+      "known_failure_patterns": [
+        "general finance datasets",
+        "forgery/authenticity datasets",
+        "anomaly datasets with no fraud context"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq008",
+      "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+      "language": "tr",
+      "profile": "e5_base",
+      "rank": 5,
+      "score": 0.4161980959566664,
+      "title": "Stock Market Dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/jasineri/stock-market-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets"
+      ],
+      "inferred_use_cases": [
+        "recommendation"
+      ],
+      "inferred_modalities": [],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 10,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "detection"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "financial fraud",
+        "transaction fraud",
+        "credit card fraud",
+        "suspicious transaction",
+        "banking fraud"
+      ],
+      "known_failure_patterns": [
+        "general finance datasets",
+        "forgery/authenticity datasets",
+        "anomaly datasets with no fraud context"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq008",
+      "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+      "language": "tr",
+      "profile": "e5_base",
+      "rank": 6,
+      "score": 0.3708354280003606,
+      "title": "playgent-hf/investment-banking",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/playgent-hf/investment-banking",
+      "quality_flags": [
+        "too_short"
+      ],
+      "inferred_domains": [
+        "nlp_text",
+        "finance_markets"
+      ],
+      "inferred_use_cases": [],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 11,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "detection"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "financial fraud",
+        "transaction fraud",
+        "credit card fraud",
+        "suspicious transaction",
+        "banking fraud"
+      ],
+      "known_failure_patterns": [
+        "general finance datasets",
+        "forgery/authenticity datasets",
+        "anomaly datasets with no fraud context"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq008",
+      "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+      "language": "tr",
+      "profile": "e5_base",
+      "rank": 7,
+      "score": 0.3631171378467654,
+      "title": "cc-yiedl-inference",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/degerhan/cc-yiedl-inference",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets"
+      ],
+      "inferred_use_cases": [
+        "retrieval_search",
+        "recommendation"
+      ],
+      "inferred_modalities": [
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "detection"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "financial fraud",
+        "transaction fraud",
+        "credit card fraud",
+        "suspicious transaction",
+        "banking fraud"
+      ],
+      "known_failure_patterns": [
+        "general finance datasets",
+        "forgery/authenticity datasets",
+        "anomaly datasets with no fraud context"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq008",
+      "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+      "language": "tr",
+      "profile": "e5_base",
+      "rank": 8,
+      "score": 0.3407627806998255,
+      "title": "E-Commerce Product Reviews - Dataset for ML",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/furkangozukara/turkish-product-reviews",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "classification",
+        "detection",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 10,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "detection"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "financial fraud",
+        "transaction fraud",
+        "credit card fraud",
+        "suspicious transaction",
+        "banking fraud"
+      ],
+      "known_failure_patterns": [
+        "general finance datasets",
+        "forgery/authenticity datasets",
+        "anomaly datasets with no fraud context"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq008",
+      "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+      "language": "tr",
+      "profile": "e5_base",
+      "rank": 9,
+      "score": 0.32672586189738684,
+      "title": "Phishing Websites Dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/arnavs19/phishing-websites-dataset",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "classification"
+      ],
+      "inferred_modalities": [
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 10,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "detection"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "financial fraud",
+        "transaction fraud",
+        "credit card fraud",
+        "suspicious transaction",
+        "banking fraud"
+      ],
+      "known_failure_patterns": [
+        "general finance datasets",
+        "forgery/authenticity datasets",
+        "anomaly datasets with no fraud context"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq008",
+      "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+      "language": "tr",
+      "profile": "e5_base",
+      "rank": 10,
+      "score": 0.3160333660926225,
+      "title": "artem9k/ai-text-detection-pile",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/artem9k/ai-text-detection-pile",
+      "quality_flags": [],
+      "inferred_domains": [
+        "computer_vision",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "detection"
+      ],
+      "inferred_modalities": [
+        "text"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 9,
+      "expected_domain": [
+        "finance_markets"
+      ],
+      "expected_task": [
+        "detection"
+      ],
+      "expected_modality": [
+        "tabular"
+      ],
+      "positive_clues": [
+        "financial fraud",
+        "transaction fraud",
+        "credit card fraud",
+        "suspicious transaction",
+        "banking fraud"
+      ],
+      "known_failure_patterns": [
+        "general finance datasets",
+        "forgery/authenticity datasets",
+        "anomaly datasets with no fraud context"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq009",
+      "query_text": "I want datasets that help predict future values from past measurements.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 1,
+      "score": 0.61308,
+      "title": "Real-TSF/TIME",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/Real-TSF/TIME",
+      "quality_flags": [],
+      "inferred_domains": [
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [],
+      "expected_task": [
+        "forecasting"
+      ],
+      "expected_modality": [
+        "time_series",
+        "tabular"
+      ],
+      "positive_clues": [
+        "time series",
+        "forecasting",
+        "future values",
+        "past measurements",
+        "historical values",
+        "sensor measurements"
+      ],
+      "known_failure_patterns": [
+        "generic prediction datasets without temporal structure",
+        "classification datasets with no future target",
+        "single snapshot tabular datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq009",
+      "query_text": "I want datasets that help predict future values from past measurements.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 2,
+      "score": 0.5722779762630138,
+      "title": "DataSeer",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/markarchie/dataseer",
+      "quality_flags": [],
+      "inferred_domains": [],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [],
+      "expected_task": [
+        "forecasting"
+      ],
+      "expected_modality": [
+        "time_series",
+        "tabular"
+      ],
+      "positive_clues": [
+        "time series",
+        "forecasting",
+        "future values",
+        "past measurements",
+        "historical values",
+        "sensor measurements"
+      ],
+      "known_failure_patterns": [
+        "generic prediction datasets without temporal structure",
+        "classification datasets with no future target",
+        "single snapshot tabular datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq009",
+      "query_text": "I want datasets that help predict future values from past measurements.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 3,
+      "score": 0.5629885267935383,
+      "title": "Indian Weather Repository ( Daily Updating )",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/nelgiriyewithana/indian-weather-repository-daily-snapshot",
+      "quality_flags": [],
+      "inferred_domains": [
+        "weather_climate",
+        "earth_observation",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "classification",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "time_series",
+        "text",
+        "geospatial"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [],
+      "expected_task": [
+        "forecasting"
+      ],
+      "expected_modality": [
+        "time_series",
+        "tabular"
+      ],
+      "positive_clues": [
+        "time series",
+        "forecasting",
+        "future values",
+        "past measurements",
+        "historical values",
+        "sensor measurements"
+      ],
+      "known_failure_patterns": [
+        "generic prediction datasets without temporal structure",
+        "classification datasets with no future target",
+        "single snapshot tabular datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq009",
+      "query_text": "I want datasets that help predict future values from past measurements.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 4,
+      "score": 0.5619347734283117,
+      "title": "Multi-site Maintenance Prediction",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/kammounmohamedali/multi-site-maintenance-prediction",
+      "quality_flags": [],
+      "inferred_domains": [],
+      "inferred_use_cases": [
+        "forecasting",
+        "segmentation"
+      ],
+      "inferred_modalities": [
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 14,
+      "expected_domain": [],
+      "expected_task": [
+        "forecasting"
+      ],
+      "expected_modality": [
+        "time_series",
+        "tabular"
+      ],
+      "positive_clues": [
+        "time series",
+        "forecasting",
+        "future values",
+        "past measurements",
+        "historical values",
+        "sensor measurements"
+      ],
+      "known_failure_patterns": [
+        "generic prediction datasets without temporal structure",
+        "classification datasets with no future target",
+        "single snapshot tabular datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq009",
+      "query_text": "I want datasets that help predict future values from past measurements.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 5,
+      "score": 0.5490177789383796,
+      "title": "Spring Force for time series analysis",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/danielresi/spring-force-time-series-analysis",
+      "quality_flags": [],
+      "inferred_domains": [
+        "earth_observation"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [],
+      "expected_task": [
+        "forecasting"
+      ],
+      "expected_modality": [
+        "time_series",
+        "tabular"
+      ],
+      "positive_clues": [
+        "time series",
+        "forecasting",
+        "future values",
+        "past measurements",
+        "historical values",
+        "sensor measurements"
+      ],
+      "known_failure_patterns": [
+        "generic prediction datasets without temporal structure",
+        "classification datasets with no future target",
+        "single snapshot tabular datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq009",
+      "query_text": "I want datasets that help predict future values from past measurements.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 6,
+      "score": 0.5412425831599242,
+      "title": "Opportunity Insights real time Economic Tracker US",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/douglaskgaraujo/opportunity-insights-real-time-economic-tracker-us",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [],
+      "expected_task": [
+        "forecasting"
+      ],
+      "expected_modality": [
+        "time_series",
+        "tabular"
+      ],
+      "positive_clues": [
+        "time series",
+        "forecasting",
+        "future values",
+        "past measurements",
+        "historical values",
+        "sensor measurements"
+      ],
+      "known_failure_patterns": [
+        "generic prediction datasets without temporal structure",
+        "classification datasets with no future target",
+        "single snapshot tabular datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq009",
+      "query_text": "I want datasets that help predict future values from past measurements.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 7,
+      "score": 0.5351267643197546,
+      "title": "African Agriculture Holdings Inc. (AAGRW) Stock...",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/nitirajkulkarni/aagrw-stock-performance",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 13,
+      "expected_domain": [],
+      "expected_task": [
+        "forecasting"
+      ],
+      "expected_modality": [
+        "time_series",
+        "tabular"
+      ],
+      "positive_clues": [
+        "time series",
+        "forecasting",
+        "future values",
+        "past measurements",
+        "historical values",
+        "sensor measurements"
+      ],
+      "known_failure_patterns": [
+        "generic prediction datasets without temporal structure",
+        "classification datasets with no future target",
+        "single snapshot tabular datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq009",
+      "query_text": "I want datasets that help predict future values from past measurements.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 8,
+      "score": 0.5309991953685467,
+      "title": "linxy/CryptoCoin",
+      "source": "huggingface",
+      "url": "https://huggingface.co/datasets/linxy/CryptoCoin",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets",
+        "nlp_text"
+      ],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "time_series"
+      ],
+      "semantic_quality_note": "Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",
+      "semantic_variant_hits": 14,
+      "expected_domain": [],
+      "expected_task": [
+        "forecasting"
+      ],
+      "expected_modality": [
+        "time_series",
+        "tabular"
+      ],
+      "positive_clues": [
+        "time series",
+        "forecasting",
+        "future values",
+        "past measurements",
+        "historical values",
+        "sensor measurements"
+      ],
+      "known_failure_patterns": [
+        "generic prediction datasets without temporal structure",
+        "classification datasets with no future target",
+        "single snapshot tabular datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq009",
+      "query_text": "I want datasets that help predict future values from past measurements.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 9,
+      "score": 0.4838909213018276,
+      "title": "Telstra Competition Dataset",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/yifanxie/telstra-competition-dataset",
+      "quality_flags": [],
+      "inferred_domains": [],
+      "inferred_use_cases": [
+        "forecasting"
+      ],
+      "inferred_modalities": [
+        "tabular",
+        "time_series"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [],
+      "expected_task": [
+        "forecasting"
+      ],
+      "expected_modality": [
+        "time_series",
+        "tabular"
+      ],
+      "positive_clues": [
+        "time series",
+        "forecasting",
+        "future values",
+        "past measurements",
+        "historical values",
+        "sensor measurements"
+      ],
+      "known_failure_patterns": [
+        "generic prediction datasets without temporal structure",
+        "classification datasets with no future target",
+        "single snapshot tabular datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    },
+    {
+      "query_id": "lsq009",
+      "query_text": "I want datasets that help predict future values from past measurements.",
+      "language": "en",
+      "profile": "e5_base",
+      "rank": 10,
+      "score": 0.4724713655428495,
+      "title": "lme aluminum forecasting dataset - explainability",
+      "source": "kaggle",
+      "url": "https://www.kaggle.com/datasets/tanulkumarsrivastava/lme-aluminum-forecasting-dataset-explainability",
+      "quality_flags": [],
+      "inferred_domains": [
+        "finance_markets",
+        "weather_climate",
+        "computer_vision"
+      ],
+      "inferred_use_cases": [
+        "forecasting",
+        "detection",
+        "monitoring_analysis"
+      ],
+      "inferred_modalities": [
+        "time_series",
+        "tabular"
+      ],
+      "semantic_quality_note": "",
+      "semantic_variant_hits": 12,
+      "expected_domain": [],
+      "expected_task": [
+        "forecasting"
+      ],
+      "expected_modality": [
+        "time_series",
+        "tabular"
+      ],
+      "positive_clues": [
+        "time series",
+        "forecasting",
+        "future values",
+        "past measurements",
+        "historical values",
+        "sensor measurements"
+      ],
+      "known_failure_patterns": [
+        "generic prediction datasets without temporal structure",
+        "classification datasets with no future target",
+        "single snapshot tabular datasets"
+      ],
+      "manual_relevance": "",
+      "manual_notes": ""
+    }
+  ]
+}
