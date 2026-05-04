@@ -1,8 +1,14 @@
 from bm25 import search as bm25_search
 from query_understanding import build_query_plan
 from quality_scoring import compute_quality_adjustment
-from reranker import DEFAULT_RERANK_DEPTH, rerank_candidates
-from search import search as semantic_search
+from reranker import (
+    DEFAULT_CROSS_ENCODER_BATCH_SIZE,
+    DEFAULT_CROSS_ENCODER_MODEL_NAME,
+    DEFAULT_CROSS_ENCODER_WEIGHT,
+    DEFAULT_RERANK_DEPTH,
+    rerank_candidates,
+)
+from search import get_corpus_doc_freq, search as semantic_search
 from search_profiles import DEFAULT_PROFILE_KEY
 
 DEFAULT_SEMANTIC_WEIGHT = 0.6
@@ -49,6 +55,10 @@ def search(
     enable_quality_penalty: bool = True,
     quality_weight: float = DEFAULT_QUALITY_WEIGHT,
     enable_tr_fusion: bool = True,
+    enable_cross_encoder: bool = False,
+    cross_encoder_model_name: str = DEFAULT_CROSS_ENCODER_MODEL_NAME,
+    cross_encoder_weight: float = DEFAULT_CROSS_ENCODER_WEIGHT,
+    cross_encoder_batch_size: int = DEFAULT_CROSS_ENCODER_BATCH_SIZE,
 ):
     semantic_weight = max(0.0, min(1.0, semantic_weight))
     bm25_weight = 1.0 - semantic_weight
@@ -126,6 +136,7 @@ def search(
             }
         )
 
+    corpus_doc_freq, corpus_total_docs = get_corpus_doc_freq(profile_key, mappings)
     return rerank_candidates(
         plan,
         candidates,
@@ -133,4 +144,10 @@ def search(
         base_weight=0.68,
         enable_quality_penalty=enable_quality_penalty,
         quality_weight=0.12,
+        enable_cross_encoder=enable_cross_encoder,
+        cross_encoder_model_name=cross_encoder_model_name,
+        cross_encoder_weight=cross_encoder_weight,
+        cross_encoder_batch_size=cross_encoder_batch_size,
+        corpus_doc_freq=corpus_doc_freq,
+        corpus_total_docs=corpus_total_docs,
     )

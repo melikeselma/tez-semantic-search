@@ -3,8 +3,8 @@ length_bucket,long,376,0.3357142857142857
 length_bucket,medium,349,0.31160714285714286
 length_bucket,short,395,0.35267857142857145
 description_style,metadata_heavy,206,0.18392857142857144
-description_style,mixed_structured,597,0.5330357142857143
-description_style,narrative,317,0.2830357142857143
-term_bucket,term_moderate,361,0.3223214285714286
-term_bucket,term_rich,372,0.33214285714285713
+description_style,mixed_structured,593,0.5294642857142857
+description_style,narrative,321,0.28660714285714284
+term_bucket,term_moderate,362,0.32321428571428573
+term_bucket,term_rich,371,0.33125
 term_bucket,term_sparse,387,0.3455357142857143

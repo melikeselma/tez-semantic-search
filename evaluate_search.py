@@ -68,6 +68,7 @@ def parse_args():
     parser.add_argument("--hybrid-alpha", type=float, default=DEFAULT_SEMANTIC_WEIGHT)
     parser.add_argument("--hybrid-candidates", type=int, default=DEFAULT_CANDIDATE_K)
     parser.add_argument("--disable-rerank", action="store_true")
+    parser.add_argument("--enable-cross-encoder", action="store_true")
     parser.add_argument("--disable-quality-penalty", action="store_true")
     parser.add_argument("--disable-tr-fusion", action="store_true")
     parser.add_argument("--rerank-depth", type=int, default=DEFAULT_RERANK_DEPTH)
@@ -143,6 +144,7 @@ def run_method(method, query, top_k, source_filter, context):
             rerank_depth=context.get("rerank_depth", DEFAULT_RERANK_DEPTH),
             enable_quality_penalty=context.get("enable_quality_penalty", True),
             enable_tr_fusion=context.get("enable_tr_fusion", True),
+            enable_cross_encoder=context.get("enable_cross_encoder", False),
         )
     elif method == "bm25":
         if context.get("bm25_index") is None:
@@ -173,6 +175,7 @@ def run_method(method, query, top_k, source_filter, context):
             rerank_depth=context.get("rerank_depth", DEFAULT_RERANK_DEPTH),
             enable_quality_penalty=context.get("enable_quality_penalty", True),
             enable_tr_fusion=context.get("enable_tr_fusion", True),
+            enable_cross_encoder=context.get("enable_cross_encoder", False),
         )
     else:
         raise ValueError(f"Unknown method: {method}")
@@ -487,6 +490,7 @@ def main():
             "hybrid_candidates": args.hybrid_candidates,
             "profile": profile.key,
             "enable_rerank": not args.disable_rerank,
+            "enable_cross_encoder": args.enable_cross_encoder,
             "enable_quality_penalty": not args.disable_quality_penalty,
             "enable_tr_fusion": not args.disable_tr_fusion,
             "rerank_depth": args.rerank_depth,

@@ -1,0 +1,223 @@
+[
+  {
+    "query_id": "hnq001",
+    "query_text": "I want to find data for predicting house prices.",
+    "language": "en",
+    "expected_domains": [],
+    "expected_use_cases": ["forecasting"],
+    "expected_modalities": ["tabular"],
+    "core_positive_clues": [
+      "house price",
+      "housing price",
+      "real estate",
+      "property valuation",
+      "sales price",
+      "assessed property value",
+      "assessor data"
+    ],
+    "positive_clues": [
+      "house price",
+      "housing price",
+      "real estate",
+      "property valuation",
+      "sales price",
+      "assessed property value",
+      "assessor data"
+    ],
+    "hard_negative_clues": [
+      "stock market",
+      "stock price",
+      "crypto",
+      "intraday market data",
+      "housing datasets without price targets"
+    ]
+  },
+  {
+    "query_id": "hnq002",
+    "query_text": "I want to study how weather affects crop production.",
+    "language": "en",
+    "expected_domains": ["weather_climate"],
+    "expected_use_cases": ["forecasting", "monitoring_analysis"],
+    "expected_modalities": ["tabular", "time_series"],
+    "core_positive_clues": [
+      "crop production",
+      "crop yield",
+      "agriculture",
+      "farming"
+    ],
+    "positive_clues": [
+      "crop production",
+      "crop yield",
+      "agriculture",
+      "farming",
+      "plant",
+      "rainfall",
+      "temperature",
+      "climate impact"
+    ],
+    "hard_negative_clues": [
+      "major cities weather",
+      "capital weather",
+      "severe weather",
+      "weather only",
+      "weather archive"
+    ]
+  },
+  {
+    "query_id": "hnq003",
+    "query_text": "I want to research diabetes prediction using patient records.",
+    "language": "en",
+    "expected_domains": ["health_medical"],
+    "expected_use_cases": ["classification", "forecasting"],
+    "expected_modalities": ["tabular"],
+    "core_positive_clues": [
+      "diabetes",
+      "glucose",
+      "blood sugar",
+      "patient records",
+      "medical records",
+      "hospital records"
+    ],
+    "positive_clues": [
+      "diabetes",
+      "glucose",
+      "blood sugar",
+      "patient records",
+      "medical records",
+      "clinical indicators",
+      "hospital records"
+    ],
+    "hard_negative_clues": [
+      "covid 19",
+      "weather related disease",
+      "medical imaging",
+      "length of stay"
+    ]
+  },
+  {
+    "query_id": "hnq004",
+    "query_text": "I want to study how cities change using images taken from above.",
+    "language": "en",
+    "expected_domains": ["earth_observation", "computer_vision"],
+    "expected_use_cases": ["detection", "segmentation", "monitoring_analysis"],
+    "expected_modalities": ["image", "geospatial"],
+    "core_positive_clues": [
+      "satellite imagery",
+      "aerial imagery",
+      "remote sensing",
+      "urban change",
+      "change detection"
+    ],
+    "positive_clues": [
+      "satellite imagery",
+      "aerial imagery",
+      "remote sensing",
+      "urban change",
+      "urban growth",
+      "land use",
+      "land cover",
+      "change detection"
+    ],
+    "hard_negative_clues": [
+      "city weather",
+      "generic images",
+      "lunar image",
+      "house dataset"
+    ]
+  },
+  {
+    "query_id": "hnq005",
+    "query_text": "I want to find data for financial fraud detection.",
+    "language": "en",
+    "expected_domains": ["finance_markets"],
+    "expected_use_cases": ["detection", "monitoring_analysis"],
+    "expected_modalities": ["tabular", "time_series"],
+    "core_positive_clues": [
+      "credit card",
+      "transaction data",
+      "transaction level",
+      "payment records",
+      "card entities",
+      "suspicious transaction",
+      "banking fraud"
+    ],
+    "positive_clues": [
+      "credit card",
+      "transaction data",
+      "transaction level",
+      "payment records",
+      "card entities",
+      "suspicious transaction",
+      "banking fraud"
+    ],
+    "hard_negative_clues": [
+      "stock market",
+      "financial statements",
+      "product reviews",
+      "image forgery",
+      "campaign affiliate"
+    ]
+  },
+  {
+    "query_id": "hnq006",
+    "query_text": "I want to find data about people's emotions from short online messages.",
+    "language": "en",
+    "expected_domains": ["nlp_text"],
+    "expected_use_cases": ["classification"],
+    "expected_modalities": ["text"],
+    "core_positive_clues": [
+      "emotion",
+      "sentiment",
+      "tweets",
+      "social media posts",
+      "short online messages",
+      "reddit"
+    ],
+    "positive_clues": [
+      "emotion",
+      "sentiment",
+      "tweets",
+      "social media posts",
+      "short online messages",
+      "reddit",
+      "public opinion"
+    ],
+    "hard_negative_clues": [
+      "product reviews",
+      "movie reviews",
+      "generic sentiment",
+      "low information social media"
+    ]
+  },
+  {
+    "query_id": "hnq007",
+    "query_text": "I want to detect harmful language in user comments.",
+    "language": "en",
+    "expected_domains": ["nlp_text"],
+    "expected_use_cases": ["classification", "monitoring_analysis"],
+    "expected_modalities": ["text"],
+    "core_positive_clues": [
+      "harmful language",
+      "hate speech",
+      "toxic comments",
+      "abusive language",
+      "offensive language",
+      "toxic chat"
+    ],
+    "positive_clues": [
+      "harmful language",
+      "hate speech",
+      "toxic comments",
+      "abusive language",
+      "offensive language",
+      "toxic chat"
+    ],
+    "hard_negative_clues": [
+      "general sentiment",
+      "movie reviews",
+      "product reviews",
+      "sarcasm",
+      "safe rlhf"
+    ]
+  }
+]

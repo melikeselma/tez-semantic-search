@@ -1,0 +1,32 @@
+{
+  "profile": "minilm",
+  "query_specs": "C:\\Users\\user\\Desktop\\Tez\\data\\training\\hard_negative_query_specs.json",
+  "queries": 7,
+  "triples": 39,
+  "unique_positive_refs": 13,
+  "unique_negative_refs": 20,
+  "triples_per_query": {
+    "hnq001": 6,
+    "hnq002": 6,
+    "hnq003": 6,
+    "hnq004": 6,
+    "hnq005": 3,
+    "hnq006": 6,
+    "hnq007": 6
+  },
+  "positive_selection_quality": {
+    "strong": 27,
+    "weak": 12
+  },
+  "negative_reasons": {
+    "negative_clue_match": 23,
+    "missing_query_aspects": 35,
+    "partial_semantic_overlap": 35
+  },
+  "outputs": {
+    "jsonl": "C:\\Users\\user\\Desktop\\Tez\\data\\training\\retriever_hard_negative_triplets.jsonl",
+    "csv": "C:\\Users\\user\\Desktop\\Tez\\data\\training\\retriever_hard_negative_triplets.csv",
+    "summary": "C:\\Users\\user\\Desktop\\Tez\\data\\training\\retriever_hard_negative_summary.json",
+    "report": "C:\\Users\\user\\Desktop\\Tez\\reports\\training\\retriever_hard_negative_report.md"
+  }
+}

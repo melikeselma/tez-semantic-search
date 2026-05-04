@@ -25,6 +25,14 @@ SEARCH_PROFILES = {
         description="Tezin ana Ingilizce semantic search profili.",
         legacy_layout=True,
     ),
+    "e5_base": SearchProfile(
+        key="e5_base",
+        label="E5 Base (EN retrieval)",
+        model_name="intfloat/e5-base-v2",
+        description="Retrieval-focused English semantic search profile for dataset discovery.",
+        query_prefix="query: ",
+        document_prefix="passage: ",
+    ),
     "minilm_ft": SearchProfile(
         key="minilm_ft",
         label="MiniLM (domain fine-tuned)",
@@ -53,6 +61,9 @@ def get_profile(profile_key: str | None) -> SearchProfile:
         "e5_small_v2": "minilm",
         "mini": "minilm",
         "minilm_en": "minilm",
+        "e5_base_v2": "e5_base",
+        "e5_base_en": "e5_base",
+        "e5base": "e5_base",
         "minilm_domain_ft": "minilm_ft",
         "finetuned": "minilm_ft",
         "ft": "minilm_ft",
@@ -69,7 +80,7 @@ def get_profile(profile_key: str | None) -> SearchProfile:
 
 
 def list_profiles() -> list[SearchProfile]:
-    return [SEARCH_PROFILES[key] for key in ("minilm", "minilm_ft", "multilingual")]
+    return [SEARCH_PROFILES[key] for key in ("minilm", "e5_base", "minilm_ft", "multilingual")]
 
 
 def get_profile_paths(profile_key: str | None) -> dict[str, Path]:

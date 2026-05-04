@@ -4,6 +4,11 @@ from collections import Counter
 from pathlib import Path
 from typing import Dict, Iterable, Optional, Tuple
 
+from quality_scoring import (
+    build_semantic_quality_note,
+    infer_quality_flags,
+    should_deemphasize_title,
+)
 from query_understanding import normalize_text, tokenize
 
 ROOT = Path(__file__).resolve().parent
@@ -296,19 +301,39 @@ def score_rule_set(text: str, tokens: set[str], rule_payload: Dict) -> int:
     return score
 
 
-def infer_domains(title: str, description: str, keywords: list[str], metadata: list[str]) -> list[str]:
-    combined = normalize_text(" ".join([title, description, *keywords, *metadata]))
+def infer_domains(
+    title: str,
+    description: str,
+    keywords: list[str],
+    metadata: list[str],
+    include_title: bool = True,
+    min_score: int = 1,
+) -> list[str]:
+    parts = [description, *keywords, *metadata]
+    if include_title:
+        parts.insert(0, title)
+    combined = normalize_text(" ".join(part for part in parts if part))
     token_set = set(tokenize(combined))
     scores = Counter()
     for domain, payload in DOMAIN_RULES.items():
         score = score_rule_set(combined, token_set, payload)
-        if score:
+        if score >= min_score:
             scores[domain] = score
     return [label for label, _ in scores.most_common(3)]
 
 
-def infer_use_cases(title: str, description: str, keywords: list[str], metadata: list[str]) -> list[str]:
-    combined = normalize_text(" ".join([title, description, *keywords, *metadata]))
+def infer_use_cases(
+    title: str,
+    description: str,
+    keywords: list[str],
+    metadata: list[str],
+    include_title: bool = True,
+    min_score: int = 1,
+) -> list[str]:
+    parts = [description, *keywords, *metadata]
+    if include_title:
+        parts.insert(0, title)
+    combined = normalize_text(" ".join(part for part in parts if part))
     hits = Counter()
     for label, patterns in USE_CASE_RULES.items():
         for pattern in patterns:
@@ -319,11 +344,21 @@ def infer_use_cases(title: str, description: str, keywords: list[str], metadata:
                 for token in tokenize(normalized_pattern):
                     if token in combined.split():
                         hits[label] += 1
-    return [label for label, _ in hits.most_common(4)]
+    return [label for label, score in hits.most_common(4) if score >= min_score]
 
 
-def infer_modalities(title: str, description: str, keywords: list[str], metadata: list[str]) -> list[str]:
-    combined = normalize_text(" ".join([title, description, *keywords, *metadata]))
+def infer_modalities(
+    title: str,
+    description: str,
+    keywords: list[str],
+    metadata: list[str],
+    include_title: bool = True,
+    min_score: int = 1,
+) -> list[str]:
+    parts = [description, *keywords, *metadata]
+    if include_title:
+        parts.insert(0, title)
+    combined = normalize_text(" ".join(part for part in parts if part))
     token_set = set(tokenize(combined))
     hits = Counter()
     for label, patterns in MODALITY_RULES.items():
@@ -333,7 +368,7 @@ def infer_modalities(title: str, description: str, keywords: list[str], metadata
                 hits[label] += 2
             elif normalized_pattern in token_set:
                 hits[label] += 1
-    return [label for label, _ in hits.most_common(3)]
+    return [label for label, score in hits.most_common(3) if score >= min_score]
 
 
 def label_to_text(label: str) -> str:
@@ -348,8 +383,12 @@ def build_semantic_summary(
     use_cases: list[str],
     modalities: list[str],
     language_hint: str,
+    semantic_quality_note: str = "",
+    include_title: bool = True,
 ) -> str:
     summary_parts = []
+    if semantic_quality_note:
+        summary_parts.append("quality: " + semantic_quality_note)
     if domains:
         summary_parts.append("domains: " + ", ".join(label_to_text(label) for label in domains))
     if use_cases:
@@ -366,31 +405,172 @@ def build_semantic_summary(
     if short_desc:
         summary_parts.append("summary: " + short_desc)
 
-    title_part = f"title: {title.strip()}" if title.strip() else ""
+    title_part = f"title: {title.strip()}" if include_title and title.strip() else ""
     return " | ".join(part for part in [title_part, *summary_parts] if part)
 
 
-def build_semantic_text(
-    title: str,
-    description: str,
-    keywords: list[str],
-    domains: list[str],
-    use_cases: list[str],
-    modalities: list[str],
-    language_hint: str,
-    semantic_summary: str,
-) -> str:
-    parts = [
-        title.strip(),
-        description.strip(),
-        semantic_summary,
-        "domain concepts: " + ", ".join(label_to_text(label) for label in domains) if domains else "",
-        "task concepts: " + ", ".join(label_to_text(label) for label in use_cases) if use_cases else "",
-        "modality concepts: " + ", ".join(label_to_text(label) for label in modalities) if modalities else "",
-        "language hint: " + language_hint if language_hint else "",
-        "keywords: " + ", ".join(keywords[:12]) if keywords else "",
-    ]
-    return " ".join(part for part in parts if part)
+NON_TOPICAL_METADATA_PREFIXES = (
+    "task_categories:",
+    "language:",
+    "license:",
+    "size_categories:",
+    "format:",
+    "modality:",
+    "library:",
+    "region:",
+    "arxiv:",
+    "doi:",
+)
+
+LOW_SIGNAL_TOPIC_TERMS = {
+    "en",
+    "tr",
+    "text",
+    "image",
+    "audio",
+    "video",
+    "tabular",
+    "dataset",
+    "datasets",
+    "document",
+}
+
+
+def truncate_words(text: str, max_words: int) -> str:
+    words = (text or "").split()
+    if len(words) <= max_words:
+        return " ".join(words).strip()
+    return " ".join(words[:max_words]).strip()
+
+
+def extract_summary_fragment(semantic_summary: str) -> str:
+    text = str(semantic_summary or "").strip()
+    if not text:
+        return ""
+    marker = "summary:"
+    if marker not in text:
+        return ""
+    return text.split(marker, 1)[1].strip(" |")
+
+
+def prefer_topic_terms(values: list[str], max_items: int) -> list[str]:
+    topical = []
+    fallback = []
+    for raw_value in values or []:
+        value = str(raw_value or "").strip()
+        if not value:
+            continue
+        lowered = value.lower()
+        if lowered in LOW_SIGNAL_TOPIC_TERMS:
+            continue
+        if ":" in value:
+            if lowered.startswith(NON_TOPICAL_METADATA_PREFIXES):
+                continue
+            fallback.append(value)
+        else:
+            topical.append(value)
+    return unique_preserve_order(topical + fallback)[:max_items]
+
+
+def is_low_information_description(description: str, quality_flags: list[str]) -> bool:
+    text = (description or "").strip()
+    if not text:
+        return True
+
+    lowered = text.lower()
+    word_count = len(text.split())
+    colon_count = text.count(":")
+    bullet_like = text.count("- ") + lowered.count("keywords:") + lowered.count("tags:")
+    structured_markers = sum(
+        lowered.count(marker)
+        for marker in ("task_categories:", "config_name:", "data_files:", "split:", "path:")
+    )
+
+    if any(
+        flag in set(quality_flags or [])
+        for flag in (
+            "empty",
+            "keyword_only",
+            "short_description",
+            "too_short",
+            "metadata_heavy",
+            "low_information",
+        )
+    ):
+        return True
+    if word_count <= 20 and (lowered.startswith("keywords:") or colon_count >= 3):
+        return True
+    if lowered.startswith("---") and word_count <= 60:
+        return True
+    if structured_markers >= 2:
+        return True
+    if word_count <= 60 and (colon_count >= 4 or bullet_like >= 3):
+        return True
+    if word_count <= 40 and bullet_like >= 4:
+        return True
+    return False
+
+
+def build_semantic_text(row: Dict) -> str:
+    title = str(row.get("title") or "").strip()
+    description = str(row.get("description") or row.get("text") or "").strip()
+    keywords = list(row.get("keywords") or [])
+    metadata = list(row.get("metadata_terms") or [])
+    domains = [label_to_text(label) for label in (row.get("inferred_domains") or [])]
+    use_cases = [label_to_text(label) for label in (row.get("inferred_use_cases") or [])]
+    modalities = [label_to_text(label) for label in (row.get("inferred_modalities") or [])]
+    language_hint = str(row.get("language_hint") or "").strip()
+    quality_flags = [str(flag).strip() for flag in (row.get("quality_flags") or []) if str(flag).strip()]
+    semantic_quality_note = str(row.get("semantic_quality_note") or "").strip()
+    title_deemphasized = bool(semantic_quality_note)
+
+    low_information = is_low_information_description(description, quality_flags)
+    description_excerpt = truncate_words(description, 90)
+    summary_excerpt = truncate_words(extract_summary_fragment(row.get("semantic_summary") or ""), 80)
+    topic_terms = prefer_topic_terms(keywords + metadata, 10)
+    main_topics = unique_preserve_order(domains + topic_terms[:6])
+    keyword_terms = prefer_topic_terms(keywords, 10)
+    metadata_terms_selected = prefer_topic_terms(metadata, 8)
+    supporting_terms = [term for term in metadata_terms_selected if term not in set(keyword_terms)]
+
+    lines = []
+    # Always emit the title so the encoder can see the topic word for short or
+    # keyword-only datasets (e.g. "mushrooms" / "Mushroom"). Title-driven false
+    # positives are still suppressed at rerank time via title de-emphasis; we
+    # were previously dropping the only meaningful semantic anchor.
+    if title:
+        lines.append(f"Dataset title: {title}")
+    if description_excerpt and not low_information:
+        lines.append(f"Dataset description: {description_excerpt}")
+    elif summary_excerpt and not is_low_information_description(summary_excerpt, quality_flags):
+        lines.append(f"Dataset description: {summary_excerpt}")
+
+    if main_topics:
+        lines.append("Main topics: " + ", ".join(main_topics))
+    if use_cases:
+        lines.append("Task/use case: " + ", ".join(use_cases))
+
+    modality_parts = []
+    if modalities:
+        modality_parts.append(", ".join(modalities))
+    if language_hint:
+        modality_parts.append(f"language: {language_hint}")
+    if modality_parts:
+        lines.append("Data modality: " + " | ".join(modality_parts))
+
+    if keyword_terms:
+        lines.append("Keywords: " + ", ".join(keyword_terms))
+    elif metadata_terms_selected:
+        lines.append("Keywords: " + ", ".join(metadata_terms_selected))
+
+    if low_information and supporting_terms:
+        lines.append("Supporting metadata: " + ", ".join(supporting_terms[:6]))
+    if semantic_quality_note:
+        lines.append("Semantic quality: " + semantic_quality_note)
+    if quality_flags and low_information:
+        lines.append("Description quality: " + ", ".join(unique_preserve_order(quality_flags)))
+
+    return "\n".join(line for line in lines if line.strip())
 
 
 def normalize(rec: Dict, source_hint: str) -> Optional[Dict]:
@@ -405,9 +585,41 @@ def normalize(rec: Dict, source_hint: str) -> Optional[Dict]:
     keywords = pick_keywords(rec)
     language_hint = pick_language(rec)
     metadata = metadata_terms(rec)
-    inferred_domains = infer_domains(title, description, keywords, metadata)
-    inferred_use_cases = infer_use_cases(title, description, keywords, metadata)
-    inferred_modalities = infer_modalities(title, description, keywords, metadata)
+    quality_input = {
+        "title": title,
+        "description": description,
+        "keywords": keywords,
+        "quality_flags": rec.get("quality_flags") or [],
+        "description_len_words": rec.get("description_len_words") or len(description.split()),
+    }
+    quality_signal = infer_quality_flags(quality_input)
+    title_deemphasized = should_deemphasize_title(quality_input, quality_signal)
+    semantic_quality_note = build_semantic_quality_note(quality_input, quality_signal)
+    evidence_threshold = 2 if title_deemphasized else 1
+    inferred_domains = infer_domains(
+        title,
+        description,
+        keywords,
+        metadata,
+        include_title=not title_deemphasized,
+        min_score=evidence_threshold,
+    )
+    inferred_use_cases = infer_use_cases(
+        title,
+        description,
+        keywords,
+        metadata,
+        include_title=not title_deemphasized,
+        min_score=evidence_threshold,
+    )
+    inferred_modalities = infer_modalities(
+        title,
+        description,
+        keywords,
+        metadata,
+        include_title=not title_deemphasized,
+        min_score=evidence_threshold,
+    )
     semantic_summary = build_semantic_summary(
         title,
         description,
@@ -416,29 +628,20 @@ def normalize(rec: Dict, source_hint: str) -> Optional[Dict]:
         inferred_use_cases,
         inferred_modalities,
         language_hint,
+        semantic_quality_note=semantic_quality_note,
+        include_title=not title_deemphasized,
     )
 
     # The thesis scope uses title + description as the document text.
     text = f"{title}. {description}".strip()
-    semantic_text = build_semantic_text(
-        title,
-        description,
-        keywords,
-        inferred_domains,
-        inferred_use_cases,
-        inferred_modalities,
-        language_hint,
-        semantic_summary,
-    )
-
-    return {
+    row = {
         "source": source,
         "ref": ref,
         "title": title,
         "description": description,
         "text": text,
-        "semantic_text": semantic_text,
         "semantic_summary": semantic_summary,
+        "semantic_quality_note": semantic_quality_note,
         "url": url,
         "keywords": keywords,
         "language_hint": language_hint,
@@ -451,6 +654,10 @@ def normalize(rec: Dict, source_hint: str) -> Optional[Dict]:
         "description_len_chars": rec.get("description_len_chars") or len(description),
         "description_len_words": rec.get("description_len_words") or len(description.split()),
     }
+    # A structured field order helps embeddings focus on description-driven signals
+    # like topic, task, and modality instead of over-indexing on short titles.
+    row["semantic_text"] = build_semantic_text(row)
+    return row
 
 
 def write_source(path: Path, source_hint: str, out, seen: set) -> Tuple[int, int, int]:

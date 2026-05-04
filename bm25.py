@@ -1,7 +1,7 @@
 import math
 from collections import Counter, defaultdict
 
-from query_understanding import build_query_plan, tokenize
+from query_understanding import STOPWORDS, build_query_plan, tokenize
 
 TITLE_WEIGHT = 3
 KEYWORD_WEIGHT = 2
@@ -14,6 +14,67 @@ SKIP_KEYWORD_PREFIXES = {
     "region:",
     "size_categories:",
     "task_categories:",
+}
+# Tokens that look like topic words but are actually platform/listing tags
+# present in many descriptions, so they hand BM25 spurious matches like
+# "Reddit Australia" appearing for queries that just contain the word "research".
+GENERIC_NOISE_TERMS = {
+    "research",
+    "researcher",
+    "researchers",
+    "study",
+    "studies",
+    "analysis",
+    "analyses",
+    "global",
+    "intermediate",
+    "advanced",
+    "beginner",
+    "kaggle",
+    "huggingface",
+    "dataset",
+    "datasets",
+    "open",
+    "free",
+    "public",
+    "people",
+    "users",
+    "use",
+    "task",
+    "tasks",
+    "data",
+    "image",
+    "images",
+    "text",
+    "texts",
+    "video",
+    "videos",
+    "audio",
+    "record",
+    "records",
+    "set",
+    "sets",
+    "year",
+    "years",
+    "sample",
+    "samples",
+    "training",
+    "test",
+    "validation",
+    "label",
+    "labels",
+    "type",
+    "types",
+    "benchmark",
+    "benchmarks",
+    "evaluation",
+    "evaluating",
+    "system",
+    "systems",
+    "corpus",
+    "collection",
+    "file",
+    "files",
 }
 
 
@@ -115,17 +176,49 @@ def search(query: str, bm25_index: BM25Index, top_k: int = 5, query_plan: dict |
     return bm25_index.search(query, top_k=top_k, query_plan=query_plan)
 
 
-def build_weighted_query_counts(query: str, plan: dict) -> Counter:
-    query_counts = Counter(tokenize(plan.get("original_query") or query))
+def _is_meaningful_query_token(token: str) -> bool:
+    if not token or len(token) < 2:
+        return False
+    if token in STOPWORDS:
+        return False
+    if token in GENERIC_NOISE_TERMS:
+        return False
+    return True
 
-    for token in plan.get("raw_focus_terms") or []:
-        query_counts[token] += 2
+
+def build_weighted_query_counts(query: str, plan: dict) -> Counter:
+    raw_focus = list(plan.get("raw_focus_terms") or [])
+    concept_terms = list(plan.get("concept_terms") or [])
+    domain_terms = list(plan.get("domain_terms") or [])
+
+    query_counts = Counter()
+
+    # Original-query tokens come into BM25 only as a thin baseline because
+    # un-filtered words like "research", "want", "on" used to match Reddit /
+    # Republicans datasets purely on stopword overlap.
+    for token in tokenize(plan.get("original_query") or query):
+        if _is_meaningful_query_token(token):
+            query_counts[token] += 1
+
+    for token in raw_focus:
+        if _is_meaningful_query_token(token):
+            query_counts[token] += 2
 
     concept_boost = 3 if plan.get("detected_language") == "tr" else 2
-    for token in plan.get("concept_terms") or []:
-        query_counts[token] += concept_boost
+    for token in concept_terms:
+        if _is_meaningful_query_token(token):
+            query_counts[token] += concept_boost
 
-    for token in plan.get("domain_terms") or []:
-        query_counts[token] += 1
+    for token in domain_terms:
+        if _is_meaningful_query_token(token):
+            query_counts[token] += 1
+
+    # Defensive fallback: if the cleaning above wiped every token (e.g. the
+    # query is literally "research data"), keep a minimal raw token set so
+    # BM25 still has something to score, otherwise we silently return nothing.
+    if not query_counts:
+        for token in tokenize(plan.get("original_query") or query):
+            if token and len(token) >= 2:
+                query_counts[token] += 1
 
     return query_counts

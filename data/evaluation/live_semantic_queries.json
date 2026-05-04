@@ -1,0 +1,92 @@
+[
+  {
+    "query_id": "lsq001",
+    "query_text": "I want to analyze social media sentiment about political events.",
+    "language": "en",
+    "expected_domain": ["nlp_text"],
+    "expected_task": ["classification", "sentiment_analysis"],
+    "expected_modality": ["text"],
+    "positive_clues": ["social media posts", "tweets", "comments", "political events", "sentiment"],
+    "known_failure_patterns": ["generic sentiment datasets with no social media signal", "politics datasets without text sentiment labels", "review-only datasets"]
+  },
+  {
+    "query_id": "lsq002",
+    "query_text": "I want to find data for predicting house prices.",
+    "language": "en",
+    "expected_domain": ["finance_markets"],
+    "expected_task": ["forecasting", "regression"],
+    "expected_modality": ["tabular"],
+    "positive_clues": ["house price", "housing price", "real estate", "property valuation", "sale price"],
+    "known_failure_patterns": ["generic finance price datasets", "stock or crypto price datasets", "housing datasets without price targets"]
+  },
+  {
+    "query_id": "lsq003",
+    "query_text": "I want to study how weather affects crop production.",
+    "language": "en",
+    "expected_domain": ["weather_climate"],
+    "expected_task": ["forecasting", "monitoring_analysis"],
+    "expected_modality": ["tabular", "time_series"],
+    "positive_clues": ["crop production", "crop yield", "agriculture", "farming", "rainfall", "temperature", "climate impact"],
+    "known_failure_patterns": ["weather-only datasets with no agriculture signal", "agriculture datasets without weather variables", "generic climate archives"]
+  },
+  {
+    "query_id": "lsq004",
+    "query_text": "I want to research diabetes prediction using patient records.",
+    "language": "en",
+    "expected_domain": ["health_medical"],
+    "expected_task": ["classification", "forecasting"],
+    "expected_modality": ["tabular"],
+    "positive_clues": ["diabetes", "glucose", "blood sugar", "patient records", "medical records", "clinical indicators"],
+    "known_failure_patterns": ["generic health prediction datasets", "medical imaging datasets without tabular patient records", "non-diabetes clinical tasks"]
+  },
+  {
+    "query_id": "lsq005",
+    "query_text": "I want to find data about people's emotions from short online messages.",
+    "language": "en",
+    "expected_domain": ["nlp_text"],
+    "expected_task": ["classification"],
+    "expected_modality": ["text"],
+    "positive_clues": ["emotion", "sentiment", "short online messages", "tweets", "social media posts"],
+    "known_failure_patterns": ["review datasets instead of short messages", "generic text classification corpora", "low-information social media datasets"]
+  },
+  {
+    "query_id": "lsq006",
+    "query_text": "I want to detect harmful language in user comments.",
+    "language": "en",
+    "expected_domain": ["nlp_text"],
+    "expected_task": ["classification", "monitoring_analysis"],
+    "expected_modality": ["text"],
+    "positive_clues": ["harmful language", "hate speech", "toxic comments", "abusive language", "offensive language", "user comments"],
+    "known_failure_patterns": ["general sentiment datasets", "comment datasets without toxicity labels", "topic moderation without harmful language annotations"]
+  },
+  {
+    "query_id": "lsq007",
+    "query_text": "I want to study how cities change using images taken from above.",
+    "language": "en",
+    "expected_domain": ["earth_observation", "computer_vision"],
+    "expected_task": ["detection", "segmentation", "monitoring_analysis"],
+    "expected_modality": ["image", "geospatial"],
+    "positive_clues": ["satellite imagery", "aerial imagery", "remote sensing", "urban change", "urban growth", "land use", "land cover"],
+    "known_failure_patterns": ["generic city image datasets", "weather imagery without urban change", "remote sensing datasets unrelated to change over time"]
+  },
+  {
+    "query_id": "lsq008",
+    "query_text": "Finansal dolandırıcılık tespiti için veri seti arıyorum.",
+    "language": "tr",
+    "expected_domain": ["finance_markets"],
+    "expected_task": ["detection"],
+    "expected_modality": ["tabular"],
+    "positive_clues": ["financial fraud", "transaction fraud", "credit card fraud", "suspicious transaction", "banking fraud"],
+    "known_failure_patterns": ["general finance datasets", "forgery/authenticity datasets", "anomaly datasets with no fraud context"]
+  },
+  {
+    "query_id": "lsq009",
+    "query_text": "I want datasets that help predict future values from past measurements.",
+    "language": "en",
+    "expected_domain": [],
+    "expected_task": ["forecasting"],
+    "expected_modality": ["time_series", "tabular"],
+    "positive_clues": ["time series", "forecasting", "future values", "past measurements", "historical values", "sensor measurements"],
+    "known_failure_patterns": ["generic prediction datasets without temporal structure", "classification datasets with no future target", "single snapshot tabular datasets"]
+  }
+]

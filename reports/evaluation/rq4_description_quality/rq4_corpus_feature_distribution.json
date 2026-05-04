@@ -37,26 +37,26 @@
     {
       "feature": "description_style",
       "bucket": "mixed_structured",
-      "documents": 597,
-      "share": 0.5330357142857143
+      "documents": 593,
+      "share": 0.5294642857142857
     },
     {
       "feature": "description_style",
       "bucket": "narrative",
-      "documents": 317,
-      "share": 0.2830357142857143
+      "documents": 321,
+      "share": 0.28660714285714284
     },
     {
       "feature": "term_bucket",
       "bucket": "term_moderate",
-      "documents": 361,
-      "share": 0.3223214285714286
+      "documents": 362,
+      "share": 0.32321428571428573
     },
     {
       "feature": "term_bucket",
       "bucket": "term_rich",
-      "documents": 372,
-      "share": 0.33214285714285713
+      "documents": 371,
+      "share": 0.33125
     },
     {
       "feature": "term_bucket",

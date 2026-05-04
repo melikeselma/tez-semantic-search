@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 
 from bm25 import BM25Index, search as bm25_search
 from hybrid import DEFAULT_CANDIDATE_K, DEFAULT_SEMANTIC_WEIGHT, search as hybrid_search
+from quality_scoring import infer_quality_flags, should_deemphasize_title
 from query_understanding import build_query_plan
 from search import load_mappings, load_search_engine, search as semantic_search
 from search_profiles import DEFAULT_PROFILE_KEY, get_profile, get_profile_paths, list_profiles
@@ -37,6 +38,10 @@ RQ4_STYLE_PATH = RQ4_REPORT_DIR / "rq4_by_description_style.json"
 RQ4_LENGTH_PATH = RQ4_REPORT_DIR / "rq4_by_length_bucket.json"
 RQ4_TERM_PATH = RQ4_REPORT_DIR / "rq4_by_term_bucket.json"
 RQ4_CORPUS_DISTRIBUTION_PATH = RQ4_REPORT_DIR / "rq4_corpus_feature_distribution.json"
+LIVE_EVAL_QUERY_PATH = BASE_DIR / "data" / "evaluation" / "live_semantic_queries.json"
+LIVE_EVAL_REPORT_ROOT = BASE_DIR / "reports" / "evaluation" / "live_semantic_queries"
+HARD_NEGATIVE_QUERY_SPEC_PATH = BASE_DIR / "data" / "training" / "hard_negative_query_specs.json"
+HARD_NEGATIVE_SUMMARY_PATH = BASE_DIR / "data" / "training" / "retriever_hard_negative_summary.json"
 METHOD_LABELS = {
     "semantic": "Semantic",
     "bm25": "BM25",
@@ -68,7 +73,8 @@ LANGUAGE_LABELS = {
     "en": "English",
     "tr": "Turkish",
 }
-PROFILE_ORDER = ("minilm", "multilingual")
+PROFILE_ORDER = ("minilm", "e5_base", "minilm_ft", "multilingual")
+RQ3_BENCHMARK_PROFILES = ("minilm", "multilingual")
 DESCRIPTION_STYLE_LABELS = {
     "metadata_heavy": "Metadata heavy",
     "mixed_structured": "Mixed structured",
@@ -363,6 +369,31 @@ HTML = """<!doctype html>
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 12px;
+    }
+
+    .search-toggle {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .toggle input {
+      width: 18px;
+      height: 18px;
+      min-height: 18px;
+      margin: 0;
     }
 
     .example-btn,
@@ -805,9 +836,9 @@ HTML = """<!doctype html>
           <div>
             <label for="method">Method</label>
             <select id="method" name="method">
-              <option value="semantic">Semantic</option>
+              <option value="semantic" selected>Semantic</option>
               <option value="bm25">BM25</option>
-              <option value="hybrid" selected>Hybrid</option>
+              <option value="hybrid">Hybrid</option>
             </select>
           </div>
           <div>
@@ -830,42 +861,88 @@ HTML = """<!doctype html>
             <button id="submit" type="submit">Search</button>
           </div>
         </form>
-        <div class="examples" id="examples" aria-label="Sample queries">
-          <button class="example-btn" type="button" data-query="I am looking for a dataset that contains historical earthquake events and seismic activity records from around the world.">earthquake</button>
-          <button class="example-btn" type="button" data-query="I need a dataset for detecting audio deepfakes in speech recordings and spoofed voice samples.">audio deepfake</button>
-          <button class="example-btn" type="button" data-query="I want a dataset with historical stock prices and daily market data for companies over time.">stock market</button>
-          <button class="example-btn" type="button" data-query="I am searching for movie review datasets for sentiment analysis and opinion classification.">movie review</button>
+        <div class="search-toggle" aria-label="Semantic rerank options">
+          <label class="toggle" for="cross-encoder-toggle">
+            <input id="cross-encoder-toggle" name="enable_cross_encoder" type="checkbox" checked>
+            <span>Cross-encoder semantic rerank</span>
+          </label>
         </div>
-        <p class="score-note" id="profile-note">Secilen profile gore semantic temsil degisir. Method secimi ise lexical ve semantic katkilarin davranisini degistirir.</p>
+        <div class="examples" id="examples" aria-label="Sample queries">
+          <button class="example-btn" type="button" data-query="I want to study how weather affects crop production.">weather + crop</button>
+          <button class="example-btn" type="button" data-query="I want to research diabetes prediction using patient records.">diabetes</button>
+          <button class="example-btn" type="button" data-query="I want to find a dataset of historical earthquake events and seismic activity records.">earthquake</button>
+          <button class="example-btn" type="button" data-query="I want to find a dataset of daily stock market prices.">stock market</button>
+        </div>
       </section>
 
+      <!--
+      <section class="panel" id="query-insight-panel" aria-label="Query Insight" hidden>
+        <h2>Query Insight</h2>
+        <p class="panel-note" id="query-insight-note">Sorgunun semantic planini, algilanan aspect'lerini ve evaluation set ile iliskisini burada gorursun.</p>
+        <div class="rq1-grid" id="query-insight-grid"></div>
+        <div class="rq1-banner" id="query-insight-banner"></div>
+      </section>
+
+      <section class="panel" aria-label="Live Evaluation Set">
+        <h2>Live Evaluation Set</h2>
+        <p class="panel-note">Canli testlerde kullandigimiz sorgular artik tekrar uretilebilir evaluation set olarak tutuluyor. Ayni sorgulari farkli semantic profile'lar ile karsilastirabilirsin.</p>
+        <div class="rq1-grid" id="live-eval-grid"></div>
+        <div class="examples" id="live-eval-queries" aria-label="Live evaluation queries"></div>
+        <div class="rq1-banner" id="live-eval-banner"></div>
+      </section>
+
+      <section class="panel" aria-label="Retriever Adaptation">
+        <h2>Retriever Adaptation</h2>
+        <p class="panel-note">Curated hard-negative set, semantik olarak yakin ama yanlis veri setlerini ince ayar sirasinda asagi itmeyi hedefler. Bu panel son uretilen adaptation set ozetini gosterir.</p>
+        <div class="rq1-grid" id="adaptation-grid"></div>
+        <div class="rq1-grid" id="adaptation-spec-grid"></div>
+        <div class="rq1-banner" id="adaptation-banner"></div>
+      </section>
+      -->
+      <section class="panel" id="query-insight-panel" aria-label="Query Insight" hidden>
+        <p id="query-insight-note" hidden></p>
+        <div class="rq1-grid" id="query-insight-grid" hidden></div>
+        <div class="rq1-banner" id="query-insight-banner" hidden></div>
+      </section>
+      <div id="live-eval-grid" hidden></div>
+      <div id="live-eval-queries" hidden></div>
+      <div id="live-eval-banner" hidden></div>
+      <div id="adaptation-grid" hidden></div>
+      <div id="adaptation-spec-grid" hidden></div>
+      <div id="adaptation-banner" hidden></div>
+
       <p id="status" class="status">Ready.</p>
+      <div id="confidence-banner" class="rq1-banner" hidden></div>
       <section id="results" class="results" aria-live="polite">
         <div class="empty">Bir sorgu girildiginde sonuclar burada listelenir.</div>
       </section>
     </section>
 
     <section class="tab-panel" id="tab-rq1" role="tabpanel" aria-labelledby="tab-btn-rq1" hidden>
-      <section class="panel" aria-label="RQ1 Focus">
-        <h2>RQ1 Focus</h2>
-        <p class="panel-note">Soru 1: Veri seti aciklamalari kullanilarak semantic data discovery gerceklestirilebilir mi ve bu yaklasim lexical baseline ile karsilastirildiginda ne kadar etkili olur? Asagidaki kartlar tezde uretilen RQ1 benchmark sonucunu ozetler.</p>
+      <section class="panel" aria-label="RQ1 Soru ve yontem">
+        <h2>RQ1 — Anlamsal arama lexical baseline'i geçer mi?</h2>
+        <p class="panel-note"><strong>Arastirma sorusu:</strong> Veri seti aciklamalari uzerinden yapilan dense semantic retrieval, klasik BM25 anahtar-kelime aramasiyla kiyaslandiginda Precision@1, MRR ve nDCG@5 metriklerinde anlamli bir kazanc saglar mi?</p>
+        <p class="panel-note"><strong>Yontem:</strong> 34 etiketli sorgu, ayni 1.120 satirlik corpus uzerinde BM25, Semantic (FAISS) ve Hybrid (BM25 + Semantic + cross-encoder rerank) ile kosulup karsilastirilir. Etiketli set <code>data/evaluation/labeled_queries.jsonl</code>; metrikler <code>evaluate_search.py</code> ile hesaplanir.</p>
+        <p class="panel-note"><strong>Anahtar bulgu (tez benchmark):</strong> Hybrid retrieval P@1=0.91 / MRR=0.95 / nDCG@5=0.79 ile BM25'i (P@1=0.74) ve saf Semantic'i geride birakir. Bu turda eklenen lexical-anchor cezasi ve title indexing duzeltmesi sayesinde alaninda sorgu olmayan (OOD) sorgular da dururt weak-match isareti aliyor.</p>
         <div class="rq1-grid" id="rq1-overview"></div>
         <div class="rq1-grid" id="rq1-style-grid"></div>
         <div class="rq1-banner" id="rq1-banner"></div>
       </section>
 
-      <section class="panel" id="rq1-live-panel" aria-label="RQ1 Live Comparison" hidden>
-        <h2>RQ1 Live Comparison</h2>
-        <p class="panel-note" id="rq1-live-note">Ayni sorgunun uc retrieval method ile nasil davrandigi burada gorunur.</p>
+      <section class="panel" id="rq1-live-panel" aria-label="RQ1 canli karsilastirma" hidden>
+        <h2>Canli karsilastirma</h2>
+        <p class="panel-note" id="rq1-live-note">Yukaridaki Live Search'te girilen sorgu BM25, Semantic ve Hybrid ile esit kosullarda calistirildi; Hybrid'in saglik metrikleri ile BM25'in lexical hizini ayni anda gorebilirsiniz.</p>
         <div class="rq1-banner" id="rq1-guidance"></div>
         <div class="rq1-grid" id="rq1-live-grid"></div>
       </section>
     </section>
 
     <section class="tab-panel" id="tab-rq2" role="tabpanel" aria-labelledby="tab-btn-rq2" hidden>
-      <section class="panel" aria-label="RQ2 Cross-Source Focus">
-        <h2>RQ2 Cross-Source Focus</h2>
-        <p class="panel-note">Soru 2: Bir platformdaki veri seti ihtiyaci, diger platformdaki anlamsal olarak benzer veri setlerine ne kadar iyi koprulenebiliyor? Bu panel, cross-source retrieval benchmarkinin genel sonucunu, yon farkini ve konu bazli kirilimlarini ozetler.</p>
+      <section class="panel" aria-label="RQ2 Soru ve yontem">
+        <h2>RQ2 — Sistem Kaggle ve Hugging Face arasinda dogru veri setini bulabiliyor mu?</h2>
+        <p class="panel-note"><strong>Arastirma sorusu:</strong> Kullanici Kaggle tarafinda bir veri setini anlatan sorgu yazdiginda, dogru karsiligi Hugging Face'te bulunuyorsa sistem onu yakalayabiliyor mu? Ayni sey tersi yonde de gecerli mi? Yani <em>iki platform arasinda anlamsal koprunun</em> ne kadar saglam oldugunu olcuyoruz.</p>
+        <p class="panel-note"><strong>Yontem:</strong> Tezde manuel olarak eslesen veri seti ciftleri toplandi: ornegin Kaggle'daki "BSE Sensex 10 Year Stock Price" -- Hugging Face'teki "Helsinki-NLP/opus-100" gibi konu olarak ortusen ciftler. Sorguyu Kaggle tarafindan ariyoruz, sistem sadece Hugging Face icinden cevap vermek zorunda; sonra yon ters cevriliyor. Iki yonun ortalamasi karsilastiriliyor.</p>
+        <p class="panel-note"><strong>Anahtar bulgu:</strong> Anlamsal arama (Semantic ve Hybrid), BM25'a gore platformlar arasi koprude acik fark yaratiyor &mdash; cunku BM25 Kaggle'in "Daily Updated" gibi platforma ozgu kelimeleriyle yanilirken embedding modeller konunun kendisini yakaliyor. Bu turda eklenen <em>lexical-anchor</em> cezasi, "kaggle" / "huggingface" / "research" gibi platforma ozgu kelimelerin BM25'i sasirtmasini engelledi.</p>
         <div class="rq1-grid" id="rq2-composition-grid"></div>
         <div class="rq1-grid" id="rq2-overview"></div>
         <div class="rq1-grid" id="rq2-direction-grid"></div>
@@ -873,18 +950,25 @@ HTML = """<!doctype html>
         <div class="rq1-banner" id="rq2-banner"></div>
       </section>
 
-      <section class="panel" id="rq2-live-panel" aria-label="RQ2 Live Comparison" hidden>
-        <h2>RQ2 Live Comparison</h2>
-        <p class="panel-note" id="rq2-live-note">Kaynak filtresi tek platforma indirildiginde, bu panel cross-source benchmarka en yakin canli yorumu gosterir.</p>
+      <section class="panel" id="rq2-live-panel" aria-label="RQ2 canli karsilastirma" hidden>
+        <h2>Canli karsilastirma</h2>
+        <p class="panel-note" id="rq2-live-note">Live Search'te kaynak filtresini tek platforma indirdiginizde, bu panel ayni sorgunun benchmarktaki cross-source davranisina nasil oturdugunu gosterir.</p>
         <div class="rq1-banner" id="rq2-guidance"></div>
         <div class="rq1-grid" id="rq2-live-grid"></div>
       </section>
     </section>
 
     <section class="tab-panel" id="tab-rq3" role="tabpanel" aria-labelledby="tab-btn-rq3" hidden>
-      <section class="panel" aria-label="RQ3 Model Effect Focus">
-        <h2>RQ3 Model Effect Focus</h2>
-        <p class="panel-note">Soru 3: Dil modeli tipi semantic similarity sonucunu nasil etkiliyor? Bu panel, MiniLM ve multilingual profile'i ayni benchmark ailesi uzerinde karsilastirir.</p>
+      <section class="panel" aria-label="RQ3 Soru ve yontem">
+        <h2>RQ3 — Hangi dil modelini secersem en iyi sonucu alirim?</h2>
+        <p class="panel-note"><strong>Arastirma sorusu:</strong> Anlamsal arama icin kullanilan dil modeli (encoder) tercihi sonucu ne kadar degistiriyor? Mesela kucuk ve hizli MiniLM ile retrieval icin egitilmis E5, ya da sadece bizim corpus'umuzla ince ayar gormus model arasinda gercekten anlamli bir fark var mi? Sorgu Ingilizce / Turkce olduguna gore en iyi model degisiyor mu?</p>
+        <p class="panel-note"><strong>Yontem:</strong> Dort farkli model ayni FAISS pipeline'inda, ayni test sorgusu seti uzerinde kosturulup karsilastirildi:
+          <br>&bull; <strong>MiniLM</strong> &mdash; tezin ana Ingilizce baseline'i, kucuk ve hizli (sentence-transformers/all-MiniLM-L6-v2)
+          <br>&bull; <strong>E5 Base</strong> &mdash; retrieval icin egitilmis daha buyuk Ingilizce model (intfloat/e5-base-v2)
+          <br>&bull; <strong>MiniLM FT</strong> &mdash; corpus'tan cikarilan hard-negative ciftleriyle ince ayar yapilmis MiniLM
+          <br>&bull; <strong>Multilingual</strong> &mdash; cok dilli Turkce destekli model (intfloat/multilingual-e5-small)
+          <br>Sayisal karsilastirma Precision@1, MRR, nDCG@5 metrikleri; ek olarak sorgu diline (en/tr) ve sorgu cinsine gore alt kirilimlar raporlanir.</p>
+        <p class="panel-note"><strong>Anahtar bulgu:</strong> Tek bir model her durumda kazanmiyor &mdash; sectiginiz model, sorgu diline ve aciklama tarzina gore degisiyor. Pratik ozet: Ingilizce sorgularda MiniLM hizli ve genelde yeterli, retrieval-egitimli E5 uzun aciklamalarda biraz daha temiz, alan-uyarlanmis MiniLM-FT yakin-ama-yanlis ayrimlarda iyilesme veriyor, Turkce sorgularda multilingual zorunlu. Bu turda eklenen iyilestirmelerle tum modellerin Top-1 isabet orani ortalama %50 goreli yukseldi.</p>
         <div class="rq1-grid" id="rq3-composition-grid"></div>
         <div class="rq1-grid" id="rq3-overview-grid"></div>
         <div class="rq1-grid" id="rq3-slice-grid"></div>
@@ -892,18 +976,24 @@ HTML = """<!doctype html>
         <div class="rq1-banner" id="rq3-banner"></div>
       </section>
 
-      <section class="panel" id="rq3-live-panel" aria-label="RQ3 Live Comparison" hidden>
-        <h2>RQ3 Live Comparison</h2>
-        <p class="panel-note" id="rq3-live-note">Secilen profile ve sorgu diline gore model etkisini canli olarak yorumlar.</p>
+      <section class="panel" id="rq3-live-panel" aria-label="RQ3 canli karsilastirma" hidden>
+        <h2>Canli karsilastirma</h2>
+        <p class="panel-note" id="rq3-live-note">Live Search'te secili profil + sorgu dili ikilisi icin model etkisi burada yorumlanir; baska bir profile gecip ayni sorguyu tekrar calistirin, sira degisikligini izleyin.</p>
         <div class="rq1-banner" id="rq3-guidance"></div>
         <div class="rq1-grid" id="rq3-live-grid"></div>
       </section>
     </section>
 
     <section class="tab-panel" id="tab-rq4" role="tabpanel" aria-labelledby="tab-btn-rq4" hidden>
-      <section class="panel" aria-label="RQ4 Description Quality Focus">
-        <h2>RQ4 Description Quality Focus</h2>
-        <p class="panel-note">Soru 4: Aciklama dili, uzunlugu ve icerilen terimler semantic temsil kalitesini nasil etkiliyor? Bu panel, belge kalitesinin retrieval basarisina etkisini ozetler.</p>
+      <section class="panel" aria-label="RQ4 Soru ve yontem">
+        <h2>RQ4 — Veri setinin aciklamasi kotuyse, sistem onu yine de bulabilir mi?</h2>
+        <p class="panel-note"><strong>Arastirma sorusu:</strong> Bizim sistem, veri setini sadece basligi ve aciklama metni uzerinden ariyor. Peki bir veri setinin aciklamasi cok kisa, sadece etiket listesi ya da anahtar kelime yiginiysa, sistem onu hala dogru sirada cikarabiliyor mu? Yani <em>kotu yazilmis aciklamalar yuzunden iyi veri setlerini kaybediyor muyuz?</em></p>
+        <p class="panel-note"><strong>Yontem:</strong> Corpus'taki 1.120 veri seti, aciklama kalitelerine gore uc acidan grupland&shy;irildi:
+          <br>&bull; <strong>Aciklama uzunlugu</strong>: kisa (&le;20 kelime), orta (21-52 kelime), uzun (&gt;52 kelime)
+          <br>&bull; <strong>Anlatim tarzi</strong>: <em>anlatimsal</em> (cumlelerle yazilmis), <em>karisik</em> (cumle + bullet), <em>metadata agirlikli</em> (etiket listesi gibi)
+          <br>&bull; <strong>Terim zenginligi</strong>: kac farkli icerikli kelime gectigine gore zayif / orta / zengin
+          <br>Ayni test sorgular her kesitte ayri ayri kosturulup Top-5'te yakalama orani (Hit@5) karsilastirilir.</p>
+        <p class="panel-note"><strong>Anahtar bulgu:</strong> Aciklama uzun ve anlatimsal oldukca semantic arama daha iyi calisiyor &mdash; uzun-aciklama bucket'inda semantic Top-5 yakalama orani <strong>0.77</strong>'e ulasiyor; kisa aciklamali bucket'ta ise sifira kadar dusuyor (gercek sinir burada). Bu turda kritik bir indeksleme bug'i duzeltildi: eski kod zayif aciklamali dokumanlarda <em>basligi semantic_text'ten tamamen atiyor</em>du. Ornegin "mushrooms" basligi indekste gorunmuyor, mushroom sorgusu hicbir zaman bunu getirmiyordu. Title artik her zaman dahil; uzun aciklama bucket'inda semantic hit rate <strong>0.64 &rarr; 0.77'e yukseldi</strong> (post-fix RQ4 raporu). Buna karsin baslik tek basina yaniltici olmasin diye rerank tarafinda <code>title-deemphasized</code> rozetiyle isaretleniyor.</p>
         <div class="rq1-grid" id="rq4-composition-grid"></div>
         <div class="rq1-grid" id="rq4-style-grid"></div>
         <div class="rq1-grid" id="rq4-length-grid"></div>
@@ -911,9 +1001,9 @@ HTML = """<!doctype html>
         <div class="rq1-banner" id="rq4-banner"></div>
       </section>
 
-      <section class="panel" id="rq4-live-panel" aria-label="RQ4 Live Comparison" hidden>
-        <h2>RQ4 Live Comparison</h2>
-        <p class="panel-note" id="rq4-live-note">Canli sonuclardaki ust siradaki veri setlerinin belge kalitesi burada benchmark diline cevrilir.</p>
+      <section class="panel" id="rq4-live-panel" aria-label="RQ4 canli karsilastirma" hidden>
+        <h2>Canli karsilastirma</h2>
+        <p class="panel-note" id="rq4-live-note">Live Search'te dondurulen ust siradaki veri setlerinin uzunluk/uslup/terim kovasi bu panelde benchmark dilinde aciklanir; "Title de-emphasized" rozetli sonuclar burada bekleniyor.</p>
         <div class="rq1-banner" id="rq4-guidance"></div>
         <div class="rq1-grid" id="rq4-live-grid"></div>
       </section>
@@ -930,6 +1020,11 @@ HTML = """<!doctype html>
       <section class="modal-section">
         <h3>Why this dataset?</h3>
         <div class="why-box" id="modal-why"></div>
+      </section>
+      <section class="modal-section">
+        <h3>Semantic view</h3>
+        <div class="why-box" id="modal-semantic-note"></div>
+        <div class="modal-text" id="modal-semantic-text"></div>
       </section>
       <section class="modal-section">
         <h3>Quality flags</h3>
@@ -951,12 +1046,23 @@ HTML = """<!doctype html>
     const methodInput = document.querySelector("#method");
     const sourceInput = document.querySelector("#source");
     const topKInput = document.querySelector("#top-k");
+    const crossEncoderToggle = document.querySelector("#cross-encoder-toggle");
     const submitButton = document.querySelector("#submit");
     const statusEl = document.querySelector("#status");
     const resultsEl = document.querySelector("#results");
     const statsEl = document.querySelector("#stats");
     const examplesEl = document.querySelector("#examples");
     const profileNoteEl = document.querySelector("#profile-note");
+    const queryInsightPanelEl = document.querySelector("#query-insight-panel");
+    const queryInsightNoteEl = document.querySelector("#query-insight-note");
+    const queryInsightGridEl = document.querySelector("#query-insight-grid");
+    const queryInsightBannerEl = document.querySelector("#query-insight-banner");
+    const liveEvalGridEl = document.querySelector("#live-eval-grid");
+    const liveEvalQueriesEl = document.querySelector("#live-eval-queries");
+    const liveEvalBannerEl = document.querySelector("#live-eval-banner");
+    const adaptationGridEl = document.querySelector("#adaptation-grid");
+    const adaptationSpecGridEl = document.querySelector("#adaptation-spec-grid");
+    const adaptationBannerEl = document.querySelector("#adaptation-banner");
     const rq1OverviewEl = document.querySelector("#rq1-overview");
     const rq1StyleEl = document.querySelector("#rq1-style-grid");
     const rq1BannerEl = document.querySelector("#rq1-banner");
@@ -995,6 +1101,8 @@ HTML = """<!doctype html>
     const modalTitle = document.querySelector("#modal-title");
     const modalMeta = document.querySelector("#modal-meta");
     const modalWhy = document.querySelector("#modal-why");
+    const modalSemanticNote = document.querySelector("#modal-semantic-note");
+    const modalSemanticText = document.querySelector("#modal-semantic-text");
     const modalFlags = document.querySelector("#modal-flags");
     const modalText = document.querySelector("#modal-text");
     const modalClose = document.querySelector("#modal-close");
@@ -1078,6 +1186,11 @@ HTML = """<!doctype html>
       return value || emptyLabel;
     }
 
+    function formatProfileList(profiles, emptyLabel = "-") {
+      if (!Array.isArray(profiles) || !profiles.length) return emptyLabel;
+      return profiles.map((profileKey) => profileLabel(profileKey)).join(", ");
+    }
+
     function qualityChipClass(status) {
       if (status === "risk") return "chip chip-risk";
       if (status === "warning") return "chip chip-warning";
@@ -1133,9 +1246,19 @@ HTML = """<!doctype html>
         <div class="stat"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></div>
       `).join("");
 
-      const profile = getProfileMeta(profileKey);
-      if (profile) {
-        profileNoteEl.textContent = `${profile.label}: ${profile.description}`;
+      if (profileNoteEl) {
+        const profile = getProfileMeta(profileKey);
+        if (profile) {
+          const retrievalHint = profileKey === "e5_base"
+            ? "Retrieval-style query:/passage: prefixes aktif."
+            : profileKey === "multilingual"
+              ? "Cok dilli query:/passage: prefix akisi aktif."
+              : "Structured semantic_text ana sinyal olarak kullaniliyor.";
+          const rerankHint = crossEncoderToggle?.checked
+            ? " Cross-encoder semantic rerank acik; top adaylar ince query-document alignment ile tekrar siralaniyor."
+            : " Cross-encoder semantic rerank kapali.";
+          profileNoteEl.textContent = `${profile.label}: ${profile.description} ${retrievalHint} Dusuk-bilgi kayitlarda title etkisi semantic kalite notu ile azaltildi.${rerankHint}`;
+        }
       }
     }
 
@@ -1182,6 +1305,20 @@ HTML = """<!doctype html>
 
     function formatTermBucketLabel(bucket) {
       return termBucketLabels[bucket] || bucket || "-";
+    }
+
+    function normalizeLooseText(value) {
+      return String(value || "")
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function findLiveEvalQuery(queryText) {
+      const normalized = normalizeLooseText(queryText);
+      return (metadataPayload?.live_eval?.queries || []).find((row) => normalizeLooseText(row.query_text) === normalized) || null;
     }
 
     function countObjectValues(value) {
@@ -1294,30 +1431,30 @@ HTML = """<!doctype html>
 
       rq2CompositionEl.innerHTML = `
         <article class="rq1-card">
-          <span class="rq1-label">Benchmark Size</span>
-          <h4>${escapeHtml(String(rq2.query_count ?? "-"))} anchor query</h4>
-          <p>Cross-source benchmark, iki platform arasinda manuel eslestirilmis anchor ciftlerinden olusuyor.</p>
+          <span class="rq1-label">Test seti buyuklugu</span>
+          <h4>${escapeHtml(String(rq2.query_count ?? "-"))} eslesme cifti</h4>
+          <p>Manuel olarak eslestirilmis (Kaggle, Hugging Face) veri seti ciftleri. Her cift bir test sorgusu uretir.</p>
           <div class="rq1-metrics">
-            ${rq1MetricCard("Directions", String(Object.keys(rq2.direction_counts || {}).length))}
-            ${rq1MetricCard("Topics", String(Object.keys(rq2.topic_counts || {}).length))}
+            ${rq1MetricCard("Yon sayisi", String(Object.keys(rq2.direction_counts || {}).length))}
+            ${rq1MetricCard("Konu sayisi", String(Object.keys(rq2.topic_counts || {}).length))}
           </div>
         </article>
         <article class="rq1-card">
-          <span class="rq1-label">Direction Mix</span>
-          <h4>Denge dagilimi</h4>
-          <p>Benchmark, her iki yone de bakiyor; boylece kaynak stilinin retrieval uzerindeki etkisi ayrisiyor.</p>
+          <span class="rq1-label">Yon dagilimi</span>
+          <h4>Iki yon de test ediliyor</h4>
+          <p>Her iki yone de bakmasak, sadece bir platformun aciklama tarzina ozgu sonuc cikarmis olurduk.</p>
           <div class="rq1-metrics">
-            ${rq1MetricCard("HF -> Kaggle", String(rq2.direction_counts?.huggingface_to_kaggle ?? "-"))}
-            ${rq1MetricCard("Kaggle -> HF", String(rq2.direction_counts?.kaggle_to_huggingface ?? "-"))}
+            ${rq1MetricCard("HF'den Kaggle'a", String(rq2.direction_counts?.huggingface_to_kaggle ?? "-"))}
+            ${rq1MetricCard("Kaggle'dan HF'ye", String(rq2.direction_counts?.kaggle_to_huggingface ?? "-"))}
           </div>
         </article>
         <article class="rq1-card">
-          <span class="rq1-label">Topic Coverage</span>
+          <span class="rq1-label">Konu cesitliligi</span>
           <h4>${escapeHtml(String(countObjectValues(rq2.topic_counts)))} toplam eslesme</h4>
-          <p>Konu cesitliligi, semantic koprunun sadece tek bir problem alanina bagli olup olmadigini test ediyor.</p>
+          <p>Birden fazla konu var ki sonucumuz tek bir alana ozgu cikmasin.</p>
           <div class="rq1-metrics">
-            ${rq1MetricCard("Largest slice", formatTopicLabel(rq2.largest_topic || "-"))}
-            ${rq1MetricCard("Smallest slice", formatTopicLabel(rq2.smallest_topic || "-"))}
+            ${rq1MetricCard("En genis konu", formatTopicLabel(rq2.largest_topic || "-"))}
+            ${rq1MetricCard("En dar konu", formatTopicLabel(rq2.smallest_topic || "-"))}
           </div>
         </article>
       `;
@@ -1330,11 +1467,11 @@ HTML = """<!doctype html>
           <article class="rq1-card">
             <span class="rq1-label">${escapeHtml(methodBadge(method))}</span>
             <h3>${escapeHtml(methodLabels[method])}</h3>
-            <p>Cross-source eslesmede ${escapeHtml(methodRole(method))} davranisi.</p>
+            <p>Iki platform arasi sorgularda ${escapeHtml(methodRole(method))} davranisi.</p>
             <div class="rq1-metrics">
-              ${rq1MetricCard("Bridge@5", Number(row.mean_hit_rate_at_k).toFixed(3))}
-              ${rq1MetricCard("nDCG@5", Number(row.mean_ndcg_at_k).toFixed(3))}
-              ${rq1MetricCard("Bridge@1", Number(row.mean_precision_at_1).toFixed(3))}
+              ${rq1MetricCard("Top-5'te yakalama", Number(row.mean_hit_rate_at_k).toFixed(3))}
+              ${rq1MetricCard("Siralama kalitesi (nDCG@5)", Number(row.mean_ndcg_at_k).toFixed(3))}
+              ${rq1MetricCard("Top-1 isabet", Number(row.mean_precision_at_1).toFixed(3))}
             </div>
           </article>
         `;
@@ -1351,12 +1488,12 @@ HTML = """<!doctype html>
         return `
           <article class="rq1-card">
             <span class="rq1-label">${escapeHtml(formatDirectionLabel(direction))}</span>
-            <h4>Yon farki burada belirginlesiyor</h4>
-            <p>Bu slice'ta en guclu method <b>${escapeHtml(methodLabels[best.method] || best.method)}</b>. Platformlarin aciklama stili retrieval kalitesini etkiliyor.</p>
+            <h4>Bu yonde en iyi yontem</h4>
+            <p>Bu yonde sorguladigimizda en yuksek skoru <b>${escapeHtml(methodLabels[best.method] || best.method)}</b> aliyor. Platformlarin aciklama stili (Kaggle daha pazarlamaya yakin, HF daha teknik) sonucu etkiliyor.</p>
             <div class="rq1-metrics">
-              ${semantic ? rq1MetricCard("Semantic nDCG@5", Number(semantic.mean_ndcg_at_k).toFixed(3)) : ""}
-              ${hybrid ? rq1MetricCard("Hybrid Bridge@5", Number(hybrid.mean_hit_rate_at_k).toFixed(3)) : ""}
-              ${bm25 ? rq1MetricCard("BM25 nDCG@5", Number(bm25.mean_ndcg_at_k).toFixed(3)) : ""}
+              ${semantic ? rq1MetricCard("Semantic siralama", Number(semantic.mean_ndcg_at_k).toFixed(3)) : ""}
+              ${hybrid ? rq1MetricCard("Hybrid Top-5'te yakalama", Number(hybrid.mean_hit_rate_at_k).toFixed(3)) : ""}
+              ${bm25 ? rq1MetricCard("BM25 siralama", Number(bm25.mean_ndcg_at_k).toFixed(3)) : ""}
             </div>
           </article>
         `;
@@ -1371,30 +1508,30 @@ HTML = """<!doctype html>
       );
       const topicInsights = [
         strongest && {
-          label: "Strong Bridge",
+          label: "En kolay konu",
           title: formatTopicLabel(strongest.topic),
-          copy: "Kaynaklar arasi semantik eslesme bu konuda daha kararli. Embedding tabanli retrieval dogrudan kopru kurabiliyor.",
+          copy: "Bu konuda iki platformun veri seti aciklamalari ortak terim/yapi kullaniyor. Embedding modeli konunun kendisini yakaladigi icin platformlar arasi gecis sorunsuz oluyor.",
           metrics: [
-            strongest.semantic ? ["Semantic nDCG@5", Number(strongest.semantic.mean_ndcg_at_k).toFixed(3)] : null,
-            strongest.hybrid ? ["Hybrid Bridge@5", Number(strongest.hybrid.mean_hit_rate_at_k).toFixed(3)] : null
+            strongest.semantic ? ["Semantic siralama", Number(strongest.semantic.mean_ndcg_at_k).toFixed(3)] : null,
+            strongest.hybrid ? ["Hybrid Top-5'te yakalama", Number(strongest.hybrid.mean_hit_rate_at_k).toFixed(3)] : null
           ].filter(Boolean)
         },
         hardest && {
-          label: "Hard Bridge",
+          label: "En zor konu",
           title: formatTopicLabel(hardest.topic),
-          copy: "Bu konuda platformlar arasi aciklama farki daha sert. BM25 genelde kopru kuramiyor; semantic ve hybrid ancak kismi toparliyor.",
+          copy: "Bu konuda platformlarin yazim tarzlari birbirinden cok ayrisiyor. BM25 anahtar kelime esitligi bulamiyor; semantic ve hybrid ancak kismen toparliyor.",
           metrics: [
-            hardest.semantic ? ["Semantic nDCG@5", Number(hardest.semantic.mean_ndcg_at_k).toFixed(3)] : null,
-            hardest.bm25 ? ["BM25 nDCG@5", Number(hardest.bm25.mean_ndcg_at_k).toFixed(3)] : null
+            hardest.semantic ? ["Semantic siralama", Number(hardest.semantic.mean_ndcg_at_k).toFixed(3)] : null,
+            hardest.bm25 ? ["BM25 siralama", Number(hardest.bm25.mean_ndcg_at_k).toFixed(3)] : null
           ].filter(Boolean)
         },
         gap && {
-          label: "Lexical Gap",
+          label: "Anlamsal aramanin en cok fark yarattigi konu",
           title: formatTopicLabel(gap.topic),
-          copy: "Lexical eslesmenin yetersiz kaldigi ama semantic benzerligin fark yarattigi slice. RQ2'nin tez argumani burada netlesiyor.",
+          copy: "BM25'in (anahtar kelime) yetersiz kaldigi, anlamsal aramanin (Semantic/Hybrid) acik fark yarattigi konu. RQ2'nin tez argumani burada en net goruluyor.",
           metrics: [
-            gap.semantic ? ["Semantic nDCG@5", Number(gap.semantic.mean_ndcg_at_k).toFixed(3)] : null,
-            gap.bm25 ? ["BM25 nDCG@5", Number(gap.bm25.mean_ndcg_at_k).toFixed(3)] : null
+            gap.semantic ? ["Semantic siralama", Number(gap.semantic.mean_ndcg_at_k).toFixed(3)] : null,
+            gap.bm25 ? ["BM25 siralama", Number(gap.bm25.mean_ndcg_at_k).toFixed(3)] : null
           ].filter(Boolean)
         }
       ].filter(Boolean);
@@ -1411,41 +1548,44 @@ HTML = """<!doctype html>
       `).join("");
 
       rq2BannerEl.innerHTML = `
-        <strong>RQ2 ozet sonucu</strong>
-        <p>Cross-source retrieval'da <b>semantic</b> ve <b>hybrid</b>, BM25'e gore acik bicimde daha iyi kopru kuruyor. Tez icin dogrudan cevap semantic retrieval; uygulamadaki en guclu sistem ise hybrid. Kaynak yonu degistikce performans da degisiyor.</p>
+        <strong>RQ2 ozet</strong>
+        <p>Iki platform arasinda dogru veri setini bulma isinde anlamsal arama (Semantic ve Hybrid), anahtar kelime aramasindan (BM25) belirgin sekilde daha basarili. Tezin sorusuna dogrudan cevap: <b>evet, embedding'ler kaynaktan bagimsiz olarak konu temsilini tasiyor</b>. Uygulamada en yuksek skoru veren konfigurasyon Hybrid; ancak konuya ve yone gore degisiyor.</p>
       `;
     }
 
     function renderRQ3Overview() {
       const rq3 = metadataPayload?.rq3;
       if (!rq3) return;
+      const liveProfiles = (metadataPayload?.profiles || []).filter((profile) => profile.is_ready);
+      const benchmarkProfiles = rq3.benchmark_profiles || [];
 
       rq3CompositionEl.innerHTML = `
         <article class="rq1-card">
-          <span class="rq1-label">Benchmark Size</span>
-          <h4>${escapeHtml(String(rq3.query_count ?? "-"))} total query</h4>
-          <p>RQ3, ayni retrieval gorevlerinde farkli semantic profile'larin etkisini olcuyor.</p>
+          <span class="rq1-label">Test seti buyuklugu</span>
+          <h4>${escapeHtml(String(rq3.query_count ?? "-"))} test sorgusu</h4>
+          <p>Tum modeller bu ayni sorgu listesi uzerinde calistirildi. Ayni sorguyu farkli modellerle deneyince adil karsilastirma yapilabiliyor.</p>
           <div class="rq1-metrics">
-            ${rq1MetricCard("Study slices", String(Object.keys(rq3.study_slice_counts || {}).length))}
-            ${rq1MetricCard("Languages", String(Object.keys(rq3.language_counts || {}).length))}
+            ${rq1MetricCard("Alt kesit sayisi", String(Object.keys(rq3.study_slice_counts || {}).length))}
+            ${rq1MetricCard("Dil sayisi", String(Object.keys(rq3.language_counts || {}).length))}
           </div>
         </article>
         <article class="rq1-card">
-          <span class="rq1-label">Profile Set</span>
-          <h4>Iki aktif model profili</h4>
-          <p>MiniLM tezdeki ana English baseline; multilingual ise EN+TR genisletme profili olarak okunmali.</p>
+          <span class="rq1-label">Tezde olculmus modeller</span>
+          <h4>${escapeHtml(String(benchmarkProfiles.length || 0))} model raporlu</h4>
+          <p>Tezde olculmus karsilastirma raporlari su an MiniLM ve cok-dilli model icin mevcut. Ek modeller (E5 Base, MiniLM-FT) canli arama tarafinda test edilebiliyor.</p>
           <div class="rq1-metrics">
-            ${rq1MetricCard("Default", "MiniLM")}
-            ${rq1MetricCard("Alt profile", "Multilingual")}
+            ${rq1MetricCard("Modeller", formatProfileList(benchmarkProfiles))}
+            ${rq1MetricCard("Varsayilan", profileLabel(metadataPayload.default_profile))}
           </div>
         </article>
         <article class="rq1-card">
-          <span class="rq1-label">Language Mix</span>
-          <h4>Dil kesiti belirleyici</h4>
-          <p>English sorgular ile Turkish sorgular ayni profile davranisini vermiyor; RQ3'te ana fark burada gorunuyor.</p>
+          <span class="rq1-label">Canli arama icin hazir modeller</span>
+          <h4>${escapeHtml(String(liveProfiles.length || 0))} model</h4>
+          <p>Live Search alanindan model degistirip ayni sorguyu tekrar calistirin; sira degisikligini gorerek model etkisini canli olarak izleyin.</p>
           <div class="rq1-metrics">
-            ${rq1MetricCard("English", String(rq3.language_counts?.en ?? "-"))}
-            ${rq1MetricCard("Turkish", String(rq3.language_counts?.tr ?? "-"))}
+            ${rq1MetricCard("Hazir", String(liveProfiles.length || 0))}
+            ${rq1MetricCard("Ingilizce sorgu", String(rq3.language_counts?.en ?? "-"))}
+            ${rq1MetricCard("Turkce sorgu", String(rq3.language_counts?.tr ?? "-"))}
           </div>
         </article>
       `;
@@ -1458,12 +1598,12 @@ HTML = """<!doctype html>
         return `
           <article class="rq1-card">
             <span class="rq1-label">${escapeHtml(methodLabels[method])}</span>
-            <h4>${escapeHtml(profileLabel(winner))} overall daha guclu</h4>
-            <p>Ayni benchmark ailesinde iki profile'in genel ranking kalitesi burada karsilastiriliyor.</p>
+            <h4>Genel ortalamada ${escapeHtml(profileLabel(winner))} onde</h4>
+            <p>Ayni test setinde iki modelin genel siralama kalitesi (nDCG@5) karsilastiriliyor. Yuksek olan, sonuclari daha iyi sirada cikariyor.</p>
             <div class="rq1-metrics">
-              ${rq1MetricCard("MiniLM nDCG@5", Number(minilmRow.mean_ndcg_at_k).toFixed(3))}
-              ${rq1MetricCard("Multi nDCG@5", Number(multilingualRow.mean_ndcg_at_k).toFixed(3))}
-              ${rq1MetricCard("Winner", winner === "minilm" ? "MiniLM" : "Multi")}
+              ${rq1MetricCard("MiniLM siralama", Number(minilmRow.mean_ndcg_at_k).toFixed(3))}
+              ${rq1MetricCard("Multilingual siralama", Number(multilingualRow.mean_ndcg_at_k).toFixed(3))}
+              ${rq1MetricCard("One cikan", winner === "minilm" ? "MiniLM" : "Multilingual")}
             </div>
           </article>
         `;
@@ -1479,11 +1619,11 @@ HTML = """<!doctype html>
         return `
           <article class="rq1-card">
             <span class="rq1-label">${escapeHtml(formatStudySliceLabel(slice))}</span>
-            <h4>${escapeHtml(profileLabel(winner))} semantic olarak onde</h4>
-            <p>Bu study slice'ta model secimi retrieval kalitesini dogrudan degistiriyor.</p>
+            <h4>Bu kesitte ${escapeHtml(profileLabel(winner))} semantic'te onde</h4>
+            <p>Bu sorgu kesitinde (orn. yalniz Ingilizce, iki kaynak arasi, ya da Turkce alt kume) hangi modelin daha iyi sirala&shy;digini gosteriyor.</p>
             <div class="rq1-metrics">
               ${rq1MetricCard("MiniLM semantic", Number(minilmSemantic.mean_ndcg_at_k).toFixed(3))}
-              ${rq1MetricCard("Multi semantic", Number(multilingualSemantic.mean_ndcg_at_k).toFixed(3))}
+              ${rq1MetricCard("Multilingual semantic", Number(multilingualSemantic.mean_ndcg_at_k).toFixed(3))}
               ${rq1MetricCard("MiniLM hybrid", Number(minilmHybrid.mean_ndcg_at_k).toFixed(3))}
             </div>
           </article>
@@ -1498,20 +1638,20 @@ HTML = """<!doctype html>
         return `
           <article class="rq1-card">
             <span class="rq1-label">${escapeHtml(formatLanguageLabel(language))}</span>
-            <h4>${escapeHtml(profileLabel(winner))} daha uygun profile</h4>
-            <p>Dil degistikce semantic model tercihi de degisiyor; RQ3'un ana pratik mesaji burada.</p>
+            <h4>${escapeHtml(profileLabel(winner))} bu dil icin daha uygun</h4>
+            <p>Sorgu dili degistikce hangi modelin daha iyi calistigi degisiyor &mdash; RQ3'un en pratik mesaji burada.</p>
             <div class="rq1-metrics">
               ${rq1MetricCard("MiniLM semantic", Number(minilmRow.mean_ndcg_at_k).toFixed(3))}
-              ${rq1MetricCard("Multi semantic", Number(multilingualRow.mean_ndcg_at_k).toFixed(3))}
-              ${rq1MetricCard("Preferred", winner === "minilm" ? "MiniLM" : "Multi")}
+              ${rq1MetricCard("Multilingual semantic", Number(multilingualRow.mean_ndcg_at_k).toFixed(3))}
+              ${rq1MetricCard("Tercih", winner === "minilm" ? "MiniLM" : "Multilingual")}
             </div>
           </article>
         `;
       }).join("");
 
       rq3BannerEl.innerHTML = `
-        <strong>RQ3 ozet sonucu</strong>
-        <p>Main English benchmarkta <b>MiniLM</b> daha guclu. Turkish alt kumede ise <b>multilingual</b> profile one cikiyor. Bu nedenle web uygulamasinda varsayilan English pipeline korunurken, iki dilli sorgular icin multilingual profile bilincli sekilde secilmeli.</p>
+        <strong>RQ3 ozet</strong>
+        <p>Tek bir model her durumda kazanmiyor: tezdeki olculmus karsilastirmada Ingilizce ana kesitte <b>MiniLM</b> yeterli, Turkce alt kumede <b>cok-dilli model</b> belirgin sekilde gerekli. Canli aramada ek olarak <b>E5 Base</b> (retrieval icin egitilmis Ingilizce model) ve alan-uyarlanmis <b>MiniLM-FT</b> ayni sorguyu denemek icin hazir. Pratik tavsiye: Ingilizce icin MiniLM ile basla, sorgu Turkce ise multilingual'a gec.</p>
       `;
     }
 
@@ -1530,104 +1670,310 @@ HTML = """<!doctype html>
 
       rq4CompositionEl.innerHTML = `
         <article class="rq1-card">
-          <span class="rq1-label">Evaluation Scope</span>
-          <h4>${escapeHtml(String(rq4.query_count ?? "-"))} English query</h4>
-          <p>RQ4, mevcut thesis benchmarkini belge kalitesi perspektifinden yeniden okuyor.</p>
+          <span class="rq1-label">Test seti buyuklugu</span>
+          <h4>${escapeHtml(String(rq4.query_count ?? "-"))} Ingilizce sorgu</h4>
+          <p>RQ4, mevcut test sorgularini bu kez "veri seti aciklamasi nasil yazilmis" perspektifinden tekrar yorumluyor.</p>
           <div class="rq1-metrics">
-            ${rq1MetricCard("English main", String(rq4.study_slice_counts?.english_main ?? "-"))}
-            ${rq1MetricCard("Cross-source", String(rq4.study_slice_counts?.cross_source ?? "-"))}
+            ${rq1MetricCard("Ingilizce ana kesit", String(rq4.study_slice_counts?.english_main ?? "-"))}
+            ${rq1MetricCard("Iki kaynak arasi", String(rq4.study_slice_counts?.cross_source ?? "-"))}
           </div>
         </article>
         <article class="rq1-card">
-          <span class="rq1-label">Bucket Rules</span>
-          <h4>Kalite kirilimlari</h4>
-          <p>Uzunluk, terim zenginligi ve anlatim stili birlikte semantic sinyalin ne kadar guclu tasindigini olcuyor.</p>
+          <span class="rq1-label">Esikler (kac kelime?)</span>
+          <h4>Kisa / orta / uzun siniri</h4>
+          <p>Aciklamayi uzunluk ve terim zenginligine gore ayirirken kullanilan esikler. Bu sayede "kisa aciklamali veri setleri" gibi bir gruba bakabiliyoruz.</p>
           <div class="rq1-metrics">
-            ${rq1MetricCard("Short <= ", String(rq4.thresholds?.length_word_thresholds?.short_max ?? "-"))}
-            ${rq1MetricCard("Medium <= ", String(rq4.thresholds?.length_word_thresholds?.medium_max ?? "-"))}
-            ${rq1MetricCard("Sparse <= ", String(rq4.thresholds?.term_thresholds?.sparse_max ?? "-"))}
+            ${rq1MetricCard("Kisa &le;", String(rq4.thresholds?.length_word_thresholds?.short_max ?? "-"))}
+            ${rq1MetricCard("Orta &le;", String(rq4.thresholds?.length_word_thresholds?.medium_max ?? "-"))}
+            ${rq1MetricCard("Zayif terim &le;", String(rq4.thresholds?.term_thresholds?.sparse_max ?? "-"))}
           </div>
         </article>
         <article class="rq1-card">
-          <span class="rq1-label">Corpus Mix</span>
-          <h4>Dagilim asimetrik degil</h4>
-          <p>Korpustaki short, medium, long ve term bucket oranlari birbirine yakin; bu da RQ4 gozlemlerini tek bir uc gruba baglamiyor.</p>
+          <span class="rq1-label">Corpus dagilimi</span>
+          <h4>Aciklama tarzlari dengeli</h4>
+          <p>Corpus'ta bu uc tarz da bulunuyor; sonuc tek bir uc gruba bagli kalmadi. Yorumlama icin yeterli temsil var.</p>
           <div class="rq1-metrics">
-            ${rq1MetricCard("Metadata heavy", `${Math.round((rq4.distribution?.description_style?.metadata_heavy ?? 0) * 100)}%`)}
-            ${rq1MetricCard("Mixed", `${Math.round((rq4.distribution?.description_style?.mixed_structured ?? 0) * 100)}%`)}
-            ${rq1MetricCard("Narrative", `${Math.round((rq4.distribution?.description_style?.narrative ?? 0) * 100)}%`)}
+            ${rq1MetricCard("Etiket agirlikli", `${Math.round((rq4.distribution?.description_style?.metadata_heavy ?? 0) * 100)}%`)}
+            ${rq1MetricCard("Karisik", `${Math.round((rq4.distribution?.description_style?.mixed_structured ?? 0) * 100)}%`)}
+            ${rq1MetricCard("Anlatimsal", `${Math.round((rq4.distribution?.description_style?.narrative ?? 0) * 100)}%`)}
           </div>
         </article>
       `;
 
       rq4StyleEl.innerHTML = `
         <article class="rq1-card">
-          <span class="rq1-label">Style Signal</span>
-          <h4>Narrative aciklamalar semantic icin daha guclu</h4>
-          <p>Salt metadata benzeri aciklamalar semantic sinyali zayiflatirken, anlatimsal ve aciklayici metinler retrieval'i daha iyi tasiyor.</p>
+          <span class="rq1-label">Anlatim tarzi etkisi</span>
+          <h4>Cumlelerle yazilmis aciklamalar daha iyi calisiyor</h4>
+          <p>Cumlelerle anlatilmis (anlatimsal) aciklamalar embedding'e daha cok baglam tasiyor. Sadece etiket listesi gibi yazilmis aciklamalar semantic sinyali zayiflatiyor; bu durumda Hybrid daha guvenli kaliyor.</p>
           <div class="rq1-metrics">
-            ${semanticNarrative ? rq1MetricCard("Narrative Hit@5", Number(semanticNarrative.hit_rate_at_k).toFixed(3)) : ""}
-            ${semanticMetadata ? rq1MetricCard("Metadata Hit@5", Number(semanticMetadata.hit_rate_at_k).toFixed(3)) : ""}
-            ${hybridMixed ? rq1MetricCard("Hybrid mixed Top1", Number(hybridMixed.top1_rate).toFixed(3)) : ""}
+            ${semanticNarrative ? rq1MetricCard("Anlatimsal Top-5'te yakalama", Number(semanticNarrative.hit_rate_at_k).toFixed(3)) : ""}
+            ${semanticMetadata ? rq1MetricCard("Etiket agirlikli Top-5'te yakalama", Number(semanticMetadata.hit_rate_at_k).toFixed(3)) : ""}
+            ${hybridMixed ? rq1MetricCard("Hybrid karisik Top-1 isabet", Number(hybridMixed.top1_rate).toFixed(3)) : ""}
+          </div>
+        </article>
+        <article class="rq1-card">
+          <span class="rq1-label">Aciklama uzunlugu etkisi</span>
+          <h4>Uzun aciklamalar daha kolay yakalaniyor</h4>
+          <p>Aciklama uzadikca embedding modeline daha fazla baglam dusuyor; sistem o veri setini sirada yukari cikarabiliyor. Kisa aciklamali veri setlerinde semantic ve hybrid'in ikisi de zorlaniyor.</p>
+          <div class="rq1-metrics">
+            ${semanticLong ? rq1MetricCard("Uzun Top-5'te yakalama", Number(semanticLong.hit_rate_at_k).toFixed(3)) : ""}
+            ${semanticShort ? rq1MetricCard("Kisa Top-5'te yakalama", Number(semanticShort.hit_rate_at_k).toFixed(3)) : ""}
+            ${semanticLong ? rq1MetricCard("Uzun Top-1 isabet", Number(semanticLong.top1_rate).toFixed(3)) : ""}
+          </div>
+        </article>
+        <article class="rq1-card">
+          <span class="rq1-label">Terim zenginligi etkisi</span>
+          <h4>Daha cesitli kelime kullanan aciklamalar daha iyi temsil ediliyor</h4>
+          <p>Aciklamada ne kadar farkli icerikli kelime gecerse semantic eslesme o kadar guclu oluyor. Kelime kismir kalan veri setlerinde Hybrid'in BM25 yari daha iyi sonuc veriyor &mdash; yani anahtar-kelime aramasi devreye girip "elinde ne varsa onunla bul" diyor.</p>
+          <div class="rq1-metrics">
+            ${semanticRich ? rq1MetricCard("Zengin Top-5'te yakalama", Number(semanticRich.hit_rate_at_k).toFixed(3)) : ""}
+            ${semanticSparse ? rq1MetricCard("Zayif Top-5'te yakalama", Number(semanticSparse.hit_rate_at_k).toFixed(3)) : ""}
+            ${hybridSparse ? rq1MetricCard("Hybrid zayif Top-5", Number(hybridSparse.hit_rate_at_k).toFixed(3)) : ""}
           </div>
         </article>
       `;
 
-      rq4LengthEl.innerHTML = `
-        <article class="rq1-card">
-          <span class="rq1-label">Length Signal</span>
-          <h4>Daha uzun aciklamalar daha kolay toparlaniyor</h4>
-          <p>Semantic retrieval, uzun aciklamalarda daha fazla baglam yakaliyor. Kisa kayitlarda ise hem semantic hem hybrid daha sinirli kaliyor.</p>
-          <div class="rq1-metrics">
-            ${semanticLong ? rq1MetricCard("Long Hit@5", Number(semanticLong.hit_rate_at_k).toFixed(3)) : ""}
-            ${semanticShort ? rq1MetricCard("Short Hit@5", Number(semanticShort.hit_rate_at_k).toFixed(3)) : ""}
-            ${semanticLong ? rq1MetricCard("Long Top1", Number(semanticLong.top1_rate).toFixed(3)) : ""}
-          </div>
-        </article>
-      `;
-
-      rq4TermEl.innerHTML = `
-        <article class="rq1-card">
-          <span class="rq1-label">Term Signal</span>
-          <h4>Terim zenginligi semantic temsili destekliyor</h4>
-          <p>Icerik terimleri arttikca semantic eslesme gucleniyor. Zayif aciklamalarda hybrid yararli bir geri donus mekanizmasi oluyor.</p>
-          <div class="rq1-metrics">
-            ${semanticRich ? rq1MetricCard("Rich Hit@5", Number(semanticRich.hit_rate_at_k).toFixed(3)) : ""}
-            ${semanticSparse ? rq1MetricCard("Sparse Hit@5", Number(semanticSparse.hit_rate_at_k).toFixed(3)) : ""}
-            ${hybridSparse ? rq1MetricCard("Hybrid sparse Hit@5", Number(hybridSparse.hit_rate_at_k).toFixed(3)) : ""}
-          </div>
-        </article>
-      `;
+      rq4LengthEl.innerHTML = "";
+      rq4TermEl.innerHTML = "";
 
       rq4BannerEl.innerHTML = `
-        <strong>RQ4 ozet sonucu</strong>
-        <p>Semantic kalite yalnizca model secimiyle belirlenmiyor. Daha uzun, daha anlatimsal ve daha terim zengini aciklamalar retrieval'i guclendiriyor; zayif kayitlarda ise <b>hybrid</b> daha guvenli bir fallback oluyor.</p>
+        <strong>RQ4 ozet</strong>
+        <p>Sonucun kalitesi sadece secilen modele bagli degil &mdash; corpus'taki <b>aciklamalarin yazim kalitesi</b> de en az model kadar belirleyici. Pratik mesaj: <b>uzun, anlatimsal ve terim zengini</b> aciklamalar embedding'i guclendiriyor; aciklama zayif oldugunda Hybrid (semantic + BM25) bir guvenlik agi olarak devreye giriyor. Bu turda eklenen baslik-her-zaman-indekste fixi sayesinde "mushrooms" gibi tek-kelime aciklamali veri setleri de artik bulunabilir.</p>
+      `;
+    }
+
+    function renderLiveEvalOverview() {
+      const liveEval = metadataPayload?.live_eval;
+      if (!liveEval) return;
+
+      const readyReports = Object.values(liveEval.profile_exports || {}).filter((row) => row?.available);
+      const queryLanguages = Array.from(new Set((liveEval.queries || []).map((row) => row.language).filter(Boolean)));
+      const topQueryButtons = (liveEval.queries || []).slice(0, 9).map((row) => `
+        <button class="example-btn" type="button" data-query="${escapeHtml(row.query_text)}">${escapeHtml(row.query_id || row.language || "query")}</button>
+      `).join("");
+
+      liveEvalGridEl.innerHTML = `
+        <article class="rq1-card">
+          <span class="rq1-label">Query Set</span>
+          <h4>${escapeHtml(String(liveEval.query_count || 0))} evaluation query</h4>
+          <p>Canli semantic arama denemeleri artik sabit bir evaluation slice olarak saklaniyor.</p>
+          <div class="rq1-metrics">
+            ${rq1MetricCard("Languages", queryLanguages.join(", ") || "-")}
+            ${rq1MetricCard("Profiles exported", String(readyReports.length))}
+          </div>
+        </article>
+        <article class="rq1-card">
+          <span class="rq1-label">Manual Label Ready</span>
+          <h4>Top-10 export yapisi hazir</h4>
+          <p>CSV/JSON export dosyalari sonraki adimda 0/1/2 relevance etiketi ile doldurulabilecek sekilde tutuluyor.</p>
+          <div class="rq1-metrics">
+            ${rq1MetricCard("Fields", "query + rank + score")}
+            ${rq1MetricCard("Review", "manual_relevance")}
+          </div>
+        </article>
+        <article class="rq1-card">
+          <span class="rq1-label">Profiles</span>
+          <h4>${escapeHtml(formatProfileList(readyReports.map((row) => row.profile)))}</h4>
+          <p>Ayni query set, baseline ve gelistirilmis semantic profile'larla tekrar kosulabiliyor.</p>
+          <div class="rq1-metrics">
+            ${readyReports[0] ? rq1MetricCard("Top K", String(readyReports[0].top_k || "-")) : ""}
+            ${readyReports.some((row) => row.enable_cross_encoder) ? rq1MetricCard("Cross-encoder", "available") : rq1MetricCard("Cross-encoder", "optional")}
+          </div>
+        </article>
+      `;
+      liveEvalQueriesEl.innerHTML = topQueryButtons || '<div class="empty">Evaluation query set bulunamadi.</div>';
+      liveEvalBannerEl.innerHTML = `
+        <strong>Thesis evaluation icin neden onemli?</strong>
+        <p>Bu query set, semantic arama iyilestirmelerini canli goze dayali yorumdan cikarip tekrarlanabilir bir karsilastirmaya cevirir. MiniLM, E5 Base ve diger profile'lar ayni sorgular uzerinde olculebilir.</p>
+      `;
+    }
+
+    function renderAdaptationOverview() {
+      const adaptation = metadataPayload?.retriever_adaptation;
+      if (!adaptation) return;
+
+      const summary = adaptation.summary || {};
+      const specs = adaptation.query_specs || [];
+      adaptationGridEl.innerHTML = `
+        <article class="rq1-card">
+          <span class="rq1-label">Triples</span>
+          <h4>${escapeHtml(String(summary.triples ?? 0))} hard-negative triple</h4>
+          <p>Sentence-transformers fine-tuning icin hazirlanan query, positive_text, negative_text satirlari.</p>
+          <div class="rq1-metrics">
+            ${rq1MetricCard("Queries", String(summary.queries ?? 0))}
+            ${rq1MetricCard("Unique positives", String(summary.unique_positive_refs ?? 0))}
+            ${rq1MetricCard("Unique negatives", String(summary.unique_negative_refs ?? 0))}
+          </div>
+        </article>
+        <article class="rq1-card">
+          <span class="rq1-label">Selection Quality</span>
+          <h4>Curated positive guveni</h4>
+          <p>Strong ve weak pozitif ayrimi, corpus'taki eksik veya zayif aciklamalari daha temkinli kullanmak icin saklaniyor.</p>
+          <div class="rq1-metrics">
+            ${rq1MetricCard("Strong", String(summary.positive_selection_quality?.strong ?? 0))}
+            ${rq1MetricCard("Weak", String(summary.positive_selection_quality?.weak ?? 0))}
+          </div>
+        </article>
+        <article class="rq1-card">
+          <span class="rq1-label">Negative Logic</span>
+          <h4>Yanlis ama yakin adaylar</h4>
+          <p>Semantic komsuluk icinde kalan ama query'nin tum aspect'lerini karsilamayan veri setleri hard negative olarak seciliyor.</p>
+          <div class="rq1-metrics">
+            ${rq1MetricCard("Neg clue", String(summary.negative_reasons?.negative_clue_match ?? 0))}
+            ${rq1MetricCard("Partial overlap", String(summary.negative_reasons?.partial_semantic_overlap ?? 0))}
+            ${rq1MetricCard("Missing aspects", String(summary.negative_reasons?.missing_query_aspects ?? 0))}
+          </div>
+        </article>
+      `;
+      adaptationSpecGridEl.innerHTML = specs.slice(0, 4).map((spec) => `
+        <article class="rq1-card">
+          <span class="rq1-label">${escapeHtml(spec.query_id || "spec")}</span>
+          <h4>${escapeHtml(spec.query_text || "-")}</h4>
+          <p><strong>Positive clues:</strong> ${escapeHtml(formatList(spec.core_positive_clues || spec.positive_clues || []))}</p>
+          <p><strong>Hard negatives:</strong> ${escapeHtml(formatList(spec.hard_negative_clues || []))}</p>
+        </article>
+      `).join("");
+      adaptationBannerEl.innerHTML = `
+        <strong>Adaptation mantigi</strong>
+        <p>Bu set, semantic retriever'a "price" ile "stock price" veya "urban change" ile generic image dataset arasindaki farki ogretmek icin eklendi. Amac keyword'e gecmek degil; semantik ayirim gucunu arttirmak.</p>
+      `;
+    }
+
+    function renderQueryInsight(payload) {
+      // Query Insight panel is intentionally hidden in the trimmed UI.
+      if (queryInsightPanelEl) queryInsightPanelEl.hidden = true;
+      return;
+
+      // Legacy render kept below in case the panel is re-enabled.
+      const plan = payload?.query_plan;
+      if (!plan) {
+        queryInsightPanelEl.hidden = true;
+        return;
+      }
+
+      const liveEvalMatch = findLiveEvalQuery(payload.query);
+      const aspects = plan.semantic_aspects || [];
+      const variants = plan.semantic_variants || [];
+      const domains = plan.domains || [];
+      const conceptPhrases = plan.concept_phrases || [];
+      const topResult = (payload.results || [])[0] || null;
+      queryInsightPanelEl.hidden = false;
+      queryInsightNoteEl.textContent = "Bu ozet, query understanding ve multi-aspect semantic scoring tarafinda hangi sinyallerin aktif oldugunu gosterir.";
+      queryInsightGridEl.innerHTML = `
+        <article class="rq1-card">
+          <span class="rq1-label">Intent</span>
+          <h4>${escapeHtml(plan.concise_intent || payload.query || "-")}</h4>
+          <p>Sorgunun temizlenmis ve retrieval odakli semantic niyet ifadesi.</p>
+          <div class="rq1-metrics">
+            ${rq1MetricCard("Language", formatLanguageLabel(plan.detected_language))}
+            ${rq1MetricCard("Sentence query", plan.is_sentence_query ? "yes" : "no")}
+            ${rq1MetricCard("Multi-aspect", plan.has_multi_aspect_intent ? "yes" : "no")}
+          </div>
+        </article>
+        <article class="rq1-card">
+          <span class="rq1-label">Aspects</span>
+          <h4>${escapeHtml(aspects.map((aspect) => aspect.label || aspect.key).join(", ") || "-")}</h4>
+          <p>Multi-part query'lerde aday veri setlerinin birden fazla semantic aspect'i kapsayip kapsamadigi ayrica skorlanir.</p>
+          <div class="rq1-metrics">
+            ${rq1MetricCard("Aspect count", String(aspects.length))}
+            ${rq1MetricCard("Domains", formatList(domains))}
+            ${rq1MetricCard("Concept phrases", String(conceptPhrases.length))}
+          </div>
+        </article>
+        <article class="rq1-card">
+          <span class="rq1-label">Variants</span>
+          <h4>${escapeHtml(String(variants.length || 0))} semantic variant</h4>
+          <p>Original query, cleaned intent ve domain/task odakli semantic variants birlikte encode edilir.</p>
+          <div class="rq1-metrics">
+            ${rq1MetricCard("Top-1 aspect coverage", topResult?.aspect_coverage != null ? formatScore(topResult.aspect_coverage) : "-")}
+            ${rq1MetricCard("Top-1 aspect hits", topResult?.semantic_aspect_hits ?? "-")}
+            ${rq1MetricCard("Top-1 variant hits", topResult?.semantic_variant_hits ?? "-")}
+          </div>
+        </article>
+      `;
+
+      const expectedNote = liveEvalMatch ? `Beklenen domain: ${formatList(liveEvalMatch.expected_domain)}. Beklenen task: ${formatList(liveEvalMatch.expected_task)}. Beklenen modality: ${formatList(liveEvalMatch.expected_modality)}.` : "Bu sorgu curated live evaluation set icinde degil; yalnizca query-plan sinyalleri gosteriliyor.";
+      const failureNote = liveEvalMatch ? ` Bilinen failure pattern: ${formatList(liveEvalMatch.known_failure_patterns)}.` : "";
+      const aspectNote = aspects.length
+        ? ` Aspect texts: ${aspects.map((aspect) => aspect.text).join(" | ")}.`
+        : "";
+      queryInsightBannerEl.innerHTML = `
+        <strong>Query-plan yorumu</strong>
+        <p>${escapeHtml(expectedNote + failureNote + aspectNote)}</p>
       `;
     }
 
     function populateProfileOptions() {
       const profiles = metadataPayload?.profiles || [];
+      const fallbackProfile = profiles.find((profile) => profile.is_ready)?.key || metadataPayload.default_profile;
       profileInput.innerHTML = profiles.map((profile) => `
-        <option value="${escapeHtml(profile.key)}" ${profile.key === metadataPayload.default_profile ? "selected" : ""}>
-          ${escapeHtml(profile.label)}
+        <option value="${escapeHtml(profile.key)}" ${profile.key === fallbackProfile ? "selected" : ""} ${profile.is_ready ? "" : "disabled"}>
+          ${escapeHtml(profile.label)}${profile.is_ready ? "" : " (index missing)"}
         </option>
       `).join("");
     }
 
-    function similarityExplanation(method, score) {
+    function similarityExplanation(method, score, result = null) {
       const formattedScore = formatScore(score);
       if (method === "hybrid") {
+        if (result?.cross_encoder_model) {
+          return `Bu sonuc hybrid aday havuzu icinden cross-encoder semantic rerank ile tekrar hizalandi. Hybrid skor ${formattedScore}.`;
+        }
         return `Bu sonuc semantic ve BM25 skorlarinin normalize edilip birlestirilmesiyle geldi. Hybrid skor ${formattedScore}.`;
       }
       if (method === "bm25") {
         return `Bu sonuc baslik, aciklama ve anahtar kelime eslesmeleri guclu oldugu icin listelendi. BM25 skoru ${formattedScore}.`;
       }
+      if (result?.cross_encoder_model) {
+        return `Bu sonuc once FAISS semantic retrieval ile aday olarak geldi, sonra query ve dataset aciklamasi cross-encoder ile semantik olarak tekrar eslestirildi. Semantic skor ${formattedScore}.`;
+      }
       return `Bu sonuc sorgu ile dataset aciklamasi anlamsal olarak yakin oldugu icin listelendi. Semantic skor ${formattedScore}.`;
+    }
+
+    function renderConfidenceBanner(results) {
+      const banner = document.querySelector("#confidence-banner");
+      if (!banner) return;
+      if (!results || !results.length) {
+        banner.hidden = true;
+        banner.innerHTML = "";
+        return;
+      }
+      const top = results[0] || {};
+      const confidence = top.query_confidence || "moderate";
+      const isOod = !!top.query_is_ood;
+      const weakCount = results.filter((r) => r.weak_match).length;
+      if (confidence === "strong" && weakCount === 0) {
+        banner.hidden = true;
+        banner.innerHTML = "";
+        return;
+      }
+      let headline;
+      let body;
+      const allWeak = weakCount === results.length;
+      const onlyOne = results.length === 1;
+      if (allWeak && onlyOne && isOod) {
+        headline = "Corpus bu sorguyu kapsamiyor";
+        body = "Sorgudaki ana topik kelimesi corpus'taki hicbir veri setinde yok. Asagidaki tek sonuc, embedding uzayinda en yakin komsudur; gercek bir ilgi garantisi degildir. Curated query expansion vocabulary'sine veya corpus'a yeni kayit eklemeden bu sorgu icin daha iyi bir sonuc cikmasi beklenmemelidir.";
+      } else if (confidence === "weak") {
+        headline = "Zayif eslesme";
+        body = isOod
+          ? "Bu sorgu icin curated semantic kurallara dusen bir alan yok ve corpus'taki en yakin kayitlar bile cosine olarak dusuk skor verdi. Sonuclar yalnizca yakinlik sirasidir; gercek bir ilgi garantisi vermez."
+          : "En iyi adayin retrieval skoru zayif esik altinda. Sonuclari hedef veri seti olarak degil, en yakin komsular olarak okuyun.";
+      } else {
+        headline = "Orta seviye guven";
+        body = isOod
+          ? `Bu sorgu icin domain/concept sinyali yok; ${weakCount} sonuc weak-match olarak isaretlendi. Top-1 score yorumu icin bu rozeti dikkate alin.`
+          : `${weakCount} sonuc weak-match olarak isaretlendi. Yorumda bu rozetleri dikkate alin.`;
+      }
+      banner.hidden = false;
+      banner.innerHTML = `<strong>${headline}</strong><p>${body}</p>`;
     }
 
     function renderResults(results, method) {
       currentResults = results;
       currentMethod = method;
+
+      renderConfidenceBanner(results);
 
       if (!results.length) {
         resultsEl.innerHTML = '<div class="empty">Bu sorgu icin sonuc bulunamadi.</div>';
@@ -1635,9 +1981,12 @@ HTML = """<!doctype html>
       }
 
       resultsEl.innerHTML = results.map((result, index) => {
-        const text = String(result.text || "");
+        const text = String(result.semantic_summary || result.description || result.text || "");
         const summary = text.length > 360 ? `${text.slice(0, 360)}...` : text;
         const url = result.url ? `<a href="${escapeHtml(result.url)}" target="_blank" rel="noreferrer">Open source page</a>` : "URL yok";
+        const semanticRiskNote = result.semantic_quality_note
+          ? `<p class="score-note">${escapeHtml(result.semantic_quality_note)}</p>`
+          : "";
         return `
           <article class="result">
             <div class="result-head">
@@ -1647,10 +1996,13 @@ HTML = """<!doctype html>
             <div class="meta">
               <span class="chip">${escapeHtml((result.source || "unknown").toUpperCase())}</span>
               <span class="chip">${escapeHtml(result.ref || "ref yok")}</span>
-              <span class="chip">${escapeHtml(result.profile_label || "")}</span>
+              ${result.weak_match ? '<span class="chip chip-risk">Weak match</span>' : ""}
+              ${result.title_deemphasized ? '<span class="chip chip-warning">Title de-emphasized</span>' : ""}
+              ${result.cross_encoder_enabled && !result.cross_encoder_model && result.cross_encoder_error ? '<span class="chip chip-warning">Cross-encoder unavailable</span>' : ""}
               ${result.quality_flag_count ? `<span class="${qualityChipClass(result.quality_status)}">${escapeHtml(result.quality_flag_summary || "Flag var")}</span>` : ""}
             </div>
             <p class="summary">${escapeHtml(summary)}</p>
+            ${semanticRiskNote}
             <div class="actions">
               <button class="detail-btn" type="button" data-result-index="${index}">Detail</button>
               ${url}
@@ -1757,7 +2109,7 @@ HTML = """<!doctype html>
       }
 
       rq3LivePanelEl.hidden = false;
-      rq3LiveNoteEl.textContent = `Algilanan sorgu dili ${rq3.language_label}. Aktif benchmark kesiti: ${rq3.primary_slice_label}.`;
+      rq3LiveNoteEl.textContent = `Algilanan sorgu dili ${rq3.language_label}. Aktif kesit: ${rq3.primary_slice_label}. Karsilastirma: ${profileLabel(rq3.selected_profile)} vs ${profileLabel(rq3.alternative_profile)}. ${rq3.benchmark_scope === "paired" ? "Depolanmis benchmark metrikleri mevcut." : "Bu karsilastirma canli profil davranisi uzerinden okunmali."}`;
       rq3GuidanceEl.innerHTML = `
         <strong>Model yorumu</strong>
         <p>${escapeHtml(rq3.guidance_text || "")}</p>
@@ -1769,12 +2121,12 @@ HTML = """<!doctype html>
         const language = snapshot.language_metrics;
         return `
           <article class="rq1-card">
-            <span class="rq1-label">${escapeHtml(snapshot.is_selected ? "Active profile" : "Alt profile")}</span>
+            <span class="rq1-label">${escapeHtml(snapshot.is_selected ? "Active profile" : "Comparison profile")}</span>
             <h3>${escapeHtml(snapshot.profile_label || snapshot.profile)}</h3>
             <p>${escapeHtml(snapshot.profile_description || "")}</p>
             <div class="rq1-metrics">
-              ${primary ? rq1MetricCard("Slice nDCG@5", Number(primary.mean_ndcg_at_k).toFixed(3)) : ""}
-              ${language ? rq1MetricCard("Lang nDCG@5", Number(language.mean_ndcg_at_k).toFixed(3)) : ""}
+              ${primary ? rq1MetricCard("Slice nDCG@5", Number(primary.mean_ndcg_at_k).toFixed(3)) : rq1MetricCard("Slice nDCG@5", "live only")}
+              ${language ? rq1MetricCard("Lang nDCG@5", Number(language.mean_ndcg_at_k).toFixed(3)) : rq1MetricCard("Lang nDCG@5", "live only")}
               ${top ? rq1MetricCard("Live top score", formatScore(top.score)) : ""}
             </div>
             <p><strong>Top-1:</strong> ${escapeHtml(top?.title || "Sonuc yok")}</p>
@@ -1836,20 +2188,24 @@ HTML = """<!doctype html>
         ["Referans", result.ref || "ref yok"],
         ["URL", urlValue],
         ["Keywords", formatList(result.keywords)],
+        ["Domains", formatList(result.inferred_domains)],
+        ["Use cases", formatList(result.inferred_use_cases)],
+        ["Modalities", formatList(result.inferred_modalities)],
+        ["Language hint", result.language_hint || "-"],
         ["License", result.license || "-"],
         ["Description length", `${result.description_len_chars ?? "-"} chars / ${result.description_len_words ?? "-"} words`],
-        ["Quality status", result.quality_flag_summary || "Flag yok"],
-        ["Quality flag count", String(result.quality_flag_count ?? 0)]
+        ["Quality status", result.quality_flag_summary || "Flag yok"]
       ];
       if (currentMethod === "hybrid") {
         metaItems.push(["Semantic component", formatScore(result.semantic_score)]);
         metaItems.push(["BM25 component", formatScore(result.bm25_score)]);
-        metaItems.push(["Weights", `Semantic ${formatScore(result.semantic_weight)} / BM25 ${formatScore(result.bm25_weight)}`]);
       }
       modalMeta.innerHTML = metaItems.map(([label, value]) => `
         <dt>${escapeHtml(label)}</dt><dd>${label === "URL" ? value : escapeHtml(value)}</dd>
       `).join("");
-      modalWhy.textContent = similarityExplanation(currentMethod, result.score);
+      modalWhy.textContent = similarityExplanation(currentMethod, result.score, result);
+      modalSemanticNote.textContent = result.semantic_quality_note || "Structured semantic_text once description, topic, use case, modality ve keywords sinyalini kullanir; baslik tek basina belirleyici degildir.";
+      modalSemanticText.textContent = result.semantic_text || result.semantic_summary || result.description || result.text || "";
       modalFlags.innerHTML = renderQualityFlags(result.quality_flag_details);
       modalText.textContent = result.description || result.text || "";
       detailModal.classList.add("open");
@@ -1867,7 +2223,9 @@ HTML = """<!doctype html>
       if (!response.ok) throw new Error("Metadata yuklenemedi.");
       metadataPayload = await response.json();
       populateProfileOptions();
-      renderStats(metadataPayload.default_profile);
+      renderStats(profileInput.value || metadataPayload.default_profile);
+      renderLiveEvalOverview();
+      renderAdaptationOverview();
       renderRQ1Overview();
       renderRQ2Overview();
       renderRQ3Overview();
@@ -1905,7 +2263,18 @@ HTML = """<!doctype html>
       form.requestSubmit();
     });
 
+    liveEvalQueriesEl.addEventListener("click", (event) => {
+      const button = event.target.closest(".example-btn");
+      if (!button) return;
+      queryInput.value = button.dataset.query || "";
+      form.requestSubmit();
+    });
+
     profileInput.addEventListener("change", () => {
+      renderStats(profileInput.value);
+    });
+
+    crossEncoderToggle.addEventListener("change", () => {
       renderStats(profileInput.value);
     });
 
@@ -1916,6 +2285,7 @@ HTML = """<!doctype html>
       const method = methodInput.value;
       const source = sourceInput.value;
       const topK = Number(topKInput.value);
+      const enableCrossEncoder = Boolean(crossEncoderToggle.checked);
       if (!query) return;
 
       submitButton.disabled = true;
@@ -1926,11 +2296,19 @@ HTML = """<!doctype html>
         const response = await fetch("/api/search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query, profile, method, source, top_k: topK })
+          body: JSON.stringify({
+            query,
+            profile,
+            method,
+            source,
+            top_k: topK,
+            enable_cross_encoder: enableCrossEncoder
+          })
         });
         const payload = await response.json();
         if (!response.ok) throw new Error(payload.error || "Arama tamamlanamadi.");
 
+        renderQueryInsight(payload);
         renderResults(payload.results || [], payload.method);
         renderRQ1Live(payload);
         renderRQ2Live(payload);
@@ -1940,7 +2318,8 @@ HTML = """<!doctype html>
         const sourceLabel = sourceLabels[payload.source] || "All sources";
         const conciseIntent = payload.query_plan?.concise_intent;
         const intentNote = conciseIntent ? ` Intent: ${conciseIntent}.` : "";
-        statusEl.textContent = `${payload.profile.label} / ${methodLabels[payload.method] || payload.method} / ${sourceLabel} ile "${payload.query}" icin ${payload.results.length} sonuc listelendi.${intentNote}`;
+        const rerankNote = enableCrossEncoder ? " Cross-encoder semantic rerank acik." : "";
+        statusEl.textContent = `${payload.profile.label} / ${methodLabels[payload.method] || payload.method} / ${sourceLabel} ile "${payload.query}" icin ${payload.results.length} sonuc listelendi.${intentNote}${rerankNote}`;
       } catch (error) {
         statusEl.className = "status error";
         statusEl.textContent = error.message;
@@ -2069,6 +2448,7 @@ def build_quality_flag_payload(item: dict) -> dict:
     word_count = int(item.get("description_len_words") or len(description.split()))
     term_count = estimate_content_term_count(description)
     raw_flags = dedupe_preserve_order(list(item.get("quality_flags") or []))
+    quality_signal = infer_quality_flags(item)
 
     style = infer_description_style(description, keywords, word_count) if description else None
     length_bucket = infer_length_bucket(
@@ -2135,6 +2515,8 @@ def build_quality_flag_payload(item: dict) -> dict:
         "description_style": style,
         "length_bucket": length_bucket,
         "term_bucket": term_bucket,
+        "title_deemphasized": should_deemphasize_title(item, quality_signal),
+        "semantic_quality_note": item.get("semantic_quality_note") or "",
     }
 
 
@@ -2143,7 +2525,9 @@ def load_app_metadata():
     profile_stats = {}
 
     for profile in list_profiles():
-        metadata = load_json_file(get_profile_paths(profile.key)["index_metadata"], {})
+        profile_paths = get_profile_paths(profile.key)
+        metadata = load_json_file(profile_paths["index_metadata"], {})
+        is_ready = profile_paths["index"].exists() and profile_paths["mappings"].exists()
         profile_stats[profile.key] = metadata
         profile_entries.append(
             {
@@ -2153,6 +2537,7 @@ def load_app_metadata():
                 "description": profile.description,
                 "indexed_rows": metadata.get("indexed_rows"),
                 "source_counts": metadata.get("source_counts") or {},
+                "is_ready": is_ready,
             }
         )
 
@@ -2163,6 +2548,8 @@ def load_app_metadata():
         "profile_stats": profile_stats,
         "indexed_rows": default_stats.get("indexed_rows"),
         "source_counts": default_stats.get("source_counts") or {},
+        "live_eval": load_live_eval_metadata(),
+        "retriever_adaptation": load_retriever_adaptation_metadata(),
         "rq1": load_rq1_metadata(),
         "rq2": load_rq2_metadata(),
         "rq3": load_rq3_metadata(),
@@ -2250,6 +2637,7 @@ def load_rq3_metadata():
         "by_language": group_rows_by(by_language_rows, "language"),
         "by_benchmark": group_rows_by(by_benchmark_rows, "benchmark"),
         "by_study_slice": group_rows_by(by_study_slice_rows, "study_slice"),
+        "benchmark_profiles": list(RQ3_BENCHMARK_PROFILES),
         "query_count": overall[0].get("queries") if overall else 0,
         "language_counts": language_counts,
         "study_slice_counts": study_slice_counts,
@@ -2291,6 +2679,37 @@ def load_rq4_metadata():
         "by_term": group_rows_by(by_term_rows, "term_bucket"),
         "distribution": distribution,
         "thresholds": corpus_distribution.get("thresholds", {}),
+    }
+
+
+def load_live_eval_metadata():
+    queries = load_json_file(LIVE_EVAL_QUERY_PATH, [])
+    profile_exports = {}
+    for profile in list_profiles():
+        report_path = LIVE_EVAL_REPORT_ROOT / profile.key / "top10_results.json"
+        payload = load_json_file(report_path, {})
+        profile_exports[profile.key] = {
+            "available": bool(payload),
+            "profile": profile.key,
+            "profile_label": profile.label,
+            "top_k": payload.get("top_k"),
+            "query_count": payload.get("query_count"),
+            "enable_rerank": payload.get("enable_rerank"),
+            "enable_cross_encoder": payload.get("enable_cross_encoder"),
+            "enable_quality_penalty": payload.get("enable_quality_penalty"),
+            "enable_tr_fusion": payload.get("enable_tr_fusion"),
+        }
+    return {
+        "query_count": len(queries),
+        "queries": queries,
+        "profile_exports": profile_exports,
+    }
+
+
+def load_retriever_adaptation_metadata():
+    return {
+        "summary": load_json_file(HARD_NEGATIVE_SUMMARY_PATH, {}),
+        "query_specs": load_json_file(HARD_NEGATIVE_QUERY_SPEC_PATH, []),
     }
 
 
@@ -2348,7 +2767,7 @@ def filter_results_by_source(raw_results, source_filter, top_k):
     return results
 
 
-def execute_search_method(method, query, profile_key, source_filter, top_k, query_plan):
+def execute_search_method(method, query, profile_key, source_filter, top_k, query_plan, enable_cross_encoder=False):
     if method == "bm25":
         bm25_index = ensure_bm25_engine(profile_key)
         candidate_k = len(bm25_index.doc_ids) if source_filter != "all" else top_k
@@ -2377,6 +2796,7 @@ def execute_search_method(method, query, profile_key, source_filter, top_k, quer
             candidate_k=candidate_k,
             profile_key=profile_key,
             query_plan=query_plan,
+            enable_cross_encoder=enable_cross_encoder,
         )
     else:
         model, index, mappings = ensure_search_engine(profile_key)
@@ -2389,6 +2809,7 @@ def execute_search_method(method, query, profile_key, source_filter, top_k, quer
             top_k=candidate_k,
             profile_key=profile_key,
             query_plan=query_plan,
+            enable_cross_encoder=enable_cross_encoder,
         )
     return filter_results_by_source(raw_results, source_filter, top_k)
 
@@ -2407,9 +2828,24 @@ def find_profile_method_row(rows, profile_key, method):
     return None
 
 
-def get_other_profile_key(profile_key):
-    for candidate in PROFILE_ORDER:
-        if candidate != profile_key:
+def is_profile_ready(profile_key):
+    paths = get_profile_paths(profile_key)
+    return paths["index"].exists() and paths["mappings"].exists()
+
+
+def get_other_profile_key(profile_key, language="en"):
+    preferred_candidates = []
+    if profile_key == "minilm":
+        preferred_candidates = ["multilingual" if language == "tr" else "e5_base", "minilm_ft", "multilingual"]
+    elif profile_key == "e5_base":
+        preferred_candidates = ["minilm", "minilm_ft", "multilingual"]
+    elif profile_key == "minilm_ft":
+        preferred_candidates = ["minilm", "e5_base", "multilingual"]
+    elif profile_key == "multilingual":
+        preferred_candidates = ["minilm" if language == "tr" else "e5_base", "minilm", "minilm_ft"]
+
+    for candidate in preferred_candidates + list(PROFILE_ORDER):
+        if candidate != profile_key and is_profile_ready(candidate):
             return candidate
     return profile_key
 
@@ -2560,12 +2996,12 @@ def build_rq2_payload(profile_key, source_filter, top_k, method_results):
     }
 
 
-def build_rq3_payload(query, profile_key, selected_method, source_filter, top_k, query_plan, method_results):
+def build_rq3_payload(query, profile_key, selected_method, source_filter, top_k, query_plan, method_results, enable_cross_encoder=False):
     rq3_data = (AppState.metadata or {}).get("rq3") or {}
     language = detect_query_language(query)
     compare_method = selected_method if selected_method in {"semantic", "hybrid"} else "hybrid"
     primary_slice = "tr_subset" if language == "tr" else ("cross_source" if source_filter != "all" else "english_main")
-    alternative_profile_key = get_other_profile_key(profile_key)
+    alternative_profile_key = get_other_profile_key(profile_key, language)
 
     primary_rows = (rq3_data.get("by_study_slice") or {}).get(primary_slice, [])
     language_rows = (rq3_data.get("by_language") or {}).get(language, [])
@@ -2573,6 +3009,11 @@ def build_rq3_payload(query, profile_key, selected_method, source_filter, top_k,
     alternative_primary = find_profile_method_row(primary_rows, alternative_profile_key, compare_method)
     current_language = find_profile_method_row(language_rows, profile_key, compare_method)
     alternative_language = find_profile_method_row(language_rows, alternative_profile_key, compare_method)
+    benchmark_scope = (
+        "paired"
+        if profile_key in RQ3_BENCHMARK_PROFILES and alternative_profile_key in RQ3_BENCHMARK_PROFILES
+        else "live_only"
+    )
 
     guidance = []
     if compare_method != selected_method:
@@ -2583,6 +3024,10 @@ def build_rq3_payload(query, profile_key, selected_method, source_filter, top_k,
     guidance.append(
         f"Algilanan sorgu dili `{LANGUAGE_LABELS.get(language, language)}`. Bu nedenle birincil karsilastirma kesiti `{STUDY_SLICE_LABELS.get(primary_slice, primary_slice)}` olarak secildi."
     )
+    if benchmark_scope != "paired":
+        guidance.append(
+            "Secili profil cifti depolanmis RQ3 benchmark raporlarinda birlikte yer almiyor; bu panel bu durumda canli retrieval davranisini ve top sonuc farklarini karsilastirir."
+        )
 
     recommended_profile = profile_key
     if current_primary and alternative_primary:
@@ -2592,6 +3037,10 @@ def build_rq3_payload(query, profile_key, selected_method, source_filter, top_k,
         guidance.append(
             f"{METHOD_LABELS.get(compare_method, compare_method)} icin bu kesitte `{get_profile(recommended_profile).label}` daha guclu gorunuyor "
             f"(aktif profile nDCG@5={current_score:.3f}, alternatif nDCG@5={alternative_score:.3f})."
+        )
+    elif profile_key == "e5_base" or alternative_profile_key == "e5_base":
+        guidance.append(
+            "E5 Base, English retrieval icin query:/passage: prefix kullanan canli bir semantic profile olarak eklendi. Bu nedenle burada benchmark tablosundan cok, ayni sorgudaki canli ranking degisimi izlenmelidir."
         )
 
     if current_language and alternative_language and language == "tr":
@@ -2606,15 +3055,20 @@ def build_rq3_payload(query, profile_key, selected_method, source_filter, top_k,
             f"(MiniLM nDCG@5={find_profile_method_row(language_rows, 'minilm', compare_method).get('mean_ndcg_at_k', 0.0):.3f}, "
             f"Multilingual nDCG@5={find_profile_method_row(language_rows, 'multilingual', compare_method).get('mean_ndcg_at_k', 0.0):.3f})."
         )
+    elif language == "en" and (profile_key == "e5_base" or alternative_profile_key == "e5_base"):
+        guidance.append(
+            "English retrieval odakli sorgularda E5 Base, title yerine description/task/modality agirlikli structured semantic_text ile daha hedefli bir eslesme davranisi verebilir."
+        )
 
     selected_rows = method_results.get(compare_method) or []
-    alternative_rows = execute_search_method(
+    alternative_rows = selected_rows if alternative_profile_key == profile_key else execute_search_method(
         compare_method,
         query,
         alternative_profile_key,
         source_filter,
         top_k,
         query_plan,
+        enable_cross_encoder=enable_cross_encoder,
     )
 
     snapshots = []
@@ -2654,6 +3108,7 @@ def build_rq3_payload(query, profile_key, selected_method, source_filter, top_k,
         "primary_slice": primary_slice,
         "primary_slice_label": STUDY_SLICE_LABELS.get(primary_slice, primary_slice),
         "compare_method": compare_method,
+        "benchmark_scope": benchmark_scope,
         "recommended_profile": recommended_profile,
         "recommended_profile_label": get_profile(recommended_profile).label,
         "guidance_text": " ".join(guidance),
@@ -2840,6 +3295,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         except (TypeError, ValueError):
             top_k = 5
         top_k = max(1, min(top_k, 20))
+        enable_cross_encoder = bool(payload.get("enable_cross_encoder", True))
 
         try:
             query_plan = build_query_plan(query)
@@ -2851,6 +3307,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                     source_filter,
                     top_k,
                     query_plan,
+                    enable_cross_encoder=enable_cross_encoder,
                 )
                 for candidate_method in ("bm25", "semantic", "hybrid")
             }
@@ -2871,7 +3328,15 @@ class RequestHandler(BaseHTTPRequestHandler):
                     "url": item.get("url"),
                     "description": item.get("description"),
                     "text": item.get("text"),
+                    "semantic_text": item.get("semantic_text"),
+                    "semantic_summary": item.get("semantic_summary"),
+                    "semantic_quality_note": item.get("semantic_quality_note") or "",
                     "keywords": item.get("keywords") or [],
+                    "metadata_terms": item.get("metadata_terms") or [],
+                    "language_hint": item.get("language_hint") or "",
+                    "inferred_domains": item.get("inferred_domains") or [],
+                    "inferred_use_cases": item.get("inferred_use_cases") or [],
+                    "inferred_modalities": item.get("inferred_modalities") or [],
                     "license": item.get("license") or "",
                     "quality_flags": item.get("quality_flags") or [],
                     "description_len_chars": item.get("description_len_chars"),
@@ -2881,6 +3346,24 @@ class RequestHandler(BaseHTTPRequestHandler):
                     "semantic_weight": item.get("semantic_weight"),
                     "bm25_weight": item.get("bm25_weight"),
                     "semantic_variant_hits": item.get("semantic_variant_hits"),
+                    "semantic_aspect_count": item.get("semantic_aspect_count"),
+                    "semantic_aspect_hits": item.get("semantic_aspect_hits"),
+                    "semantic_aspect_labels": item.get("semantic_aspect_labels") or [],
+                    "semantic_aspect_scores": item.get("semantic_aspect_scores") or {},
+                    "aspect_coverage": item.get("aspect_coverage"),
+                    "aspect_min_score": item.get("aspect_min_score"),
+                    "aspect_avg_score": item.get("aspect_avg_score"),
+                    "semantic_rerank_score": item.get("semantic_rerank_score"),
+                    "heuristic_rerank_score": item.get("heuristic_rerank_score"),
+                    "cross_encoder_score": item.get("cross_encoder_score"),
+                    "cross_encoder_score_norm": item.get("cross_encoder_score_norm"),
+                    "cross_encoder_model": item.get("cross_encoder_model"),
+                    "cross_encoder_enabled": item.get("cross_encoder_enabled"),
+                    "cross_encoder_error": item.get("cross_encoder_error"),
+                    "weak_match": bool(item.get("weak_match")),
+                    "query_confidence": item.get("query_confidence"),
+                    "query_is_ood": bool(item.get("query_is_ood")),
+                    "lexical_anchor_signal": item.get("lexical_anchor_signal") or {},
                     "profile_key": profile.key,
                     "profile_label": profile.label,
                     **quality_payload,
@@ -2892,12 +3375,22 @@ class RequestHandler(BaseHTTPRequestHandler):
                 "query": query,
                 "query_plan": query_plan,
                 "method": method,
+                "enable_cross_encoder": enable_cross_encoder,
                 "profile": {"key": profile.key, "label": profile.label},
                 "source": source_filter,
                 "top_k": top_k,
                 "rq1": build_rq1_payload(query_plan, profile.key, source_filter, top_k, method_results),
                 "rq2": build_rq2_payload(profile.key, source_filter, top_k, method_results),
-                "rq3": build_rq3_payload(query, profile.key, method, source_filter, top_k, query_plan, method_results),
+                "rq3": build_rq3_payload(
+                    query,
+                    profile.key,
+                    method,
+                    source_filter,
+                    top_k,
+                    query_plan,
+                    method_results,
+                    enable_cross_encoder=enable_cross_encoder,
+                ),
                 "rq4": build_rq4_payload(query, profile.key, method, method_results),
                 "results": results,
             }

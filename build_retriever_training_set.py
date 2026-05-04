@@ -319,6 +319,7 @@ def build_corpus_rows(mappings: dict):
                 "text": item.get("text") or "",
                 "semantic_text": item.get("semantic_text") or item.get("text") or "",
                 "semantic_summary": item.get("semantic_summary") or "",
+                "semantic_quality_note": item.get("semantic_quality_note") or "",
                 "keywords": item.get("keywords") or [],
                 "language_hint": item.get("language_hint") or "",
                 "inferred_domains": item.get("inferred_domains") or [],

@@ -1,0 +1,376 @@
+query_id,query,language,positive_ref,positive_title,positive_selection_quality,negative_ref,negative_title,negative_reason,negative_rank_hint,positive_text,negative_text,positive_clue_hits,negative_clue_hits,hard_negative_clue_hits,positive_quality_flags,negative_quality_flags
+hnq001,I want to find data for predicting house prices.,en,sethdowden/portland-maps-assessor-data,Portland Assessor Data,strong,maheshmani13/bse-sensex-10-year-stock-price,BSE SENSEX 10 YEAR STOCK PRICE,"negative_clue_match,missing_query_aspects",7,"Dataset description: Assessor Date for Multnomah, Clackamas, Washington Counties # context This raw uncleaned dataset contains Assessor data scraped from the Portland Maps API. The dataset contains over half a million records, the oldest dating back to 1927, with 25 columns containing assessed property value, sales price, sailes date, owner, and geospatial data. This dataset is updated daily. # sources <URL> Keywords: geography, housing, real estate, tabular
+Main topics: earth observation, finance markets, geography, housing, real estate
+Data modality: tabular, geospatial
+Keywords: geography, housing, real estate
+Dataset title: Portland Assessor Data","Dataset description: 10-Year BSE Sensex Stock Price Dataset: Historical Data for Analysis and Forecas This dataset provides 10 years of historical data for the BSE Sensex, India's benchmark stock market index. The BSE Sensex is a key indicator of the performance of the Bombay Stock Exchange (BSE), comprising a weighted average of the stock prices of the top 30 companies listed on the exchange. The dataset includes daily closing prices of the BSE Sensex from 1 April 2014 to 31 March 2024. Analysts and investors can use this dataset to conduct comprehensive
+Main topics: finance markets, business, investing
+Task/use case: monitoring analysis
+Data modality: time series
+Keywords: business, investing
+Dataset title: BSE SENSEX 10 YEAR STOCK PRICE",real estate | sales price | assessed property value | assessor data,,stock market | stock price,,
+hnq001,I want to find data for predicting house prices.,en,sethdowden/portland-maps-assessor-data,Portland Assessor Data,strong,brtnsmth/intraday-market-data,Intraday market data,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",5,"Dataset description: Assessor Date for Multnomah, Clackamas, Washington Counties # context This raw uncleaned dataset contains Assessor data scraped from the Portland Maps API. The dataset contains over half a million records, the oldest dating back to 1927, with 25 columns containing assessed property value, sales price, sailes date, owner, and geospatial data. This dataset is updated daily. # sources <URL> Keywords: geography, housing, real estate, tabular
+Main topics: earth observation, finance markets, geography, housing, real estate
+Data modality: tabular, geospatial
+Keywords: geography, housing, real estate
+Dataset title: Portland Assessor Data","Dataset description: 3 second interval price data ### Context There is a lot of buzz about institutional algorithmic trading on the stock market. There is also great interest in machine learning (here obviously). As an absolute beginner in ML with an interest in stock trading, I went looking for a market dataset that I could use. While there are datasets available with daily closing prices, I couldn't find any publicly available with more granular data, much less anything close to having a real time data stream. I have a trading account with
+Main topics: finance markets, investing
+Task/use case: forecasting, monitoring analysis
+Data modality: time series
+Keywords: investing
+Dataset title: Intraday market data",real estate | sales price | assessed property value | assessor data,,stock market | intraday market data,,
+hnq001,I want to find data for predicting house prices.,en,sethdowden/portland-maps-assessor-data,Portland Assessor Data,strong,nitirajkulkarni/aagrw-stock-performance,African Agriculture Holdings Inc. (AAGRW) Stock...,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",8,"Dataset description: Assessor Date for Multnomah, Clackamas, Washington Counties # context This raw uncleaned dataset contains Assessor data scraped from the Portland Maps API. The dataset contains over half a million records, the oldest dating back to 1927, with 25 columns containing assessed property value, sales price, sailes date, owner, and geospatial data. This dataset is updated daily. # sources <URL> Keywords: geography, housing, real estate, tabular
+Main topics: earth observation, finance markets, geography, housing, real estate
+Data modality: tabular, geospatial
+Keywords: geography, housing, real estate
+Dataset title: Portland Assessor Data","Dataset description: Stock Performance Dataset This dataset provides historical stock market performance data for specific companies. It enables users to analyze and understand the past trends and fluctuations in stock prices over time.
+Main topics: finance markets
+Task/use case: forecasting
+Data modality: time series
+Dataset title: African Agriculture Holdings Inc. (AAGRW) Stock...",real estate | sales price | assessed property value | assessor data,,stock market | stock price,,
+hnq001,I want to find data for predicting house prices.,en,sethdowden/portland-or-building-permit-data,Portland Building Permit Data,weak,maheshmani13/bse-sensex-10-year-stock-price,BSE SENSEX 10 YEAR STOCK PRICE,"negative_clue_match,missing_query_aspects",7,"Dataset description: PortlandMaps Building Permit Data This dataset contains Assessor data collected from the Portland Maps API, which provides information on building permits issued in the city of Portland, Oregon. The data covers over 144,000 unique permit IDs, with the oldest permit dating back to 1996. The dataset is updated daily. ## Project Ideas **Residential Infill Project Rezoning and Permits:** Analyze the impact of Portland's Residential Infill Project and Oregon House Bill 2001 on building permits in Portland. Look at the number and type of permits issued before and after the adoption
+Main topics: finance markets, housing, business
+Task/use case: forecasting
+Data modality: time series
+Keywords: housing, business
+Dataset title: Portland Building Permit Data","Dataset description: 10-Year BSE Sensex Stock Price Dataset: Historical Data for Analysis and Forecas This dataset provides 10 years of historical data for the BSE Sensex, India's benchmark stock market index. The BSE Sensex is a key indicator of the performance of the Bombay Stock Exchange (BSE), comprising a weighted average of the stock prices of the top 30 companies listed on the exchange. The dataset includes daily closing prices of the BSE Sensex from 1 April 2014 to 31 March 2024. Analysts and investors can use this dataset to conduct comprehensive
+Main topics: finance markets, business, investing
+Task/use case: monitoring analysis
+Data modality: time series
+Keywords: business, investing
+Dataset title: BSE SENSEX 10 YEAR STOCK PRICE",assessor data,,stock market | stock price,,
+hnq001,I want to find data for predicting house prices.,en,sethdowden/portland-or-building-permit-data,Portland Building Permit Data,weak,brtnsmth/intraday-market-data,Intraday market data,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",5,"Dataset description: PortlandMaps Building Permit Data This dataset contains Assessor data collected from the Portland Maps API, which provides information on building permits issued in the city of Portland, Oregon. The data covers over 144,000 unique permit IDs, with the oldest permit dating back to 1996. The dataset is updated daily. ## Project Ideas **Residential Infill Project Rezoning and Permits:** Analyze the impact of Portland's Residential Infill Project and Oregon House Bill 2001 on building permits in Portland. Look at the number and type of permits issued before and after the adoption
+Main topics: finance markets, housing, business
+Task/use case: forecasting
+Data modality: time series
+Keywords: housing, business
+Dataset title: Portland Building Permit Data","Dataset description: 3 second interval price data ### Context There is a lot of buzz about institutional algorithmic trading on the stock market. There is also great interest in machine learning (here obviously). As an absolute beginner in ML with an interest in stock trading, I went looking for a market dataset that I could use. While there are datasets available with daily closing prices, I couldn't find any publicly available with more granular data, much less anything close to having a real time data stream. I have a trading account with
+Main topics: finance markets, investing
+Task/use case: forecasting, monitoring analysis
+Data modality: time series
+Keywords: investing
+Dataset title: Intraday market data",assessor data,,stock market | intraday market data,,
+hnq001,I want to find data for predicting house prices.,en,sethdowden/portland-or-building-permit-data,Portland Building Permit Data,weak,nitirajkulkarni/aagrw-stock-performance,African Agriculture Holdings Inc. (AAGRW) Stock...,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",8,"Dataset description: PortlandMaps Building Permit Data This dataset contains Assessor data collected from the Portland Maps API, which provides information on building permits issued in the city of Portland, Oregon. The data covers over 144,000 unique permit IDs, with the oldest permit dating back to 1996. The dataset is updated daily. ## Project Ideas **Residential Infill Project Rezoning and Permits:** Analyze the impact of Portland's Residential Infill Project and Oregon House Bill 2001 on building permits in Portland. Look at the number and type of permits issued before and after the adoption
+Main topics: finance markets, housing, business
+Task/use case: forecasting
+Data modality: time series
+Keywords: housing, business
+Dataset title: Portland Building Permit Data","Dataset description: Stock Performance Dataset This dataset provides historical stock market performance data for specific companies. It enables users to analyze and understand the past trends and fluctuations in stock prices over time.
+Main topics: finance markets
+Task/use case: forecasting
+Data modality: time series
+Dataset title: African Agriculture Holdings Inc. (AAGRW) Stock...",assessor data,,stock market | stock price,,
+hnq002,I want to study how weather affects crop production.,en,miaikoo/invasive-plant-species-object-detection-yolo,Invasive Plant Species Object Detection (YOLO),strong,wafaaelhusseini/capital-weather-data-1995-2024,Capital Weather Data - 1995-2024,"negative_clue_match,partial_semantic_overlap",1,"Dataset description: YOLO-ready bounding box annotations for 5 tropical weed species. 📌 **Context** This dataset contains images and bounding box annotations for five common species of weeds and invasive plants often found in tropical regions. It is designed for training Object Detection models (such as YOLO) to automatically identify and localize these plant species in natural environments. This dataset is particularly useful for agricultural research, environmental monitoring, and automated weed control systems. 🌿 **Class Mapping** The dataset consists of 5 target classes of plant species. The class IDs are mapped as follows:
+Main topics: computer vision, nlp text, agriculture, yolo, object detection
+Task/use case: detection, monitoring analysis
+Data modality: image, text
+Keywords: agriculture, computer vision, yolo, object detection
+Dataset title: Invasive Plant Species Object Detection (YOLO)","Dataset description: Daily weather statistics for every world capital 1995 to 2024 (via Open-Meteo) # 🌍 Global Major Cities Daily Weather (1995 – 2024) [CURRENTLY UNDER CONSTRUCTION] This dataset provides **daily historical weather data** for **major cities worldwide**, combining reliable climate reanalysis from the **Open-Meteo Historical API** with geographic and population data from **Wikidata**. It includes all **national capitals** and the largest population centers in every country, giving a detailed global view of urban climate from **1995 to 2024**. --- ## 📦 Files | File | Description | |------|--------------| | `cities_clean.parquet` |
+Main topics: weather climate, finance markets, weather and climate, time series analysis, datetime
+Task/use case: forecasting, monitoring analysis
+Data modality: tabular, time series
+Keywords: weather and climate, time series analysis, datetime
+Dataset title: Capital Weather Data - 1995-2024",agriculture | farming | plant,temperature,capital weather,,
+hnq002,I want to study how weather affects crop production.,en,miaikoo/invasive-plant-species-object-detection-yolo,Invasive Plant Species Object Detection (YOLO),strong,leopiney/worldclim-version-2-temperature-10m,WorldClim Version 2 Temperature 10m,"partial_semantic_overlap,missing_query_aspects",13,"Dataset description: YOLO-ready bounding box annotations for 5 tropical weed species. 📌 **Context** This dataset contains images and bounding box annotations for five common species of weeds and invasive plants often found in tropical regions. It is designed for training Object Detection models (such as YOLO) to automatically identify and localize these plant species in natural environments. This dataset is particularly useful for agricultural research, environmental monitoring, and automated weed control systems. 🌿 **Class Mapping** The dataset consists of 5 target classes of plant species. The class IDs are mapped as follows:
+Main topics: computer vision, nlp text, agriculture, yolo, object detection
+Task/use case: detection, monitoring analysis
+Data modality: image, text
+Keywords: agriculture, computer vision, yolo, object detection
+Dataset title: Invasive Plant Species Object Detection (YOLO)","Dataset description: World climate dataset with temperature measurements ### World climate information As extracted from the page [ <URL> All rights and licenses can be found here [ <URL> [1]: <URL> [2]: <URL> Keywords: atmospheric science, weather and climate
+Main topics: weather climate, atmospheric science, weather and climate
+Keywords: atmospheric science, weather and climate
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",agriculture | farming | plant,temperature,,,
+hnq002,I want to study how weather affects crop production.,en,miaikoo/invasive-plant-species-object-detection-yolo,Invasive Plant Species Object Detection (YOLO),strong,devharis/plantvillage-yolo-modified,PlantVillage Object Detection YOLO Dataset (Modifi,"partial_semantic_overlap,missing_query_aspects",30,"Dataset description: YOLO-ready bounding box annotations for 5 tropical weed species. 📌 **Context** This dataset contains images and bounding box annotations for five common species of weeds and invasive plants often found in tropical regions. It is designed for training Object Detection models (such as YOLO) to automatically identify and localize these plant species in natural environments. This dataset is particularly useful for agricultural research, environmental monitoring, and automated weed control systems. 🌿 **Class Mapping** The dataset consists of 5 target classes of plant species. The class IDs are mapped as follows:
+Main topics: computer vision, nlp text, agriculture, yolo, object detection
+Task/use case: detection, monitoring analysis
+Data modality: image, text
+Keywords: agriculture, computer vision, yolo, object detection
+Dataset title: Invasive Plant Species Object Detection (YOLO)","Dataset description: Enhanced Dataset with 15-70-15% Split for Robust Model Training This modified version of the PlantVillage dataset is specifically tailored for object detection tasks using the YOLO (You Only Look Once) algorithm. The dataset has been organized into a 15% test, 70% training, and 15% validation split, ensuring a balanced approach for model evaluation and performance tuning. Key Features: Modified Dataset: Ready for YOLO implementation with adjusted splits. Diverse Plant Images: Contains a wide variety of plant species, ideal for detecting and classifying images. User-Friendly: Pre-processed and structured for ease of
+Main topics: computer vision
+Task/use case: detection
+Data modality: image
+Dataset title: PlantVillage Object Detection YOLO Dataset (Modifi",agriculture | farming | plant,plant,,,
+hnq002,I want to study how weather affects crop production.,en,baxtiyorbotiraliyev/insects,Insects,strong,wafaaelhusseini/capital-weather-data-1995-2024,Capital Weather Data - 1995-2024,"negative_clue_match,partial_semantic_overlap",1,"Dataset description: AI-ready dataset for insect classification and smart farming applications 📄 About Dataset This dataset contains images of various insect species commonly found in agricultural environments. It is designed for computer vision tasks such as image classification and can be used to build models for automatic insect recognition. The dataset is organized into three main subsets: train/ – training data val/ – validation data test/ – test data Each subset contains subdirectories representing individual classes (insect species). All images inside a class folder belong to that specific category. A file named
+Main topics: computer vision, agriculture, artificial intelligence, image classification, image segmentation, yolo
+Task/use case: classification, detection, segmentation, monitoring analysis
+Data modality: image
+Keywords: agriculture, artificial intelligence, image classification, image segmentation, yolo
+Dataset title: Insects","Dataset description: Daily weather statistics for every world capital 1995 to 2024 (via Open-Meteo) # 🌍 Global Major Cities Daily Weather (1995 – 2024) [CURRENTLY UNDER CONSTRUCTION] This dataset provides **daily historical weather data** for **major cities worldwide**, combining reliable climate reanalysis from the **Open-Meteo Historical API** with geographic and population data from **Wikidata**. It includes all **national capitals** and the largest population centers in every country, giving a detailed global view of urban climate from **1995 to 2024**. --- ## 📦 Files | File | Description | |------|--------------| | `cities_clean.parquet` |
+Main topics: weather climate, finance markets, weather and climate, time series analysis, datetime
+Task/use case: forecasting, monitoring analysis
+Data modality: tabular, time series
+Keywords: weather and climate, time series analysis, datetime
+Dataset title: Capital Weather Data - 1995-2024",agriculture | farming,temperature,capital weather,,
+hnq002,I want to study how weather affects crop production.,en,baxtiyorbotiraliyev/insects,Insects,strong,leopiney/worldclim-version-2-temperature-10m,WorldClim Version 2 Temperature 10m,"partial_semantic_overlap,missing_query_aspects",13,"Dataset description: AI-ready dataset for insect classification and smart farming applications 📄 About Dataset This dataset contains images of various insect species commonly found in agricultural environments. It is designed for computer vision tasks such as image classification and can be used to build models for automatic insect recognition. The dataset is organized into three main subsets: train/ – training data val/ – validation data test/ – test data Each subset contains subdirectories representing individual classes (insect species). All images inside a class folder belong to that specific category. A file named
+Main topics: computer vision, agriculture, artificial intelligence, image classification, image segmentation, yolo
+Task/use case: classification, detection, segmentation, monitoring analysis
+Data modality: image
+Keywords: agriculture, artificial intelligence, image classification, image segmentation, yolo
+Dataset title: Insects","Dataset description: World climate dataset with temperature measurements ### World climate information As extracted from the page [ <URL> All rights and licenses can be found here [ <URL> [1]: <URL> [2]: <URL> Keywords: atmospheric science, weather and climate
+Main topics: weather climate, atmospheric science, weather and climate
+Keywords: atmospheric science, weather and climate
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",agriculture | farming,temperature,,,
+hnq002,I want to study how weather affects crop production.,en,baxtiyorbotiraliyev/insects,Insects,strong,devharis/plantvillage-yolo-modified,PlantVillage Object Detection YOLO Dataset (Modifi,"partial_semantic_overlap,missing_query_aspects",30,"Dataset description: AI-ready dataset for insect classification and smart farming applications 📄 About Dataset This dataset contains images of various insect species commonly found in agricultural environments. It is designed for computer vision tasks such as image classification and can be used to build models for automatic insect recognition. The dataset is organized into three main subsets: train/ – training data val/ – validation data test/ – test data Each subset contains subdirectories representing individual classes (insect species). All images inside a class folder belong to that specific category. A file named
+Main topics: computer vision, agriculture, artificial intelligence, image classification, image segmentation, yolo
+Task/use case: classification, detection, segmentation, monitoring analysis
+Data modality: image
+Keywords: agriculture, artificial intelligence, image classification, image segmentation, yolo
+Dataset title: Insects","Dataset description: Enhanced Dataset with 15-70-15% Split for Robust Model Training This modified version of the PlantVillage dataset is specifically tailored for object detection tasks using the YOLO (You Only Look Once) algorithm. The dataset has been organized into a 15% test, 70% training, and 15% validation split, ensuring a balanced approach for model evaluation and performance tuning. Key Features: Modified Dataset: Ready for YOLO implementation with adjusted splits. Diverse Plant Images: Contains a wide variety of plant species, ideal for detecting and classifying images. User-Friendly: Pre-processed and structured for ease of
+Main topics: computer vision
+Task/use case: detection
+Data modality: image
+Dataset title: PlantVillage Object Detection YOLO Dataset (Modifi",agriculture | farming,plant,,,
+hnq003,I want to research diabetes prediction using patient records.,en,bhautikmangukiya12/hospital-inpatient-discharges-dataset,Hospital Inpatient Discharges Dataset,strong,orvile/weather-related-disease-prediction-dataset,Weather-related Disease Prediction Dataset,"negative_clue_match,partial_semantic_overlap",3,"Dataset description: Explore hospital inpatient data for predicting patient stay durations. Ideal for This dataset offers a comprehensive collection of hospital inpatient records aimed at predicting the length of patient stays. With features covering demographic details, medical history, admission types, and more, it provides a rich resource for healthcare analytics and data-driven decision-making. Whether you're a data scientist, healthcare professional, or researcher, this dataset enables exploration into factors influencing patient lengths of stay, aiding in resource allocation, treatment optimization, and operational efficiency within healthcare institutions. Dive into this dataset to uncover valuable
+Main topics: health medical, computer vision, healthcare, classification, model comparison, hospitals and treatment centers
+Task/use case: classification
+Data modality: tabular
+Keywords: healthcare, classification, model comparison, hospitals and treatment centers
+Dataset title: Hospital Inpatient Discharges Dataset","Dataset description: Linking Weather and Health for Predictive Research # 🌡️ Weather-related Disease Prediction Dataset ## Linking Weather and Health for Predictive Research DOI Link License Details Explore this unique dataset blending **weather conditions** with **medical symptoms** from anonymized patients. Designed to uncover how meteorological factors influence disease, it’s a treasure trove for researchers building predictive health models! 🩺✨ --- ## 📜 What’s This Dataset About? This dataset merges weather data (temperature, humidity, wind speed) with patient symptoms and pre-existing conditions, collected from anonymous medical records and local weather stations. Spanning a
+Main topics: health medical, weather climate, diseases, weather and climate, health, health conditions
+Task/use case: forecasting
+Data modality: tabular
+Keywords: diseases, weather and climate, health, health conditions
+Dataset title: Weather-related Disease Prediction Dataset",patient records,diabetes | medical records,weather related disease,,
+hnq003,I want to research diabetes prediction using patient records.,en,bhautikmangukiya12/hospital-inpatient-discharges-dataset,Hospital Inpatient Discharges Dataset,strong,jesendo/malaysia-covid19,Malaysia COVID-19,"negative_clue_match,missing_query_aspects",18,"Dataset description: Explore hospital inpatient data for predicting patient stay durations. Ideal for This dataset offers a comprehensive collection of hospital inpatient records aimed at predicting the length of patient stays. With features covering demographic details, medical history, admission types, and more, it provides a rich resource for healthcare analytics and data-driven decision-making. Whether you're a data scientist, healthcare professional, or researcher, this dataset enables exploration into factors influencing patient lengths of stay, aiding in resource allocation, treatment optimization, and operational efficiency within healthcare institutions. Dive into this dataset to uncover valuable
+Main topics: health medical, computer vision, healthcare, classification, model comparison, hospitals and treatment centers
+Task/use case: classification
+Data modality: tabular
+Keywords: healthcare, classification, model comparison, hospitals and treatment centers
+Dataset title: Hospital Inpatient Discharges Dataset","Dataset description: Official COVID-19 data published by Malaysia Ministry of Health ported to Kaggle
+Semantic quality: Limited semantic evidence: description has limited semantic detail; title terms are de-emphasized.",patient records,,covid 19,,no_long_description
+hnq003,I want to research diabetes prediction using patient records.,en,bhautikmangukiya12/hospital-inpatient-discharges-dataset,Hospital Inpatient Discharges Dataset,strong,joebeachcapital/coronavirus-covid-19-cases-daily-updates,Coronavirus (COVID-19) Cases (Daily Updates),"negative_clue_match,partial_semantic_overlap,missing_query_aspects",4,"Dataset description: Explore hospital inpatient data for predicting patient stay durations. Ideal for This dataset offers a comprehensive collection of hospital inpatient records aimed at predicting the length of patient stays. With features covering demographic details, medical history, admission types, and more, it provides a rich resource for healthcare analytics and data-driven decision-making. Whether you're a data scientist, healthcare professional, or researcher, this dataset enables exploration into factors influencing patient lengths of stay, aiding in resource allocation, treatment optimization, and operational efficiency within healthcare institutions. Dive into this dataset to uncover valuable
+Main topics: health medical, computer vision, healthcare, classification, model comparison, hospitals and treatment centers
+Task/use case: classification
+Data modality: tabular
+Keywords: healthcare, classification, model comparison, hospitals and treatment centers
+Dataset title: Hospital Inpatient Discharges Dataset","Dataset description: Daily updated dataset of all Coronavirus (COVID-19) cases globally Daily updated dataset of all Coronavirus (COVID-19) Cases in all countries in the world. See the README file and the Codebook for more information including data dictionary. - **Confirmed cases and deaths:** this data is collected from the World Health Organization Coronavirus Dashboard. The cases & deaths dataset is updated daily. - Note 1: Time/date stamps reflect when the data was last updated by WHO. Due to the time required to process and validate the incoming data, there is a delay
+Main topics: health medical, global, diseases, public health, health, covid19
+Task/use case: forecasting
+Data modality: time series
+Keywords: global, diseases, public health, health, covid19
+Dataset title: Coronavirus (COVID-19) Cases (Daily Updates)",patient records,,covid 19,,
+hnq003,I want to research diabetes prediction using patient records.,en,sandhaya4u/histology-image-dataset,Identifying Cell Nuclei from Histology Images,weak,orvile/weather-related-disease-prediction-dataset,Weather-related Disease Prediction Dataset,"negative_clue_match,partial_semantic_overlap",3,"Dataset description: Histology Image Data Set **# # # Machine Learning Model for identifying Cell Nuclei from Histology Images** Machine learning model for identifying cell nuclei from histology images. The model having the ability to generalize across a variety of lighting conditions, cell types, magnifications, and imaging modalities.Imagine speeding up research for almost every disease, from lung cancer and heart disease to rare disorders. The Data Science Bowl offers to data scientist / practitioner a most ambitious mission i.e. create an algorithm to automate nucleus detection & create an algorithm to detect
+Main topics: computer vision, health medical, finance markets, biology, business, health, computer science, beginner, data visualization
+Task/use case: detection, segmentation
+Data modality: image
+Keywords: biology, business, health, computer science, beginner, data visualization, cnn
+Dataset title: Identifying Cell Nuclei from Histology Images","Dataset description: Linking Weather and Health for Predictive Research # 🌡️ Weather-related Disease Prediction Dataset ## Linking Weather and Health for Predictive Research DOI Link License Details Explore this unique dataset blending **weather conditions** with **medical symptoms** from anonymized patients. Designed to uncover how meteorological factors influence disease, it’s a treasure trove for researchers building predictive health models! 🩺✨ --- ## 📜 What’s This Dataset About? This dataset merges weather data (temperature, humidity, wind speed) with patient symptoms and pre-existing conditions, collected from anonymous medical records and local weather stations. Spanning a
+Main topics: health medical, weather climate, diseases, weather and climate, health, health conditions
+Task/use case: forecasting
+Data modality: tabular
+Keywords: diseases, weather and climate, health, health conditions
+Dataset title: Weather-related Disease Prediction Dataset",diabetes,diabetes | medical records,weather related disease,,
+hnq003,I want to research diabetes prediction using patient records.,en,sandhaya4u/histology-image-dataset,Identifying Cell Nuclei from Histology Images,weak,jesendo/malaysia-covid19,Malaysia COVID-19,"negative_clue_match,missing_query_aspects",18,"Dataset description: Histology Image Data Set **# # # Machine Learning Model for identifying Cell Nuclei from Histology Images** Machine learning model for identifying cell nuclei from histology images. The model having the ability to generalize across a variety of lighting conditions, cell types, magnifications, and imaging modalities.Imagine speeding up research for almost every disease, from lung cancer and heart disease to rare disorders. The Data Science Bowl offers to data scientist / practitioner a most ambitious mission i.e. create an algorithm to automate nucleus detection & create an algorithm to detect
+Main topics: computer vision, health medical, finance markets, biology, business, health, computer science, beginner, data visualization
+Task/use case: detection, segmentation
+Data modality: image
+Keywords: biology, business, health, computer science, beginner, data visualization, cnn
+Dataset title: Identifying Cell Nuclei from Histology Images","Dataset description: Official COVID-19 data published by Malaysia Ministry of Health ported to Kaggle
+Semantic quality: Limited semantic evidence: description has limited semantic detail; title terms are de-emphasized.",diabetes,,covid 19,,no_long_description
+hnq003,I want to research diabetes prediction using patient records.,en,sandhaya4u/histology-image-dataset,Identifying Cell Nuclei from Histology Images,weak,joebeachcapital/coronavirus-covid-19-cases-daily-updates,Coronavirus (COVID-19) Cases (Daily Updates),"negative_clue_match,partial_semantic_overlap,missing_query_aspects",4,"Dataset description: Histology Image Data Set **# # # Machine Learning Model for identifying Cell Nuclei from Histology Images** Machine learning model for identifying cell nuclei from histology images. The model having the ability to generalize across a variety of lighting conditions, cell types, magnifications, and imaging modalities.Imagine speeding up research for almost every disease, from lung cancer and heart disease to rare disorders. The Data Science Bowl offers to data scientist / practitioner a most ambitious mission i.e. create an algorithm to automate nucleus detection & create an algorithm to detect
+Main topics: computer vision, health medical, finance markets, biology, business, health, computer science, beginner, data visualization
+Task/use case: detection, segmentation
+Data modality: image
+Keywords: biology, business, health, computer science, beginner, data visualization, cnn
+Dataset title: Identifying Cell Nuclei from Histology Images","Dataset description: Daily updated dataset of all Coronavirus (COVID-19) cases globally Daily updated dataset of all Coronavirus (COVID-19) Cases in all countries in the world. See the README file and the Codebook for more information including data dictionary. - **Confirmed cases and deaths:** this data is collected from the World Health Organization Coronavirus Dashboard. The cases & deaths dataset is updated daily. - Note 1: Time/date stamps reflect when the data was last updated by WHO. Due to the time required to process and validate the incoming data, there is a delay
+Main topics: health medical, global, diseases, public health, health, covid19
+Task/use case: forecasting
+Data modality: time series
+Keywords: global, diseases, public health, health, covid19
+Dataset title: Coronavirus (COVID-19) Cases (Daily Updates)",diabetes,,covid 19,,
+hnq004,I want to study how cities change using images taken from above.,en,amerii/spacenet-7-change-detection-chips-and-masks,SpaceNet 7 Change Detection Chips and Masks,strong,manoj223/ppe-kit-dataset,PPE kit Dataset,"partial_semantic_overlap,missing_query_aspects",3,"Dataset description: 64 x 64 image chips with corresponding masks ## Context This dataset is based on the original SpaceNet 7 dataset, with a few modifications. ## Content The original dataset consisted of Planet satellite imagery mosaics, which includes 24 images (one per month) covering ~100 unique geographies. The original dataset will comprised over 40,000 square kilometers of imagery and exhaustive polygon labels of building footprints in the imagery, totaling over 10 million individual annotations. This dataset builds upon the original dataset, such that each image is segmented into 64 x 64
+Main topics: earth observation, computer vision, arts and entertainment, cities and urban areas, earth and nature, geospatial analysis, urban planning
+Task/use case: detection, segmentation, monitoring analysis
+Data modality: image, geospatial
+Keywords: arts and entertainment, cities and urban areas, earth and nature, geospatial analysis, urban planning
+Dataset title: SpaceNet 7 Change Detection Chips and Masks","Main topics: earth observation
+Dataset title: PPE kit Dataset",satellite imagery | change detection,,,,
+hnq004,I want to study how cities change using images taken from above.,en,amerii/spacenet-7-change-detection-chips-and-masks,SpaceNet 7 Change Detection Chips and Masks,strong,wafaaelhusseini/major-cities-weather-data,Major Cities Weather Data 1995-present,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",39,"Dataset description: 64 x 64 image chips with corresponding masks ## Context This dataset is based on the original SpaceNet 7 dataset, with a few modifications. ## Content The original dataset consisted of Planet satellite imagery mosaics, which includes 24 images (one per month) covering ~100 unique geographies. The original dataset will comprised over 40,000 square kilometers of imagery and exhaustive polygon labels of building footprints in the imagery, totaling over 10 million individual annotations. This dataset builds upon the original dataset, such that each image is segmented into 64 x 64
+Main topics: earth observation, computer vision, arts and entertainment, cities and urban areas, earth and nature, geospatial analysis, urban planning
+Task/use case: detection, segmentation, monitoring analysis
+Data modality: image, geospatial
+Keywords: arts and entertainment, cities and urban areas, earth and nature, geospatial analysis, urban planning
+Dataset title: SpaceNet 7 Change Detection Chips and Masks","Dataset description: Daily weather statistics for major world cities (Auto-updated via Open-Meteo) # 🌍 Major Cities Daily Weather (1995 – present) [CURRENTLY UNDER CONSTRUCTION] This dataset provides **daily historical weather data** for **major cities around the world** — including all **national capitals** and large population centers — from **1995 to 2024** Data is sourced from the **Open-Meteo Historical Weather API** and **Wikidata**, processed and harmonized for easy analysis and visualization. --- ## 📦 Contents | File | Description | |------|--------------| | `cities_clean.parquet` | Metadata of all selected cities (country, coordinates, population, capital
+Main topics: weather climate, global, weather and climate
+Task/use case: retrieval search, recommendation, monitoring analysis
+Data modality: tabular, time series
+Keywords: global, weather and climate
+Dataset title: Major Cities Weather Data 1995-present",satellite imagery | change detection,,city weather,,
+hnq004,I want to study how cities change using images taken from above.,en,amerii/spacenet-7-change-detection-chips-and-masks,SpaceNet 7 Change Detection Chips and Masks,strong,figshare/united-states-commutes,United States Commutes,"partial_semantic_overlap,missing_query_aspects",10,"Dataset description: 64 x 64 image chips with corresponding masks ## Context This dataset is based on the original SpaceNet 7 dataset, with a few modifications. ## Content The original dataset consisted of Planet satellite imagery mosaics, which includes 24 images (one per month) covering ~100 unique geographies. The original dataset will comprised over 40,000 square kilometers of imagery and exhaustive polygon labels of building footprints in the imagery, totaling over 10 million individual annotations. This dataset builds upon the original dataset, such that each image is segmented into 64 x 64
+Main topics: earth observation, computer vision, arts and entertainment, cities and urban areas, earth and nature, geospatial analysis, urban planning
+Task/use case: detection, segmentation, monitoring analysis
+Data modality: image, geospatial
+Keywords: arts and entertainment, cities and urban areas, earth and nature, geospatial analysis, urban planning
+Dataset title: SpaceNet 7 Change Detection Chips and Masks","Dataset description: Visualizing over 4 million home-to-work commutes in the United States # Context The emergence in the United States of large-scale “megaregions” centered on major metropolitan areas is a phenomenon often taken for granted in both scholarly studies and popular accounts of contemporary economic geography. This dataset comes from a paper (Nelson & Rae, 2016. An Economic Geography of the United States: From Commutes to Megaregions) that uses a data set of more than 4,000,000 commuter flows as the basis for an empirical approach to the identification of such megaregions. #
+Main topics: hydrology water, earth observation, business, transportation, travel
+Data modality: geospatial
+Keywords: business, transportation, travel
+Dataset title: United States Commutes",satellite imagery | change detection,,,,
+hnq004,I want to study how cities change using images taken from above.,en,vafaeii/cdnet-2014-change-detection-benchmark-dataset,CDnet 2014,strong,manoj223/ppe-kit-dataset,PPE kit Dataset,"partial_semantic_overlap,missing_query_aspects",3,"Dataset description: An Expanded Change Detection Benchmark Dataset **Description:** This dataset is an **unofficial mirror** of the CDnet 2014 benchmark hosted here for easier accessibility within Kaggle kernels. **Original Source & Citation:** Wang, Y., Jodoin, P. M., et al. ""CDnet 2014: An Expanded Change Detection Benchmark Dataset."" CVPR Workshops, 2014. Please cite the original paper if you use this data. --- # CDnet 2014: An Expanded Change Detection Benchmark Dataset This dataset is the 2014 version of the Change Detection benchmark, an expanded version of the 2012 dataset. It provides a comprehensive
+Main topics: computer vision, weather climate, hydrology water, image segmentation, object detection, segmentation
+Task/use case: segmentation, detection, monitoring analysis
+Data modality: image, video, time series
+Keywords: computer vision, image segmentation, object detection, segmentation
+Dataset title: CDnet 2014","Main topics: earth observation
+Dataset title: PPE kit Dataset",change detection,,,,
+hnq004,I want to study how cities change using images taken from above.,en,vafaeii/cdnet-2014-change-detection-benchmark-dataset,CDnet 2014,strong,wafaaelhusseini/major-cities-weather-data,Major Cities Weather Data 1995-present,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",39,"Dataset description: An Expanded Change Detection Benchmark Dataset **Description:** This dataset is an **unofficial mirror** of the CDnet 2014 benchmark hosted here for easier accessibility within Kaggle kernels. **Original Source & Citation:** Wang, Y., Jodoin, P. M., et al. ""CDnet 2014: An Expanded Change Detection Benchmark Dataset."" CVPR Workshops, 2014. Please cite the original paper if you use this data. --- # CDnet 2014: An Expanded Change Detection Benchmark Dataset This dataset is the 2014 version of the Change Detection benchmark, an expanded version of the 2012 dataset. It provides a comprehensive
+Main topics: computer vision, weather climate, hydrology water, image segmentation, object detection, segmentation
+Task/use case: segmentation, detection, monitoring analysis
+Data modality: image, video, time series
+Keywords: computer vision, image segmentation, object detection, segmentation
+Dataset title: CDnet 2014","Dataset description: Daily weather statistics for major world cities (Auto-updated via Open-Meteo) # 🌍 Major Cities Daily Weather (1995 – present) [CURRENTLY UNDER CONSTRUCTION] This dataset provides **daily historical weather data** for **major cities around the world** — including all **national capitals** and large population centers — from **1995 to 2024** Data is sourced from the **Open-Meteo Historical Weather API** and **Wikidata**, processed and harmonized for easy analysis and visualization. --- ## 📦 Contents | File | Description | |------|--------------| | `cities_clean.parquet` | Metadata of all selected cities (country, coordinates, population, capital
+Main topics: weather climate, global, weather and climate
+Task/use case: retrieval search, recommendation, monitoring analysis
+Data modality: tabular, time series
+Keywords: global, weather and climate
+Dataset title: Major Cities Weather Data 1995-present",change detection,,city weather,,
+hnq004,I want to study how cities change using images taken from above.,en,vafaeii/cdnet-2014-change-detection-benchmark-dataset,CDnet 2014,strong,figshare/united-states-commutes,United States Commutes,"partial_semantic_overlap,missing_query_aspects",10,"Dataset description: An Expanded Change Detection Benchmark Dataset **Description:** This dataset is an **unofficial mirror** of the CDnet 2014 benchmark hosted here for easier accessibility within Kaggle kernels. **Original Source & Citation:** Wang, Y., Jodoin, P. M., et al. ""CDnet 2014: An Expanded Change Detection Benchmark Dataset."" CVPR Workshops, 2014. Please cite the original paper if you use this data. --- # CDnet 2014: An Expanded Change Detection Benchmark Dataset This dataset is the 2014 version of the Change Detection benchmark, an expanded version of the 2012 dataset. It provides a comprehensive
+Main topics: computer vision, weather climate, hydrology water, image segmentation, object detection, segmentation
+Task/use case: segmentation, detection, monitoring analysis
+Data modality: image, video, time series
+Keywords: computer vision, image segmentation, object detection, segmentation
+Dataset title: CDnet 2014","Dataset description: Visualizing over 4 million home-to-work commutes in the United States # Context The emergence in the United States of large-scale “megaregions” centered on major metropolitan areas is a phenomenon often taken for granted in both scholarly studies and popular accounts of contemporary economic geography. This dataset comes from a paper (Nelson & Rae, 2016. An Economic Geography of the United States: From Commutes to Megaregions) that uses a data set of more than 4,000,000 commuter flows as the basis for an empirical approach to the identification of such megaregions. #
+Main topics: hydrology water, earth observation, business, transportation, travel
+Data modality: geospatial
+Keywords: business, transportation, travel
+Dataset title: United States Commutes",change detection,,,,
+hnq005,I want to find data for financial fraud detection.,en,oislen/randomtelecompayments,Random Telecom Payments,strong,edgarco11/campaign-affiliate-data,Campaign Affiliate Data,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",1,"Dataset description: Python Simulated Data Randomly simulated data is particularly useful when it's real world counterpart is hard access due to complexity, privacy and security reasons. Moreover, randomly simulated data has additional benefits including reproducibility, scalability and controllability. This dataset contains simulated telecommunication payments using random number generation. It includes typical transaction level relationships and behaviours amongst the user, device, ip, and card entities. It can be used in place of real world telecommunication payments for prototyping solutions and as an education tool. Keywords: europe, computer science, programming, tabular, simulations, e-commerce services
+Main topics: europe, computer science, programming, simulations, e-commerce services
+Task/use case: qa generation
+Data modality: tabular
+Keywords: europe, computer science, programming, simulations, e-commerce services
+Dataset title: Random Telecom Payments","Dataset description: Campaign Affiliate Data This dataset contains **data on transfer affiliates** carried out by campaigns of a pension fund company, which shows non-real data on how clients are divided, whether according to their affiliates of origin and when income was given. Notes: the data is fictitious but corresponds to giving an understanding of the business. Description from columns: - period: period in yyyymm format in which the transfer was made - id : key id - numdoc: document number - cuspp: registered email - first_name: first name of the affiliate -
+Main topics: computer vision, finance markets, finance, banking, economics, data cleaning, data analytics, classification
+Task/use case: classification, ocr document ai
+Data modality: text
+Keywords: finance, banking, economics, data cleaning, data analytics, classification
+Dataset title: Campaign Affiliate Data",transaction level | card entities,,campaign affiliate,,
+hnq005,I want to find data for financial fraud detection.,en,oislen/randomtelecompayments,Random Telecom Payments,strong,jasineri/stock-market-dataset,Stock Market Dataset,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",2,"Dataset description: Python Simulated Data Randomly simulated data is particularly useful when it's real world counterpart is hard access due to complexity, privacy and security reasons. Moreover, randomly simulated data has additional benefits including reproducibility, scalability and controllability. This dataset contains simulated telecommunication payments using random number generation. It includes typical transaction level relationships and behaviours amongst the user, device, ip, and card entities. It can be used in place of real world telecommunication payments for prototyping solutions and as an education tool. Keywords: europe, computer science, programming, tabular, simulations, e-commerce services
+Main topics: europe, computer science, programming, simulations, e-commerce services
+Task/use case: qa generation
+Data modality: tabular
+Keywords: europe, computer science, programming, simulations, e-commerce services
+Dataset title: Random Telecom Payments","Dataset description: Disclaimer: Educational Purposes Only The financial and International Securities Identification Number (ISIN) data listed on this platform is provided solely for educational purposes. The information is intended to serve as general guidance and does not constitute financial advice, an endorsement, or a recommendation for the purchase or sale of any securities. While we strive to ensure the accuracy and timeliness of the information presented, we make no representations or warranties, express or implied, regarding the completeness, accuracy, reliability, suitability, or availability of the provided data. Users are encouraged to independently
+Main topics: finance markets, business
+Task/use case: recommendation
+Keywords: business
+Dataset title: Stock Market Dataset",transaction level | card entities,,stock market,,
+hnq005,I want to find data for financial fraud detection.,en,oislen/randomtelecompayments,Random Telecom Payments,strong,vadimvanak/company-facts-2,Financial Statement Data Sets,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",4,"Dataset description: Python Simulated Data Randomly simulated data is particularly useful when it's real world counterpart is hard access due to complexity, privacy and security reasons. Moreover, randomly simulated data has additional benefits including reproducibility, scalability and controllability. This dataset contains simulated telecommunication payments using random number generation. It includes typical transaction level relationships and behaviours amongst the user, device, ip, and card entities. It can be used in place of real world telecommunication payments for prototyping solutions and as an education tool. Keywords: europe, computer science, programming, tabular, simulations, e-commerce services
+Main topics: europe, computer science, programming, simulations, e-commerce services
+Task/use case: qa generation
+Data modality: tabular
+Keywords: europe, computer science, programming, simulations, e-commerce services
+Dataset title: Random Telecom Payments","Dataset description: US-GAAP Financial Data: SEC Filings of Listed US Companies Since January 2009 This dataset offers a detailed collection of US-GAAP financial data extracted from the financial statements of exchange-listed U.S. companies, as submitted to the U.S. Securities and Exchange Commission (SEC) via the EDGAR database. Covering filings from January 2009 onwards, this dataset provides key financial figures reported by companies in accordance with U.S. Generally Accepted Accounting Principles (GAAP). ### Dataset Features: - **Data Scope:** The dataset is restricted to figures reported under US-GAAP standards, with the exception of *EntityCommonStockSharesOutstanding*
+Main topics: finance markets, united states, finance, investing
+Task/use case: detection, monitoring analysis
+Keywords: united states, finance, investing
+Dataset title: Financial Statement Data Sets",transaction level | card entities,,financial statements,,
+hnq006,I want to find data about people's emotions from short online messages.,en,asaniczka/reddit-on-israel-palestine-daily-updated,Daily Public Opinion on Israel-Palestine War,strong,sonaam1234/sentimentdata,Sentiment Analysis Dataset,"partial_semantic_overlap,missing_query_aspects",16,"Dataset description: Comments from reddit on posts related to the current war. Updated Daily The Israel-Palestine conflict has been a highly discussed and sensitive topic in recent times. This dataset contains comments from Reddit posts related to the current situation in Israel and Gaza. By analyzing these comments, you can gain insights into the biases and affiliations of the commenters, as well as their support for different parties involved. **This dataset is updated daily**, providing a comprehensive and up-to-date view of the sentiments expressed on Reddit regarding this conflict. > If you
+Main topics: computer vision, nlp text, internet, data analytics, social issues and advocacy, online communities, text classification
+Task/use case: classification, forecasting, monitoring analysis
+Data modality: time series, text, tabular
+Keywords: internet, data analytics, social issues and advocacy, online communities, text classification
+Dataset title: Daily Public Opinion on Israel-Palestine War","Dataset description: Data to train model for sentiment analysis Data for sentiment analysis Keywords: business
+Main topics: business
+Keywords: business
+Semantic quality: Limited semantic evidence: description has limited semantic detail; title terms are de-emphasized.",emotion | sentiment | reddit | public opinion,sentiment,,,
+hnq006,I want to find data about people's emotions from short online messages.,en,asaniczka/reddit-on-israel-palestine-daily-updated,Daily Public Opinion on Israel-Palestine War,strong,bwandowando/reddit-rcasualuk-subreddit-dataset-2026,🇬🇧 Reddit r/CasualUK Subreddit Dataset 2026,"partial_semantic_overlap,missing_query_aspects",17,"Dataset description: Comments from reddit on posts related to the current war. Updated Daily The Israel-Palestine conflict has been a highly discussed and sensitive topic in recent times. This dataset contains comments from Reddit posts related to the current situation in Israel and Gaza. By analyzing these comments, you can gain insights into the biases and affiliations of the commenters, as well as their support for different parties involved. **This dataset is updated daily**, providing a comprehensive and up-to-date view of the sentiments expressed on Reddit regarding this conflict. > If you
+Main topics: computer vision, nlp text, internet, data analytics, social issues and advocacy, online communities, text classification
+Task/use case: classification, forecasting, monitoring analysis
+Data modality: time series, text, tabular
+Keywords: internet, data analytics, social issues and advocacy, online communities, text classification
+Dataset title: Daily Public Opinion on Israel-Palestine War","Dataset description: r/CasualUK Subreddit threads, comments, and images 🇬🇧 ## Context I've tried looking for a reddit dataset for UK here in Kaggle havent found one, so I made one for the UK Kaggle members ## About Created last Feb 13, 2017, r/CasualUK/ is labeled **UK based subreddit for non-political news, commentary and discussion.** This dataset can be used to extract insights from the trending topics and discussions in the subreddit. ## Banner Image Created with Bing Image Creator Keywords: research, internet, tabular, online communities, social networks
+Main topics: computer vision, research, internet, online communities, social networks
+Data modality: image, tabular
+Keywords: research, internet, online communities, social networks
+Dataset title: 🇬🇧 Reddit r/CasualUK Subreddit Dataset 2026",emotion | sentiment | reddit | public opinion,reddit,,,
+hnq006,I want to find data about people's emotions from short online messages.,en,asaniczka/reddit-on-israel-palestine-daily-updated,Daily Public Opinion on Israel-Palestine War,strong,iabufarha/ar_sarcasm,iabufarha/ar_sarcasm,"partial_semantic_overlap,missing_query_aspects",5,"Dataset description: Comments from reddit on posts related to the current war. Updated Daily The Israel-Palestine conflict has been a highly discussed and sensitive topic in recent times. This dataset contains comments from Reddit posts related to the current situation in Israel and Gaza. By analyzing these comments, you can gain insights into the biases and affiliations of the commenters, as well as their support for different parties involved. **This dataset is updated daily**, providing a comprehensive and up-to-date view of the sentiments expressed on Reddit regarding this conflict. > If you
+Main topics: computer vision, nlp text, internet, data analytics, social issues and advocacy, online communities, text classification
+Task/use case: classification, forecasting, monitoring analysis
+Data modality: time series, text, tabular
+Keywords: internet, data analytics, social issues and advocacy, online communities, text classification
+Dataset title: Daily Public Opinion on Israel-Palestine War","Main topics: computer vision, nlp text, sarcasm-detection, text-classification, ar, task_ids:sentiment-classification, annotations_creators:no-annotation, language_creators:found
+Data modality: language: ar
+Keywords: sarcasm-detection, task_ids:sentiment-classification, annotations_creators:no-annotation, language_creators:found, multilinguality:monolingual, source_datasets:extended|other-semeval_2017, source_datasets:extended|other-astd
+Supporting metadata: text-classification, ar
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",emotion | sentiment | reddit | public opinion,sentiment,,,
+hnq006,I want to find data about people's emotions from short online messages.,en,madlygfx/instrumetriq-crypto-sentiment-market-data,Instrumetriq: Crypto Sentiment & Market Data,strong,sonaam1234/sentimentdata,Sentiment Analysis Dataset,"partial_semantic_overlap,missing_query_aspects",16,"Dataset description: Daily AI-scored X sentiment with spot, futures, and microstructure from Binance ## Instrumetriq - Crypto Market Activity & Sentiment Context Dataset Time-aligned market data with social context and participation dynamics. Each entry represents a ~2-hour monitoring session for a single crypto asset, combining AI-scored sentiment from X (Twitter) with market microstructure from Binance. This dataset contains **14 weekly samples** covering **2025-12-21** through **2026-03-22**. Updated weekly (Mondays). --- ### What is measured **Sentiment (X / Twitter)** - Post counts by sentiment class (positive, neutral, negative) - Mean sentiment score per cycle
+Main topics: finance markets, computer vision, nlp text, finance, exploratory data analysis, nlp, time series analysis, classification, investing
+Task/use case: forecasting, monitoring analysis, classification, detection
+Data modality: text, tabular, time series
+Keywords: finance, exploratory data analysis, nlp, time series analysis, classification, investing, currencies and foreign exchange
+Dataset title: Instrumetriq: Crypto Sentiment & Market Data","Dataset description: Data to train model for sentiment analysis Data for sentiment analysis Keywords: business
+Main topics: business
+Keywords: business
+Semantic quality: Limited semantic evidence: description has limited semantic detail; title terms are de-emphasized.",sentiment | reddit,sentiment,,,
+hnq006,I want to find data about people's emotions from short online messages.,en,madlygfx/instrumetriq-crypto-sentiment-market-data,Instrumetriq: Crypto Sentiment & Market Data,strong,bwandowando/reddit-rcasualuk-subreddit-dataset-2026,🇬🇧 Reddit r/CasualUK Subreddit Dataset 2026,"partial_semantic_overlap,missing_query_aspects",17,"Dataset description: Daily AI-scored X sentiment with spot, futures, and microstructure from Binance ## Instrumetriq - Crypto Market Activity & Sentiment Context Dataset Time-aligned market data with social context and participation dynamics. Each entry represents a ~2-hour monitoring session for a single crypto asset, combining AI-scored sentiment from X (Twitter) with market microstructure from Binance. This dataset contains **14 weekly samples** covering **2025-12-21** through **2026-03-22**. Updated weekly (Mondays). --- ### What is measured **Sentiment (X / Twitter)** - Post counts by sentiment class (positive, neutral, negative) - Mean sentiment score per cycle
+Main topics: finance markets, computer vision, nlp text, finance, exploratory data analysis, nlp, time series analysis, classification, investing
+Task/use case: forecasting, monitoring analysis, classification, detection
+Data modality: text, tabular, time series
+Keywords: finance, exploratory data analysis, nlp, time series analysis, classification, investing, currencies and foreign exchange
+Dataset title: Instrumetriq: Crypto Sentiment & Market Data","Dataset description: r/CasualUK Subreddit threads, comments, and images 🇬🇧 ## Context I've tried looking for a reddit dataset for UK here in Kaggle havent found one, so I made one for the UK Kaggle members ## About Created last Feb 13, 2017, r/CasualUK/ is labeled **UK based subreddit for non-political news, commentary and discussion.** This dataset can be used to extract insights from the trending topics and discussions in the subreddit. ## Banner Image Created with Bing Image Creator Keywords: research, internet, tabular, online communities, social networks
+Main topics: computer vision, research, internet, online communities, social networks
+Data modality: image, tabular
+Keywords: research, internet, online communities, social networks
+Dataset title: 🇬🇧 Reddit r/CasualUK Subreddit Dataset 2026",sentiment | reddit,reddit,,,
+hnq006,I want to find data about people's emotions from short online messages.,en,madlygfx/instrumetriq-crypto-sentiment-market-data,Instrumetriq: Crypto Sentiment & Market Data,strong,iabufarha/ar_sarcasm,iabufarha/ar_sarcasm,"partial_semantic_overlap,missing_query_aspects",5,"Dataset description: Daily AI-scored X sentiment with spot, futures, and microstructure from Binance ## Instrumetriq - Crypto Market Activity & Sentiment Context Dataset Time-aligned market data with social context and participation dynamics. Each entry represents a ~2-hour monitoring session for a single crypto asset, combining AI-scored sentiment from X (Twitter) with market microstructure from Binance. This dataset contains **14 weekly samples** covering **2025-12-21** through **2026-03-22**. Updated weekly (Mondays). --- ### What is measured **Sentiment (X / Twitter)** - Post counts by sentiment class (positive, neutral, negative) - Mean sentiment score per cycle
+Main topics: finance markets, computer vision, nlp text, finance, exploratory data analysis, nlp, time series analysis, classification, investing
+Task/use case: forecasting, monitoring analysis, classification, detection
+Data modality: text, tabular, time series
+Keywords: finance, exploratory data analysis, nlp, time series analysis, classification, investing, currencies and foreign exchange
+Dataset title: Instrumetriq: Crypto Sentiment & Market Data","Main topics: computer vision, nlp text, sarcasm-detection, text-classification, ar, task_ids:sentiment-classification, annotations_creators:no-annotation, language_creators:found
+Data modality: language: ar
+Keywords: sarcasm-detection, task_ids:sentiment-classification, annotations_creators:no-annotation, language_creators:found, multilinguality:monolingual, source_datasets:extended|other-semeval_2017, source_datasets:extended|other-astd
+Supporting metadata: text-classification, ar
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",sentiment | reddit,sentiment,,,
+hnq007,I want to detect harmful language in user comments.,en,lmsys/toxic-chat,lmsys/toxic-chat,weak,iabufarha/ar_sarcasm,iabufarha/ar_sarcasm,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",2,"Main topics: nlp text, text-classification
+Data modality: tabular | language: en
+Keywords: text-classification
+Supporting metadata: text-classification
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.","Main topics: computer vision, nlp text, sarcasm-detection, text-classification, ar, task_ids:sentiment-classification, annotations_creators:no-annotation, language_creators:found
+Data modality: language: ar
+Keywords: sarcasm-detection, task_ids:sentiment-classification, annotations_creators:no-annotation, language_creators:found, multilinguality:monolingual, source_datasets:extended|other-semeval_2017, source_datasets:extended|other-astd
+Supporting metadata: text-classification, ar
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",toxic chat,,sarcasm,,
+hnq007,I want to detect harmful language in user comments.,en,lmsys/toxic-chat,lmsys/toxic-chat,weak,PKU-Alignment/PKU-SafeRLHF,PKU-Alignment/PKU-SafeRLHF,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",5,"Main topics: nlp text, text-classification
+Data modality: tabular | language: en
+Keywords: text-classification
+Supporting metadata: text-classification
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.","Main topics: nlp text, safe, safety, ai-safety, llm, lm, human-feedback
+Data modality: language: en
+Keywords: safe, safety, ai-safety, llm, lm, human-feedback, rlhf, safe-rlhf
+Supporting metadata: text-generation
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",toxic chat,,safe rlhf,,
+hnq007,I want to detect harmful language in user comments.,en,lmsys/toxic-chat,lmsys/toxic-chat,weak,stanfordnlp/imdb,stanfordnlp/imdb,"partial_semantic_overlap,missing_query_aspects",3,"Main topics: nlp text, text-classification
+Data modality: tabular | language: en
+Keywords: text-classification
+Supporting metadata: text-classification
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.","Main topics: nlp text, text-classification, task_ids:sentiment-classification, annotations_creators:expert-generated, language_creators:expert-generated, multilinguality:monolingual, source_datasets:original
+Data modality: language: en
+Keywords: task_ids:sentiment-classification, annotations_creators:expert-generated, language_creators:expert-generated, multilinguality:monolingual, source_datasets:original
+Supporting metadata: text-classification
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",toxic chat,,,,
+hnq007,I want to detect harmful language in user comments.,en,toxigen/toxigen-data,toxigen/toxigen-data,weak,iabufarha/ar_sarcasm,iabufarha/ar_sarcasm,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",2,"Main topics: computer vision, nlp text, text-classification, task_ids:hate-speech-detection, annotations_creators:expert-generated, language_creators:machine-generated, multilinguality:monolingual, source_datasets:original
+Keywords: task_ids:hate-speech-detection, annotations_creators:expert-generated, language_creators:machine-generated, multilinguality:monolingual, source_datasets:original
+Supporting metadata: text-classification
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.","Main topics: computer vision, nlp text, sarcasm-detection, text-classification, ar, task_ids:sentiment-classification, annotations_creators:no-annotation, language_creators:found
+Data modality: language: ar
+Keywords: sarcasm-detection, task_ids:sentiment-classification, annotations_creators:no-annotation, language_creators:found, multilinguality:monolingual, source_datasets:extended|other-semeval_2017, source_datasets:extended|other-astd
+Supporting metadata: text-classification, ar
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",hate speech,,sarcasm,,
+hnq007,I want to detect harmful language in user comments.,en,toxigen/toxigen-data,toxigen/toxigen-data,weak,PKU-Alignment/PKU-SafeRLHF,PKU-Alignment/PKU-SafeRLHF,"negative_clue_match,partial_semantic_overlap,missing_query_aspects",5,"Main topics: computer vision, nlp text, text-classification, task_ids:hate-speech-detection, annotations_creators:expert-generated, language_creators:machine-generated, multilinguality:monolingual, source_datasets:original
+Keywords: task_ids:hate-speech-detection, annotations_creators:expert-generated, language_creators:machine-generated, multilinguality:monolingual, source_datasets:original
+Supporting metadata: text-classification
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.","Main topics: nlp text, safe, safety, ai-safety, llm, lm, human-feedback
+Data modality: language: en
+Keywords: safe, safety, ai-safety, llm, lm, human-feedback, rlhf, safe-rlhf
+Supporting metadata: text-generation
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",hate speech,,safe rlhf,,
+hnq007,I want to detect harmful language in user comments.,en,toxigen/toxigen-data,toxigen/toxigen-data,weak,stanfordnlp/imdb,stanfordnlp/imdb,"partial_semantic_overlap,missing_query_aspects",3,"Main topics: computer vision, nlp text, text-classification, task_ids:hate-speech-detection, annotations_creators:expert-generated, language_creators:machine-generated, multilinguality:monolingual, source_datasets:original
+Keywords: task_ids:hate-speech-detection, annotations_creators:expert-generated, language_creators:machine-generated, multilinguality:monolingual, source_datasets:original
+Supporting metadata: text-classification
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.","Main topics: nlp text, text-classification, task_ids:sentiment-classification, annotations_creators:expert-generated, language_creators:expert-generated, multilinguality:monolingual, source_datasets:original
+Data modality: language: en
+Keywords: task_ids:sentiment-classification, annotations_creators:expert-generated, language_creators:expert-generated, multilinguality:monolingual, source_datasets:original
+Supporting metadata: text-classification
+Semantic quality: Limited semantic evidence: description is mostly keywords or metadata; title terms are de-emphasized.",hate speech,,,,
