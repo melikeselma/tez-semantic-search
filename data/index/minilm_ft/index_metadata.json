@@ -1,17 +1,17 @@
 {
-  "built_at_utc": "2026-05-11T20:03:05.609941+00:00",
+  "built_at_utc": "2026-05-11T20:24:09.028807+00:00",
   "profile": "minilm_ft",
   "profile_label": "MiniLM (domain fine-tuned)",
   "model_name": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\models\\retriever\\minilm-domain-ft\\final",
   "input_path": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\data\\processed\\descriptions_clean.jsonl",
-  "input_rows": 1233,
-  "indexed_rows": 1233,
+  "input_rows": 1241,
+  "indexed_rows": 1241,
   "embedding_dimension": 384,
   "query_prefix": "",
   "document_prefix": "",
   "source_counts": {
-    "huggingface": 557,
-    "kaggle": 676
+    "huggingface": 560,
+    "kaggle": 681
   },
   "outputs": {
     "index": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\data\\index\\minilm_ft\\faiss.index",

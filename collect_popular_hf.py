@@ -55,6 +55,12 @@ POPULAR_HF_DATASETS = [
     "hate_speech18", "jigsaw_toxicity_pred",
     # Captioning
     "conceptual_captions",
+    # Flowers / fine-grained vision
+    "dpdl-benchmark/oxford_flowers102",
+    "nkirschi/oxford-flowers",
+    "huggan/flowers-102-categories",
+    "clip-benchmark/wds_vtab-flowers",
+    "pufanyi/flowers102",
 ]
 
 

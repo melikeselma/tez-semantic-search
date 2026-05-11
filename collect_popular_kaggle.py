@@ -72,6 +72,12 @@ POPULAR_KAGGLE_DATASETS = [
     "rtatman/188-million-us-wildfires",
     "noaa/gsod",
     "datasnaek/youtube-new",
+    # Flowers / botanical
+    "mexwell/orchid-flower-dataset",
+    "nunenuh/pytorch-challange-flower-dataset",
+    "marquis03/flower-classification",
+    "imsparsh/flowers-dataset",
+    "rahmasleam/flowers-dataset",
 ]
 
 # Cleaning regexes — kept aligned with clean_kaggle.py.

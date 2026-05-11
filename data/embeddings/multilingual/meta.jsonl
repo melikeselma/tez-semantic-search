@@ -555,6 +555,9 @@
 {"source": "huggingface", "ref": "hate_speech18", "title": "hate_speech18", "url": "https://huggingface.co/datasets/hate_speech18"}
 {"source": "huggingface", "ref": "jigsaw_toxicity_pred", "title": "jigsaw_toxicity_pred", "url": "https://huggingface.co/datasets/jigsaw_toxicity_pred"}
 {"source": "huggingface", "ref": "conceptual_captions", "title": "conceptual_captions", "url": "https://huggingface.co/datasets/conceptual_captions"}
+{"source": "huggingface", "ref": "dpdl-benchmark/oxford_flowers102", "title": "dpdl-benchmark/oxford_flowers102", "url": "https://huggingface.co/datasets/dpdl-benchmark/oxford_flowers102"}
+{"source": "huggingface", "ref": "nkirschi/oxford-flowers", "title": "nkirschi/oxford-flowers", "url": "https://huggingface.co/datasets/nkirschi/oxford-flowers"}
+{"source": "huggingface", "ref": "pufanyi/flowers102", "title": "pufanyi/flowers102", "url": "https://huggingface.co/datasets/pufanyi/flowers102"}
 {"source": "kaggle", "ref": "4quant/simplefoam", "title": "Finding Bubbles in Foam", "url": "https://www.kaggle.com/datasets/4quant/simplefoam"}
 {"source": "kaggle", "ref": "a2015003713/yolov7-military-plane", "title": "yolov7-military-plane", "url": "https://www.kaggle.com/datasets/a2015003713/yolov7-military-plane"}
 {"source": "kaggle", "ref": "aadarshvelu/gym-equipements-classification", "title": "Gym Equipment's Classification 💪", "url": "https://www.kaggle.com/datasets/aadarshvelu/gym-equipements-classification"}
@@ -1231,3 +1234,8 @@
 {"source": "kaggle", "ref": "alessiocorrado99/animals10", "title": "Animals-10", "url": "https://www.kaggle.com/datasets/alessiocorrado99/animals10"}
 {"source": "kaggle", "ref": "rtatman/188-million-us-wildfires", "title": "1.88 Million US Wildfires", "url": "https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires"}
 {"source": "kaggle", "ref": "datasnaek/youtube-new", "title": "Trending YouTube Video Statistics", "url": "https://www.kaggle.com/datasets/datasnaek/youtube-new"}
+{"source": "kaggle", "ref": "mexwell/orchid-flower-dataset", "title": "🌸 Orchid Flower Dataset", "url": "https://www.kaggle.com/datasets/mexwell/orchid-flower-dataset"}
+{"source": "kaggle", "ref": "nunenuh/pytorch-challange-flower-dataset", "title": "Oxford 102 Flower Dataset", "url": "https://www.kaggle.com/datasets/nunenuh/pytorch-challange-flower-dataset"}
+{"source": "kaggle", "ref": "marquis03/flower-classification", "title": "Flower Classification", "url": "https://www.kaggle.com/datasets/marquis03/flower-classification"}
+{"source": "kaggle", "ref": "imsparsh/flowers-dataset", "title": "Flowers Dataset", "url": "https://www.kaggle.com/datasets/imsparsh/flowers-dataset"}
+{"source": "kaggle", "ref": "rahmasleam/flowers-dataset", "title": "Flowers Dataset", "url": "https://www.kaggle.com/datasets/rahmasleam/flowers-dataset"}
