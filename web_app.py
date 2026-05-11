@@ -829,7 +829,7 @@ HTML = """<!doctype html>
         <form id="search-form">
           <div class="search-query-row">
             <label for="query">&#128270; Sorgu</label>
-            <input id="query" name="query" autocomplete="off" placeholder="&#128269; Ne tur bir veri seti ariyorsunuz? Ornegin: historical earthquake events and seismic activity..." required>
+            <input id="query" name="query" autocomplete="off" placeholder="&#128269; Ne tür bir veri seti arıyorsunuz? Örneğin: tarihsel deprem olayları ve sismik aktivite verileri..." required>
           </div>
           <div class="search-options-row">
             <div>
@@ -871,11 +871,13 @@ HTML = """<!doctype html>
             <span>&#129504; Cross-encoder semantic rerank</span>
           </label>
         </div>
-        <div class="examples" id="examples" aria-label="Sample queries">
-          <button class="example-btn" type="button" data-query="I want to study how weather affects crop production.">&#127789; weather + crop</button>
-          <button class="example-btn" type="button" data-query="I want to research diabetes prediction using patient records.">&#128137; diabetes</button>
-          <button class="example-btn" type="button" data-query="I want to find a dataset of historical earthquake events and seismic activity records.">&#127979; earthquake</button>
-          <button class="example-btn" type="button" data-query="I want to find a dataset of daily stock market prices.">&#128200; stock market</button>
+        <div class="examples" id="examples" aria-label="Örnek sorgular">
+          <button class="example-btn" type="button" data-query="hava durumu ürün verimini nasıl etkiliyor">&#127789; hava + ürün</button>
+          <button class="example-btn" type="button" data-query="diyabet tahmini için hasta kayıtları">&#128137; diyabet</button>
+          <button class="example-btn" type="button" data-query="tarihsel deprem olayları ve sismik aktivite kayıtları">&#127979; deprem</button>
+          <button class="example-btn" type="button" data-query="günlük borsa fiyatları veri seti">&#128200; borsa</button>
+          <button class="example-btn" type="button" data-query="çiçek sınıflandırma veri seti">&#127802; çiçek</button>
+          <button class="example-btn" type="button" data-query="titanik veri seti">&#128674; titanik</button>
         </div>
       </section>
 
@@ -915,7 +917,7 @@ HTML = """<!doctype html>
       <div id="adaptation-spec-grid" hidden></div>
       <div id="adaptation-banner" hidden></div>
 
-      <p id="status" class="status">&#9989; Hazır sorgunuzu girin.</p>
+      <p id="status" class="status">&#9989; Sorgunuzu girin.</p>
       <div id="confidence-banner" class="rq1-banner" hidden></div>
 
       <div id="loading">
@@ -935,7 +937,7 @@ HTML = """<!doctype html>
         </div>
         <div>
           <div class="loading-text">Arama yapılıyor...</div>
-          <div class="loading-sub">Vektor veritabanı taranıyor</div>
+          <div class="loading-sub">Vektör veritabanı taranıyor</div>
         </div>
         <div class="loading-dots">
           <span></span><span></span><span></span>
@@ -943,13 +945,13 @@ HTML = """<!doctype html>
       </div>
 
       <section id="results" class="results" aria-live="polite">
-        <div class="empty">&#128269; Yukaridaki alana bir sorgu girin sonuçlar burada listelenecek.</div>
+        <div class="empty">&#128269; Yukarıdaki alana bir sorgu girin, sonuçlar burada listelenecek.</div>
       </section>
     </section>
 
     <section class="tab-panel" id="tab-rq1" role="tabpanel" aria-labelledby="tab-btn-rq1" hidden>
       <section class="panel" aria-label="RQ1">
-        <h2 class="rq-title">&#9889; RQ1 Semantic, BM25'u Gecer mi?</h2>
+        <h2 class="rq-title">&#9889; RQ1 Semantic, BM25'i Geçer mi?</h2>
 
         <div class="rq-cluster">
           <div class="rq-cluster-label purple">&#10067; Arastirma Sorusu</div>
