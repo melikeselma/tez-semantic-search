@@ -1,21 +1,21 @@
 {
-  "built_at_utc": "2026-04-26T20:14:40.040420+00:00",
+  "built_at_utc": "2026-05-11T19:36:45.955559+00:00",
   "profile": "minilm",
   "profile_label": "MiniLM (EN baseline)",
   "model_name": "sentence-transformers/all-MiniLM-L6-v2",
-  "input_path": "C:\\Users\\user\\Desktop\\Tez\\data\\processed\\descriptions_clean.jsonl",
-  "input_rows": 1120,
-  "indexed_rows": 1120,
+  "input_path": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\data\\processed\\descriptions_clean.jsonl",
+  "input_rows": 1197,
+  "indexed_rows": 1197,
   "embedding_dimension": 384,
   "query_prefix": "",
   "document_prefix": "",
   "source_counts": {
-    "huggingface": 480,
+    "huggingface": 557,
     "kaggle": 640
   },
   "outputs": {
-    "index": "C:\\Users\\user\\Desktop\\Tez\\data\\index\\faiss.index",
-    "mappings": "C:\\Users\\user\\Desktop\\Tez\\data\\index\\mappings.json",
-    "legacy_meta": "C:\\Users\\user\\Desktop\\Tez\\data\\embeddings\\meta.jsonl"
+    "index": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\data\\index\\faiss.index",
+    "mappings": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\data\\index\\mappings.json",
+    "legacy_meta": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\data\\embeddings\\meta.jsonl"
   }
 }
