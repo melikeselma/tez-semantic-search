@@ -172,706 +172,709 @@ HTML = """<!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Semantic Dataset Search</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
     :root {
-      color-scheme: light;
-      --bg: #f5f7f2;
-      --ink: #151a17;
-      --muted: #59645d;
-      --line: #cfd8d1;
-      --panel: #ffffff;
-      --accent: #087f6f;
-      --accent-strong: #066456;
-      --warn: #b42342;
-      --soft: #e7f2ee;
-      --tag: #f3e9d2;
+      --bg:           #f0edff;
+      --bg2:          #e8e3ff;
+      --ink:          #1e1147;
+      --muted:        #6b5fa0;
+      --line:         rgba(109, 40, 217, 0.15);
+      --panel:        #ffffff;
+      --accent:       #7c3aed;
+      --accent2:      #0891b2;
+      --accent3:      #db2777;
+      --accent4:      #059669;
+      --accent5:      #ea580c;
+      --accent-strong:#6d28d9;
+      --warn:         #dc2626;
+      --soft:         rgba(124,58,237,0.08);
+      --tag:          rgba(8,145,178,0.10);
+      --grad:         linear-gradient(135deg,#7c3aed,#0891b2);
+      --grad2:        linear-gradient(135deg,#db2777,#7c3aed);
+      --grad3:        linear-gradient(135deg,#059669,#0891b2);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Inter','Segoe UI',system-ui,sans-serif;
       background: var(--bg);
       color: var(--ink);
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse at 0% 0%,   rgba(124,58,237,.14) 0%,transparent 50%),
+        radial-gradient(ellipse at 100% 100%,rgba(8,145,178,.12) 0%,transparent 50%),
+        radial-gradient(ellipse at 60%  0%,  rgba(219,39,119,.08) 0%,transparent 40%);
     }
 
-    main {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 28px 0 40px;
-    }
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius:3px; }
+
+    /* ── TOPBAR ─────────────────────────────────────────── */
+    main { width:min(1260px,calc(100% - 32px)); margin:0 auto; padding:28px 0 48px; }
 
     .topbar {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 20px;
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:18px; margin-bottom:24px;
+      background: var(--panel);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:20px 24px;
+      box-shadow:0 2px 16px rgba(124,58,237,.08);
+    }
+
+    .brand { display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+
+    .brand-icon {
+      width:52px; height:52px; border-radius:16px;
+      background:var(--grad); display:flex; align-items:center;
+      justify-content:center; font-size:28px;
+      box-shadow:0 4px 20px rgba(124,58,237,.35); flex-shrink:0;
     }
 
     h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
-      line-height: 1.15;
+      margin:0; font-size:30px; font-weight:900; line-height:1.1;
+      background:var(--grad); -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent; background-clip:text;
     }
 
     .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.45;
-      max-width: 720px;
+      margin:2px 0 0 66px; color:var(--muted);
+      font-size:13px; line-height:1.6; max-width:640px;
     }
 
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
-      min-width: 260px;
-    }
+    /* stats */
+    .stats { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px; min-width:220px; }
 
     .stat {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      padding: 8px 10px;
-      min-width: 104px;
+      border:1px solid var(--line); border-radius:14px;
+      background:linear-gradient(135deg,rgba(124,58,237,.06),rgba(8,145,178,.06));
+      padding:10px 16px; min-width:96px; text-align:center;
     }
 
     .stat strong {
-      display: block;
-      font-size: 18px;
-      line-height: 1.15;
+      display:block; font-size:22px; font-weight:900;
+      background:var(--grad); -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent; background-clip:text;
     }
 
-    .stat span {
-      color: var(--muted);
-      font-size: 12px;
+    .stat span { color:var(--muted); font-size:10px; font-weight:700;
+      text-transform:uppercase; letter-spacing:.07em; }
+
+    /* ── APP LAYOUT: sidebar + content ─────────────────── */
+    .app-layout { display:flex; gap:20px; align-items:flex-start; }
+
+    /* ── SIDEBAR ─────────────────────────────────────────── */
+    .sidebar {
+      flex:0 0 200px;
+      display:flex; flex-direction:column; gap:4px;
+      position:sticky; top:20px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:14px 10px;
+      box-shadow:0 2px 16px rgba(124,58,237,.07);
     }
 
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      padding: 14px;
-      margin-bottom: 18px;
-    }
-
-    .panel h2 {
-      margin: 0 0 8px;
-      font-size: 20px;
-    }
-
-    .panel-note {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .tabbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0 0 18px;
+    .sidebar-label {
+      font-size:10px; font-weight:800; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--muted);
+      padding:4px 10px 8px; margin-top:6px;
     }
 
     .tab-btn {
-      width: auto;
-      min-height: 40px;
-      margin: 0;
-      padding: 9px 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #fff;
-      color: var(--accent-strong);
-      font-size: 14px;
-      font-weight: 700;
+      width:100%; min-height:auto;
+      margin:0; padding:11px 14px;
+      border:1px solid transparent;
+      border-radius:12px;
+      background:transparent;
+      color:var(--muted);
+      font-size:14px; font-weight:600;
+      cursor:pointer; transition:all .18s;
+      text-align:left;
+      display:flex; align-items:center; gap:10px;
     }
+
+    .tab-btn .tab-icon {
+      width:30px; height:30px; border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:15px; flex-shrink:0;
+      background:rgba(124,58,237,.08);
+      transition:all .18s;
+    }
+
+    .tab-btn .tab-text { display:flex; flex-direction:column; line-height:1.2; }
+    .tab-btn .tab-sub  { font-size:10px; opacity:.7; font-weight:500; }
 
     .tab-btn:hover {
-      border-color: var(--accent);
-      background: var(--soft);
+      background:var(--soft); color:var(--accent);
+      border-color:var(--line);
     }
+    .tab-btn:hover .tab-icon { background:rgba(124,58,237,.15); }
 
     .tab-btn[aria-selected="true"] {
-      border-color: var(--accent-strong);
-      background: var(--accent);
-      color: #fff;
+      background:var(--grad); color:#fff;
+      border-color:transparent;
+      box-shadow:0 4px 16px rgba(124,58,237,.3);
+    }
+    .tab-btn[aria-selected="true"] .tab-icon {
+      background:rgba(255,255,255,.2);
+    }
+    .tab-btn[aria-selected="true"] .tab-sub { opacity:.85; }
+
+    .tab-panel[hidden] { display:none; }
+
+    /* ── CONTENT AREA ───────────────────────────────────── */
+    .content-area { flex:1; min-width:0; }
+
+    /* ── PANEL ──────────────────────────────────────────── */
+    .panel {
+      border:1px solid var(--line); border-radius:18px;
+      background:var(--panel); padding:22px; margin-bottom:16px;
+      box-shadow:0 2px 12px rgba(124,58,237,.06);
     }
 
-    .tab-panel[hidden] {
-      display: none;
+    .panel h2 {
+      margin:0 0 10px; font-size:19px; font-weight:800;
+      display:flex; align-items:center; gap:10px;
     }
 
+    .panel-note { margin:0; color:var(--muted); font-size:13px; line-height:1.6; }
+
+    /* ── FORM ───────────────────────────────────────────── */
     form {
-      display: grid;
-      grid-template-columns: minmax(0, 1.6fr) 170px 150px 150px 120px 120px;
-      gap: 10px;
-      align-items: stretch;
+      display:grid;
+      grid-template-columns:minmax(0,1.8fr) 160px 140px 140px 110px 56px;
+      gap:10px; align-items:end; margin-top:16px;
     }
 
     label {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 6px;
+      display:block; font-size:11px; font-weight:800;
+      text-transform:uppercase; letter-spacing:.07em;
+      margin-bottom:7px;
     }
 
-    input,
-    select,
-    button {
-      width: 100%;
-      min-height: 44px;
-      border-radius: 8px;
-      font: inherit;
+    /* Renkli etiketler */
+    label[for="query"]  { color:var(--accent);  }
+    label[for="profile"] { color:var(--accent2); }
+    label[for="method"]  { color:var(--accent3); }
+    label[for="source"]  { color:var(--accent5); }
+    label[for="top-k"]   { color:var(--accent4); }
+
+    input, select, button {
+      width:100%; min-height:44px; border-radius:10px; font:inherit;
     }
 
-    input,
-    select {
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--ink);
-      padding: 10px 12px;
+    input, select {
+      border:2px solid var(--line);
+      background:#faf8ff; color:var(--ink);
+      padding:9px 13px;
+      transition:border-color .18s, box-shadow .18s;
+      font-size:14px;
     }
 
-    input:focus,
-    select:focus {
-      outline: 3px solid var(--soft);
-      border-color: var(--accent);
+    input:focus, select:focus {
+      outline:none; border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(124,58,237,.15);
     }
 
-    button {
-      border: 1px solid var(--accent-strong);
-      background: var(--accent);
-      color: #fff;
-      cursor: pointer;
-      font-weight: 700;
-      padding: 0 14px;
-      margin-top: 19px;
+    /* Her select'e kendi renk bordürü */
+    #profile { border-color:rgba(8,145,178,.35); }
+    #method  { border-color:rgba(219,39,119,.35); }
+    #source  { border-color:rgba(234,88,12,.35);  }
+    #top-k   { border-color:rgba(5,150,105,.35);  }
+    #profile:focus { border-color:var(--accent2); box-shadow:0 0 0 3px rgba(8,145,178,.15); }
+    #method:focus  { border-color:var(--accent3); box-shadow:0 0 0 3px rgba(219,39,119,.15); }
+    #source:focus  { border-color:var(--accent5); box-shadow:0 0 0 3px rgba(234,88,12,.15);  }
+    #top-k:focus   { border-color:var(--accent4); box-shadow:0 0 0 3px rgba(5,150,105,.15);  }
+
+    select option { background:#fff; color:var(--ink); }
+
+    /* Search butonu — sadece ikon */
+    button#submit {
+      min-height:44px; border:none;
+      background:var(--grad); color:#fff;
+      cursor:pointer; font-weight:900; font-size:22px;
+      padding:0; border-radius:12px;
+      box-shadow:0 4px 16px rgba(124,58,237,.35);
+      transition:all .18s; display:flex;
+      align-items:center; justify-content:center;
+      margin-top:0;
+    }
+    button#submit:hover   { transform:translateY(-2px); box-shadow:0 6px 24px rgba(124,58,237,.5); }
+    button#submit:disabled{ opacity:.6; transform:none; cursor:wait; }
+
+    button:not(#submit):not(.example-btn):not(.detail-btn):not(.close-btn):not(.tab-btn) {
+      border:none; background:var(--grad); color:#fff;
+      cursor:pointer; font-weight:700; padding:0 18px;
+      margin-top:20px; border-radius:10px;
+      box-shadow:0 4px 14px rgba(124,58,237,.3);
+      transition:all .18s;
     }
 
-    button:hover {
-      background: var(--accent-strong);
-    }
-
-    button:disabled {
-      cursor: wait;
-      opacity: 0.7;
-    }
-
-    .examples {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
+    /* ── TOGGLES & EXAMPLES ─────────────────────────────── */
     .search-toggle {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      margin-top: 12px;
+      display:flex; flex-wrap:wrap; align-items:center;
+      gap:12px; margin-top:14px;
     }
 
     .toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--ink);
-      font-size: 14px;
-      font-weight: 700;
-      margin: 0;
+      display:inline-flex; align-items:center; gap:8px;
+      color:var(--muted); font-size:13px; font-weight:600; margin:0;
     }
 
-    .toggle input {
-      width: 18px;
-      height: 18px;
-      min-height: 18px;
-      margin: 0;
-    }
+    .toggle input { width:16px; height:16px; min-height:16px; margin:0; accent-color:var(--accent); }
 
-    .example-btn,
-    .detail-btn,
-    .close-btn {
-      width: auto;
-      min-height: 34px;
-      margin: 0;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--accent-strong);
-      padding: 6px 10px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
+    .examples { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
 
-    .example-btn:hover,
-    .detail-btn:hover,
-    .close-btn:hover {
-      border-color: var(--accent);
-      background: var(--soft);
+    .example-btn,.detail-btn,.close-btn {
+      width:auto; min-height:30px; margin:0;
+      border-radius:999px; border:2px solid var(--line);
+      background:#fff; color:var(--accent);
+      padding:4px 14px; font-size:12px; font-weight:700;
+      cursor:pointer; transition:all .18s; box-shadow:none;
     }
+    .example-btn:hover,.detail-btn:hover {
+      border-color:var(--accent); background:var(--soft); color:var(--accent-strong);
+      transform:translateY(-1px); box-shadow:0 3px 10px rgba(124,58,237,.15);
+    }
+    .close-btn { color:var(--muted); }
+    .close-btn:hover { border-color:var(--warn); color:var(--warn); background:#fff5f5; }
 
-    .score-note,
-    .status {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
+    /* ── STATUS ─────────────────────────────────────────── */
+    .score-note,.status {
+      margin:10px 0 0; color:var(--muted); font-size:13px; line-height:1.5;
     }
+    .status { min-height:22px; margin-bottom:12px; }
+    .status.error { color:var(--warn); font-weight:700; }
 
-    .status {
-      min-height: 22px;
-      margin-bottom: 12px;
-    }
-
-    .status.error {
-      color: var(--warn);
-      font-weight: 700;
-    }
-
-    .research-list {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
+    /* ── RQ CARDS ───────────────────────────────────────── */
+    .research-list { display:grid; gap:10px; margin:0; padding:0; list-style:none; }
 
     .research-item {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 12px;
-      background: #fbfcfb;
+      border:1px solid var(--line); border-radius:12px; padding:14px;
+      background:linear-gradient(135deg,rgba(124,58,237,.04),rgba(8,145,178,.04));
     }
-
-    .research-item strong {
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .research-item p {
-      margin: 0;
-      color: #2c332f;
-      line-height: 1.45;
-    }
+    .research-item strong { display:block; margin-bottom:6px; color:var(--accent); }
+    .research-item p { margin:0; color:var(--muted); line-height:1.5; }
 
     .rq1-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 12px;
+      display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px; margin-top:14px;
     }
 
     .rq1-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fbfcfb;
-      padding: 12px;
+      border:1px solid var(--line); border-radius:14px;
+      background:#fff; padding:16px;
+      transition:border-color .18s,box-shadow .18s;
+      box-shadow:0 1px 6px rgba(124,58,237,.05);
     }
-
-    .rq1-card h3,
-    .rq1-card h4 {
-      margin: 0 0 6px;
-      font-size: 16px;
+    .rq1-card:hover {
+      border-color:rgba(124,58,237,.35);
+      box-shadow:0 4px 20px rgba(124,58,237,.12);
+      transform:translateY(-1px);
     }
-
+    .rq1-card h3,.rq1-card h4 { margin:0 0 6px; font-size:16px; font-weight:700; color:var(--ink); }
     .rq1-label {
-      display: inline-block;
-      margin-bottom: 8px;
-      color: var(--accent-strong);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
+      display:inline-block; margin-bottom:8px; padding:3px 10px;
+      border-radius:999px; background:var(--soft); color:var(--accent);
+      font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
     }
-
-    .rq1-card p {
-      margin: 0 0 8px;
-      color: #2c332f;
-      line-height: 1.45;
-      font-size: 14px;
-    }
-
-    .rq1-metrics {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .rq1-card p { margin:0 0 10px; color:var(--muted); line-height:1.5; font-size:13px; }
+    .rq1-metrics { display:flex; flex-wrap:wrap; gap:8px; }
 
     .rq1-metric {
-      min-width: 86px;
-      padding: 7px 8px;
-      border-radius: 8px;
-      background: var(--soft);
+      min-width:80px; padding:8px 10px; border-radius:10px;
+      background:linear-gradient(135deg,rgba(124,58,237,.07),rgba(8,145,178,.07));
+      border:1px solid var(--line);
     }
-
     .rq1-metric strong {
-      display: block;
-      font-size: 15px;
+      display:block; font-size:17px; font-weight:900;
+      background:var(--grad); -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent; background-clip:text;
     }
-
-    .rq1-metric span {
-      font-size: 12px;
-      color: var(--muted);
-    }
+    .rq1-metric span { font-size:11px; color:var(--muted); }
 
     .rq1-banner {
-      margin-top: 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fbfcfb;
-      padding: 12px;
+      margin-top:14px; border:1px solid rgba(8,145,178,.25);
+      border-radius:12px; background:rgba(8,145,178,.05); padding:14px;
     }
+    .rq1-banner strong { display:block; margin-bottom:6px; color:var(--accent2); }
+    .rq1-banner p { margin:0; line-height:1.6; color:var(--muted); }
 
-    .rq1-banner strong {
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .rq1-banner p {
-      margin: 0;
-      line-height: 1.5;
-      color: #2c332f;
-    }
-
-    .results {
-      display: grid;
-      gap: 10px;
-    }
+    /* ── RESULTS ─────────────────────────────────────────── */
+    .results { display:grid; gap:12px; }
 
     .result {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      padding: 14px;
+      border:1px solid var(--line); border-radius:16px;
+      background:var(--panel); padding:18px;
+      transition:all .18s; position:relative; overflow:hidden;
+      box-shadow:0 1px 8px rgba(124,58,237,.06);
     }
+    .result::before {
+      content:''; position:absolute; top:0; left:0; right:0;
+      height:3px; background:var(--grad); opacity:0; transition:opacity .18s;
+    }
+    .result:hover {
+      border-color:rgba(124,58,237,.3);
+      box-shadow:0 6px 24px rgba(124,58,237,.12);
+      transform:translateY(-1px);
+    }
+    .result:hover::before { opacity:1; }
 
     .result-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 8px;
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:12px; margin-bottom:10px;
     }
-
-    .result h2 {
-      margin: 0;
-      font-size: 19px;
-      line-height: 1.25;
-      overflow-wrap: anywhere;
-    }
+    .result h2 { margin:0; font-size:17px; font-weight:700; line-height:1.3; overflow-wrap:anywhere; color:var(--ink); }
 
     .score {
-      flex: 0 0 auto;
-      border-radius: 8px;
-      background: var(--soft);
-      color: var(--accent-strong);
-      padding: 6px 8px;
-      font-weight: 700;
-      font-size: 13px;
+      flex:0 0 auto; border-radius:8px;
+      background:var(--grad); color:#fff;
+      padding:6px 11px; font-weight:900; font-size:12px;
+      letter-spacing:.03em; box-shadow:0 3px 10px rgba(124,58,237,.3);
     }
 
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
+    .meta { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
 
     .chip {
-      display: inline-block;
-      border-radius: 8px;
-      padding: 5px 8px;
-      font-size: 12px;
-      font-weight: 700;
-      background: var(--tag);
-      color: #4e3d10;
+      display:inline-block; border-radius:999px; padding:3px 10px;
+      font-size:11px; font-weight:700; background:var(--tag);
+      color:var(--accent2); border:1px solid rgba(8,145,178,.2);
     }
+    .chip-warning { background:rgba(234,88,12,.08); color:var(--accent5); border-color:rgba(234,88,12,.2); }
+    .chip-risk    { background:rgba(220,38,38,.08); color:var(--warn);    border-color:rgba(220,38,38,.2); }
 
-    .chip-warning {
-      background: #fce8c8;
-      color: #6a4308;
-    }
+    .summary { margin:0 0 12px; color:var(--muted); line-height:1.6; font-size:14px; overflow-wrap:anywhere; }
 
-    .chip-risk {
-      background: #f7d9dd;
-      color: #7a1730;
-    }
+    a { color:var(--accent); font-weight:600; text-decoration:none; overflow-wrap:anywhere; }
+    a:hover { text-decoration:underline; color:var(--accent-strong); }
 
-    .summary {
-      margin: 0 0 10px;
-      color: #2c332f;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
-
-    a {
-      color: var(--accent-strong);
-      font-weight: 700;
-      overflow-wrap: anywhere;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
 
     .empty {
-      border: 1px dashed var(--line);
-      border-radius: 8px;
-      padding: 18px;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.64);
+      border:2px dashed rgba(124,58,237,.2); border-radius:14px;
+      padding:40px 24px; color:var(--muted);
+      background:rgba(124,58,237,.03); text-align:center; font-size:15px;
     }
+    .empty::before { content:'🔍'; display:block; font-size:40px; margin-bottom:12px; }
 
+    /* ── MODAL ───────────────────────────────────────────── */
     .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: stretch;
-      justify-content: flex-end;
-      background: rgba(21, 26, 23, 0.48);
-      z-index: 10;
+      position:fixed; inset:0; display:none;
+      align-items:stretch; justify-content:flex-end;
+      background:rgba(30,17,71,.45); backdrop-filter:blur(6px); z-index:10;
     }
-
-    .modal-backdrop.open {
-      display: flex;
-    }
+    .modal-backdrop.open { display:flex; }
 
     .modal {
-      width: min(560px, 100%);
-      height: 100vh;
-      overflow: auto;
-      background: #fff;
-      border-left: 1px solid var(--line);
-      padding: 18px;
-      box-shadow: -12px 0 30px rgba(21, 26, 23, 0.18);
+      width:min(580px,100%); height:100vh; overflow:auto;
+      background:#fff; border-left:1px solid var(--line);
+      padding:24px; box-shadow:-16px 0 48px rgba(124,58,237,.18);
     }
 
     .modal-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
-      margin-bottom: 12px;
+      display:flex; justify-content:space-between; gap:14px;
+      align-items:flex-start; margin-bottom:16px;
     }
+    .modal h2 { margin:0; font-size:20px; font-weight:800; line-height:1.3; overflow-wrap:anywhere; color:var(--ink); }
 
-    .modal h2 {
-      margin: 0;
-      font-size: 21px;
-      line-height: 1.25;
-      overflow-wrap: anywhere;
-    }
+    .modal dl { display:grid; grid-template-columns:130px minmax(0,1fr); gap:8px 14px; margin:0 0 14px; }
+    .modal dt { color:var(--muted); font-weight:700; font-size:13px; }
+    .modal dd  { margin:0; overflow-wrap:anywhere; font-size:13px; }
 
-    .modal dl {
-      display: grid;
-      grid-template-columns: 136px minmax(0, 1fr);
-      gap: 8px 12px;
-      margin: 0 0 12px;
-    }
-
-    .modal dt {
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .modal dd {
-      margin: 0;
-      overflow-wrap: anywhere;
-    }
-
-    .modal-section {
-      border-top: 1px solid var(--line);
-      padding-top: 12px;
-      margin-top: 12px;
-    }
-
+    .modal-section { border-top:1px solid var(--line); padding-top:14px; margin-top:14px; }
     .modal-section h3 {
-      margin: 0 0 8px;
-      font-size: 15px;
+      margin:0 0 10px; font-size:10px; font-weight:800;
+      color:var(--accent2); text-transform:uppercase; letter-spacing:.08em;
     }
 
-    .flag-list {
-      display: grid;
-      gap: 8px;
-    }
-
+    .flag-list { display:grid; gap:8px; }
     .flag-item {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fbfcfb;
-      padding: 10px;
+      border:1px solid var(--line); border-radius:10px;
+      background:rgba(124,58,237,.04); padding:12px;
     }
-
-    .flag-item strong {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .flag-item p {
-      margin: 0;
-      color: #2c332f;
-      line-height: 1.45;
-      font-size: 14px;
-    }
-
+    .flag-item strong { display:block; margin-bottom:4px; color:var(--ink); }
+    .flag-item p      { margin:0; color:var(--muted); line-height:1.5; font-size:13px; }
     .flag-meta {
-      display: inline-block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
+      display:inline-block; margin-top:6px; color:var(--muted);
+      font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.05em;
     }
 
     .why-box {
-      border-radius: 8px;
-      background: var(--soft);
-      color: #153d36;
-      padding: 10px;
-      line-height: 1.45;
-      font-size: 14px;
+      border-radius:10px; background:var(--soft);
+      border:1px solid var(--line); color:var(--ink);
+      padding:12px; line-height:1.6; font-size:13px;
+    }
+    .modal-text { white-space:pre-wrap; line-height:1.6; overflow-wrap:anywhere; font-size:13px; color:var(--muted); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width:980px) {
+      .app-layout { flex-direction:column; }
+      .sidebar    { flex:none; width:100%; flex-direction:row; flex-wrap:wrap;
+                    position:static; }
+      .tab-btn    { flex:1 1 auto; text-align:center; justify-content:center; }
+      form { grid-template-columns:1fr 1fr; }
+      .rq1-grid { grid-template-columns:1fr; }
     }
 
-    .modal-text {
-      white-space: pre-wrap;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
+    @media (max-width:680px) {
+      main { width:min(100% - 20px,1260px); padding-top:16px; }
+      .topbar { display:block; }
+      .stats  { justify-content:flex-start; margin-top:12px; }
+      h1 { font-size:24px; }
+      form { grid-template-columns:1fr; }
+      .result-head { display:block; }
+      .score { display:inline-block; margin-top:8px; }
+      .modal dl { grid-template-columns:1fr; }
+      .modal { width:100%; }
     }
 
-    @media (max-width: 920px) {
-      form {
-        grid-template-columns: 1fr;
-      }
+    /* ── RQ INFO CARDS ──────────────────────────────────── */
+    .rq-hero {
+      display:flex; align-items:center; gap:14px;
+      margin-bottom:20px; padding-bottom:16px;
+      border-bottom:2px solid var(--line);
+    }
+    .rq-hero-icon {
+      font-size:42px; line-height:1; flex-shrink:0;
+    }
+    .rq-hero h2 {
+      margin:0 0 4px; font-size:24px; font-weight:900;
+      background:var(--grad); -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .rq-hero-sub { color:var(--muted); font-size:14px; font-weight:500; }
 
-      .rq1-grid {
-        grid-template-columns: 1fr;
-      }
+    .rq-cluster { margin-bottom:20px; }
+    .rq-cluster-label {
+      display:inline-flex; align-items:center; gap:7px;
+      font-size:11px; font-weight:800; text-transform:uppercase;
+      letter-spacing:.09em; margin-bottom:10px;
+      padding:4px 12px; border-radius:999px;
+    }
+    .rq-cluster-label.purple { background:rgba(124,58,237,.1); color:var(--accent); }
+    .rq-cluster-label.cyan   { background:rgba(8,145,178,.1);  color:var(--accent2); }
+    .rq-cluster-label.green  { background:rgba(5,150,105,.1);  color:var(--accent4); }
+    .rq-cluster-label.pink   { background:rgba(219,39,119,.1); color:var(--accent3); }
+
+    .rq-cluster-body {
+      font-size:15px; font-weight:500; color:var(--ink);
+      line-height:1.65; padding:14px 18px;
+      background:#fff; border-radius:14px;
+      border-left:4px solid;
+      box-shadow:0 2px 10px rgba(124,58,237,.06);
+    }
+    .rq-cluster-body.purple { border-color:var(--accent);  }
+    .rq-cluster-body.cyan   { border-color:var(--accent2); }
+    .rq-cluster-body.green  { border-color:var(--accent4); }
+    .rq-cluster-body.pink   { border-color:var(--accent3); }
+
+    .rq-cluster-body strong { color:var(--ink); }
+
+    .rq-pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .rq-pill {
+      padding:5px 13px; border-radius:999px;
+      font-size:12px; font-weight:700; border:2px solid;
+    }
+    .rq-pill.purple { background:rgba(124,58,237,.08); color:var(--accent);  border-color:rgba(124,58,237,.2); }
+    .rq-pill.cyan   { background:rgba(8,145,178,.08);  color:var(--accent2); border-color:rgba(8,145,178,.2);  }
+    .rq-pill.green  { background:rgba(5,150,105,.08);  color:var(--accent4); border-color:rgba(5,150,105,.2);  }
+    .rq-pill.pink   { background:rgba(219,39,119,.08); color:var(--accent3); border-color:rgba(219,39,119,.2); }
+    .rq-pill.orange { background:rgba(234,88,12,.08);  color:var(--accent5); border-color:rgba(234,88,12,.2);  }
+
+    .panel h2.rq-title {
+      font-size:22px; font-weight:900; margin:0 0 18px;
+      display:flex; align-items:center; gap:10px;
     }
 
-    @media (max-width: 760px) {
-      main {
-        width: min(100% - 20px, 1120px);
-        padding-top: 18px;
-      }
+    /* ── FORM YENİDEN YAPILANMA ─────────────────────────── */
+    form { display:block; }
 
-      .topbar {
-        display: block;
-      }
-
-      .stats {
-        justify-content: flex-start;
-        margin-top: 14px;
-      }
-
-      button {
-        margin-top: 0;
-      }
-
-      h1 {
-        font-size: 25px;
-      }
-
-      .result-head {
-        display: block;
-      }
-
-      .score {
-        display: inline-block;
-        margin-top: 8px;
-      }
-
-      .modal dl {
-        grid-template-columns: 1fr;
-      }
-
-      .modal {
-        width: 100%;
-      }
+    .search-query-row { margin-bottom:14px; }
+    .search-query-row input {
+      min-height:62px; font-size:17px; font-weight:500;
+      border-width:2px; border-radius:14px;
+      padding:14px 20px; letter-spacing:.01em;
     }
+
+    .search-options-row {
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr 1fr 52px;
+      gap:10px; align-items:end;
+    }
+    .search-options-row button#submit {
+      min-height:46px; border-radius:12px;
+      font-size:22px; margin-top:0;
+    }
+
+    /* ── LOADING OVERLAY ─────────────────────────────────── */
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes pulse-dot {
+      0%,100% { opacity:.3; transform:scale(.7); }
+      50%      { opacity:1;  transform:scale(1);  }
+    }
+
+    #loading {
+      display:none; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:18px; padding:48px 24px; text-align:center;
+    }
+    #loading.active { display:flex; }
+
+    .loading-ring {
+      position:relative; width:64px; height:64px;
+    }
+    .loading-ring svg {
+      width:64px; height:64px;
+      animation:spin 1.1s linear infinite;
+    }
+    .loading-ring circle {
+      fill:none; stroke-width:5;
+      stroke-linecap:round;
+    }
+    .loading-ring .ring-track  { stroke:rgba(124,58,237,.12); }
+    .loading-ring .ring-fill   {
+      stroke:url(#spinGrad);
+      stroke-dasharray:120 200;
+      stroke-dashoffset:0;
+    }
+    .loading-dots {
+      display:flex; gap:8px; align-items:center;
+    }
+    .loading-dots span {
+      width:8px; height:8px; border-radius:50%;
+      display:inline-block; animation:pulse-dot 1.2s ease-in-out infinite;
+    }
+    .loading-dots span:nth-child(1){ background:var(--accent);  animation-delay:0s; }
+    .loading-dots span:nth-child(2){ background:var(--accent2); animation-delay:.2s; }
+    .loading-dots span:nth-child(3){ background:var(--accent3); animation-delay:.4s; }
+    .loading-text {
+      font-size:18px; font-weight:800;
+      background:var(--grad); -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .loading-sub { font-size:13px; color:var(--muted); margin-top:2px; }
+    .results.faded { opacity:.35; pointer-events:none; transition:opacity .2s; }
+
+    /* ── CHARTS ──────────────────────────────────────────── */
+    .chart-box {
+      background:#fff; border:1px solid var(--line);
+      border-radius:16px; padding:20px 22px; margin-bottom:14px;
+      box-shadow:0 2px 12px rgba(124,58,237,.06);
+    }
+    .chart-box-title {
+      font-size:12px; font-weight:800; text-transform:uppercase;
+      letter-spacing:.07em; color:var(--muted); margin-bottom:14px;
+      display:flex; align-items:center; gap:7px;
+    }
+    .charts-row {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:14px; margin-bottom:14px;
+    }
+    @media(max-width:760px){ .charts-row{ grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
   <main>
     <div class="topbar">
       <div>
-        <h1>Semantic Dataset Search</h1>
-        <p class="subtitle">Bu arayuz, tezdeki semantic data discovery problemini canli olarak test etmek icin kullanilir. Aramada model, method ve kaynak degistirilebilir.</p>
+        <div class="brand">
+          <div class="brand-icon">&#128269;</div>
+          <h1>Semantic Dataset Search</h1>
+        </div>
+        <p class="subtitle">Tezdeki semantic data discovery problemini canli olarak test edin &mdash; model, yontem ve kaynak secimi ile karsilastirmali analiz yapin.</p>
       </div>
       <div class="stats" id="stats"></div>
     </div>
 
-    <div class="tabbar" role="tablist" aria-label="Main views">
-      <button class="tab-btn" type="button" role="tab" aria-selected="true" aria-controls="tab-search" id="tab-btn-search" data-tab="search">Search</button>
-      <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-rq1" id="tab-btn-rq1" data-tab="rq1">RQ1</button>
-      <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-rq2" id="tab-btn-rq2" data-tab="rq2">RQ2</button>
-      <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-rq3" id="tab-btn-rq3" data-tab="rq3">RQ3</button>
-      <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-rq4" id="tab-btn-rq4" data-tab="rq4">RQ4</button>
-    </div>
+    <div class="app-layout">
+      <nav class="sidebar" role="tablist" aria-label="Main views">
+        <div class="sidebar-label">&#128269; Gezinti</div>
+        <button class="tab-btn" type="button" role="tab" aria-selected="true" aria-controls="tab-search" id="tab-btn-search" data-tab="search">
+          <span class="tab-icon">&#128270;</span>
+          <span class="tab-text">Arama<span class="tab-sub">Canli Sorgula</span></span>
+        </button>
+        <div class="sidebar-label">&#128202; Arastirma</div>
+        <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-rq1" id="tab-btn-rq1" data-tab="rq1">
+          <span class="tab-icon">&#9889;</span>
+          <span class="tab-text">RQ1<span class="tab-sub">Yontem Karsilastirma</span></span>
+        </button>
+        <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-rq2" id="tab-btn-rq2" data-tab="rq2">
+          <span class="tab-icon">&#127760;</span>
+          <span class="tab-text">RQ2<span class="tab-sub">Kaynaklar Arasi</span></span>
+        </button>
+        <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-rq3" id="tab-btn-rq3" data-tab="rq3">
+          <span class="tab-icon">&#129302;</span>
+          <span class="tab-text">RQ3<span class="tab-sub">Model Etkisi</span></span>
+        </button>
+        <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-rq4" id="tab-btn-rq4" data-tab="rq4">
+          <span class="tab-icon">&#128202;</span>
+          <span class="tab-text">RQ4<span class="tab-sub">Aciklama Kalitesi</span></span>
+        </button>
+      </nav>
+      <div class="content-area">
 
     <section class="tab-panel" id="tab-search" role="tabpanel" aria-labelledby="tab-btn-search">
       <section class="panel" aria-label="Search">
-        <h2>Live Search</h2>
-          <p class="panel-note">Ayni sorguda tezdeki ana Ingilizce profil ile EN+TR alt kume profilini karsilastirabilir, retrieval method degistirerek sistem davranisini gozlemleyin.</p>
+        <h2><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">&#128269;</span> Canli Arama</h2>
+          <p class="panel-note">Ayni sorguda farkli profil ve yontemleri karsilastirin &mdash; model, kaynak ve reranking seceneklerini degistirerek sistem davranisini canli gozlemleyin.</p>
         <form id="search-form">
-          <div>
-            <label for="query">Query</label>
-            <input id="query" name="query" autocomplete="off" placeholder="Orn. I need a dataset with historical earthquake events and seismic activity records." required>
+          <div class="search-query-row">
+            <label for="query">&#128270; Sorgu</label>
+            <input id="query" name="query" autocomplete="off" placeholder="&#128269;  Ne tur bir veri seti ariyorsunuz? Ornegin: historical earthquake events and seismic activity..." required>
           </div>
-          <div>
-            <label for="profile">Profile</label>
-            <select id="profile" name="profile"></select>
-          </div>
-          <div>
-            <label for="method">Method</label>
-            <select id="method" name="method">
-              <option value="semantic" selected>Semantic</option>
-              <option value="bm25">BM25</option>
-              <option value="hybrid">Hybrid</option>
-            </select>
-          </div>
-          <div>
-            <label for="source">Source</label>
-            <select id="source" name="source">
-              <option value="all">All</option>
-              <option value="kaggle">Kaggle</option>
-              <option value="huggingface">Hugging Face</option>
-            </select>
-          </div>
-          <div>
-            <label for="top-k">Top K</label>
-            <select id="top-k" name="top_k">
-              <option value="5">Top 5</option>
-              <option value="10">Top 10</option>
-              <option value="15">Top 15</option>
-            </select>
-          </div>
-          <div>
-            <button id="submit" type="submit">Search</button>
+          <div class="search-options-row">
+            <div>
+              <label for="profile">&#129504; Profil</label>
+              <select id="profile" name="profile"></select>
+            </div>
+            <div>
+              <label for="method">&#9889; Yontem</label>
+              <select id="method" name="method">
+                <option value="semantic" selected>Semantic</option>
+                <option value="bm25">BM25</option>
+                <option value="hybrid">Hybrid</option>
+              </select>
+            </div>
+            <div>
+              <label for="source">&#127760; Kaynak</label>
+              <select id="source" name="source">
+                <option value="all">Tumü</option>
+                <option value="kaggle">Kaggle</option>
+                <option value="huggingface">Hugging Face</option>
+              </select>
+            </div>
+            <div>
+              <label for="top-k">&#128200; Top K</label>
+              <select id="top-k" name="top_k">
+                <option value="5">Top 5</option>
+                <option value="10">Top 10</option>
+                <option value="15">Top 15</option>
+              </select>
+            </div>
+            <div>
+              <button id="submit" type="submit" title="Ara">&#128269;</button>
+            </div>
           </div>
         </form>
         <div class="search-toggle" aria-label="Semantic rerank options">
           <label class="toggle" for="cross-encoder-toggle">
             <input id="cross-encoder-toggle" name="enable_cross_encoder" type="checkbox" checked>
-            <span>Cross-encoder semantic rerank</span>
+            <span>&#129504; Cross-encoder semantic rerank</span>
           </label>
         </div>
         <div class="examples" id="examples" aria-label="Sample queries">
-          <button class="example-btn" type="button" data-query="I want to study how weather affects crop production.">weather + crop</button>
-          <button class="example-btn" type="button" data-query="I want to research diabetes prediction using patient records.">diabetes</button>
-          <button class="example-btn" type="button" data-query="I want to find a dataset of historical earthquake events and seismic activity records.">earthquake</button>
-          <button class="example-btn" type="button" data-query="I want to find a dataset of daily stock market prices.">stock market</button>
+          <button class="example-btn" type="button" data-query="I want to study how weather affects crop production.">&#127789; weather + crop</button>
+          <button class="example-btn" type="button" data-query="I want to research diabetes prediction using patient records.">&#128137; diabetes</button>
+          <button class="example-btn" type="button" data-query="I want to find a dataset of historical earthquake events and seismic activity records.">&#127979; earthquake</button>
+          <button class="example-btn" type="button" data-query="I want to find a dataset of daily stock market prices.">&#128200; stock market</button>
         </div>
       </section>
 
@@ -911,38 +914,141 @@ HTML = """<!doctype html>
       <div id="adaptation-spec-grid" hidden></div>
       <div id="adaptation-banner" hidden></div>
 
-      <p id="status" class="status">Ready.</p>
+      <p id="status" class="status">&#9989; Hazir &mdash; sorgunuzu girin.</p>
       <div id="confidence-banner" class="rq1-banner" hidden></div>
+
+      <div id="loading">
+        <svg style="position:absolute;width:0;height:0">
+          <defs>
+            <linearGradient id="spinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#0891b2"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="loading-ring">
+          <svg viewBox="0 0 64 64">
+            <circle class="ring-track" cx="32" cy="32" r="26"/>
+            <circle class="ring-fill" cx="32" cy="32" r="26"/>
+          </svg>
+        </div>
+        <div>
+          <div class="loading-text">Arama yapiliyor...</div>
+          <div class="loading-sub">Vektor veritabani taranıyor</div>
+        </div>
+        <div class="loading-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
       <section id="results" class="results" aria-live="polite">
-        <div class="empty">Bir sorgu girildiginde sonuclar burada listelenir.</div>
+        <div class="empty">&#128269; Yukaridaki alana bir sorgu girin &mdash; sonuclar burada listelenecek.</div>
       </section>
     </section>
 
     <section class="tab-panel" id="tab-rq1" role="tabpanel" aria-labelledby="tab-btn-rq1" hidden>
-      <section class="panel" aria-label="RQ1 Soru ve yontem">
-        <h2>RQ1 — Anlamsal arama lexical baseline'i geçer mi?</h2>
-        <p class="panel-note"><strong>Arastirma sorusu:</strong> Veri seti aciklamalari uzerinden yapilan dense semantic retrieval, klasik BM25 anahtar-kelime aramasiyla kiyaslandiginda Precision@1, MRR ve nDCG@5 metriklerinde anlamli bir kazanc saglar mi?</p>
-        <p class="panel-note"><strong>Yontem:</strong> 34 etiketli sorgu, ayni 1.120 satirlik corpus uzerinde BM25, Semantic (FAISS) ve Hybrid (BM25 + Semantic + cross-encoder rerank) ile kosulup karsilastirilir. Etiketli set <code>data/evaluation/labeled_queries.jsonl</code>; metrikler <code>evaluate_search.py</code> ile hesaplanir.</p>
-        <p class="panel-note"><strong>Anahtar bulgu (tez benchmark):</strong> Hybrid retrieval P@1=0.91 / MRR=0.95 / nDCG@5=0.79 ile BM25'i (P@1=0.74) ve saf Semantic'i geride birakir. Bu turda eklenen lexical-anchor cezasi ve title indexing duzeltmesi sayesinde alaninda sorgu olmayan (OOD) sorgular da dururt weak-match isareti aliyor.</p>
+      <section class="panel" aria-label="RQ1">
+        <h2 class="rq-title">&#9889; RQ1 &mdash; Semantic, BM25'u Gecer mi?</h2>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label purple">&#10067; Arastirma Sorusu</div>
+          <div class="rq-cluster-body purple">
+            Anlam tabanli (dense) retrieval, kelime esleme (BM25) yontemini <strong>P@1, MRR ve nDCG@5</strong> metriklerinde anlamli olcude geciyor mu?
+          </div>
+        </div>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label cyan">&#9881; Yontem</div>
+          <div class="rq-cluster-body cyan">
+            <strong>34 etiketli sorgu</strong>, 1.120 kayitlik corpus uzerinde 3 yontemle karsilastirildi.
+            <div class="rq-pills" style="margin-top:10px">
+              <span class="rq-pill cyan">BM25</span>
+              <span class="rq-pill purple">Semantic (FAISS)</span>
+              <span class="rq-pill green">Hybrid + Rerank</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label green">&#9989; Anahtar Bulgu</div>
+          <div class="rq-cluster-body green">
+            <strong>Hybrid kazandi.</strong> Cumle tipi sorgularda Semantic de BM25'u geciyor; anlam tabanli veri seti kesfi mumkun.
+            <div class="rq-pills" style="margin-top:10px">
+              <span class="rq-pill green">Hybrid P@1 = 0.91</span>
+              <span class="rq-pill green">MRR = 0.95</span>
+              <span class="rq-pill green">nDCG@5 = 0.79</span>
+              <span class="rq-pill orange">BM25 P@1 = 0.74</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <div class="chart-box-title">&#128202; Yontem Karsilastirmasi &mdash; P@1 / MRR / nDCG@5</div>
+          <canvas id="chart-rq1-methods" height="110"></canvas>
+        </div>
+        <div class="charts-row">
+          <div class="chart-box">
+            <div class="chart-box-title">&#128285; Keyword Sorgu Turu</div>
+            <canvas id="chart-rq1-keyword" height="160"></canvas>
+          </div>
+          <div class="chart-box">
+            <div class="chart-box-title">&#128172; Cumle Sorgu Turu</div>
+            <canvas id="chart-rq1-sentence" height="160"></canvas>
+          </div>
+        </div>
         <div class="rq1-grid" id="rq1-overview"></div>
         <div class="rq1-grid" id="rq1-style-grid"></div>
         <div class="rq1-banner" id="rq1-banner"></div>
       </section>
 
       <section class="panel" id="rq1-live-panel" aria-label="RQ1 canli karsilastirma" hidden>
-        <h2>Canli karsilastirma</h2>
-        <p class="panel-note" id="rq1-live-note">Yukaridaki Live Search'te girilen sorgu BM25, Semantic ve Hybrid ile esit kosullarda calistirildi; Hybrid'in saglik metrikleri ile BM25'in lexical hizini ayni anda gorebilirsiniz.</p>
+        <h2 class="rq-title">&#9889; Canli Karsilastirma</h2>
+        <p class="panel-note" id="rq1-live-note">Arama sekmesinde girdiginiz sorgu 3 yontemle esit kosullarda calistirildi.</p>
         <div class="rq1-banner" id="rq1-guidance"></div>
         <div class="rq1-grid" id="rq1-live-grid"></div>
       </section>
     </section>
 
     <section class="tab-panel" id="tab-rq2" role="tabpanel" aria-labelledby="tab-btn-rq2" hidden>
-      <section class="panel" aria-label="RQ2 Soru ve yontem">
-        <h2>RQ2 — Sistem Kaggle ve Hugging Face arasinda dogru veri setini bulabiliyor mu?</h2>
-        <p class="panel-note"><strong>Arastirma sorusu:</strong> Kullanici Kaggle tarafinda bir veri setini anlatan sorgu yazdiginda, dogru karsiligi Hugging Face'te bulunuyorsa sistem onu yakalayabiliyor mu? Ayni sey tersi yonde de gecerli mi? Yani <em>iki platform arasinda anlamsal koprunun</em> ne kadar saglam oldugunu olcuyoruz.</p>
-        <p class="panel-note"><strong>Yontem:</strong> Tezde manuel olarak eslesen veri seti ciftleri toplandi: ornegin Kaggle'daki "BSE Sensex 10 Year Stock Price" -- Hugging Face'teki "Helsinki-NLP/opus-100" gibi konu olarak ortusen ciftler. Sorguyu Kaggle tarafindan ariyoruz, sistem sadece Hugging Face icinden cevap vermek zorunda; sonra yon ters cevriliyor. Iki yonun ortalamasi karsilastiriliyor.</p>
-        <p class="panel-note"><strong>Anahtar bulgu:</strong> Anlamsal arama (Semantic ve Hybrid), BM25'a gore platformlar arasi koprude acik fark yaratiyor &mdash; cunku BM25 Kaggle'in "Daily Updated" gibi platforma ozgu kelimeleriyle yanilirken embedding modeller konunun kendisini yakaliyor. Bu turda eklenen <em>lexical-anchor</em> cezasi, "kaggle" / "huggingface" / "research" gibi platforma ozgu kelimelerin BM25'i sasirtmasini engelledi.</p>
+      <section class="panel" aria-label="RQ2">
+        <h2 class="rq-title">&#127760; RQ2 &mdash; Kaggle &#8596; Hugging Face Koprusu</h2>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label purple">&#10067; Arastirma Sorusu</div>
+          <div class="rq-cluster-body purple">
+            Kaggle'da aranan bir veri setinin karsiligi <strong>Hugging Face'te</strong> bulunabilir mi? Peki tersi? Iki platform arasindaki anlamsal kopru ne kadar saglamdir?
+          </div>
+        </div>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label cyan">&#9881; Yontem</div>
+          <div class="rq-cluster-body cyan">
+            Manuel eslestirilen veri seti ciftleri, <strong>2 yonde</strong> (HF&#8594;Kaggle ve Kaggle&#8594;HF) test edildi.
+            <div class="rq-pills" style="margin-top:10px">
+              <span class="rq-pill cyan">6 Konu Kategorisi</span>
+              <span class="rq-pill purple">2 Yon</span>
+              <span class="rq-pill green">Hit@5 ve nDCG@5</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label green">&#9989; Anahtar Bulgu</div>
+          <div class="rq-cluster-body green">
+            <strong>Semantic ve Hybrid, BM25'u platformlar arasi koprulamada acik ara geci.</strong> BM25 "Daily Updated" gibi platforma ozgu kelimelere takilirken embedding modeller konunun ozunu yakaliyor.
+          </div>
+        </div>
+
+        <div class="charts-row">
+          <div class="chart-box">
+            <div class="chart-box-title">&#127760; Platform Yonune Gore nDCG@5</div>
+            <canvas id="chart-rq2-direction" height="160"></canvas>
+          </div>
+          <div class="chart-box">
+            <div class="chart-box-title">&#127919; Konuya Gore Hit@5</div>
+            <canvas id="chart-rq2-topics" height="160"></canvas>
+          </div>
+        </div>
         <div class="rq1-grid" id="rq2-composition-grid"></div>
         <div class="rq1-grid" id="rq2-overview"></div>
         <div class="rq1-grid" id="rq2-direction-grid"></div>
@@ -951,24 +1057,60 @@ HTML = """<!doctype html>
       </section>
 
       <section class="panel" id="rq2-live-panel" aria-label="RQ2 canli karsilastirma" hidden>
-        <h2>Canli karsilastirma</h2>
-        <p class="panel-note" id="rq2-live-note">Live Search'te kaynak filtresini tek platforma indirdiginizde, bu panel ayni sorgunun benchmarktaki cross-source davranisina nasil oturdugunu gosterir.</p>
+        <h2 class="rq-title">&#127760; Canli Karsilastirma</h2>
+        <p class="panel-note" id="rq2-live-note">Kaynak filtresini tek platforma aldiginizdda cross-source davranis bu panelde izlenebilir.</p>
         <div class="rq1-banner" id="rq2-guidance"></div>
         <div class="rq1-grid" id="rq2-live-grid"></div>
       </section>
     </section>
 
     <section class="tab-panel" id="tab-rq3" role="tabpanel" aria-labelledby="tab-btn-rq3" hidden>
-      <section class="panel" aria-label="RQ3 Soru ve yontem">
-        <h2>RQ3 — Hangi dil modelini secersem en iyi sonucu alirim?</h2>
-        <p class="panel-note"><strong>Arastirma sorusu:</strong> Anlamsal arama icin kullanilan dil modeli (encoder) tercihi sonucu ne kadar degistiriyor? Mesela kucuk ve hizli MiniLM ile retrieval icin egitilmis E5, ya da sadece bizim corpus'umuzla ince ayar gormus model arasinda gercekten anlamli bir fark var mi? Sorgu Ingilizce / Turkce olduguna gore en iyi model degisiyor mu?</p>
-        <p class="panel-note"><strong>Yontem:</strong> Dort farkli model ayni FAISS pipeline'inda, ayni test sorgusu seti uzerinde kosturulup karsilastirildi:
-          <br>&bull; <strong>MiniLM</strong> &mdash; tezin ana Ingilizce baseline'i, kucuk ve hizli (sentence-transformers/all-MiniLM-L6-v2)
-          <br>&bull; <strong>E5 Base</strong> &mdash; retrieval icin egitilmis daha buyuk Ingilizce model (intfloat/e5-base-v2)
-          <br>&bull; <strong>MiniLM FT</strong> &mdash; corpus'tan cikarilan hard-negative ciftleriyle ince ayar yapilmis MiniLM
-          <br>&bull; <strong>Multilingual</strong> &mdash; cok dilli Turkce destekli model (intfloat/multilingual-e5-small)
-          <br>Sayisal karsilastirma Precision@1, MRR, nDCG@5 metrikleri; ek olarak sorgu diline (en/tr) ve sorgu cinsine gore alt kirilimlar raporlanir.</p>
-        <p class="panel-note"><strong>Anahtar bulgu:</strong> Tek bir model her durumda kazanmiyor &mdash; sectiginiz model, sorgu diline ve aciklama tarzina gore degisiyor. Pratik ozet: Ingilizce sorgularda MiniLM hizli ve genelde yeterli, retrieval-egitimli E5 uzun aciklamalarda biraz daha temiz, alan-uyarlanmis MiniLM-FT yakin-ama-yanlis ayrimlarda iyilesme veriyor, Turkce sorgularda multilingual zorunlu. Bu turda eklenen iyilestirmelerle tum modellerin Top-1 isabet orani ortalama %50 goreli yukseldi.</p>
+      <section class="panel" aria-label="RQ3">
+        <h2 class="rq-title">&#129302; RQ3 &mdash; Hangi Model Daha Iyi?</h2>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label purple">&#10067; Arastirma Sorusu</div>
+          <div class="rq-cluster-body purple">
+            Encoder model secimi sonucu ne kadar degistiriyor? <strong>MiniLM, E5, MiniLM-FT, Multilingual</strong> &mdash; hangisi ne zaman kazaniyor?
+          </div>
+        </div>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label cyan">&#9881; Test Edilen Modeller</div>
+          <div class="rq-cluster-body cyan">
+            4 model, ayni FAISS pipeline ve ayni sorgu seti uzerinde karsilastirildi.
+            <div class="rq-pills" style="margin-top:10px">
+              <span class="rq-pill purple">MiniLM &mdash; EN Baseline</span>
+              <span class="rq-pill cyan">E5 Base &mdash; EN Retrieval</span>
+              <span class="rq-pill pink">MiniLM-FT &mdash; Fine-tuned</span>
+              <span class="rq-pill green">Multilingual &mdash; EN+TR</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label green">&#9989; Anahtar Bulgular</div>
+          <div class="rq-cluster-body green">
+            <strong>Tek kazanan yok</strong> &mdash; dile ve aciklama tarzina gore degisiyor.
+            <div class="rq-pills" style="margin-top:10px">
+              <span class="rq-pill green">TR sorgu &#8594; Multilingual zorunlu</span>
+              <span class="rq-pill cyan">EN uzun metin &#8594; E5 one cikiyor</span>
+              <span class="rq-pill purple">Genel EN &#8594; MiniLM yeterli</span>
+              <span class="rq-pill pink">Yakin ayirim &#8594; MiniLM-FT iyilesme</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="charts-row">
+          <div class="chart-box">
+            <div class="chart-box-title">&#129302; Dile Gore Model Performansi (Semantic nDCG@5)</div>
+            <canvas id="chart-rq3-language" height="160"></canvas>
+          </div>
+          <div class="chart-box">
+            <div class="chart-box-title">&#127775; Kesit Bazli Karsilastirma (Hybrid nDCG@5)</div>
+            <canvas id="chart-rq3-slices" height="160"></canvas>
+          </div>
+        </div>
         <div class="rq1-grid" id="rq3-composition-grid"></div>
         <div class="rq1-grid" id="rq3-overview-grid"></div>
         <div class="rq1-grid" id="rq3-slice-grid"></div>
@@ -977,23 +1119,62 @@ HTML = """<!doctype html>
       </section>
 
       <section class="panel" id="rq3-live-panel" aria-label="RQ3 canli karsilastirma" hidden>
-        <h2>Canli karsilastirma</h2>
-        <p class="panel-note" id="rq3-live-note">Live Search'te secili profil + sorgu dili ikilisi icin model etkisi burada yorumlanir; baska bir profile gecip ayni sorguyu tekrar calistirin, sira degisikligini izleyin.</p>
+        <h2 class="rq-title">&#129302; Canli Karsilastirma</h2>
+        <p class="panel-note" id="rq3-live-note">Profil degistirip ayni sorguyu yeniden calistirarak modeller arasi sira farki gozlemlenebilir.</p>
         <div class="rq1-banner" id="rq3-guidance"></div>
         <div class="rq1-grid" id="rq3-live-grid"></div>
       </section>
     </section>
 
     <section class="tab-panel" id="tab-rq4" role="tabpanel" aria-labelledby="tab-btn-rq4" hidden>
-      <section class="panel" aria-label="RQ4 Soru ve yontem">
-        <h2>RQ4 — Veri setinin aciklamasi kotuyse, sistem onu yine de bulabilir mi?</h2>
-        <p class="panel-note"><strong>Arastirma sorusu:</strong> Bizim sistem, veri setini sadece basligi ve aciklama metni uzerinden ariyor. Peki bir veri setinin aciklamasi cok kisa, sadece etiket listesi ya da anahtar kelime yiginiysa, sistem onu hala dogru sirada cikarabiliyor mu? Yani <em>kotu yazilmis aciklamalar yuzunden iyi veri setlerini kaybediyor muyuz?</em></p>
-        <p class="panel-note"><strong>Yontem:</strong> Corpus'taki 1.120 veri seti, aciklama kalitelerine gore uc acidan grupland&shy;irildi:
-          <br>&bull; <strong>Aciklama uzunlugu</strong>: kisa (&le;20 kelime), orta (21-52 kelime), uzun (&gt;52 kelime)
-          <br>&bull; <strong>Anlatim tarzi</strong>: <em>anlatimsal</em> (cumlelerle yazilmis), <em>karisik</em> (cumle + bullet), <em>metadata agirlikli</em> (etiket listesi gibi)
-          <br>&bull; <strong>Terim zenginligi</strong>: kac farkli icerikli kelime gectigine gore zayif / orta / zengin
-          <br>Ayni test sorgular her kesitte ayri ayri kosturulup Top-5'te yakalama orani (Hit@5) karsilastirilir.</p>
-        <p class="panel-note"><strong>Anahtar bulgu:</strong> Aciklama uzun ve anlatimsal oldukca semantic arama daha iyi calisiyor &mdash; uzun-aciklama bucket'inda semantic Top-5 yakalama orani <strong>0.77</strong>'e ulasiyor; kisa aciklamali bucket'ta ise sifira kadar dusuyor (gercek sinir burada). Bu turda kritik bir indeksleme bug'i duzeltildi: eski kod zayif aciklamali dokumanlarda <em>basligi semantic_text'ten tamamen atiyor</em>du. Ornegin "mushrooms" basligi indekste gorunmuyor, mushroom sorgusu hicbir zaman bunu getirmiyordu. Title artik her zaman dahil; uzun aciklama bucket'inda semantic hit rate <strong>0.64 &rarr; 0.77'e yukseldi</strong> (post-fix RQ4 raporu). Buna karsin baslik tek basina yaniltici olmasin diye rerank tarafinda <code>title-deemphasized</code> rozetiyle isaretleniyor.</p>
+      <section class="panel" aria-label="RQ4">
+        <h2 class="rq-title">&#128202; RQ4 &mdash; Zayif Aciklama = Kaybolan Veri Seti mi?</h2>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label purple">&#10067; Arastirma Sorusu</div>
+          <div class="rq-cluster-body purple">
+            Aciklamasi kisa ya da yalnizca etiket listesinden olusan veri setleri, sistem tarafindan <strong>hic bulunamiyor mu?</strong>
+          </div>
+        </div>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label cyan">&#9881; Segmentasyon Kriterleri</div>
+          <div class="rq-cluster-body cyan">
+            1.120 kayit 3 farkli eksende gruplandiriildi ve her grupta Hit@5 ayri ayri olculdu.
+            <div class="rq-pills" style="margin-top:10px">
+              <span class="rq-pill cyan">&#128207; Uzunluk: Kisa / Orta / Uzun</span>
+              <span class="rq-pill purple">&#128221; Tarz: Anlatimsal / Karisik / Metadata</span>
+              <span class="rq-pill pink">&#128269; Terim: Seyrek / Orta / Zengin</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rq-cluster">
+          <div class="rq-cluster-label green">&#9989; Anahtar Bulgular</div>
+          <div class="rq-cluster-body green">
+            Aciklama kalitesi direkt retrieval basarisini etkiliyor. Basliklarin her zaman dahil edilmesiyle uzun-aciklama bucket'inda buyuk iyilesme.
+            <div class="rq-pills" style="margin-top:10px">
+              <span class="rq-pill green">Uzun aciklama Hit@5 = 0.77</span>
+              <span class="rq-pill orange">Kisa aciklama Hit@5 &asymp; 0.00</span>
+              <span class="rq-pill green">Bug fix: 0.64 &#8594; 0.77</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <div class="chart-box-title">&#128207; Aciklama Uzunluguna Gore Hit@5</div>
+          <canvas id="chart-rq4-length" height="110"></canvas>
+        </div>
+        <div class="charts-row">
+          <div class="chart-box">
+            <div class="chart-box-title">&#128221; Anlatim Tarzina Gore Hit@5</div>
+            <canvas id="chart-rq4-style" height="160"></canvas>
+          </div>
+          <div class="chart-box">
+            <div class="chart-box-title">&#128269; Terim Zenginligine Gore Hit@5</div>
+            <canvas id="chart-rq4-terms" height="160"></canvas>
+          </div>
+        </div>
         <div class="rq1-grid" id="rq4-composition-grid"></div>
         <div class="rq1-grid" id="rq4-style-grid"></div>
         <div class="rq1-grid" id="rq4-length-grid"></div>
@@ -1002,12 +1183,14 @@ HTML = """<!doctype html>
       </section>
 
       <section class="panel" id="rq4-live-panel" aria-label="RQ4 canli karsilastirma" hidden>
-        <h2>Canli karsilastirma</h2>
-        <p class="panel-note" id="rq4-live-note">Live Search'te dondurulen ust siradaki veri setlerinin uzunluk/uslup/terim kovasi bu panelde benchmark dilinde aciklanir; "Title de-emphasized" rozetli sonuclar burada bekleniyor.</p>
+        <h2 class="rq-title">&#128202; Canli Karsilastirma</h2>
+        <p class="panel-note" id="rq4-live-note">Sonuclarin aciklama uzunlugu ve tarzi bu panelde gosterilir; "title-deemphasized" rozeti izlenebilir.</p>
         <div class="rq1-banner" id="rq4-guidance"></div>
         <div class="rq1-grid" id="rq4-live-grid"></div>
       </section>
     </section>
+      </div><!-- /.content-area -->
+    </div><!-- /.app-layout -->
   </main>
 
   <div class="modal-backdrop" id="detail-modal" aria-hidden="true">
@@ -1048,6 +1231,7 @@ HTML = """<!doctype html>
     const topKInput = document.querySelector("#top-k");
     const crossEncoderToggle = document.querySelector("#cross-encoder-toggle");
     const submitButton = document.querySelector("#submit");
+    const loadingEl = document.querySelector("#loading");
     const statusEl = document.querySelector("#status");
     const resultsEl = document.querySelector("#results");
     const statsEl = document.querySelector("#stats");
@@ -2290,7 +2474,9 @@ HTML = """<!doctype html>
 
       submitButton.disabled = true;
       statusEl.className = "status";
-      statusEl.textContent = "Searching...";
+      statusEl.textContent = "";
+      loadingEl.classList.add("active");
+      resultsEl.classList.add("faded");
 
       try {
         const response = await fetch("/api/search", {
@@ -2325,13 +2511,201 @@ HTML = """<!doctype html>
         statusEl.textContent = error.message;
       } finally {
         submitButton.disabled = false;
+        loadingEl.classList.remove("active");
+        resultsEl.classList.remove("faded");
       }
     });
 
+
+    // ── CHART RENDERING ──────────────────────────────────────────
+    const CC = {
+      purple: { bg:'rgba(124,58,237,.78)',  border:'#7c3aed' },
+      cyan:   { bg:'rgba(8,145,178,.78)',   border:'#0891b2' },
+      green:  { bg:'rgba(5,150,105,.78)',   border:'#059669' },
+      orange: { bg:'rgba(234,88,12,.78)',   border:'#ea580c' },
+      pink:   { bg:'rgba(219,39,119,.78)',  border:'#db2777' },
+      amber:  { bg:'rgba(245,158,11,.78)',  border:'#f59e0b' },
+    };
+    const MCLR = { bm25:CC.orange, semantic:CC.purple, hybrid:CC.green };
+    const chartReg = {};
+
+    const BASE_OPTS = {
+      responsive:true, maintainAspectRatio:true,
+      plugins:{
+        legend:{ position:'top', labels:{ usePointStyle:true, padding:14,
+          font:{ size:11, weight:'700' }, color:'#1e1147' } },
+        tooltip:{ cornerRadius:8, padding:10,
+          titleFont:{ weight:'700' }, bodyFont:{ size:12 } }
+      },
+      scales:{
+        x:{ grid:{ display:false }, ticks:{ font:{ size:11 }, color:'#6b5fa0' } },
+        y:{ grid:{ color:'rgba(124,58,237,.07)' },
+            ticks:{ font:{ size:11 }, color:'#6b5fa0' }, min:0, max:1 }
+      }
+    };
+
+    function mkChart(id, type, data, extraOpts={}) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (chartReg[id]) chartReg[id].destroy();
+      const opts = JSON.parse(JSON.stringify(BASE_OPTS));
+      if (type === 'bar' && extraOpts.indexAxis === 'y') {
+        opts.scales = {
+          x:{ grid:{ color:'rgba(124,58,237,.07)' }, ticks:{ font:{ size:11 }, color:'#6b5fa0' }, min:0, max:1 },
+          y:{ grid:{ display:false }, ticks:{ font:{ size:11 }, color:'#6b5fa0' } }
+        };
+      }
+      if (extraOpts.noLegend) { opts.plugins.legend.display = false; delete extraOpts.noLegend; }
+      Object.assign(opts, extraOpts);
+      chartReg[id] = new Chart(el.getContext('2d'), { type, data, options: opts });
+    }
+
+    function drawRQ1Charts() {
+      const rq1 = metadataPayload?.rq1; if (!rq1) return;
+      const methods = ['bm25','semantic','hybrid'];
+      const mLabel  = { bm25:'BM25', semantic:'Semantic', hybrid:'Hybrid' };
+      // Ana metrik karsilastirmasi
+      mkChart('chart-rq1-methods','bar',{
+        labels:['P@1','MRR','nDCG@5'],
+        datasets: methods.map(m => {
+          const r = findMethodRow(rq1.overall, m);
+          return { label: mLabel[m],
+            data: r ? [+r.mean_precision_at_1, +r.mean_mrr, +r.mean_ndcg_at_k] : [0,0,0],
+            backgroundColor: MCLR[m].bg, borderColor: MCLR[m].border,
+            borderWidth:2, borderRadius:8 };
+        })
+      });
+      // Keyword sorgu turu
+      const kRows = rq1.by_query_style?.keyword || [];
+      mkChart('chart-rq1-keyword','bar',{
+        labels: methods.map(m=>mLabel[m]),
+        datasets:[{ label:'nDCG@5',
+          data: methods.map(m=>{ const r=findMethodRow(kRows,m); return r?+r.mean_ndcg_at_k:0; }),
+          backgroundColor: methods.map(m=>MCLR[m].bg),
+          borderColor:     methods.map(m=>MCLR[m].border),
+          borderWidth:2, borderRadius:8 }]
+      },{ noLegend:true });
+      // Cumle sorgu turu
+      const sRows = rq1.by_query_style?.sentence || [];
+      mkChart('chart-rq1-sentence','bar',{
+        labels: methods.map(m=>mLabel[m]),
+        datasets:[{ label:'nDCG@5',
+          data: methods.map(m=>{ const r=findMethodRow(sRows,m); return r?+r.mean_ndcg_at_k:0; }),
+          backgroundColor: methods.map(m=>MCLR[m].bg),
+          borderColor:     methods.map(m=>MCLR[m].border),
+          borderWidth:2, borderRadius:8 }]
+      },{ noLegend:true });
+    }
+
+    function drawRQ2Charts() {
+      const rq2 = metadataPayload?.rq2; if (!rq2) return;
+      const dirs  = ['huggingface_to_kaggle','kaggle_to_huggingface'];
+      const dLbl  = ['HF → Kaggle','Kaggle → HF'];
+      const methods = ['bm25','semantic','hybrid'];
+      const mLabel  = { bm25:'BM25', semantic:'Semantic', hybrid:'Hybrid' };
+      mkChart('chart-rq2-direction','bar',{
+        labels: dLbl,
+        datasets: methods.map(m=>({
+          label: mLabel[m],
+          data: dirs.map(d=>{ const r=findMethodRow(rq2.by_direction?.[d]||[],m); return r?+r.mean_ndcg_at_k:0; }),
+          backgroundColor: MCLR[m].bg, borderColor: MCLR[m].border,
+          borderWidth:2, borderRadius:8 }))
+      });
+      const topics = Object.keys(rq2.by_topic||{});
+      mkChart('chart-rq2-topics','bar',{
+        labels: topics.map(t=>formatTopicLabel(t).substring(0,13)),
+        datasets:[
+          { label:'Semantic Hit@5',
+            data: topics.map(t=>{ const r=findMethodRow(rq2.by_topic[t],'semantic'); return r?+(r.mean_hit_rate_at_k??r.mean_ndcg_at_k):0; }),
+            backgroundColor:CC.purple.bg, borderColor:CC.purple.border, borderWidth:2, borderRadius:6 },
+          { label:'Hybrid Hit@5',
+            data: topics.map(t=>{ const r=findMethodRow(rq2.by_topic[t],'hybrid'); return r?+(r.mean_hit_rate_at_k??r.mean_ndcg_at_k):0; }),
+            backgroundColor:CC.green.bg, borderColor:CC.green.border, borderWidth:2, borderRadius:6 }
+        ]
+      });
+    }
+
+    function drawRQ3Charts() {
+      const rq3 = metadataPayload?.rq3; if (!rq3) return;
+      const profiles = ['minilm','multilingual'];
+      const pClr = [CC.purple, CC.cyan];
+      const langs = ['en','tr'];
+      const lLbl  = ['🇬🇧 EN','🇹🇷 TR'];
+      mkChart('chart-rq3-language','bar',{
+        labels: lLbl,
+        datasets: profiles.map((p,i)=>({
+          label: profileLabel(p),
+          data: langs.map(lang=>{
+            const rows = rq3.by_language?.[lang]||[];
+            const r = findProfileMethodRow(rows,p,'semantic') || findProfileMethodRow(rows,'semantic',p);
+            return r?+r.mean_ndcg_at_k:0;
+          }),
+          backgroundColor:pClr[i].bg, borderColor:pClr[i].border, borderWidth:2, borderRadius:8 }))
+      });
+      const slices = ['english_main','cross_source','tr_subset'];
+      const sLbl   = ['EN Ana','2 Kaynak','TR Alt'];
+      mkChart('chart-rq3-slices','bar',{
+        labels: sLbl,
+        datasets: profiles.map((p,i)=>({
+          label: profileLabel(p),
+          data: slices.map(sl=>{
+            const rows = rq3.by_study_slice?.[sl]||[];
+            const r = findProfileMethodRow(rows,p,'hybrid') || findProfileMethodRow(rows,'hybrid',p);
+            return r?+r.mean_ndcg_at_k:0;
+          }),
+          backgroundColor:pClr[i].bg, borderColor:pClr[i].border, borderWidth:2, borderRadius:8 }))
+      });
+    }
+
+    function drawRQ4Charts() {
+      const rq4 = metadataPayload?.rq4; if (!rq4) return;
+      const lenBuckets = ['short','medium','long'];
+      const lenLbl     = ['❌ Kisa','🟡 Orta','✅ Uzun'];
+      mkChart('chart-rq4-length','bar',{
+        labels: lenLbl,
+        datasets:[
+          { label:'Semantic Hit@5',
+            data: lenBuckets.map(b=>{ const r=findMethodRow(rq4.by_length?.[b]||[],'semantic'); return r?+(r.hit_rate_at_k??0):0; }),
+            backgroundColor:CC.purple.bg, borderColor:CC.purple.border, borderWidth:2, borderRadius:8 },
+          { label:'Hybrid Hit@5',
+            data: lenBuckets.map(b=>{ const r=findMethodRow(rq4.by_length?.[b]||[],'hybrid'); return r?+(r.hit_rate_at_k??0):0; }),
+            backgroundColor:CC.green.bg, borderColor:CC.green.border, borderWidth:2, borderRadius:8 }
+        ]
+      });
+      const styles = ['narrative','mixed_structured','metadata_heavy'];
+      const sLbl   = ['Anlatimsal','Karisik','Metadata'];
+      mkChart('chart-rq4-style','bar',{
+        labels: sLbl,
+        datasets:[{ label:'Semantic Hit@5',
+          data: styles.map(s=>{ const r=findMethodRow(rq4.by_style?.[s]||[],'semantic'); return r?+(r.hit_rate_at_k??0):0; }),
+          backgroundColor:[CC.green.bg,CC.cyan.bg,CC.orange.bg],
+          borderColor:[CC.green.border,CC.cyan.border,CC.orange.border],
+          borderWidth:2, borderRadius:8 }]
+      },{ noLegend:true });
+      const terms = ['term_sparse','term_moderate','term_rich'];
+      const tLbl  = ['Seyrek','Orta','Zengin'];
+      mkChart('chart-rq4-terms','bar',{
+        labels: tLbl,
+        datasets:[{ label:'Semantic Hit@5',
+          data: terms.map(t=>{ const r=findMethodRow(rq4.by_term?.[t]||[],'semantic'); return r?+(r.hit_rate_at_k??0):0; }),
+          backgroundColor:[CC.orange.bg,CC.amber.bg,CC.purple.bg],
+          borderColor:[CC.orange.border,CC.amber.border,CC.purple.border],
+          borderWidth:2, borderRadius:8 }]
+      },{ noLegend:true });
+    }
+
+    function drawAllCharts() {
+      if (typeof Chart === 'undefined') { console.warn('Chart.js yuklenemedi'); return; }
+      drawRQ1Charts();
+      drawRQ2Charts();
+      drawRQ3Charts();
+      drawRQ4Charts();
+    }
     loadMetadata()
       .then(() => {
         activateTab("search");
         queryInput.focus();
+        setTimeout(drawAllCharts, 200);
       })
       .catch((error) => {
         statusEl.className = "status error";
