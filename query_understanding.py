@@ -584,6 +584,23 @@ TOKEN_RULES = {
     "yield": {"domain": "weather_climate", "terms": ["crop yield", "crop production", "agriculture", "farming"]},
     "yorum": {"domain": "reviews_sentiment", "terms": ["reviews", "comments", "opinions", "sentiment"]},
     "yosun": {"domain": "ocean_climate", "terms": ["algae", "aquatic", "ecology", "marine"]},
+    # Botany / flowers (TR + EN forms)
+    "botanik": {"domain": "botany", "terms": ["botany", "botanical", "plant", "flora", "plant science"]},
+    "botany": {"domain": "botany", "terms": ["botany", "botanical", "plant", "flora", "plant science"]},
+    "botanical": {"domain": "botany", "terms": ["botany", "botanical", "plant", "flora", "plant species"]},
+    "cicek": {"domain": "botany", "terms": ["flower", "floral", "flower classification", "flower recognition", "iris", "oxford flowers"]},
+    "cicekler": {"domain": "botany", "terms": ["flowers", "floral", "flower classification", "flower recognition", "oxford flowers"]},
+    "ciceklerle": {"domain": "botany", "terms": ["flowers", "flower classification", "flower recognition"]},
+    "flower": {"domain": "botany", "terms": ["flower", "floral", "flower classification", "flower recognition", "iris", "oxford flowers"]},
+    "flowers": {"domain": "botany", "terms": ["flowers", "floral", "flower classification", "flower recognition", "oxford flowers"]},
+    "floral": {"domain": "botany", "terms": ["floral", "flower", "flower classification"]},
+    "iris": {"domain": "botany", "terms": ["iris", "iris species", "flower classification"]},
+    "orchid": {"domain": "botany", "terms": ["orchid", "flower", "flower classification"]},
+    "bitki": {"domain": "botany", "terms": ["plant", "flora", "botany", "plant disease"]},
+    "bitkiler": {"domain": "botany", "terms": ["plants", "flora", "botany", "plant species"]},
+    "plant": {"domain": "botany", "terms": ["plant", "flora", "botany", "plant species", "plant disease"]},
+    "plants": {"domain": "botany", "terms": ["plants", "flora", "botany", "plant species"]},
+    "flora": {"domain": "botany", "terms": ["flora", "plant", "botany", "plant species"]},
 }
 COMBO_RULES = [
     {
