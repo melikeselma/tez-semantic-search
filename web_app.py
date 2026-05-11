@@ -2,6 +2,7 @@ import json
 import re
 import sys
 import threading
+from concurrent.futures import ThreadPoolExecutor
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -866,7 +867,7 @@ HTML = """<!doctype html>
         </form>
         <div class="search-toggle" aria-label="Semantic rerank options">
           <label class="toggle" for="cross-encoder-toggle">
-            <input id="cross-encoder-toggle" name="enable_cross_encoder" type="checkbox" checked>
+            <input id="cross-encoder-toggle" name="enable_cross_encoder" type="checkbox">
             <span>&#129504; Cross-encoder semantic rerank</span>
           </label>
         </div>
@@ -3669,22 +3670,26 @@ class RequestHandler(BaseHTTPRequestHandler):
         except (TypeError, ValueError):
             top_k = 5
         top_k = max(1, min(top_k, 20))
-        enable_cross_encoder = bool(payload.get("enable_cross_encoder", True))
+        enable_cross_encoder = bool(payload.get("enable_cross_encoder", False))
 
         try:
             query_plan = build_query_plan(query)
-            method_results = {
-                candidate_method: execute_search_method(
-                    candidate_method,
-                    query,
-                    profile.key,
-                    source_filter,
-                    top_k,
-                    query_plan,
-                    enable_cross_encoder=enable_cross_encoder,
-                )
-                for candidate_method in ("bm25", "semantic", "hybrid")
-            }
+            candidate_methods = ("bm25", "semantic", "hybrid")
+            with ThreadPoolExecutor(max_workers=len(candidate_methods)) as pool:
+                futures = {
+                    candidate_method: pool.submit(
+                        execute_search_method,
+                        candidate_method,
+                        query,
+                        profile.key,
+                        source_filter,
+                        top_k,
+                        query_plan,
+                        enable_cross_encoder=enable_cross_encoder,
+                    )
+                    for candidate_method in candidate_methods
+                }
+                method_results = {name: future.result() for name, future in futures.items()}
         except Exception as exc:
             self.send_json({"error": str(exc)}, HTTPStatus.INTERNAL_SERVER_ERROR)
             return
