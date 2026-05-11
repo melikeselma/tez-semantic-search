@@ -1,68 +1,68 @@
 {
   "thresholds": {
     "length_word_thresholds": {
-      "short_max": 20,
-      "medium_max": 52
+      "short_max": 22,
+      "medium_max": 60
     },
     "term_thresholds": {
-      "sparse_max": 10,
-      "moderate_max": 28
+      "sparse_max": 11,
+      "moderate_max": 32
     }
   },
   "distribution": [
     {
       "feature": "length_bucket",
       "bucket": "long",
-      "documents": 376,
-      "share": 0.3357142857142857
+      "documents": 423,
+      "share": 0.3389423076923077
     },
     {
       "feature": "length_bucket",
       "bucket": "medium",
-      "documents": 349,
-      "share": 0.31160714285714286
+      "documents": 400,
+      "share": 0.32051282051282054
     },
     {
       "feature": "length_bucket",
       "bucket": "short",
-      "documents": 395,
-      "share": 0.35267857142857145
+      "documents": 425,
+      "share": 0.3405448717948718
     },
     {
       "feature": "description_style",
       "bucket": "metadata_heavy",
-      "documents": 206,
-      "share": 0.18392857142857144
+      "documents": 251,
+      "share": 0.20112179487179488
     },
     {
       "feature": "description_style",
       "bucket": "mixed_structured",
-      "documents": 593,
-      "share": 0.5294642857142857
+      "documents": 630,
+      "share": 0.5048076923076923
     },
     {
       "feature": "description_style",
       "bucket": "narrative",
-      "documents": 321,
-      "share": 0.28660714285714284
+      "documents": 367,
+      "share": 0.29407051282051283
     },
     {
       "feature": "term_bucket",
       "bucket": "term_moderate",
-      "documents": 362,
-      "share": 0.32321428571428573
+      "documents": 407,
+      "share": 0.3261217948717949
     },
     {
       "feature": "term_bucket",
       "bucket": "term_rich",
-      "documents": 371,
-      "share": 0.33125
+      "documents": 421,
+      "share": 0.3373397435897436
     },
     {
       "feature": "term_bucket",
       "bucket": "term_sparse",
-      "documents": 387,
-      "share": 0.3455357142857143
+      "documents": 420,
+      "share": 0.33653846153846156
     }
   ]
 }

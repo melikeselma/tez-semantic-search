@@ -18,79 +18,79 @@ Methods: `semantic, bm25, hybrid`
 
 | Method | Bridge@1 | Bridge@5 | Recall@5 | MRR | MAP@5 | nDCG@5 | Median ms |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| bm25 | 0.385 | 0.462 | 0.462 | 0.410 | 0.417 | 0.429 | 6.5 |
-| hybrid | 0.615 | 0.846 | 0.744 | 0.705 | 0.643 | 0.687 | 65.1 |
-| semantic | 0.615 | 0.846 | 0.744 | 0.731 | 0.645 | 0.695 | 61.1 |
+| bm25 | 0.385 | 0.846 | 0.718 | 0.560 | 0.523 | 0.586 | 4.2 |
+| hybrid | 0.077 | 0.231 | 0.154 | 0.141 | 0.109 | 0.130 | 3048.9 |
+| semantic | 0.077 | 0.231 | 0.154 | 0.122 | 0.099 | 0.121 | 2786.6 |
 
 ## Direction Slice: huggingface_to_kaggle
 
 | Method | Bridge@1 | Bridge@5 | Recall@5 | MRR | MAP@5 | nDCG@5 | Median ms |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| bm25 | 0.333 | 0.500 | 0.500 | 0.389 | 0.403 | 0.428 | 2.9 |
-| hybrid | 0.500 | 0.667 | 0.583 | 0.556 | 0.472 | 0.519 | 58.3 |
-| semantic | 0.500 | 0.667 | 0.583 | 0.583 | 0.500 | 0.541 | 57.4 |
+| bm25 | 0.167 | 0.667 | 0.583 | 0.375 | 0.347 | 0.418 | 3.6 |
+| hybrid | 0.167 | 0.500 | 0.333 | 0.306 | 0.236 | 0.282 | 2918.9 |
+| semantic | 0.167 | 0.500 | 0.333 | 0.264 | 0.215 | 0.262 | 2755.6 |
 
 ## Direction Slice: kaggle_to_huggingface
 
 | Method | Bridge@1 | Bridge@5 | Recall@5 | MRR | MAP@5 | nDCG@5 | Median ms |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| bm25 | 0.429 | 0.429 | 0.429 | 0.429 | 0.429 | 0.429 | 10.0 |
-| hybrid | 0.714 | 1.000 | 0.881 | 0.833 | 0.790 | 0.832 | 103.4 |
-| semantic | 0.714 | 1.000 | 0.881 | 0.857 | 0.770 | 0.828 | 86.7 |
+| bm25 | 0.571 | 1.000 | 0.833 | 0.719 | 0.673 | 0.729 | 5.5 |
+| hybrid | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 3331.0 |
+| semantic | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 3116.1 |
 
 ## Topic Slice: amazon_reviews
 
 | Method | Bridge@1 | Bridge@5 | Recall@5 | MRR | MAP@5 | nDCG@5 | Median ms |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| bm25 | 0.750 | 1.000 | 1.000 | 0.833 | 0.854 | 0.893 | 4.7 |
-| hybrid | 1.000 | 1.000 | 0.875 | 1.000 | 0.875 | 0.903 | 61.4 |
-| semantic | 1.000 | 1.000 | 0.875 | 1.000 | 0.812 | 0.873 | 53.7 |
+| bm25 | 0.500 | 1.000 | 0.875 | 0.750 | 0.708 | 0.770 | 4.0 |
+| hybrid | 0.000 | 0.500 | 0.250 | 0.208 | 0.104 | 0.173 | 3025.7 |
+| semantic | 0.000 | 0.500 | 0.250 | 0.146 | 0.073 | 0.143 | 2738.5 |
 
 ## Topic Slice: climate_change
 
 | Method | Bridge@1 | Bridge@5 | Recall@5 | MRR | MAP@5 | nDCG@5 | Median ms |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| bm25 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 7.6 |
-| hybrid | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 104.1 |
-| semantic | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 91.2 |
+| bm25 | 0.500 | 1.000 | 1.000 | 0.625 | 0.625 | 0.715 | 8.7 |
+| hybrid | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 3375.7 |
+| semantic | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 3153.0 |
 
 ## Topic Slice: movie_reviews
 
 | Method | Bridge@1 | Bridge@5 | Recall@5 | MRR | MAP@5 | nDCG@5 | Median ms |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| bm25 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 3.4 |
-| hybrid | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 47.5 |
-| semantic | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 48.6 |
+| bm25 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 2.9 |
+| hybrid | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2956.5 |
+| semantic | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2913.2 |
 
 ## Topic Slice: quran_text_audio
 
 | Method | Bridge@1 | Bridge@5 | Recall@5 | MRR | MAP@5 | nDCG@5 | Median ms |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| bm25 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 8.4 |
-| hybrid | 0.000 | 1.000 | 0.750 | 0.417 | 0.292 | 0.443 | 87.0 |
-| semantic | 0.000 | 1.000 | 0.750 | 0.500 | 0.375 | 0.509 | 73.9 |
+| bm25 | 0.000 | 0.500 | 0.250 | 0.100 | 0.050 | 0.119 | 5.3 |
+| hybrid | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 3140.3 |
+| semantic | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2898.1 |
 
 ## Topic Slice: sentiment_analysis
 
 | Method | Bridge@1 | Bridge@5 | Recall@5 | MRR | MAP@5 | nDCG@5 | Median ms |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| bm25 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 12.1 |
-| hybrid | 0.000 | 1.000 | 0.667 | 0.333 | 0.278 | 0.437 | 154.1 |
-| semantic | 0.000 | 1.000 | 0.667 | 0.500 | 0.389 | 0.531 | 139.1 |
+| bm25 | 0.000 | 1.000 | 0.333 | 0.333 | 0.111 | 0.235 | 8.8 |
+| hybrid | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 3662.1 |
+| semantic | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 3484.6 |
 
 ## Topic Slice: turkish_product_reviews
 
 | Method | Bridge@1 | Bridge@5 | Recall@5 | MRR | MAP@5 | nDCG@5 | Median ms |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| bm25 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 9.9 |
-| hybrid | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 111.3 |
-| semantic | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 100.0 |
+| bm25 | 0.500 | 1.000 | 1.000 | 0.750 | 0.750 | 0.815 | 12.9 |
+| hybrid | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 4839.7 |
+| semantic | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 | 8843.4 |
 
 ## Interim Findings
 
-- Across the cross-source benchmark, hybrid is the strongest practical system: Bridge@5=0.846, nDCG@5=0.687.
-- Pure semantic retrieval shows whether embeddings can bridge sources directly; it reaches Bridge@5=0.846, compared with BM25=0.462.
-- Direction matters. The semantic system performs differently across source pairs: HF->Kaggle nDCG@5=0.541, Kaggle->HF nDCG@5=0.828.
+- Across the cross-source benchmark, hybrid is the strongest practical system: Bridge@5=0.231, nDCG@5=0.130.
+- Pure semantic retrieval shows whether embeddings can bridge sources directly; it reaches Bridge@5=0.231, compared with BM25=0.846.
+- Direction matters. The semantic system performs differently across source pairs: HF->Kaggle nDCG@5=0.262, Kaggle->HF nDCG@5=0.000.
 - This direction gap is useful for the thesis because it reflects description quality and metadata style differences between sources, not just model quality.
 
 ## Next Step
