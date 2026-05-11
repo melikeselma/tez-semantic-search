@@ -16,9 +16,7 @@ models/
 *.npy
 *.pkl
 data/index/english_e5/
-data/index/multilingual/
 data/embeddings/english_e5/
-data/embeddings/multilingual/
 
 # OS junk
 .DS_Store
