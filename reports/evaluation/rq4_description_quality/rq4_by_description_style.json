@@ -4,10 +4,10 @@
     "description_style": "metadata_heavy",
     "relevant_pairs": 30,
     "unique_docs": 13,
-    "hit_rate_at_k": 0.2,
+    "hit_rate_at_k": 0.16666666666666666,
     "top1_rate": 0.1,
-    "mean_rank_when_hit": 2.3333333333333335,
-    "median_rank_when_hit": 2.0
+    "mean_rank_when_hit": 2,
+    "median_rank_when_hit": 1
   },
   {
     "method": "semantic",
@@ -16,7 +16,7 @@
     "unique_docs": 23,
     "hit_rate_at_k": 0.48148148148148145,
     "top1_rate": 0.14814814814814814,
-    "mean_rank_when_hit": 2.1153846153846154,
+    "mean_rank_when_hit": 2.1923076923076925,
     "median_rank_when_hit": 2.0
   },
   {
@@ -24,39 +24,39 @@
     "description_style": "narrative",
     "relevant_pairs": 66,
     "unique_docs": 26,
-    "hit_rate_at_k": 0.7272727272727273,
+    "hit_rate_at_k": 0.7121212121212122,
     "top1_rate": 0.2727272727272727,
-    "mean_rank_when_hit": 2.1458333333333335,
-    "median_rank_when_hit": 2.0
+    "mean_rank_when_hit": 2.2127659574468086,
+    "median_rank_when_hit": 2
   },
   {
     "method": "hybrid",
     "description_style": "metadata_heavy",
     "relevant_pairs": 30,
     "unique_docs": 13,
-    "hit_rate_at_k": 0.23333333333333334,
+    "hit_rate_at_k": 0.2,
     "top1_rate": 0.1,
-    "mean_rank_when_hit": 2.2857142857142856,
-    "median_rank_when_hit": 3
+    "mean_rank_when_hit": 2,
+    "median_rank_when_hit": 2.0
   },
   {
     "method": "hybrid",
     "description_style": "mixed_structured",
     "relevant_pairs": 54,
     "unique_docs": 23,
-    "hit_rate_at_k": 0.5370370370370371,
+    "hit_rate_at_k": 0.5185185185185185,
     "top1_rate": 0.2777777777777778,
-    "mean_rank_when_hit": 1.896551724137931,
-    "median_rank_when_hit": 1
+    "mean_rank_when_hit": 1.8571428571428572,
+    "median_rank_when_hit": 1.0
   },
   {
     "method": "hybrid",
     "description_style": "narrative",
     "relevant_pairs": 66,
     "unique_docs": 26,
-    "hit_rate_at_k": 0.7272727272727273,
-    "top1_rate": 0.18181818181818182,
-    "mean_rank_when_hit": 2.3541666666666665,
-    "median_rank_when_hit": 2.0
+    "hit_rate_at_k": 0.7121212121212122,
+    "top1_rate": 0.16666666666666666,
+    "mean_rank_when_hit": 2.4893617021276597,
+    "median_rank_when_hit": 2
   }
 ]

@@ -7,52 +7,52 @@
     "queries": 34,
     "metrics": {
       "precision_at_1": {
-        "left_wins": 0,
-        "right_wins": 6,
-        "ties": 28,
-        "mean_delta": -0.17647058823529413
+        "left_wins": 2,
+        "right_wins": 5,
+        "ties": 27,
+        "mean_delta": -0.08823529411764706
       },
       "precision_at_k": {
-        "left_wins": 2,
-        "right_wins": 13,
-        "ties": 19,
-        "mean_delta": -0.07647058823529411
+        "left_wins": 6,
+        "right_wins": 7,
+        "ties": 21,
+        "mean_delta": 1.1428766429964846e-17
       },
       "recall_at_k": {
-        "left_wins": 2,
-        "right_wins": 13,
-        "ties": 19,
-        "mean_delta": -0.12675070028011204
+        "left_wins": 6,
+        "right_wins": 7,
+        "ties": 21,
+        "mean_delta": -0.0031512605042016834
       },
       "hit_rate_at_k": {
-        "left_wins": 0,
-        "right_wins": 1,
-        "ties": 33,
-        "mean_delta": -0.029411764705882353
+        "left_wins": 2,
+        "right_wins": 0,
+        "ties": 32,
+        "mean_delta": 0.058823529411764705
       },
       "mrr": {
-        "left_wins": 0,
+        "left_wins": 2,
         "right_wins": 7,
-        "ties": 27,
-        "mean_delta": -0.10931372549019608
+        "ties": 25,
+        "mean_delta": -0.028431372549019607
       },
       "ap_at_k": {
-        "left_wins": 4,
-        "right_wins": 20,
-        "ties": 10,
-        "mean_delta": -0.1586356209150327
+        "left_wins": 7,
+        "right_wins": 14,
+        "ties": 13,
+        "mean_delta": -0.023758169934640527
       },
       "r_precision": {
-        "left_wins": 4,
-        "right_wins": 10,
+        "left_wins": 7,
+        "right_wins": 7,
         "ties": 20,
-        "mean_delta": -0.10854341736694678
+        "mean_delta": -0.008753501400560222
       },
       "ndcg_at_k": {
-        "left_wins": 4,
-        "right_wins": 20,
-        "ties": 10,
-        "mean_delta": -0.1393862046440024
+        "left_wins": 8,
+        "right_wins": 13,
+        "ties": 13,
+        "mean_delta": -0.019379868356553198
       }
     }
   },
@@ -64,52 +64,52 @@
     "queries": 34,
     "metrics": {
       "precision_at_1": {
-        "left_wins": 2,
-        "right_wins": 5,
-        "ties": 27,
+        "left_wins": 5,
+        "right_wins": 8,
+        "ties": 21,
         "mean_delta": -0.08823529411764706
       },
       "precision_at_k": {
-        "left_wins": 8,
-        "right_wins": 10,
-        "ties": 16,
-        "mean_delta": -0.017647058823529405
+        "left_wins": 6,
+        "right_wins": 5,
+        "ties": 23,
+        "mean_delta": 0.017647058823529422
       },
       "recall_at_k": {
-        "left_wins": 8,
-        "right_wins": 10,
-        "ties": 16,
-        "mean_delta": -0.029411764705882356
+        "left_wins": 6,
+        "right_wins": 5,
+        "ties": 23,
+        "mean_delta": 0.021358543417366944
       },
       "hit_rate_at_k": {
-        "left_wins": 0,
-        "right_wins": 1,
-        "ties": 33,
-        "mean_delta": -0.029411764705882353
+        "left_wins": 2,
+        "right_wins": 0,
+        "ties": 32,
+        "mean_delta": 0.058823529411764705
       },
       "mrr": {
-        "left_wins": 2,
-        "right_wins": 6,
-        "ties": 26,
-        "mean_delta": -0.060294117647058824
+        "left_wins": 5,
+        "right_wins": 8,
+        "ties": 21,
+        "mean_delta": -0.021078431372549025
       },
       "ap_at_k": {
-        "left_wins": 13,
-        "right_wins": 15,
-        "ties": 6,
-        "mean_delta": -0.0692075163398693
+        "left_wins": 9,
+        "right_wins": 14,
+        "ties": 11,
+        "mean_delta": -0.004795751633986928
       },
       "r_precision": {
         "left_wins": 9,
-        "right_wins": 9,
-        "ties": 16,
-        "mean_delta": -0.016106442577030807
+        "right_wins": 8,
+        "ties": 17,
+        "mean_delta": 0.022408963585434177
       },
       "ndcg_at_k": {
-        "left_wins": 13,
-        "right_wins": 15,
-        "ties": 6,
-        "mean_delta": -0.05702594802679424
+        "left_wins": 10,
+        "right_wins": 13,
+        "ties": 11,
+        "mean_delta": -0.0005339358979400655
       }
     }
   },
@@ -122,21 +122,21 @@
     "metrics": {
       "precision_at_1": {
         "left_wins": 3,
-        "right_wins": 0,
-        "ties": 31,
-        "mean_delta": 0.08823529411764706
+        "right_wins": 3,
+        "ties": 28,
+        "mean_delta": 0.0
       },
       "precision_at_k": {
-        "left_wins": 12,
-        "right_wins": 2,
-        "ties": 20,
-        "mean_delta": 0.058823529411764705
+        "left_wins": 3,
+        "right_wins": 1,
+        "ties": 30,
+        "mean_delta": 0.017647058823529408
       },
       "recall_at_k": {
-        "left_wins": 12,
-        "right_wins": 2,
-        "ties": 20,
-        "mean_delta": 0.09733893557422969
+        "left_wins": 3,
+        "right_wins": 1,
+        "ties": 30,
+        "mean_delta": 0.024509803921568627
       },
       "hit_rate_at_k": {
         "left_wins": 0,
@@ -146,27 +146,27 @@
       },
       "mrr": {
         "left_wins": 3,
-        "right_wins": 0,
-        "ties": 31,
-        "mean_delta": 0.049019607843137254
+        "right_wins": 3,
+        "ties": 28,
+        "mean_delta": 0.007352941176470588
       },
       "ap_at_k": {
-        "left_wins": 18,
-        "right_wins": 4,
-        "ties": 12,
-        "mean_delta": 0.0894281045751634
+        "left_wins": 7,
+        "right_wins": 7,
+        "ties": 20,
+        "mean_delta": 0.0189624183006536
       },
       "r_precision": {
-        "left_wins": 11,
-        "right_wins": 2,
-        "ties": 21,
-        "mean_delta": 0.09243697478991597
+        "left_wins": 4,
+        "right_wins": 1,
+        "ties": 29,
+        "mean_delta": 0.031162464985994398
       },
       "ndcg_at_k": {
-        "left_wins": 18,
-        "right_wins": 4,
-        "ties": 12,
-        "mean_delta": 0.08236025661720814
+        "left_wins": 7,
+        "right_wins": 7,
+        "ties": 20,
+        "mean_delta": 0.018845932458613133
       }
     }
   }

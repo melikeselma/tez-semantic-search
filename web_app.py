@@ -960,7 +960,7 @@ HTML = """<!doctype html>
         <div class="rq-cluster">
           <div class="rq-cluster-label cyan">&#9881; Yöntem</div>
           <div class="rq-cluster-body cyan">
-            <strong>34 etiketli sorgu</strong>, 1.120 kayıtlık corpus üzerinde 3 yöntemle karşılaştırıldı.
+            <strong>34 etiketli sorgu</strong>, 1.248 kayıtlık corpus üzerinde 3 yöntemle karşılaştırıldı.
             <div class="rq-pills" style="margin-top:10px">
               <span class="rq-pill cyan">BM25</span>
               <span class="rq-pill purple">Semantic (FAISS)</span>
@@ -1140,7 +1140,7 @@ HTML = """<!doctype html>
         <div class="rq-cluster">
           <div class="rq-cluster-label cyan">&#9881; Segmentasyon Kriterleri</div>
           <div class="rq-cluster-body cyan">
-            1.120 kayıt 3 farklı eksende gruplandiriildi ve her grupta Hit@5 ayrı ayrı ölçüldü.
+            1.248 kayıt 3 farklı eksende gruplandırıldı ve her grupta Hit@5 ayrı ayrı ölçüldü.
             <div class="rq-pills" style="margin-top:10px">
               <span class="rq-pill cyan">&#128207; Uzunluk: Kısa / Orta / Uzun</span>
               <span class="rq-pill purple">&#128221; Tarz: Anlatımsal / Karışık / Metadata</span>
