@@ -1,17 +1,17 @@
 {
-  "built_at_utc": "2026-05-11T19:36:45.955559+00:00",
+  "built_at_utc": "2026-05-11T19:59:02.074408+00:00",
   "profile": "minilm",
   "profile_label": "MiniLM (EN baseline)",
   "model_name": "sentence-transformers/all-MiniLM-L6-v2",
   "input_path": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\data\\processed\\descriptions_clean.jsonl",
-  "input_rows": 1197,
-  "indexed_rows": 1197,
+  "input_rows": 1233,
+  "indexed_rows": 1233,
   "embedding_dimension": 384,
   "query_prefix": "",
   "document_prefix": "",
   "source_counts": {
     "huggingface": 557,
-    "kaggle": 640
+    "kaggle": 676
   },
   "outputs": {
     "index": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\data\\index\\faiss.index",
