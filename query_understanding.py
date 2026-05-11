@@ -569,7 +569,7 @@ TOKEN_RULES = {
     "storm": {"domain": "weather_climate", "terms": ["storm", "severe weather", "forecast", "meteorology"]},
     "su": {"domain": "hydrology", "terms": ["water", "hydrology", "aquatic"]},
     "supheli": {"domain": "finance_markets", "terms": ["suspicious transaction", "transaction fraud", "financial fraud"]},
-    "tahmin": {"domain": "weather_climate", "terms": ["forecast", "meteorology", "weather archive"]},
+    "tahmin": {"terms": ["prediction", "forecast", "estimate"]},
     "toxic": {"domain": "nlp_text", "terms": ["toxic comments", "hate speech", "abusive language", "offensive language"]},
     "transaction": {"domain": "finance_markets", "terms": ["transaction fraud", "suspicious transaction", "financial fraud"]},
     "tweet": {"domain": "nlp_text", "terms": ["tweets", "social media posts", "short online messages"]},
@@ -601,6 +601,13 @@ TOKEN_RULES = {
     "plant": {"domain": "botany", "terms": ["plant", "flora", "botany", "plant species", "plant disease"]},
     "plants": {"domain": "botany", "terms": ["plants", "flora", "botany", "plant species"]},
     "flora": {"domain": "botany", "terms": ["flora", "plant", "botany", "plant species"]},
+    # Titanic (canonical ML beginner dataset; TR spelling differs: 'titanik')
+    "titanik": {"domain": "tabular_ml", "terms": ["titanic", "titanic dataset", "titanic survival", "passenger survival"]},
+    "titanic": {"domain": "tabular_ml", "terms": ["titanic", "titanic dataset", "titanic survival", "passenger survival"]},
+    "hayatta": {"domain": "tabular_ml", "terms": ["survival", "survived", "survivor"]},
+    "kalanlar": {"domain": "tabular_ml", "terms": ["survivors", "survival", "survived"]},
+    "yolcu": {"domain": "tabular_ml", "terms": ["passenger", "passengers"]},
+    "yolcular": {"domain": "tabular_ml", "terms": ["passengers", "passenger"]},
 }
 COMBO_RULES = [
     {

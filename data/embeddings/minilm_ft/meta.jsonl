@@ -558,6 +558,9 @@
 {"source": "huggingface", "ref": "dpdl-benchmark/oxford_flowers102", "title": "dpdl-benchmark/oxford_flowers102", "url": "https://huggingface.co/datasets/dpdl-benchmark/oxford_flowers102"}
 {"source": "huggingface", "ref": "nkirschi/oxford-flowers", "title": "nkirschi/oxford-flowers", "url": "https://huggingface.co/datasets/nkirschi/oxford-flowers"}
 {"source": "huggingface", "ref": "pufanyi/flowers102", "title": "pufanyi/flowers102", "url": "https://huggingface.co/datasets/pufanyi/flowers102"}
+{"source": "huggingface", "ref": "phihung/titanic", "title": "phihung/titanic", "url": "https://huggingface.co/datasets/phihung/titanic"}
+{"source": "huggingface", "ref": "julien-c/titanic-survival", "title": "julien-c/titanic-survival", "url": "https://huggingface.co/datasets/julien-c/titanic-survival"}
+{"source": "huggingface", "ref": "lewtun/titanic", "title": "lewtun/titanic", "url": "https://huggingface.co/datasets/lewtun/titanic"}
 {"source": "kaggle", "ref": "4quant/simplefoam", "title": "Finding Bubbles in Foam", "url": "https://www.kaggle.com/datasets/4quant/simplefoam"}
 {"source": "kaggle", "ref": "a2015003713/yolov7-military-plane", "title": "yolov7-military-plane", "url": "https://www.kaggle.com/datasets/a2015003713/yolov7-military-plane"}
 {"source": "kaggle", "ref": "aadarshvelu/gym-equipements-classification", "title": "Gym Equipment's Classification 💪", "url": "https://www.kaggle.com/datasets/aadarshvelu/gym-equipements-classification"}
@@ -1239,3 +1242,7 @@
 {"source": "kaggle", "ref": "marquis03/flower-classification", "title": "Flower Classification", "url": "https://www.kaggle.com/datasets/marquis03/flower-classification"}
 {"source": "kaggle", "ref": "imsparsh/flowers-dataset", "title": "Flowers Dataset", "url": "https://www.kaggle.com/datasets/imsparsh/flowers-dataset"}
 {"source": "kaggle", "ref": "rahmasleam/flowers-dataset", "title": "Flowers Dataset", "url": "https://www.kaggle.com/datasets/rahmasleam/flowers-dataset"}
+{"source": "kaggle", "ref": "yasserh/titanic-dataset", "title": "Titanic Dataset", "url": "https://www.kaggle.com/datasets/yasserh/titanic-dataset"}
+{"source": "kaggle", "ref": "heptapod/titanic", "title": "Titanic", "url": "https://www.kaggle.com/datasets/heptapod/titanic"}
+{"source": "kaggle", "ref": "vinicius150987/titanic3", "title": "The Complete Titanic Dataset", "url": "https://www.kaggle.com/datasets/vinicius150987/titanic3"}
+{"source": "kaggle", "ref": "azeembootwala/titanic", "title": "Titanic", "url": "https://www.kaggle.com/datasets/azeembootwala/titanic"}

@@ -1,17 +1,17 @@
 {
-  "built_at_utc": "2026-05-11T20:23:28.733086+00:00",
+  "built_at_utc": "2026-05-11T20:48:51.569267+00:00",
   "profile": "e5_base",
   "profile_label": "E5 Base (EN retrieval)",
   "model_name": "intfloat/e5-base-v2",
   "input_path": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\data\\processed\\descriptions_clean.jsonl",
-  "input_rows": 1241,
-  "indexed_rows": 1241,
+  "input_rows": 1248,
+  "indexed_rows": 1248,
   "embedding_dimension": 768,
   "query_prefix": "query: ",
   "document_prefix": "passage: ",
   "source_counts": {
-    "huggingface": 560,
-    "kaggle": 681
+    "huggingface": 563,
+    "kaggle": 685
   },
   "outputs": {
     "index": "C:\\Users\\user\\Desktop\\tez-semantic-search-ui-update\\data\\index\\e5_base\\faiss.index",

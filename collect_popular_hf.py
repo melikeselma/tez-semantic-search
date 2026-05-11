@@ -61,6 +61,10 @@ POPULAR_HF_DATASETS = [
     "huggan/flowers-102-categories",
     "clip-benchmark/wds_vtab-flowers",
     "pufanyi/flowers102",
+    # Titanic (classic beginner ML benchmark)
+    "phihung/titanic",
+    "julien-c/titanic-survival",
+    "lewtun/titanic",
 ]
 
 

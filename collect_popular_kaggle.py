@@ -78,6 +78,11 @@ POPULAR_KAGGLE_DATASETS = [
     "marquis03/flower-classification",
     "imsparsh/flowers-dataset",
     "rahmasleam/flowers-dataset",
+    # Titanic (klasik ML beginner benchmark)
+    "yasserh/titanic-dataset",
+    "heptapod/titanic",
+    "vinicius150987/titanic3",
+    "azeembootwala/titanic",
 ]
 
 # Cleaning regexes — kept aligned with clean_kaggle.py.
