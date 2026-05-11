@@ -871,13 +871,10 @@ HTML = """<!doctype html>
             <span>&#129504; Cross-encoder semantic rerank</span>
           </label>
         </div>
-        <div class="examples" id="examples" aria-label="Örnek sorgular">
-          <button class="example-btn" type="button" data-query="hava durumu ürün verimini nasıl etkiliyor">&#127789; hava + ürün</button>
-          <button class="example-btn" type="button" data-query="diyabet tahmini için hasta kayıtları">&#128137; diyabet</button>
-          <button class="example-btn" type="button" data-query="tarihsel deprem olayları ve sismik aktivite kayıtları">&#127979; deprem</button>
-          <button class="example-btn" type="button" data-query="günlük borsa fiyatları veri seti">&#128200; borsa</button>
-          <button class="example-btn" type="button" data-query="çiçek sınıflandırma veri seti">&#127802; çiçek</button>
-          <button class="example-btn" type="button" data-query="titanik veri seti">&#128674; titanik</button>
+        <div class="examples" id="examples" aria-label="Sample queries">
+          <button class="example-btn" type="button" data-query="I want to study how weather affects crop production.">&#127789; weather + crop</button>
+          <button class="example-btn" type="button" data-query="I want to research diabetes prediction using patient records.">&#128137; diabetes</button>
+          <button class="example-btn" type="button" data-query="I want to find a dataset of historical earthquake events and seismic activity records.">&#127979; earthquake</button>
         </div>
       </section>
 
