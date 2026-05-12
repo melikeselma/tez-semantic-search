@@ -954,6 +954,11 @@ HTML = """<!doctype html>
           <div class="rq-cluster-label purple">&#10067; Arastirma Sorusu</div>
           <div class="rq-cluster-body purple">
             Anlam tabanlı (dense) retrieval, kelime eşleme (BM25) yöntemini <strong>P@1, MRR ve nDCG@5</strong> metriklerinde anlamlı ölçüde geçiyor mu?
+            <div style="margin-top:10px; font-size:12px; line-height:1.6; color:var(--muted)">
+              <div><strong>P@1</strong> (Precision at 1): İlk sırada doğru veri seti çıkma oranı. 1.00 = her sorguda en üst sonuç doğru.</div>
+              <div><strong>MRR</strong> (Mean Reciprocal Rank): Doğru sonucun sırasının tersinin ortalaması. Doğru cevap 1. sıradaysa 1.0, 2. sıradaysa 0.5, 3. sıradaysa 0.33... Doğru cevabın listede ne kadar yukarıda olduğunu özetler.</div>
+              <div><strong>nDCG@5</strong> (Normalized Discounted Cumulative Gain): İlk 5 sonucun sıralama kalitesi. Hem doğru sonucun olup olmadığını hem de kaçıncı sırada olduğunu birlikte değerlendirir; 1.00 ideal sıralama.</div>
+            </div>
           </div>
         </div>
 
