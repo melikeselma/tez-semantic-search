@@ -1388,7 +1388,7 @@ HTML = """<!doctype html>
 
     function renderQualityFlags(details) {
       if (!Array.isArray(details) || !details.length) {
-        return '<div class="empty">Bu kayıt için aktif kalite flagi yok.</div>';
+        return '<div class="empty">&#9989; Bu kayıt kalite kontrolünden geçti, herhangi bir uyarı yok.</div>';
       }
       return details.map((detail) => `
         <article class="flag-item">
